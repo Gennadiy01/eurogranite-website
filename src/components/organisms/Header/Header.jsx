@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher'
 import useLanguageStore from '../../../stores/languageStore'
 
@@ -6,6 +7,8 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { currentLanguage } = useLanguageStore()
+  const navigate = useNavigate()
+  const location = useLocation()
   const lang = currentLanguage || 'en'
   
   // Sticky header effect
@@ -21,46 +24,31 @@ const Header = () => {
   // Navigation items
   const navItems = {
     en: [
-      { href: '#home', label: 'Home' },
-      { href: '#products', label: 'Products' },
-      { href: '#about', label: 'About' },
-      { href: '#contact', label: 'Contact' },
-      { href: '#gallery', label: 'Gallery' },
-      { href: '#articles', label: 'Articles' }
+      { to: '/', label: 'Home' },
+      { to: '/products', label: 'Products' },
+      { to: '/contact', label: 'Contact' }
     ],
     ua: [
-      { href: '#home', label: 'Головна' },
-      { href: '#products', label: 'Продукція' },
-      { href: '#about', label: 'Про нас' },
-      { href: '#contact', label: 'Контакти' },
-      { href: '#gallery', label: 'Галерея' },
-      { href: '#articles', label: 'Статті' }
+      { to: '/', label: 'Головна' },
+      { to: '/products', label: 'Продукція' },
+      { to: '/contact', label: 'Контакти' }
     ],
     de: [
-      { href: '#home', label: 'Startseite' },
-      { href: '#products', label: 'Produkte' },
-      { href: '#about', label: 'Über uns' },
-      { href: '#contact', label: 'Kontakt' },
-      { href: '#gallery', label: 'Galerie' },
-      { href: '#articles', label: 'Artikel' }
+      { to: '/', label: 'Startseite' },
+      { to: '/products', label: 'Produkte' },
+      { to: '/contact', label: 'Kontakt' }
     ],
     pl: [
-      { href: '#home', label: 'Główna' },
-      { href: '#products', label: 'Produkty' },
-      { href: '#about', label: 'O nas' },
-      { href: '#contact', label: 'Kontakt' },
-      { href: '#gallery', label: 'Galeria' },
-      { href: '#articles', label: 'Artykuły' }
+      { to: '/', label: 'Główna' },
+      { to: '/products', label: 'Produkty' },
+      { to: '/contact', label: 'Kontakt' }
     ]
   }
   
   const navigation = navItems[lang] || navItems.en
   
-  const handleNavClick = (href) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+  const handleNavClick = (to) => {
+    navigate(to)
     setIsMobileMenuOpen(false)
   }
   
@@ -72,26 +60,21 @@ const Header = () => {
           
           {/* Logo */}
           <div className="flex items-center">
-            <button 
-              onClick={() => handleNavClick('#home')}
-              className="logo-text"
-              style={{ background: 'none', border: 'none', padding: 0, outline: 'none', boxShadow: 'none' }}
-            >
+            <Link to="/" className="logo-text">
               EuroGranite
-            </button>
+            </Link>
           </div>
           
           {/* Desktop Navigation (1024+) */}
           <div className="lg-flex items-center space-x-8 lg-space-x-12 xl-space-x-16 xxl-space-x-18 whitespace-nowrap flex-1 justify-center">
             {navigation.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => handleNavClick(item.href)}
-                className="nav-menu-item"
-                style={{ background: 'none', border: 'none', padding: 0, outline: 'none', boxShadow: 'none' }}
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`nav-menu-item ${location.pathname === item.to ? 'text-accent-orange' : ''}`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </div>
           
@@ -174,26 +157,21 @@ const Header = () => {
           <div className="flex items-center justify-between gap-4 mb-2">
             {/* Logo */}
             <div className="flex items-center">
-              <button 
-                onClick={() => handleNavClick('#home')}
-                className="logo-text"
-                style={{ background: 'none', border: 'none', padding: 0, outline: 'none', boxShadow: 'none' }}
-              >
+              <Link to="/" className="logo-text">
                 EuroGranite
-              </button>
+              </Link>
             </div>
             
             {/* Desktop Navigation (768-1024) */}
             <div className="flex items-center space-x-4 md-space-x-6 whitespace-nowrap">
               {navigation.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleNavClick(item.href)}
-                  className="nav-menu-item"
-                  style={{ background: 'none', border: 'none', padding: 0, outline: 'none', boxShadow: 'none' }}
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className={`nav-menu-item ${location.pathname === item.to ? 'text-accent-orange' : ''}`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
@@ -264,14 +242,18 @@ const Header = () => {
           <div className="md-hidden bg-neutral-800 shadow-lg rounded-lg mt-2 py-4">
             <div className="flex flex-col space-y-2 px-4">
               {navigation.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleNavClick(item.href)}
-                  className="text-left py-2 text-white hover:text-accent-orange font-medium transition-colors"
-                  style={{ background: 'none', border: 'none', padding: '8px 0', outline: 'none', boxShadow: 'none' }}
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`text-left py-2 font-medium transition-colors ${
+                    location.pathname === item.to 
+                      ? 'text-accent-orange' 
+                      : 'text-white hover:text-accent-orange'
+                  }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
               <div className="border-t border-neutral-600 pt-4 mt-4">
                 <LanguageSwitcher className="mb-4" />
