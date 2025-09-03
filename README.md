@@ -1,70 +1,209 @@
-# Getting Started with Create React App
+# Eurogranite Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🏢 **Офіційний веб-сайт компанії Eurogranite** - виробника преміальної гранітної продукції для європейських ринків.
 
-## Available Scripts
+## 🌟 Про проект
 
-In the project directory, you can run:
+Сучасний багатомовний веб-сайт, створений на React, представляє повний асортимент гранітної продукції компанії Eurogranite з інтуїтивним користувацьким інтерфейсом та респонсивним дизайном.
 
-### `npm start`
+### ✨ Основні функції
+- 🌐 **Багатомовність** - українська та англійська мови
+- 📱 **Респонсивний дизайн** - оптимізовано для всіх пристроїв
+- 🎨 **Інтерактивні елементи** - модальні вікна з деталями продукції
+- ⚡ **Швидка навігація** - SPA з React Router
+- 🧪 **Покрите тестами** - Jest + React Testing Library
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🎯 Цільова аудиторія
+- Європейські оптові покупці
+- Архітектори та дизайнери
+- Будівельні компанії
+- Роздрібні клієнти
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Технологічний стек
 
-### `npm test`
+### Core
+- **React 18.3.1** - UI фреймворк
+- **React DOM 18.3.1** - DOM bindings
+- **React Router DOM 7.8.2** - маршрутизація
+- **React Scripts 5.0.1** - build tools
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### State Management
+- **Zustand 5.0.8** - управління глобальним станом
+- **PropTypes 15.8.1** - валідація типів
 
-### `npm run build`
+### UI & Animations
+- **Framer Motion 12.23.12** - анімації та переходи
+- **Lucide React 0.541.0** - іконки
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Styling
+- **PostCSS 8.5.6** - CSS preprocessor
+- **Autoprefixer 10.4.21** - vendor prefixes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Testing
+- **@testing-library/react 16.3.0** - тестування компонентів
+- **@testing-library/jest-dom 6.8.0** - DOM матчери
+- **@testing-library/user-event 13.5.0** - симуляція дій користувача
+- **@testing-library/dom 10.4.1** - DOM утиліти
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Monitoring
+- **Web Vitals 2.1.4** - метрики продуктивності
 
-### `npm run eject`
+## 📁 Структура проекту
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+src/
+├── components/           # React компоненти (Atomic Design)
+│   ├── atoms/           # Атомарні компоненти (Button)
+│   ├── molecules/       # Молекулярні компоненти (LanguageSwitcher, GraniteCard)
+│   └── organisms/       # Організмічні компоненти (Header, Hero, Modals)
+├── pages/               # Сторінки додатку
+│   ├── Home.jsx         # Головна сторінка
+│   ├── Products.jsx     # Каталог продукції
+│   └── Contact.jsx      # Контакти
+├── stores/              # Zustand stores
+│   ├── languageStore.js # Управління мовою
+│   └── modalStore.js    # Управління модальними вікнами
+├── constants/           # Дані та константи
+│   └── graniteData.js   # Інформація про граніт
+└── tests/               # Тести
+    ├── components/      # Тести компонентів
+    └── __mocks__/       # Mock файли
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎨 Продукція
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🪨 5 типів граніту:
+1. **Чорний граніт** (TOP вибір) - класичне рішення
+2. **Сірий граніт** (Універсальний) - для будь-яких проектів  
+3. **Червоно-коричневий граніт** (Унікальний) - теплі відтінки
+4. **Сіро-зелений граніт** (Рідкісний) - природні кольори
+5. **Чорно-зелений граніт** (Ексклюзивний) - преміум якість
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛠 Встановлення та запуск
 
-## Learn More
+### Передумови
+- Node.js (рекомендована версія 16+)
+- npm або yarn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Клонування та встановлення
+```bash
+git clone [repository-url]
+cd project_eurogranite
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Доступні скрипти
 
-### Code Splitting
+#### `npm start`
+Запускає додаток в режимі розробки на [http://localhost:3000](http://localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### `npm run dev` 
+Запускає додаток на порту 3005: [http://localhost:3005](http://localhost:3005)
 
-### Analyzing the Bundle Size
+#### `npm test`
+Запускає тести в інтерактивному режимі
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### `npm run build`
+Створює production збірку в папці `build/`
 
-### Making a Progressive Web App
+#### `npm run deploy`
+Деплоїть додаток на GitHub Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🧪 Тестування
 
-### Advanced Configuration
+Проект використовує Jest та React Testing Library:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+# Запуск всіх тестів
+npm test
 
-### Deployment
+# Запуск тестів з покриттям
+npm test -- --coverage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Запуск конкретного тесту
+npm test Header.test.js
+```
 
-### `npm run build` fails to minify
+### Тестове покриття включає:
+- Рендер компонентів
+- Інтеракції користувача
+- Перемикання мови
+- Модальні вікна
+- State management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🌐 Деплойment
+
+### GitHub Pages
+Проект налаштований для автоматичного деплою на GitHub Pages:
+
+```bash
+npm run deploy
+```
+
+**URL продакшену:** `https://Gennadiy01.github.io/eurogranite-website`
+
+### Процес деплою:
+1. `npm run build` - створення production збірки
+2. `gh-pages -d build` - публікація на GitHub Pages
+
+## 🌍 Багатомовність
+
+Підтримка двох мов реалізована через Zustand store:
+- 🇺🇦 **Українська** (за замовчуванням)  
+- 🇬🇧 **Англійська**
+
+Перемикання мови зберігається в localStorage та синхронізується між компонентами.
+
+## 🏗 Архітектура
+
+### Atomic Design
+- **Atoms:** Button, базові елементи
+- **Molecules:** LanguageSwitcher, GraniteCard  
+- **Organisms:** Header, Hero, Modal систами
+
+### State Management
+- **Language Store:** глобальна мова інтерфейсу
+- **Modal Store:** управління модальними вікнами
+
+### Routing
+- `/` - Головна сторінка
+- `/products` - Каталог продукції  
+- `/contact` - Контактна інформація
+
+## 🤝 Розробка
+
+### Додавання нових компонентів
+1. Створіть компонент в відповідній папці (`atoms/`, `molecules/`, `organisms/`)
+2. Додайте `index.js` для експорту
+3. Напишіть тести в `tests/components/`
+4. Оновіть документацію структури проекту
+
+### Code Style
+- ESLint конфігурація: `react-app`
+- Функціональні компоненти з hooks
+- PropTypes для валідації
+- Константи в окремих файлах
+
+## 📚 Документація
+
+Детальна документація доступна в папці `docs/`:
+- `Структура_проекту.md` - детальна архітектура
+- `План_реалізації.md` - план розробки
+- `Design_System_Actual.md` - дизайн система
+- `дані для SEO.md` - SEO інформація
+
+## 🐛 Виявлення проблем
+
+При виникненні проблем:
+1. Перевірте console в браузері
+2. Запустіть `npm test` для перевірки тестів
+3. Перевірте ESLint помилки
+4. Очистіть cache: `npm start -- --reset-cache`
+
+## 📄 Ліцензія
+
+Приватний проект компанії Eurogranite.
+
+---
+
+**Створено з ❤️ для європейського ринку гранітної продукції**
