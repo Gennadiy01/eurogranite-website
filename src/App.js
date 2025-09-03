@@ -8,7 +8,7 @@ import Footer from './components/organisms/Footer/Footer'
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router basename="/eurogranite-website">
         <Routes>
           <Route path="/" element={<><Home /><Footer /></>} />
           <Route path="/products" element={<><Products /><Footer /></>} />
