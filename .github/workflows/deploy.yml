@@ -32,9 +32,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      # Temporarily disable tests until router dependency is resolved
-      # - name: Run tests
-      #   run: npm test -- --coverage --watchAll=false
+      - name: Run tests
+        run: npm test -- --coverage --watchAll=false --passWithNoTests
+        env:
+          CI: true
         
       - name: Build project
         run: npm run build
