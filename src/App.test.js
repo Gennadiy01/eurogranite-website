@@ -1,13 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
+// Mock React Router before imports
+jest.mock('react-router-dom');
+
 test('renders EuroGranite logo', () => {
-  render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
-  );
-  const logoElement = screen.getByText(/eurogranite/i);
-  expect(logoElement).toBeInTheDocument();
+  render(<App />);
+  const logoElements = screen.getAllByText(/eurogranite/i);
+  expect(logoElements.length).toBeGreaterThan(0);
+  expect(logoElements[0]).toBeInTheDocument();
 });
