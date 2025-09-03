@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher'
 import useLanguageStore from '../../../stores/languageStore'
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { currentLanguage } = useLanguageStore()
-  const navigate = useNavigate()
   const location = useLocation()
   const lang = currentLanguage || 'en'
   
-  // Sticky header effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
   
   // Navigation items
   const navItems = {
@@ -47,10 +36,6 @@ const Header = () => {
   
   const navigation = navItems[lang] || navItems.en
   
-  const handleNavClick = (to) => {
-    navigate(to)
-    setIsMobileMenuOpen(false)
-  }
   
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-neutral-900 shadow-lg">
