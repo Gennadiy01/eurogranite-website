@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/eurogranite-website/static/css/main.ad5134e3.css",
+    "main.js": "/eurogranite-website/static/js/main.a5f50a01.js",
+    "static/js/206.f5812e9e.chunk.js": "/eurogranite-website/static/js/206.f5812e9e.chunk.js",
+    "index.html": "/eurogranite-website/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.ad5134e3.css",
+    "static/js/main.a5f50a01.js"
+  ]
+}
