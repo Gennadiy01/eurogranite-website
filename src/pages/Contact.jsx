@@ -9,30 +9,30 @@ const Contact = () => {
     en: {
       title: 'Contact Us',
       subtitle: 'Get in touch with our team for your granite project needs',
-      address: '123 Industrial Avenue, Kyiv, Ukraine 01001',
-      phone: '+38 044 123 45 67',
-      email: 'sales@euro-granite.com'
+      address: 'Ukraine, 10001, Zhytomyr, Maidan Zgody, build. 6, office 7',
+      phone: '+380733864041',
+      email: 'info@euro-granite.com'
     },
     ua: {
       title: 'Контакти',
       subtitle: 'Зв\'яжіться з нашою командою для вашого гранітного проекту',
-      address: 'вул. Промислова, 123, Київ, Україна 01001',
-      phone: '+38 044 123 45 67',
-      email: 'sales@euro-granite.com'
+      address: 'Україна, 10001, Житомир, Майдан Згоди, буд. 6, офіс 7',
+      phone: '+380733864041',
+      email: 'info@euro-granite.com'
     },
     de: {
       title: 'Kontakt',
       subtitle: 'Kontaktieren Sie unser Team für Ihre Granit-Projektanforderungen',
-      address: 'Industriestraße 123, Kiew, Ukraine 01001',
-      phone: '+38 044 123 45 67',
-      email: 'sales@euro-granite.com'
+      address: 'Ukraine, 10001, Zhytomyr, Maidan Zgody, Geb. 6, Büro 7',
+      phone: '+380733864041',
+      email: 'info@euro-granite.com'
     },
     pl: {
       title: 'Kontakt',
       subtitle: 'Skontaktuj się z naszym zespołem w sprawie potrzeb projektu granitowego',
-      address: 'ul. Przemysłowa 123, Kijów, Ukraina 01001',
-      phone: '+38 044 123 45 67',
-      email: 'sales@euro-granite.com'
+      address: 'Ukraina, 10001, Żytomierz, Plac Zgody, bud. 6, biuro 7',
+      phone: '+380733864041',
+      email: 'info@euro-granite.com'
     }
   }
   
