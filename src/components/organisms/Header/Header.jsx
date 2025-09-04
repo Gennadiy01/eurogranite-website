@@ -109,13 +109,13 @@ const Header = () => {
             {/* Contact Info */}
             <div className="flex flex-col space-y-1">
               <a 
-                href="tel:+380441234567" 
+                href="tel:+380733864041" 
                 className="flex items-center space-x-2.5 text-white hover:text-accent-orange transition-colors no-underline whitespace-nowrap"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="text-sm font-medium">+38 044 123 45 67</span>
+                <span className="text-sm font-medium">+38 073 386 40 41</span>
               </a>
               
               <a 
@@ -132,7 +132,7 @@ const Header = () => {
             {/* Social Media */}
             <div className="flex items-center space-x-4">
               <a 
-                href="viber://chat?number=+380441234567"
+                href="viber://chat?number=+380503864041"
                 className="text-white hover:text-accent-orange transition-colors no-underline"
                 title="Viber"
               >
@@ -142,7 +142,7 @@ const Header = () => {
               </a>
               
               <a 
-                href="https://wa.me/380441234567"
+                href="https://wa.me/380503864041"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-accent-orange transition-colors no-underline"
@@ -193,13 +193,13 @@ const Header = () => {
             {/* Contact Info */}
             <div className="flex items-center gap-3">
               <a 
-                href="tel:+380441234567" 
+                href="tel:+380733864041" 
                 className="flex items-center space-x-2.5 text-white hover:text-accent-orange transition-colors no-underline whitespace-nowrap"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="text-sm font-medium">+38 044 123 45 67</span>
+                <span className="text-sm font-medium">+38 073 386 40 41</span>
               </a>
               
               <a 
@@ -216,7 +216,7 @@ const Header = () => {
             {/* Social Media */}
             <div className="flex items-center space-x-3">
               <a 
-                href="viber://chat?number=+380441234567"
+                href="viber://chat?number=+380503864041"
                 className="text-white hover:text-accent-orange transition-colors no-underline"
                 title="Viber"
               >
@@ -226,7 +226,7 @@ const Header = () => {
               </a>
               
               <a 
-                href="https://wa.me/380441234567"
+                href="https://wa.me/380503864041"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-accent-orange transition-colors no-underline"
@@ -265,7 +265,7 @@ const Header = () => {
                 {/* Mobile Social Media */}
                 <div className="flex items-center space-x-3 mb-3">
                   <a 
-                    href="viber://chat?number=+380441234567"
+                    href="viber://chat?number=+380503864041"
                     className="text-white hover:text-accent-orange transition-colors no-underline"
                     title="Viber"
                   >
@@ -275,7 +275,7 @@ const Header = () => {
                   </a>
                   
                   <a 
-                    href="https://wa.me/380441234567"
+                    href="https://wa.me/380503864041"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:text-accent-orange transition-colors no-underline"
@@ -290,13 +290,13 @@ const Header = () => {
                 {/* Mobile Contact */}
                 <div className="space-y-2">
                   <a 
-                    href="tel:+380441234567" 
+                    href="tel:+380733864041" 
                     className="flex items-center space-x-2.5 text-white hover:text-accent-orange transition-colors no-underline group"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <span className="text-sm font-medium group-hover:text-accent-orange">+38 044 123 45 67</span>
+                    <span className="text-sm font-medium group-hover:text-accent-orange">+38 073 386 40 41</span>
                   </a>
                   
                   <a 

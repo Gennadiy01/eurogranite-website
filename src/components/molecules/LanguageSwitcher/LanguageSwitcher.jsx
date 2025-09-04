@@ -5,6 +5,7 @@ const LanguageSwitcher = ({ className = '' }) => {
   const { currentLanguage, availableLanguages, setLanguage } = useLanguageStore()
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef(null)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
   
   const currentLang = availableLanguages.find(lang => lang.code === currentLanguage)
   const otherLanguages = availableLanguages.filter(lang => lang.code !== currentLanguage)
@@ -22,6 +23,36 @@ const LanguageSwitcher = ({ className = '' }) => {
     }, 300) // 300ms затримка
   }
   
+  const handleLanguageSelect = (languageCode) => {
+    setLanguage(languageCode)
+    setIsOpen(false) // Закриваємо меню після вибору
+    
+    // Очищуємо timeout якщо існує
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+  }
+  
+  // Detect touch device on mount
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isOpen && !event.target.closest('.language-switcher')) {
+        setIsOpen(false)
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen])
+  
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
@@ -33,12 +64,19 @@ const LanguageSwitcher = ({ className = '' }) => {
   
   return (
     <div 
-      className={`relative ${className}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className={`relative language-switcher ${className}`}
+      onMouseEnter={!isTouchDevice ? handleMouseEnter : undefined}
+      onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}
     >
       {/* Active Language Display */}
-      <div className="cursor-pointer">
+      <div 
+        className="cursor-pointer"
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          setIsOpen(!isOpen)
+        }}
+      >
         <span className="text-white hover:text-accent-orange text-sm font-medium transition-colors">
           {currentLang?.code.toUpperCase()}
         </span>
@@ -48,8 +86,8 @@ const LanguageSwitcher = ({ className = '' }) => {
       {isOpen && (
         <div 
           className="fixed bg-neutral-800 rounded-lg shadow-xl py-2 min-w-[80px] border border-neutral-700"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={!isTouchDevice ? handleMouseEnter : undefined}
+          onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}
           style={{
             zIndex: 9999,
             top: '100%',
@@ -61,7 +99,11 @@ const LanguageSwitcher = ({ className = '' }) => {
           {otherLanguages.map((language) => (
             <button
               key={language.code}
-              onClick={() => setLanguage(language.code)}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                handleLanguageSelect(language.code)
+              }}
               className="w-full px-4 py-2 text-sm font-medium text-white hover:text-accent-orange hover:bg-neutral-700 transition-colors text-left block"
               style={{ padding: '8px 16px' }}
             >
