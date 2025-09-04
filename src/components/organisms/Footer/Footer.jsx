@@ -78,12 +78,6 @@ const Footer = () => {
 
   const content = footerContent[currentLanguage] || footerContent.en
 
-  const handleNavClick = (href) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   return (
     <footer className="footer-section">
