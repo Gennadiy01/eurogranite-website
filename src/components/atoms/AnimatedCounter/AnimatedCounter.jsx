@@ -7,7 +7,7 @@ const AnimatedCounter = ({
   delay = 0, 
   suffix = '', 
   step = 1,
-  onComplete = null 
+  onComplete 
 }) => {
   const [currentNumber, setCurrentNumber] = useState(0)
   const [hasStarted, setHasStarted] = useState(false)
