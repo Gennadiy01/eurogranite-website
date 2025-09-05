@@ -3,6 +3,7 @@ import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
 import OptimizedImage from '../../atoms/OptimizedImage/OptimizedImage'
 import useLanguageStore from '../../../stores/languageStore'
+import heroImage from '../../../assets/Im_Hero.jpg'
 
 const Hero = () => {
   const { currentLanguage } = useLanguageStore()
@@ -140,17 +141,12 @@ const Hero = () => {
           
           {/* Right side - Optimized Image */}
           <div className="hero-image">
-            <OptimizedImage
-              src="/images/hero/production-facility.jpg"
+            <img
+              src={heroImage}
               alt="Modern granite production facility with advanced equipment and skilled workers"
               className="hero-main-image"
-              responsive={true}
-              lazy={true}
+              loading="lazy"
             />
-            
-            {/* Decorative elements */}
-            <div className="hero-decoration hero-decoration-1" role="presentation" aria-hidden="true"></div>
-            <div className="hero-decoration hero-decoration-2" role="presentation" aria-hidden="true"></div>
           </div>
           
         </div>
