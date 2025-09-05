@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
 import OptimizedImage from '../../atoms/OptimizedImage/OptimizedImage'
@@ -6,7 +6,6 @@ import useLanguageStore from '../../../stores/languageStore'
 
 const Hero = () => {
   const { currentLanguage } = useLanguageStore()
-  const [completedCounters, setCompletedCounters] = useState(0)
   
   // Temporary text data (will be moved to i18n in Phase 2)
   const heroContent = {
@@ -62,9 +61,6 @@ const Hero = () => {
   
   const content = heroContent[currentLanguage] || heroContent.en
   
-  const handleCounterComplete = () => {
-    setCompletedCounters(prev => prev + 1)
-  }
   
   const handleCatalogClick = () => {
     // Navigate to products section
@@ -131,7 +127,6 @@ const Hero = () => {
                         delay={delay}
                         step={step}
                         suffix={stat.number.includes('+') ? '+' : ''}
-                        onComplete={handleCounterComplete}
                       />
                     </div>
                     <div className="hero-stat-label" aria-describedby={`stat-${index}`}>
