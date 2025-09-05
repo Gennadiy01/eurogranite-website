@@ -16,6 +16,7 @@ const Hero = () => {
       description: 'Leading manufacturer of high-quality granite products with over 15 years of experience serving European customers. ISO certified quality and environmental responsibility.',
       ctaPrimary: 'View Catalog',
       ctaSecondary: 'Get Quote',
+      imageAlt: 'Modern granite production facility with advanced equipment and skilled workers',
       stats: [
         { number: '15+', label: 'Years Experience' },
         { number: '500+', label: 'Projects' },
@@ -28,6 +29,7 @@ const Hero = () => {
       description: 'Провідний виробник високоякісного граніту з 15-річним досвідом. ISO сертифікована якість та екологічна відповідальність.',
       ctaPrimary: 'Переглянути каталог',
       ctaSecondary: 'Отримати пропозицію',
+      imageAlt: 'Сучасне підприємство з виробництва граніту з передовим обладнанням та кваліфікованими працівниками',
       stats: [
         { number: '15+', label: 'Років досвіду' },
         { number: '500+', label: 'Проектів' },
@@ -40,6 +42,7 @@ const Hero = () => {
       description: 'Führender Hersteller hochwertiger Granitprodukte mit über 15 Jahren Erfahrung im Service für europäische Kunden. ISO-zertifizierte Qualität und Umweltverantwortung.',
       ctaPrimary: 'Katalog ansehen',
       ctaSecondary: 'Angebot erhalten',
+      imageAlt: 'Moderne Granitproduktionsstätte mit fortschrittlicher Ausrüstung und qualifizierten Arbeitern',
       stats: [
         { number: '15+', label: 'Jahre Erfahrung' },
         { number: '500+', label: 'Projekte' },
@@ -52,6 +55,7 @@ const Hero = () => {
       description: 'Wiodący producent wysokiej jakości produktów granitowych z ponad 15-letnim doświadczeniem w obsłudze klientów europejskich. Jakość certyfikowana ISO i odpowiedzialność środowiskowa.',
       ctaPrimary: 'Zobacz Katalog',
       ctaSecondary: 'Otrzymaj Ofertę',
+      imageAlt: 'Nowoczesny zakład produkcji granitu z zaawansowanym sprzętem i wykwalifikowanymi pracownikami',
       stats: [
         { number: '15+', label: 'Lat Doświadczenia' },
         { number: '500+', label: 'Projektów' },
@@ -143,7 +147,7 @@ const Hero = () => {
           <div className="hero-image">
             <OptimizedImage
               src={heroImage}
-              alt="Modern granite production facility with advanced equipment and skilled workers"
+              alt={content.imageAlt}
               className="hero-main-image"
               lazy={true}
             />
