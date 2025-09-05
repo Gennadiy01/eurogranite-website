@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../../atoms/Button/Button'
+import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
+import OptimizedImage from '../../atoms/OptimizedImage/OptimizedImage'
 import useLanguageStore from '../../../stores/languageStore'
 
 const Hero = () => {
   const { currentLanguage } = useLanguageStore()
+  const [completedCounters, setCompletedCounters] = useState(0)
   
   // Temporary text data (will be moved to i18n in Phase 2)
   const heroContent = {
@@ -21,8 +24,8 @@ const Hero = () => {
     },
     ua: {
       title: 'Преміальні гранітні вироби',
-      subtitle: 'для Європейських ринків',
-      description: 'Провідний виробник високоякісної гранітної продукції з 15-річним досвідом обслуговування європейських клієнтів. ISO сертифікована якість та екологічна відповідальність.',
+      subtitle: 'для ринків Європи',
+      description: 'Провідний виробник високоякісного граніту з 15-річним досвідом. ISO сертифікована якість та екологічна відповідальність.',
       ctaPrimary: 'Переглянути каталог',
       ctaSecondary: 'Отримати пропозицію',
       stats: [
@@ -44,8 +47,8 @@ const Hero = () => {
       ]
     },
     pl: {
-      title: 'Produkty Granitowe Premium',
-      subtitle: 'dla Rynków Europejskich',
+      title: 'Premium Granit',
+      subtitle: 'dla Europy',
       description: 'Wiodący producent wysokiej jakości produktów granitowych z ponad 15-letnim doświadczeniem w obsłudze klientów europejskich. Jakość certyfikowana ISO i odpowiedzialność środowiskowa.',
       ctaPrimary: 'Zobacz Katalog',
       ctaSecondary: 'Otrzymaj Ofertę',
@@ -58,6 +61,10 @@ const Hero = () => {
   }
   
   const content = heroContent[currentLanguage] || heroContent.en
+  
+  const handleCounterComplete = () => {
+    setCompletedCounters(prev => prev + 1)
+  }
   
   const handleCatalogClick = () => {
     // Navigate to products section
@@ -107,35 +114,48 @@ const Hero = () => {
             </div>
             
             {/* Stats */}
-            <div className="hero-stats">
-              {content.stats.map((stat, index) => (
-                <div key={index} className="hero-stat-item">
-                  <div className="hero-stat-number">
-                    {stat.number}
+            <section className="hero-stats" aria-label="Company achievements and statistics">
+              {content.stats.map((stat, index) => {
+                // Determine animation parameters based on the number
+                const isLargeNumber = stat.number.includes('500')
+                const step = isLargeNumber ? 10 : 1 // Count by tens for 500+
+                const delay = index === 0 ? 0 : index === 1 ? 800 : 1200 // First: 0ms, Second: 800ms, Third: 1200ms
+                const duration = isLargeNumber ? 1500 : 1000 // Longer duration for larger numbers
+                
+                return (
+                  <div key={index} className="hero-stat-item" role="group" aria-labelledby={`stat-${index}`}>
+                    <div id={`stat-${index}`}>
+                      <AnimatedCounter 
+                        targetNumber={stat.number}
+                        duration={duration}
+                        delay={delay}
+                        step={step}
+                        suffix={stat.number.includes('+') ? '+' : ''}
+                        onComplete={handleCounterComplete}
+                      />
+                    </div>
+                    <div className="hero-stat-label" aria-describedby={`stat-${index}`}>
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="hero-stat-label">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+                )
+              })}
+            </section>
           </div>
           
-          {/* Right side - Image placeholder */}
+          {/* Right side - Optimized Image */}
           <div className="hero-image">
-            <div className="hero-image-placeholder">
-              {/* Placeholder for granite/factory image */}
-              <div className="hero-image-content">
-                <svg className="hero-image-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="hero-image-text">Production Facility</p>
-              </div>
-            </div>
+            <OptimizedImage
+              src="/images/hero/production-facility.jpg"
+              alt="Modern granite production facility with advanced equipment and skilled workers"
+              className="hero-main-image"
+              responsive={true}
+              lazy={true}
+            />
             
             {/* Decorative elements */}
-            <div className="hero-decoration hero-decoration-1"></div>
-            <div className="hero-decoration hero-decoration-2"></div>
+            <div className="hero-decoration hero-decoration-1" role="presentation" aria-hidden="true"></div>
+            <div className="hero-decoration hero-decoration-2" role="presentation" aria-hidden="true"></div>
           </div>
           
         </div>

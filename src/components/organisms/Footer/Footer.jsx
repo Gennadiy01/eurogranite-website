@@ -19,7 +19,6 @@ const Footer = () => {
         { name: 'Home', href: '/' },
         { name: 'Products', href: '/products' },
         { name: 'About', href: '/about' },
-        { name: 'Gallery', href: '/gallery' },
         { name: 'Contact', href: '/contact' }
       ]
     },
@@ -36,7 +35,6 @@ const Footer = () => {
         { name: 'Головна', href: '/' },
         { name: 'Продукція', href: '/products' },
         { name: 'Про нас', href: '/about' },
-        { name: 'Галерея', href: '/gallery' },
         { name: 'Контакти', href: '/contact' }
       ]
     },
@@ -53,7 +51,6 @@ const Footer = () => {
         { name: 'Startseite', href: '/' },
         { name: 'Produkte', href: '/products' },
         { name: 'Über uns', href: '/about' },
-        { name: 'Galerie', href: '/gallery' },
         { name: 'Kontakt', href: '/contact' }
       ]
     },
@@ -70,7 +67,6 @@ const Footer = () => {
         { name: 'Strona główna', href: '/' },
         { name: 'Produkty', href: '/products' },
         { name: 'O nas', href: '/about' },
-        { name: 'Galeria', href: '/gallery' },
         { name: 'Kontakt', href: '/contact' }
       ]
     }
