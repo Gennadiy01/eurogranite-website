@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
+import OptimizedImage from '../../atoms/OptimizedImage/OptimizedImage'
 import useLanguageStore from '../../../stores/languageStore'
 import heroImage from '../../../assets/Im_Hero.jpg'
 
@@ -140,11 +141,11 @@ const Hero = () => {
           
           {/* Right side - Optimized Image */}
           <div className="hero-image">
-            <img
+            <OptimizedImage
               src={heroImage}
               alt="Modern granite production facility with advanced equipment and skilled workers"
               className="hero-main-image"
-              loading="lazy"
+              lazy={true}
             />
           </div>
           

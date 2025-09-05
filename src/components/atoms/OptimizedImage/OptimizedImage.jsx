@@ -57,9 +57,11 @@ const OptimizedImage = ({
     if (onError) onError()
   }
 
-  // Генерація responsive srcSet
+  // Генерація responsive srcSet (тільки для URL шляхів, не для import'ів)
   const generateSrcSet = () => {
-    if (!responsive || typeof src !== 'string') return ''
+    if (!responsive || typeof src !== 'string' || src.startsWith('data:') || src.includes('/static/media/')) {
+      return '' // Пропускаємо для webpack import'ів
+    }
     
     const basePath = src.replace(/\.[^/.]+$/, '') // Видаляємо розширення
     return `
