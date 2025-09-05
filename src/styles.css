@@ -148,7 +148,7 @@ body {
   display: flex;
   align-items: flex-start; /* Змінено з center на flex-start */
   padding: 4rem 0; /* Збільшено для компенсації */
-  padding-top: 150px !important; /* Збільшено для гарантованого відступу від header */
+  padding-top: 75px !important; /* Зменшено в 2 рази для мобільних (150px -> 75px) */
   margin-top: 20px; /* Додатковий відступ для безпеки */
   background-color: var(--neutral-900);
 }
@@ -335,6 +335,10 @@ body {
 
 /* Desktop breakpoint (1024px+) */
 @media (min-width: 1024px) {
+  .hero-section {
+    padding-top: 150px !important; /* Збільшуємо для десктопу */
+  }
+  
   .hero-title {
     font-size: 3.75rem; /* 60px - зменшено з 4.5rem */
   }
