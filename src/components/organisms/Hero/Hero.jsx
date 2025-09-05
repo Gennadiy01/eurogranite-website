@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
-import OptimizedImage from '../../atoms/OptimizedImage/OptimizedImage'
 import useLanguageStore from '../../../stores/languageStore'
 import heroImage from '../../../assets/Im_Hero.jpg'
 
