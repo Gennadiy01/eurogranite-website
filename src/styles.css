@@ -1534,7 +1534,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: flex-start;
+  align-items: center;
+}
+
+.unique-proposition-cta-buttons .custom-button {
+  width: 100%;
+  max-width: 280px;
 }
 
 /* Tablet breakpoint (768px+) */
