@@ -103,14 +103,14 @@ const OptimizedImage = ({
 
   return (
     <div className="optimized-image-container" ref={imgRef}>
-      {/* Показуємо placeholder доки зображення не завантажилось */}
-      {(!isInView || !isLoaded) && !hasError && renderPlaceholder()}
+      {/* Показуємо placeholder доки зображення не завантажилось (але не для Hero) */}
+      {(!isInView || !isLoaded) && !hasError && !className.includes('hero-main-image') && renderPlaceholder()}
       
       {/* Показуємо помилку якщо зображення не завантажилось */}
       {hasError && renderPlaceholder()}
       
       {/* Основне зображення */}
-      {isInView && !hasError && (
+      {(isInView || className.includes('hero-main-image')) && !hasError && (
         <img
           src={src}
           srcSet={responsive ? generateSrcSet() : undefined}

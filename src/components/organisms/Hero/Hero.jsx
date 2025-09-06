@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
-import OptimizedImage from '../../atoms/OptimizedImage/OptimizedImage'
 import useLanguageStore from '../../../stores/languageStore'
 import heroImage from '../../../assets/Im_Hero.jpg'
 
@@ -143,13 +142,13 @@ const Hero = () => {
             </section>
           </div>
           
-          {/* Right side - Optimized Image */}
+          {/* Right side - Direct Image */}
           <div className="hero-image">
-            <OptimizedImage
+            <img
               src={heroImage}
               alt={content.imageAlt}
               className="hero-main-image"
-              lazy={true}
+              loading="eager"
             />
           </div>
           
