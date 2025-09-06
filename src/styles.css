@@ -452,7 +452,7 @@ body {
 
 .granite-colors-section {
   padding: 5rem 0;
-  background-color: var(--neutral-50);
+  background-color: var(--neutral-200);
 }
 
 .granite-colors-container {
@@ -463,7 +463,7 @@ body {
 }
 
 .granite-colors-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 4rem;
 }
 
@@ -471,8 +471,9 @@ body {
   font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.2;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* Updated to use medium spacing */
   color: var(--neutral-900);
+  text-align: center;
 }
 
 .granite-colors-subtitle {
@@ -697,6 +698,14 @@ body {
   .granite-colors-row-two {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .granite-colors-section {
+    padding: 4rem 0;
+  }
+  
+  .unique-proposition-section {
+    padding: 4rem 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -726,6 +735,14 @@ body {
   
   .granite-colors-subtitle {
     font-size: 1rem;
+  }
+  
+  .granite-colors-section {
+    padding: 3rem 0;
+  }
+  
+  .unique-proposition-section {
+    padding: 3rem 0;
   }
 }
 
@@ -1205,11 +1222,42 @@ body {
 .space-y-2 > * + * { margin-top: 0.5rem; }
 .group:hover .group-hover\\:text-accent-orange { color: var(--accent-orange); }
 
+/* ========================================
+   Content Spacing System
+   ======================================== */
+
+/* Vertical spacing system for content hierarchy */
+.mb-2 { margin-bottom: 0.5rem; }    /* 8px - Micro spacing */
+.mb-3 { margin-bottom: 0.75rem; }   /* 12px - Small spacing */
+.mb-4 { margin-bottom: 1rem; }      /* 16px - Base spacing */
+.mb-6 { margin-bottom: 1.5rem; }    /* 24px - Medium spacing */
+.mb-8 { margin-bottom: 2rem; }      /* 32px - Large spacing */
+.mb-12 { margin-bottom: 3rem; }     /* 48px - Extra large spacing */
+.mb-16 { margin-bottom: 4rem; }     /* 64px - Section spacing */
+.mb-20 { margin-bottom: 5rem; }     /* 80px - Major section spacing */
+
+/* Content hierarchy spacing classes */
+.content-spacing-micro { margin-bottom: 0.5rem; }      /* Between related elements */
+.content-spacing-small { margin-bottom: 0.75rem; }     /* Between subtitle and description */
+.content-spacing-base { margin-bottom: 1rem; }         /* Between title and subtitle */
+.content-spacing-medium { margin-bottom: 1.5rem; }     /* Between description and content */
+.content-spacing-large { margin-bottom: 2rem; }        /* Between content blocks */
+.content-spacing-xl { margin-bottom: 3rem; }           /* Between major content blocks */
+.content-spacing-section { margin-bottom: 4rem; }      /* Between header and main content */
+.content-spacing-major { margin-bottom: 5rem; }        /* Between major sections */
+
+/* Mobile responsive spacing */
+@media (max-width: 640px) {
+  .content-spacing-section { margin-bottom: 3rem; }    /* 48px on mobile */
+  .content-spacing-major { margin-bottom: 4rem; }      /* 64px on mobile */
+  .mb-16 { margin-bottom: 3rem; }                      /* Responsive section spacing */
+  .mb-20 { margin-bottom: 4rem; }                      /* Responsive major spacing */
+}
+
 /* Additional spacing and layout classes */
 .space-y-8 > * + * { margin-top: 2rem; }
 .max-w-4xl { max-width: 56rem; }
 .max-w-6xl { max-width: 72rem; }
-.mb-16 { margin-bottom: 4rem; }
 .mt-16 { margin-top: 4rem; }
 .text-2xl { font-size: 1.5rem; }
 .font-bold { font-weight: 700; }
@@ -1355,4 +1403,150 @@ body {
 .hero-button-outline:hover:not(:disabled) {
   background-color: var(--white) !important;
   color: var(--neutral-900) !important;
+}
+
+/* ========================================
+   Unique Proposition Section Styles
+   ======================================== */
+
+.unique-proposition-section {
+  padding: 5rem 0;
+  background-color: var(--neutral-50);
+  position: relative;
+}
+
+.unique-proposition-header {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.unique-proposition-subtitle {
+  color: var(--accent-orange);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.unique-proposition-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--neutral-900);
+  line-height: 1.2;
+  margin: 0 auto;
+}
+
+.unique-proposition-description {
+  font-size: 1.125rem;
+  color: var(--neutral-600);
+  line-height: 1.7;
+}
+
+.unique-proposition-features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.unique-proposition-feature {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.unique-proposition-feature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+}
+
+.unique-proposition-feature-icon {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-hover));
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+
+.feature-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.unique-proposition-feature-content {
+  flex: 1;
+}
+
+.unique-proposition-feature-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--neutral-900);
+  margin-bottom: 0.5rem;
+}
+
+.unique-proposition-feature-description {
+  color: var(--neutral-600);
+  line-height: 1.6;
+}
+
+.unique-proposition-cta {
+  background: var(--white);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.unique-proposition-cta-text {
+  font-size: 1.125rem;
+  color: var(--neutral-700);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.unique-proposition-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* Tablet breakpoint (768px+) */
+@media (min-width: 768px) {
+  .unique-proposition-title {
+    font-size: 2.5rem;
+  }
+  
+  .unique-proposition-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .unique-proposition-cta-buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+/* Desktop breakpoint (1024px+) */
+@media (min-width: 1024px) {
+  .unique-proposition-title {
+    font-size: 3rem;
+  }
+  
+  .unique-proposition-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .unique-proposition-cta {
+    padding: 3rem;
+  }
 }
