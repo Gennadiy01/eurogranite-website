@@ -16,33 +16,33 @@ const Header = () => {
       { to: '/', label: 'Home' },
       { to: '/products', label: 'Products' },
       { to: '/about', label: 'About Us' },
+      { to: '/contact', label: 'Contact' },
       { to: '/gallery', label: 'Gallery' },
-      { to: '/articles', label: 'Articles' },
-      { to: '/contact', label: 'Contact' }
+      { to: '/articles', label: 'Articles' }
     ],
     ua: [
       { to: '/', label: 'Головна' },
       { to: '/products', label: 'Продукція' },
       { to: '/about', label: 'Про нас' },
+      { to: '/contact', label: 'Контакти' },
       { to: '/gallery', label: 'Галерея' },
-      { to: '/articles', label: 'Статті' },
-      { to: '/contact', label: 'Контакти' }
+      { to: '/articles', label: 'Статті' }
     ],
     de: [
       { to: '/', label: 'Startseite' },
       { to: '/products', label: 'Produkte' },
       { to: '/about', label: 'Über uns' },
+      { to: '/contact', label: 'Kontakt' },
       { to: '/gallery', label: 'Galerie' },
-      { to: '/articles', label: 'Artikel' },
-      { to: '/contact', label: 'Kontakt' }
+      { to: '/articles', label: 'Artikel' }
     ],
     pl: [
       { to: '/', label: 'Główna' },
       { to: '/products', label: 'Produkty' },
       { to: '/about', label: 'O nas' },
+      { to: '/contact', label: 'Kontakt' },
       { to: '/gallery', label: 'Galeria' },
-      { to: '/articles', label: 'Artykuły' },
-      { to: '/contact', label: 'Kontakt' }
+      { to: '/articles', label: 'Artykuły' }
     ]
   }
   

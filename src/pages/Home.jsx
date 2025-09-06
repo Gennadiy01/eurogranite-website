@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/organisms/Header/Header'
 import Hero from '../components/organisms/Hero/Hero'
-import GraniteColorSection from '../components/organisms/GraniteColorSection/GraniteColorSection'
+import GraniteColors from '../components/organisms/GraniteColors/GraniteColors'
 import ModalManager from '../components/organisms/ModalManager/ModalManager'
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
       <Header />
       <main>
         <Hero />
-        <GraniteColorSection />
+        <GraniteColors />
       </main>
       <ModalManager />
     </div>
