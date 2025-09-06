@@ -7,7 +7,7 @@ const GraniteColors = () => {
   
   const content = {
     en: {
-      title: 'Our Products',
+      title: 'Premium-Class Materials',
       subtitle: 'Elite granite varieties of the highest quality for the most demanding projects.\nEach granite type is carefully selected and processed according to European quality standards.',
       products: [
         {
@@ -50,7 +50,7 @@ const GraniteColors = () => {
       buttonText: 'Learn More'
     },
     ua: {
-      title: 'Наша продукція',
+      title: 'Матеріали преміум-класу',
       subtitle: 'Елітні сорти граніту найвищої якості для найвимогливіших проектів.\nКожен тип граніту ретельно відібраний та оброблений згідно з європейськими стандартами якості.',
       products: [
         {
@@ -93,7 +93,7 @@ const GraniteColors = () => {
       buttonText: 'Детальніше'
     },
     de: {
-      title: 'Unsere Produkte',
+      title: 'Premium-Klasse Materialien',
       subtitle: 'Elite-Granitsorten höchster Qualität für anspruchsvollste Projekte.\nJede Granitart wird sorgfältig ausgewählt und nach europäischen Qualitätsstandards verarbeitet.',
       products: [
         {
@@ -136,7 +136,7 @@ const GraniteColors = () => {
       buttonText: 'Mehr erfahren'
     },
     pl: {
-      title: 'Nasze Produkty',
+      title: 'Materiały Klasy Premium',
       subtitle: 'Elitarne odmiany granitu najwyższej jakości do najbardziej wymagających projektów.\nKażdy typ granitu jest starannie wyselekcjonowany i przetworzony zgodnie z europejskimi standardami jakości.',
       products: [
         {

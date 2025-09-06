@@ -9,19 +9,19 @@ const Products = () => {
   
   const pageContent = {
     en: {
-      title: 'Our Products',
+      title: 'Premium-Class Materials',
       subtitle: 'Premium granite products for European markets'
     },
     ua: {
-      title: 'Наша продукція',
+      title: 'Матеріали преміум-класу',
       subtitle: 'Преміальні гранітні вироби для європейських ринків'
     },
     de: {
-      title: 'Unsere Produkte',
+      title: 'Premium-Klasse Materialien',
       subtitle: 'Premium Granit-Produkte für europäische Märkte'
     },
     pl: {
-      title: 'Nasze Produkty',
+      title: 'Materiały Klasy Premium',
       subtitle: 'Premium produkty granitowe dla rynków europejskich'
     }
   }

@@ -452,7 +452,7 @@ body {
 
 .granite-colors-section {
   padding: 5rem 0;
-  background-color: var(--neutral-200);
+  background-color: var(--neutral-100);
 }
 
 .granite-colors-container {
@@ -1412,7 +1412,26 @@ body {
 .unique-proposition-section {
   padding: 5rem 0;
   background-color: var(--neutral-50);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
+}
+
+.unique-proposition-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(38, 38, 38, 0.7);
+  z-index: 1;
+}
+
+.unique-proposition-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 .unique-proposition-header {
@@ -1431,14 +1450,14 @@ body {
 .unique-proposition-title {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--neutral-900);
+  color: var(--white);
   line-height: 1.2;
   margin: 0 auto;
 }
 
 .unique-proposition-description {
   font-size: 1.125rem;
-  color: var(--neutral-600);
+  color: var(--neutral-200);
   line-height: 1.7;
 }
 
@@ -1453,7 +1472,7 @@ body {
   gap: 1rem;
   padding: 1.5rem;
   background: var(--white);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
@@ -1498,7 +1517,7 @@ body {
 
 .unique-proposition-cta {
   background: var(--white);
-  border-radius: 1.5rem;
+  border-radius: 0.75rem;
   padding: 2.5rem;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
   text-align: left;

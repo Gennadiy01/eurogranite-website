@@ -2,13 +2,19 @@ import React from 'react'
 import Button from '../../atoms/Button/Button'
 import useLanguageStore from '../../../stores/languageStore'
 import { uniquePropositionContent } from '../../../constants/uniquePropositionData'
+import advantagesImg from '../../../assets/images/advantages_img.webp'
 
 const UniqueProposition = () => {
   const { currentLanguage } = useLanguageStore()
   const content = uniquePropositionContent[currentLanguage]
   
   return (
-    <section className="unique-proposition-section">
+    <section 
+      className="unique-proposition-section"
+      style={{
+        backgroundImage: `url(${advantagesImg})`
+      }}
+    >
       <div className="container">
         {/* Header */}
         <div className="unique-proposition-header content-spacing-section">
