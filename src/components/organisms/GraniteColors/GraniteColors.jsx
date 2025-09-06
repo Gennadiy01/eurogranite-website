@@ -227,6 +227,20 @@ const GraniteColors = () => {
               <div key={index} className="granite-color-card card-hover">
                 <div className={`granite-texture granite-color-image ${graniteClasses[index]}`}>
                   <div className="gradient-overlay"></div>
+                  {/* Overlay elements for tablet/desktop */}
+                  <div className="granite-color-overlay">
+                    <h3 className="granite-color-overlay-name">
+                      {product.name.split('\n').map((line, lineIndex) => (
+                        <span key={lineIndex}>
+                          {line}
+                          {lineIndex < product.name.split('\n').length - 1 && <br />}
+                        </span>
+                      ))}
+                    </h3>
+                    <span className="granite-color-overlay-tag">
+                      {product.tag}
+                    </span>
+                  </div>
                 </div>
                 <div className="granite-color-content">
                   <div className="granite-color-content-top">
@@ -267,6 +281,20 @@ const GraniteColors = () => {
               <div key={index + 3} className="granite-color-card card-hover">
                 <div className={`granite-texture granite-color-image ${graniteClasses[index + 3]}`}>
                   <div className="gradient-overlay"></div>
+                  {/* Overlay elements for tablet/desktop */}
+                  <div className="granite-color-overlay">
+                    <h3 className="granite-color-overlay-name">
+                      {product.name.split('\n').map((line, lineIndex) => (
+                        <span key={lineIndex}>
+                          {line}
+                          {lineIndex < product.name.split('\n').length - 1 && <br />}
+                        </span>
+                      ))}
+                    </h3>
+                    <span className="granite-color-overlay-tag">
+                      {product.tag}
+                    </span>
+                  </div>
                 </div>
                 <div className="granite-color-content">
                   <div className="granite-color-content-top">

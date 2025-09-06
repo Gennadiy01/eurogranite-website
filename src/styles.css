@@ -546,6 +546,32 @@ body {
   opacity: 0.6;
 }
 
+/* Overlay elements for title and tag on colored area (hidden on mobile, visible on tablet+) */
+.granite-color-overlay {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  display: none;
+}
+
+.granite-color-overlay-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+  color: var(--white);
+}
+
+.granite-color-overlay-tag {
+  color: var(--white);
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
 .gradient-overlay {
   position: absolute;
   top: 0;
@@ -636,12 +662,12 @@ body {
 .granite-colors-cta-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   background-color: var(--white);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  text-align: left;
+  text-align: center;
   gap: 1rem;
   width: 100%;
   max-width: 72rem;
@@ -667,12 +693,23 @@ body {
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
+  align-items: center;
+}
+
+.granite-colors-cta-buttons .custom-button {
+  width: 100%;
+  max-width: 280px;
 }
 
 /* Responsive Design */
 @media (min-width: 640px) {
   .granite-colors-cta-buttons {
     flex-direction: row;
+  }
+  
+  .granite-colors-cta-content {
+    align-items: flex-start;
+    text-align: left;
   }
 }
 
@@ -687,6 +724,27 @@ body {
   
   .granite-colors-empty {
     display: block;
+  }
+  
+  /* Show overlay elements and hide original title/tag in content area */
+  .granite-color-overlay {
+    display: block;
+  }
+  
+  .granite-color-content .granite-color-name,
+  .granite-color-content .granite-color-tag {
+    display: none;
+  }
+  
+  /* Make content area more compact */
+  .granite-color-content {
+    min-height: 15.5rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  /* Reduce spacing between description and button */
+  .granite-color-description {
+    margin-bottom: 0.5rem;
   }
 }
 
