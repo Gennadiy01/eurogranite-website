@@ -6,7 +6,7 @@ import { graniteTypes } from '../../../constants/graniteData'
 
 const GraniteColors = () => {
   const { currentLanguage } = useLanguageStore()
-  const { openGallery, comparison } = useGraniteSystemStore()
+  const { openGallery } = useGraniteSystemStore()
   
   const content = {
     en: {
@@ -213,14 +213,6 @@ const GraniteColors = () => {
 
   const currentContent = content[currentLanguage] || content.en
 
-  const graniteClasses = [
-    'granite-black',
-    'granite-gray', 
-    'granite-red-brown',
-    'granite-pink-gray',
-    'granite-green',
-    'granite-labradorite'
-  ]
 
   const handleConsultationClick = () => {
     const element = document.getElementById('contact')
@@ -261,7 +253,6 @@ const GraniteColors = () => {
           {/* First row - 3 cards */}
           <div className="granite-colors-row">
             {graniteTypes.slice(0, 3).map((graniteType, index) => {
-              const product = currentContent.products[index]
               return (
                 <div key={graniteType.id} className="granite-color-card card-hover">
                   <div className={`granite-texture granite-color-image ${graniteType.colorClass}`}>
@@ -300,7 +291,6 @@ const GraniteColors = () => {
           {/* Second row - 3 cards */}
           <div className="granite-colors-row granite-colors-row-two">
             {graniteTypes.slice(3, 6).map((graniteType, index) => {
-              const product = currentContent.products[index + 3]
               return (
                 <div key={graniteType.id} className="granite-color-card card-hover">
                   <div className={`granite-texture granite-color-image ${graniteType.colorClass}`}>
