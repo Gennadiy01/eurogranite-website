@@ -6,8 +6,9 @@
   --granite-black: #1a1a1a;
   --granite-gray: #6b7280;
   --granite-red-brown: #7c2d12;
-  --granite-gray-green: #6b7c63;
-  --granite-black-green: #1e3a2e;
+  --granite-pink-gray: #a78295;
+  --granite-green: #4a7c59;
+  --granite-labradorite: #2c5262;
   
   /* Accent Colors */
   --accent-orange: rgb(234, 88, 12);
@@ -450,8 +451,9 @@ body {
   --granite-black: #1a1a1a;
   --granite-gray: #6b7280;
   --granite-red-brown: #7c2d12;
-  --granite-gray-green: #6b7c63;
-  --granite-black-green: #1e3a2e;
+  --granite-pink-gray: #a78295;
+  --granite-green: #4a7c59;
+  --granite-labradorite: #2c5262;
 }
 
 .granite-colors-section {
@@ -491,19 +493,17 @@ body {
 .granite-colors-grid {
   max-width: 72rem;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.granite-colors-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
+.granite-colors-row {
+  display: contents; /* Makes row behave as if it doesn't exist for grid layout */
+}
+
 .granite-colors-row-two {
-  grid-template-columns: repeat(3, 1fr);
+  display: contents;
 }
 
 .granite-colors-empty {
@@ -550,32 +550,7 @@ body {
   opacity: 0.6;
 }
 
-/* Overlay elements for title and tag on colored area (hidden on mobile, visible on tablet+) */
-.granite-color-overlay {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
-  z-index: 10;
-  display: none;
-}
-
-.granite-color-overlay-name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 0.25rem;
-  color: var(--white);
-}
-
-.granite-color-overlay-tag {
-  color: var(--white);
-  font-size: 0.875rem;
-  line-height: 1rem;
-  font-weight: 500;
-  display: inline-block;
-}
-
+/* Gradient overlay for all versions */
 .gradient-overlay {
   position: absolute;
   top: 0;
@@ -585,24 +560,47 @@ body {
   background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
 }
 
+/* Background images for all screen sizes */
 .granite-black { 
-  background-color: var(--granite-black) !important; 
+  background-image: url('../public/images/textures/black/gabro.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .granite-gray { 
-  background-color: var(--granite-gray) !important; 
+  background-image: url('../public/images/textures/gray/pokost.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .granite-red-brown { 
-  background-color: var(--granite-red-brown) !important; 
+  background-image: url('../public/images/textures/red-brown/maple-red-gr6.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.granite-gray-green { 
-  background-color: var(--granite-gray-green) !important; 
+.granite-pink-gray { 
+  background-image: url('../public/images/textures/pink-gray/leopard-gg1a.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.granite-black-green { 
-  background-color: var(--granite-black-green) !important; 
+.granite-green { 
+  background-image: url('../public/images/textures/green/maslavske.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.granite-labradorite { 
+  background-image: url('../public/images/textures/labradorite/labro.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .granite-color-content {
@@ -717,58 +715,32 @@ body {
   }
 }
 
-@media (min-width: 768px) {
-  .granite-colors-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .granite-colors-row-two {
-    grid-template-columns: repeat(2, 1fr) 1fr;
-  }
-  
-  .granite-colors-empty {
-    display: block;
-  }
-  
-  /* Show overlay elements and hide original title/tag in content area */
-  .granite-color-overlay {
-    display: block;
-  }
-  
-  .granite-color-content .granite-color-name,
-  .granite-color-content .granite-color-tag {
-    display: none;
-  }
-  
-  /* Make content area more compact */
-  .granite-color-content {
-    min-height: 15.5rem;
-    padding: 1rem 1.5rem;
-  }
-  
-  /* Reduce spacing between description and button */
-  .granite-color-description {
-    margin-bottom: 0.5rem;
+/* Mobile: 1 column */
+@media (max-width: 767px) {
+  .granite-colors-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 767px) {
-  .granite-colors-row {
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .granite-colors-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .granite-colors-row-two {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .granite-colors-section {
-    padding: 4rem 0;
-  }
-  
-  .unique-proposition-section {
-    padding: 4rem 0;
   }
 }
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+  .granite-colors-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.granite-colors-empty {
+  display: none;
+}
+
+
 
 @media (min-width: 768px) {
   .granite-colors-title {
@@ -1467,6 +1439,7 @@ body {
   background-color: var(--white) !important;
   color: var(--neutral-900) !important;
 }
+
 
 /* ========================================
    Unique Proposition Section Styles

@@ -38,6 +38,32 @@ export const graniteTypes = [
         name: { en: 'Black Labradorite', ua: 'Чорний лабрадорит', de: 'Schwarzer Labradorit', pl: 'Czarny labradoryt' },
         characteristics: ['Hardness: 6-6.5 Mohs', 'Density: 2.68-2.72 g/cm³', 'Iridescent surface']
       }
+    ],
+    textures: [
+      {
+        id: 'black-001',
+        name: {
+          en: 'Premium Black Classic',
+          ua: 'Преміум чорний класичний',
+          de: 'Premium Schwarz Klassisch',
+          pl: 'Premium Czarny Klasyczny'
+        },
+        imageUrl: '/eurogranite-website/images/textures/black/gabro.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/black/gabro.jpg',
+        description: {
+          en: 'Deep black granite with mirror finish and subtle mineral veining',
+          ua: 'Глибокий чорний граніт з дзеркальним покриттям та тонкими мінеральними прожилками',
+          de: 'Tiefer schwarzer Granit mit Spiegelfinish und subtiler Mineraladerung',
+          pl: 'Głęboki czarny granit z lustrzanym wykończeniem i subtelnymi żyłkami mineralnymi'
+        },
+        properties: {
+          density: '2.7 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'uniform',
+          finish: 'polished',
+          waterAbsorption: '<0.5%'
+        }
+      }
     ]
   },
   {
@@ -72,6 +98,32 @@ export const graniteTypes = [
         type: 'granite',
         name: { en: 'Gray Granite Cubes', ua: 'Сіра гранітна бруківка', de: 'Graue Granitpflaster', pl: 'Szara kostka granitowa' },
         characteristics: ['Density: 2.65 g/cm³', 'Compressive strength: 180 MPa', 'Frost resistance: F300']
+      }
+    ],
+    textures: [
+      {
+        id: 'gray-001',
+        name: {
+          en: 'Classic Gray Standard',
+          ua: 'Класичний сірий стандарт',
+          de: 'Klassisch Grau Standard',
+          pl: 'Klasyczny Szary Standard'
+        },
+        imageUrl: '/eurogranite-website/images/textures/gray/pokost.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/gray/pokost.jpg',
+        description: {
+          en: 'Versatile gray granite with consistent texture and excellent durability',
+          ua: 'Універсальний сірий граніт з однорідною текстурою та відмінною стійкістю',
+          de: 'Vielseitiger grauer Granit mit gleichmäßiger Textur und ausgezeichneter Haltbarkeit',
+          pl: 'Wszechstronny szary granit o jednolitej teksturze i doskonałej trwałości'
+        },
+        properties: {
+          density: '2.65 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'uniform',
+          finish: 'natural',
+          frostResistance: 'F300'
+        }
       }
     ]
   },
@@ -108,75 +160,214 @@ export const graniteTypes = [
         name: { en: 'Red-Brown Granite Cubes', ua: 'Червоно-коричнева гранітна бруківка', de: 'Rotbraune Granitpflaster', pl: 'Czerwono-brązowa kostka granitowa' },
         characteristics: ['Density: 2.75 g/cm³', 'Compressive strength: 220 MPa', 'Unique iron oxide patterns']
       }
-    ]
-  },
-  {
-    id: 'gray-green',
-    name: {
-      en: 'Gray-Green Granite',
-      ua: 'Сіро-зелений граніт',
-      de: 'Graugrüner Granit',
-      pl: 'Szaro-zielony Granit'
-    },
-    subtitle: {
-      en: 'Gray-Green Granite Rare',
-      ua: 'Gray-Green Granite Rare',
-      de: 'Gray-Green Granite Rare',
-      pl: 'Gray-Green Granite Rare'
-    },
-    badge: {
-      en: 'Rare',
-      ua: 'Рідкісний',
-      de: 'Selten',
-      pl: 'Rzadki'
-    },
-    description: {
-      en: 'Unique gray-green granite with natural inclusions and noble shade',
-      ua: 'Унікальний сіро-зеленуватий граніт з природними включеннями та благородним відтінком',
-      de: 'Einzigartiger graugrüner Granit mit natürlichen Einschlüssen und edlem Farbton',
-      pl: 'Unikalny szaro-zielony granit z naturalnymi wtrąceniami i szlachetnym odcieniem'
-    },
-    colorClass: 'granite-gray-green',
-    materials: [
+    ],
+    textures: [
       {
-        type: 'granite',
-        name: { en: 'Gray-Green Granite Cubes', ua: 'Сіро-зелена гранітна бруківка', de: 'Graugrüne Granitpflaster', pl: 'Szaro-zielona kostka granitowa' },
-        characteristics: ['Density: 2.68 g/cm³', 'Unique mineral composition', 'Natural green inclusions']
+        id: 'red-brown-001',
+        name: {
+          en: 'Maple Red-Brown',
+          ua: 'Червоно-коричневий клен',
+          de: 'Ahorn Rotbraun',
+          pl: 'Klon Czerwono-brązowy'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/maple-red-gr6.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/maple-red-gr6.jpg',
+        description: {
+          en: 'Rich maple-toned granite with warm red-brown coloration and fine mineral structure',
+          ua: 'Насичений граніт кольору клена з теплим червоно-коричневим забарвленням та дрібною мінеральною структурою',
+          de: 'Reichhaltiger ahornfarbener Granit mit warmer rotbrauner Färbung und feiner Mineralstruktur',
+          pl: 'Bogaty granit w kolorze klonowym z ciepłym czerwono-brązowym zabarwieniem i drobną strukturą mineralną'
+        },
+        properties: {
+          density: '2.74 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'fine-grained',
+          finish: 'polished',
+          maplePattern: 'visible'
+        }
       }
     ]
   },
   {
-    id: 'black-green',
+    id: 'pink-gray',
     name: {
-      en: 'Black-Green Granite',
-      ua: 'Чорно-зелений граніт',
-      de: 'Schwarzgrüner Granit',
-      pl: 'Czarno-zielony Granit'
+      en: 'Pink-Gray Granite',
+      ua: 'Рожево-сірий граніт',
+      de: 'Rosa-grauer Granit',
+      pl: 'Różowo-szary Granit'
     },
     subtitle: {
-      en: 'Black-Green Granite Exclusive',
-      ua: 'Black-Green Granite Exclusive',
-      de: 'Black-Green Granite Exclusive',
-      pl: 'Black-Green Granite Exclusive'
+      en: 'Pink-Gray Granite Elegant',
+      ua: 'Pink-Gray Granite Elegant',
+      de: 'Pink-Gray Granite Elegant',
+      pl: 'Pink-Gray Granite Elegant'
     },
     badge: {
-      en: 'Exclusive',
-      ua: 'Ексклюзивний',
-      de: 'Exklusiv',
-      pl: 'Ekskluzywny'
+      en: 'Elegant',
+      ua: 'Елегантний',
+      de: 'Elegant',
+      pl: 'Elegancki'
     },
     description: {
-      en: 'Premium black-green granite for the most special and exclusive projects',
-      ua: 'Преміальний чорно-зеленуватий граніт для найособливіших та ексклюзивних проектів',
-      de: 'Premium schwarzgrüner Granit für die besonderen und exklusivsten Projekte',
-      pl: 'Premium czarno-zielony granit do najbardziej wyjątkowych i ekskluzywnych projektów'
+      en: 'Refined pink-gray granite with delicate color transitions and sophisticated texture',
+      ua: 'Витончений рожево-сірий граніт з делікатними переходами кольорів та вишуканою текстурою',
+      de: 'Anspruchsvoller rosa-grauer Granit mit zarten Farbübergängen und raffinierter Textur',
+      pl: 'Wyrafinowany różowo-szary granit z delikatnymi przejściami kolorów i wykwintną teksturą'
     },
-    colorClass: 'granite-black-green',
+    colorClass: 'granite-pink-gray',
     materials: [
       {
         type: 'granite',
-        name: { en: 'Black-Green Granite Cubes', ua: 'Чорно-зелена гранітна бруківка', de: 'Schwarzgrüne Granitpflaster', pl: 'Czarno-zielona kostka granitowa' },
-        characteristics: ['Density: 2.72 g/cm³', 'Premium quality', 'Exclusive dark green patterns']
+        name: { en: 'Pink-Gray Granite Cubes', ua: 'Рожево-сіра гранітна бруківка', de: 'Rosa-graue Granitpflaster', pl: 'Różowo-szara kostka granitowa' },
+        characteristics: ['Density: 2.66 g/cm³', 'Delicate color transitions', 'Sophisticated mineral patterns']
+      }
+    ],
+    textures: [
+      {
+        id: 'pink-gray-001',
+        name: {
+          en: 'Elegant Pink-Gray',
+          ua: 'Елегантний рожево-сірий',
+          de: 'Eleganter Rosa-Grau',
+          pl: 'Elegancki Różowo-Szary'
+        },
+        imageUrl: '/eurogranite-website/images/textures/pink-gray/leopard-gg1a.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/pink-gray/leopard-gg1a.jpg',
+        description: {
+          en: 'Sophisticated pink-gray granite with delicate color transitions and refined mineral patterns',
+          ua: 'Витончений рожево-сірий граніт з делікатними переходами кольорів та витонченими мінеральними візерунками',
+          de: 'Anspruchsvoller rosa-grauer Granit mit zarten Farbübergängen und raffinierten Mineralmustern',
+          pl: 'Wyrafinowany różowo-szary granit z delikatnymi przejściami kolorów i szlachetnymi wzorami mineralnymi'
+        },
+        properties: {
+          density: '2.66 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'transitional',
+          finish: 'polished',
+          colorTransitions: 'delicate'
+        }
+      }
+    ]
+  },
+  {
+    id: 'green',
+    name: {
+      en: 'Green Granite',
+      ua: 'Зелений граніт',
+      de: 'Grüner Granit',
+      pl: 'Zielony Granit'
+    },
+    subtitle: {
+      en: 'Green Granite Natural',
+      ua: 'Green Granite Natural',
+      de: 'Green Granite Natural',
+      pl: 'Green Granite Natural'
+    },
+    badge: {
+      en: 'Natural',
+      ua: 'Природний',
+      de: 'Natürlich',
+      pl: 'Naturalny'
+    },
+    description: {
+      en: 'Pure green granite with rich natural color and distinctive mineral patterns',
+      ua: 'Чистий зелений граніт з насиченим природним кольором та характерними мінеральними візерунками',
+      de: 'Reiner grüner Granit mit reichhaltiger natürlicher Farbe und markanten Mineralmustern',
+      pl: 'Czysty zielony granit o bogatym naturalnym kolorze i charakterystycznych wzorach mineralnych'
+    },
+    colorClass: 'granite-green',
+    materials: [
+      {
+        type: 'granite',
+        name: { en: 'Green Granite Cubes', ua: 'Зелена гранітна бруківка', de: 'Grüne Granitpflaster', pl: 'Zielona kostka granitowa' },
+        characteristics: ['Density: 2.70 g/cm³', 'Rich natural color', 'Distinctive mineral patterns']
+      }
+    ],
+    textures: [
+      {
+        id: 'green-001',
+        name: {
+          en: 'Natural Forest Green',
+          ua: 'Природний лісовий зелений',
+          de: 'Natürliches Waldgrün',
+          pl: 'Naturalny Leśny Zielony'
+        },
+        imageUrl: '/eurogranite-website/images/textures/green/maslavske.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/green/maslavske.jpg',
+        description: {
+          en: 'Pure natural green granite with rich forest tones and distinctive mineral crystallization',
+          ua: 'Чистий природний зелений граніт з насиченими лісовими тонами та характерною мінеральною кристалізацією',
+          de: 'Reiner natürlicher grüner Granit mit reichen Waldtönen und charakteristischer Mineralkristallisation',
+          pl: 'Czysty naturalny zielony granit o bogatych leśnych tonach i charakterystycznej krystalizacji mineralnej'
+        },
+        properties: {
+          density: '2.70 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'crystalline',
+          finish: 'natural',
+          forestTones: 'rich'
+        }
+      }
+    ]
+  },
+  {
+    id: 'labradorite',
+    name: {
+      en: 'Labradorite',
+      ua: 'Лабрадорит',
+      de: 'Labradorit',
+      pl: 'Labradoryt'
+    },
+    subtitle: {
+      en: 'Labradorite Mystical',
+      ua: 'Labradorite Mystical',
+      de: 'Labradorite Mystical',
+      pl: 'Labradorite Mystical'
+    },
+    badge: {
+      en: 'Mystical',
+      ua: 'Містичний',
+      de: 'Mystisch',
+      pl: 'Mistyczny'
+    },
+    description: {
+      en: 'Exceptional labradorite with iridescent play of colors and magical light reflections',
+      ua: 'Винятковий лабрадорит з райдужною грою кольорів та магічними відблисками світла',
+      de: 'Außergewöhnlicher Labradorit mit schillerndem Farbenspiel und magischen Lichtreflexionen',
+      pl: 'Wyjątkowy labradoryt z tęczową grą kolorów i magicznymi odbiciami światła'
+    },
+    colorClass: 'granite-labradorite',
+    materials: [
+      {
+        type: 'labradorite',
+        name: { en: 'Labradorite Premium', ua: 'Лабрадорит преміум', de: 'Labradorit Premium', pl: 'Labradoryt Premium' },
+        characteristics: ['Hardness: 6-6.5 Mohs', 'Density: 2.68-2.72 g/cm³', 'Iridescent surface', 'Color play phenomenon']
+      }
+    ],
+    textures: [
+      {
+        id: 'labradorite-001',
+        name: {
+          en: 'Mystical Blue Labradorite',
+          ua: 'Містичний синій лабрадорит',
+          de: 'Mystischer Blauer Labradorit',
+          pl: 'Mistyczny Niebieski Labradoryt'
+        },
+        imageUrl: '/eurogranite-website/images/textures/labradorite/labro.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/labradorite/labro.jpg',
+        description: {
+          en: 'Exceptional labradorite with brilliant blue-green iridescence and magical color play effects',
+          ua: 'Винятковий лабрадорит з яскравою синьо-зеленою райдужністю та магічними ефектами гри кольорів',
+          de: 'Außergewöhnlicher Labradorit mit brillanter blau-grüner Irisierung und magischen Farbspieleffekten',
+          pl: 'Wyjątkowy labradoryt z brylantową niebiesko-zieloną tęczową i magicznymi efektami gry kolorów'
+        },
+        properties: {
+          hardness: '6-6.5 Mohs',
+          density: '2.68-2.72 g/cm³',
+          pattern: 'iridescent',
+          finish: 'polished',
+          labradorescence: 'blue-green'
+        }
       }
     ]
   }

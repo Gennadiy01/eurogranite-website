@@ -1,9 +1,12 @@
 import React from 'react'
 import Button from '../../atoms/Button/Button'
 import useLanguageStore from '../../../stores/languageStore'
+import useGraniteSystemStore from '../../../stores/graniteSystemStore'
+import { graniteTypes } from '../../../constants/graniteData'
 
 const GraniteColors = () => {
   const { currentLanguage } = useLanguageStore()
+  const { openGallery, comparison } = useGraniteSystemStore()
   
   const content = {
     en: {
@@ -35,10 +38,16 @@ const GraniteColors = () => {
           description: 'Unique gray-greenish granite with natural inclusions and noble shade'
         },
         {
-          name: 'Black-Green\nGranite',
-          tag: 'Exclusive',
-          englishName: 'Black-Green Granite Exclusive',
-          description: 'Premium black-greenish granite for the most special and exclusive projects'
+          name: 'Green\nGranite',
+          tag: 'Natural',
+          englishName: 'Green Granite Natural',
+          description: 'Pure green granite with rich natural color and distinctive mineral patterns'
+        },
+        {
+          name: 'Labradorite',
+          tag: 'Mystical',
+          englishName: 'Labradorite Mystical',
+          description: 'Exceptional labradorite with iridescent play of colors and magical light reflections'
         }
       ],
       cta: {
@@ -47,7 +56,8 @@ const GraniteColors = () => {
         primaryButton: 'Free Consultation',
         secondaryButton: 'View Catalog'
       },
-      buttonText: 'Learn More'
+      buttonText: 'More Details',
+      texturesButton: 'View All Textures'
     },
     ua: {
       title: 'Матеріали преміум-класу',
@@ -72,16 +82,22 @@ const GraniteColors = () => {
           description: 'Теплий червоно-коричневий відтінок з природною текстурою та унікальним візерунком'
         },
         {
-          name: 'Сіро-зелений\nграніт',
-          tag: 'Рідкісний',
-          englishName: 'Gray-Green Granite Rare',
-          description: 'Унікальний сіро-зеленуватий граніт з природними включеннями та благородним відтінком'
+          name: 'Рожево-сірий\nграніт',
+          tag: 'Елегантний',
+          englishName: 'Pink-Gray Granite Elegant',
+          description: 'Витончений рожево-сірий граніт з делікатними переходами кольорів та вишуканою текстурою'
         },
         {
-          name: 'Чорно-зелений\nграніт',
-          tag: 'Ексклюзивний',
-          englishName: 'Black-Green Granite Exclusive',
-          description: 'Преміальний чорно-зеленуватий граніт для найособливіших та ексклюзивних проектів'
+          name: 'Зелений\nграніт',
+          tag: 'Природний',
+          englishName: 'Green Granite Natural',
+          description: 'Чистий зелений граніт з насиченим природним кольором та характерними мінеральними візерунками'
+        },
+        {
+          name: 'Лабрадорит',
+          tag: 'Містичний',
+          englishName: 'Labradorite Mystical',
+          description: 'Винятковий лабрадорит з райдужною грою кольорів та магічними відблисками світла'
         }
       ],
       cta: {
@@ -90,7 +106,8 @@ const GraniteColors = () => {
         primaryButton: 'Безкоштовна консультація',
         secondaryButton: 'Переглянути каталог'
       },
-      buttonText: 'Детальніше'
+      buttonText: 'Детальніше',
+      texturesButton: 'Всі текстури'
     },
     de: {
       title: 'Premium-Klasse Materialien',
@@ -115,16 +132,22 @@ const GraniteColors = () => {
           description: 'Warmer rotbrauner Farbton mit natürlicher Textur und einzigartigem Muster'
         },
         {
-          name: 'Graugrüner\nGranit',
-          tag: 'Selten',
-          englishName: 'Gray-Green Granite Rare',
-          description: 'Einzigartiger graugrünlicher Granit mit natürlichen Einschlüssen und edlem Farbton'
+          name: 'Rosa-grauer\nGranit',
+          tag: 'Elegant',
+          englishName: 'Pink-Gray Granite Elegant',
+          description: 'Anspruchsvoller rosa-grauer Granit mit zarten Farbübergängen und raffinierter Textur'
         },
         {
-          name: 'Schwarzgrüner\nGranit',
-          tag: 'Exklusiv',
-          englishName: 'Black-Green Granite Exclusive',
-          description: 'Premium schwarzgrünlicher Granit für die besonderen und exklusiven Projekte'
+          name: 'Grüner\nGranit',
+          tag: 'Natürlich',
+          englishName: 'Green Granite Natural',
+          description: 'Reiner grüner Granit mit reichhaltiger natürlicher Farbe und markanten Mineralmustern'
+        },
+        {
+          name: 'Labradorit',
+          tag: 'Mystisch',
+          englishName: 'Labradorite Mystical',
+          description: 'Außergewöhnlicher Labradorit mit schillerndem Farbenspiel und magischen Lichtreflexionen'
         }
       ],
       cta: {
@@ -133,7 +156,8 @@ const GraniteColors = () => {
         primaryButton: 'Kostenlose Beratung',
         secondaryButton: 'Katalog ansehen'
       },
-      buttonText: 'Mehr erfahren'
+      buttonText: 'Mehr Details',
+      texturesButton: 'Alle Texturen'
     },
     pl: {
       title: 'Materiały Klasy Premium',
@@ -158,16 +182,22 @@ const GraniteColors = () => {
           description: 'Ciepły czerwono-brązowy odcień z naturalną teksturą i unikalnym wzorem'
         },
         {
-          name: 'Szaro-zielony\nGranit',
-          tag: 'Rzadki',
-          englishName: 'Gray-Green Granite Rare',
-          description: 'Unikalny szaro-zielonkawy granit z naturalnymi wtrąceniami i szlachetnym odcieniem'
+          name: 'Różowo-szary\nGranit',
+          tag: 'Elegancki',
+          englishName: 'Pink-Gray Granite Elegant',
+          description: 'Wyrafinowany różowo-szary granit z delikatnymi przejściami kolorów i wykwintną teksturą'
         },
         {
-          name: 'Czarno-zielony\nGranit',
-          tag: 'Ekskluzywny',
-          englishName: 'Black-Green Granite Exclusive',
-          description: 'Premium czarno-zielonkawy granit do najbardziej wyjątkowych i ekskluzywnych projektów'
+          name: 'Zielony\nGranit',
+          tag: 'Naturalny',
+          englishName: 'Green Granite Natural',
+          description: 'Czysty zielony granit o bogatym naturalnym kolorze i charakterystycznych wzorach mineralnych'
+        },
+        {
+          name: 'Labradoryt',
+          tag: 'Mistyczny',
+          englishName: 'Labradorite Mystical',
+          description: 'Wyjątkowy labradoryt z tęczową grą kolorów i magicznymi odbiciami światła'
         }
       ],
       cta: {
@@ -176,7 +206,8 @@ const GraniteColors = () => {
         primaryButton: 'Bezpłatna Konsultacja',
         secondaryButton: 'Zobacz Katalog'
       },
-      buttonText: 'Dowiedz się więcej'
+      buttonText: 'Więcej szczegółów',
+      texturesButton: 'Wszystkie tekstury'
     }
   }
 
@@ -186,8 +217,9 @@ const GraniteColors = () => {
     'granite-black',
     'granite-gray', 
     'granite-red-brown',
-    'granite-gray-green',
-    'granite-black-green'
+    'granite-pink-gray',
+    'granite-green',
+    'granite-labradorite'
   ]
 
   const handleConsultationClick = () => {
@@ -199,6 +231,11 @@ const GraniteColors = () => {
     const element = document.getElementById('products')
     element?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  const handleViewTextures = (graniteType) => {
+    openGallery(graniteType.id, 0)
+  }
+
 
   return (
     <section className="granite-colors-section">
@@ -223,110 +260,80 @@ const GraniteColors = () => {
         <div className="granite-colors-grid">
           {/* First row - 3 cards */}
           <div className="granite-colors-row">
-            {currentContent.products.slice(0, 3).map((product, index) => (
-              <div key={index} className="granite-color-card card-hover">
-                <div className={`granite-texture granite-color-image ${graniteClasses[index]}`}>
-                  <div className="gradient-overlay"></div>
-                  {/* Overlay elements for tablet/desktop */}
-                  <div className="granite-color-overlay">
-                    <h3 className="granite-color-overlay-name">
-                      {product.name.split('\n').map((line, lineIndex) => (
-                        <span key={lineIndex}>
-                          {line}
-                          {lineIndex < product.name.split('\n').length - 1 && <br />}
-                        </span>
-                      ))}
-                    </h3>
-                    <span className="granite-color-overlay-tag">
-                      {product.tag}
-                    </span>
+            {graniteTypes.slice(0, 3).map((graniteType, index) => {
+              const product = currentContent.products[index]
+              return (
+                <div key={graniteType.id} className="granite-color-card card-hover">
+                  <div className={`granite-texture granite-color-image ${graniteType.colorClass}`}>
+                    <div className="gradient-overlay"></div>
+                  </div>
+                  <div className="granite-color-content">
+                    <div className="granite-color-content-top">
+                      <h3 className="granite-color-name">
+                        {graniteType.name[currentLanguage]}
+                      </h3>
+                      <span className="granite-color-tag">
+                        {graniteType.badge[currentLanguage]}
+                      </span>
+                      <p className="granite-color-english">
+                        {graniteType.subtitle[currentLanguage]}
+                      </p>
+                      <p className="granite-color-description">
+                        {graniteType.description[currentLanguage]}
+                      </p>
+                    </div>
+                    <div className="granite-color-button-container">
+                      <Button 
+                        variant="primary"
+                        size="small"
+                        onClick={() => handleViewTextures(graniteType)}
+                      >
+                        {currentContent.buttonText}
+                      </Button>
+                    </div>
                   </div>
                 </div>
-                <div className="granite-color-content">
-                  <div className="granite-color-content-top">
-                    <h3 className="granite-color-name">
-                      {product.name.split('\n').map((line, lineIndex) => (
-                        <span key={lineIndex}>
-                          {line}
-                          {lineIndex < product.name.split('\n').length - 1 && <br />}
-                        </span>
-                      ))}
-                    </h3>
-                    <span className="granite-color-tag">
-                      {product.tag}
-                    </span>
-                    <p className="granite-color-english">
-                      {product.englishName}
-                    </p>
-                    <p className="granite-color-description">
-                      {product.description}
-                    </p>
-                  </div>
-                  <div className="granite-color-button-container">
-                    <Button 
-                      variant="primary"
-                      size="small"
-                    >
-                      {currentContent.buttonText}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
           
-          {/* Second row - 2 cards */}
+          {/* Second row - 3 cards */}
           <div className="granite-colors-row granite-colors-row-two">
-            {currentContent.products.slice(3, 5).map((product, index) => (
-              <div key={index + 3} className="granite-color-card card-hover">
-                <div className={`granite-texture granite-color-image ${graniteClasses[index + 3]}`}>
-                  <div className="gradient-overlay"></div>
-                  {/* Overlay elements for tablet/desktop */}
-                  <div className="granite-color-overlay">
-                    <h3 className="granite-color-overlay-name">
-                      {product.name.split('\n').map((line, lineIndex) => (
-                        <span key={lineIndex}>
-                          {line}
-                          {lineIndex < product.name.split('\n').length - 1 && <br />}
-                        </span>
-                      ))}
-                    </h3>
-                    <span className="granite-color-overlay-tag">
-                      {product.tag}
-                    </span>
+            {graniteTypes.slice(3, 6).map((graniteType, index) => {
+              const product = currentContent.products[index + 3]
+              return (
+                <div key={graniteType.id} className="granite-color-card card-hover">
+                  <div className={`granite-texture granite-color-image ${graniteType.colorClass}`}>
+                    <div className="gradient-overlay"></div>
+                  </div>
+                  <div className="granite-color-content">
+                    <div className="granite-color-content-top">
+                      <h3 className="granite-color-name">
+                        {graniteType.name[currentLanguage]}
+                      </h3>
+                      <span className="granite-color-tag">
+                        {graniteType.badge[currentLanguage]}
+                      </span>
+                      <p className="granite-color-english">
+                        {graniteType.subtitle[currentLanguage]}
+                      </p>
+                      <p className="granite-color-description">
+                        {graniteType.description[currentLanguage]}
+                      </p>
+                    </div>
+                    <div className="granite-color-button-container">
+                      <Button 
+                        variant="primary"
+                        size="small"
+                        onClick={() => handleViewTextures(graniteType)}
+                      >
+                        {currentContent.buttonText}
+                      </Button>
+                    </div>
                   </div>
                 </div>
-                <div className="granite-color-content">
-                  <div className="granite-color-content-top">
-                    <h3 className="granite-color-name">
-                      {product.name.split('\n').map((line, lineIndex) => (
-                        <span key={lineIndex}>
-                          {line}
-                          {lineIndex < product.name.split('\n').length - 1 && <br />}
-                        </span>
-                      ))}
-                    </h3>
-                    <span className="granite-color-tag">
-                      {product.tag}
-                    </span>
-                    <p className="granite-color-english">
-                      {product.englishName}
-                    </p>
-                    <p className="granite-color-description">
-                      {product.description}
-                    </p>
-                  </div>
-                  <div className="granite-color-button-container">
-                    <Button 
-                      variant="primary"
-                      size="small"
-                    >
-                      {currentContent.buttonText}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
+              )
+            })}
             <div className="granite-colors-empty"></div>
           </div>
         </div>
