@@ -1774,30 +1774,6 @@ body {
   margin: 0 0 1rem 0;
 }
 
-.properties-grid {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.property-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: var(--neutral-50);
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-}
-
-.property-label {
-  font-weight: 500;
-  color: var(--neutral-700);
-}
-
-.property-value {
-  color: var(--neutral-600);
-  text-align: right;
-}
 
 /* Gallery Navigation */
 .texture-gallery-navigation {
@@ -2017,7 +1993,7 @@ body {
   flex-shrink: 0;
   width: 5rem;
   background: none;
-  border: none;
+  border: 4px solid transparent;
   cursor: pointer;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -2031,7 +2007,8 @@ body {
 }
 
 .texture-thumbnail.active {
-  box-shadow: 0 0 0 3px var(--accent-orange);
+  border: 4px solid var(--accent-orange);
+  box-shadow: none;
 }
 
 .texture-thumbnail-image {
@@ -2315,6 +2292,7 @@ body {
   border-radius: 1rem;
   font-size: 0.875rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .texture-gallery-close {
@@ -2456,11 +2434,11 @@ body {
 }
 
 .filter-button:hover {
-  border-color: var(--accent-orange);
-  background: rgba(234, 88, 12, 0.05);
-  color: var(--accent-orange);
+  border-color: var(--neutral-900);
+  background: var(--neutral-900);
+  color: white;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .filter-button.active {
@@ -2472,6 +2450,12 @@ body {
 
 .filter-button.active::before {
   background: white;
+}
+
+.filter-button.active:hover {
+  border-color: var(--accent-orange);
+  background: var(--accent-orange);
+  color: white;
 }
 
 /* Color-specific filter styles with dot indicators */
@@ -2635,14 +2619,15 @@ body {
 .properties-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.25rem;
 }
 
 .property-item {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
 }
 
 .property-label {
@@ -2694,7 +2679,7 @@ body {
   flex: 0 0 80px;
   width: 80px;
   height: 80px;
-  border: 2px solid var(--neutral-300);
+  border: 4px solid var(--neutral-300);
   border-radius: 0.5rem;
   overflow: hidden;
   cursor: pointer;
@@ -2710,8 +2695,8 @@ body {
 }
 
 .texture-thumbnail.active {
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 2px var(--primary-200);
+  border: 4px solid var(--accent-orange);
+  box-shadow: none;
 }
 
 .texture-thumbnail img {
@@ -2762,6 +2747,11 @@ body {
     padding: 1rem 1.5rem 0.75rem;
   }
   
+  .texture-gallery-counter {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+  
   .texture-gallery-title {
     font-size: 1.25rem;
   }
@@ -2792,11 +2782,7 @@ body {
     margin-right: 0.375rem;
   }
   
-  .texture-gallery-content {
-    flex-direction: column;
-  }
-  
-  .texture-gallery-description-section {
+  .texture-gallery-desktop-layout .texture-gallery-description-section {
     flex: 0 0 auto;
     padding: 1rem 1.5rem;
     border-right: none;
@@ -2804,12 +2790,12 @@ body {
     overflow-y: visible;
   }
   
-  .texture-gallery-viewer-section {
+  .texture-gallery-desktop-layout .texture-gallery-viewer-section {
     flex: 1;
     min-height: 300px;
   }
   
-  .texture-gallery-properties-section {
+  .texture-gallery-desktop-layout .texture-gallery-properties-section {
     flex: 0 0 auto;
     padding: 1rem 1.5rem;
     border-left: none;
@@ -2827,4 +2813,240 @@ body {
     width: 60px;
     height: 60px;
   }
+}
+
+/* ===== DESKTOP & MOBILE LAYOUT SYSTEM ===== */
+
+/* Desktop Three-Column Layout */
+.texture-gallery-desktop-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Hide mobile layout on desktop */
+.texture-gallery-mobile-layout {
+  display: none;
+}
+
+/* Hide desktop layout on mobile and show mobile layout */
+@media (max-width: 768px) {
+  .texture-gallery-desktop-layout {
+    display: none;
+  }
+  
+  .texture-gallery-mobile-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+  }
+}
+
+/* Mobile Texture Viewer - Full Screen */
+.texture-gallery-mobile-viewer {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+/* Sheet Modal Container */
+.texture-sheet-modal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  transition: height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.texture-sheet-modal.dragging {
+  transition: none;
+}
+
+/* Sheet Handle */
+.sheet-handle {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 0.75rem 0 0.5rem 0;
+  background: var(--white);
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sheet-handle:active {
+  cursor: grabbing;
+}
+
+.sheet-handle-bar {
+  width: 3rem;
+  height: 0.25rem;
+  background: var(--neutral-300);
+  border-radius: 0.125rem;
+  transition: background 0.2s ease;
+}
+
+.sheet-handle:hover .sheet-handle-bar {
+  background: var(--neutral-400);
+}
+
+/* Sheet Content */
+.sheet-content {
+  padding: 0 1.5rem;
+  overflow-y: auto;
+  height: calc(100% - 2rem); /* Account for handle */
+}
+
+.sheet-header {
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 15;
+  padding: 0.5rem 0 1rem 0;
+  border-bottom: 1px solid var(--neutral-200);
+  margin-bottom: 1rem;
+}
+
+.texture-info-header-mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.texture-info-header-mobile .texture-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--neutral-900);
+  margin: 0;
+  flex: 1;
+}
+
+.texture-info-header-mobile .texture-group-badge {
+  flex-shrink: 0;
+  padding: 0.25rem 0.75rem;
+  background: var(--primary-100);
+  color: var(--primary-700);
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Sheet Expandable Content */
+.sheet-expandable-content {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: all 0.3s ease;
+}
+
+/* Content visibility based on sheet height */
+.texture-sheet-modal[style*="height: 50%"] .sheet-expandable-content,
+.texture-sheet-modal[style*="height: 90%"] .sheet-expandable-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile Description Section */
+.texture-description-mobile {
+  margin-bottom: 1.5rem;
+}
+
+.texture-description-mobile .texture-description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--neutral-600);
+  margin-bottom: 1rem;
+}
+
+.texture-description-mobile .texture-actions {
+  margin-top: 1rem;
+}
+
+.texture-description-mobile .compare-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Mobile Properties Section */
+.texture-properties-mobile {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: all 0.3s ease 0.1s;
+}
+
+.texture-sheet-modal[style*="height: 90%"] .texture-properties-mobile {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.texture-properties-mobile .texture-properties h4 {
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.texture-properties-mobile .properties-list {
+  gap: 0.125rem;
+}
+
+.texture-properties-mobile .property-item {
+  padding: 0.375rem 0;
+  font-size: 0.8rem;
+}
+
+.texture-properties-mobile .property-label {
+  font-weight: 500;
+  color: var(--neutral-700);
+}
+
+.texture-properties-mobile .property-value {
+  font-weight: 400;
+  color: var(--neutral-600);
+}
+
+/* Sheet Modal States Indicators */
+.texture-sheet-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--primary-300), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.texture-sheet-modal.dragging::before {
+  opacity: 1;
+}
+
+/* Smooth animations for Framework7-style feel */
+@keyframes slideUpSheet {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.texture-sheet-modal {
+  animation: slideUpSheet 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
