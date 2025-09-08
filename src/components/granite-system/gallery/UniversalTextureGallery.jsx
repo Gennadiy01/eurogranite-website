@@ -397,13 +397,6 @@ const UniversalTextureGallery = () => {
     }
   }
 
-  const handleSheetTouchMove = () => {
-    // This is now handled by the dynamically created handler
-  }
-
-  const handleSheetTouchEnd = () => {
-    // This is now handled by the dynamically created handler
-  }
 
   const toggleSheet = () => {
     if (sheetHeight === 25) {
