@@ -511,22 +511,6 @@ body {
 }
 
 /* All Textures Button Section */
-.granite-colors-all-textures {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 3rem 0;
-  padding: 2rem;
-  background: var(--neutral-50);
-  border-radius: 1rem;
-  border: 2px dashed var(--neutral-300);
-  transition: all 0.2s ease;
-}
-
-.granite-colors-all-textures:hover {
-  border-color: var(--primary-400);
-  background: var(--primary-50);
-}
 
 .granite-color-card {
   background-color: var(--white);
@@ -1014,11 +998,6 @@ body {
 
 /* Mobile Responsive for All Textures Button */
 @media (max-width: 767px) {
-  .granite-colors-all-textures {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-  }
 }
 
 /* ========================================
@@ -2850,6 +2829,7 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--white);
+  touch-action: manipulation;
 }
 
 /* Sheet Modal Container */
@@ -2864,6 +2844,8 @@ body {
   transition: height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 10;
   overflow: hidden;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
 }
 
 .texture-sheet-modal.dragging {
@@ -2879,10 +2861,14 @@ body {
   background: var(--white);
   cursor: grab;
   user-select: none;
-  touch-action: pan-y;
+  touch-action: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .sheet-handle:active {

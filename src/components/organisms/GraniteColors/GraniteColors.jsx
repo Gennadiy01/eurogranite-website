@@ -56,8 +56,7 @@ const GraniteColors = () => {
         primaryButton: 'Free Consultation',
         secondaryButton: 'View Catalog'
       },
-      buttonText: 'More Details',
-      texturesButton: 'View All Textures'
+      buttonText: 'More Details'
     },
     ua: {
       title: 'Матеріали преміум-класу',
@@ -106,8 +105,7 @@ const GraniteColors = () => {
         primaryButton: 'Безкоштовна консультація',
         secondaryButton: 'Переглянути каталог'
       },
-      buttonText: 'Детальніше',
-      texturesButton: 'Всі текстури'
+      buttonText: 'Детальніше'
     },
     de: {
       title: 'Premium-Klasse Materialien',
@@ -156,8 +154,7 @@ const GraniteColors = () => {
         primaryButton: 'Kostenlose Beratung',
         secondaryButton: 'Katalog ansehen'
       },
-      buttonText: 'Mehr Details',
-      texturesButton: 'Alle Texturen'
+      buttonText: 'Mehr Details'
     },
     pl: {
       title: 'Materiały Klasy Premium',
@@ -206,8 +203,7 @@ const GraniteColors = () => {
         primaryButton: 'Bezpłatna Konsultacja',
         secondaryButton: 'Zobacz Katalog'
       },
-      buttonText: 'Więcej szczegółów',
-      texturesButton: 'Wszystkie tekstury'
+      buttonText: 'Więcej szczegółów'
     }
   }
 
@@ -229,10 +225,6 @@ const GraniteColors = () => {
     openUniversalGallery(graniteType.id, 0)
   }
 
-  const handleViewAllTextures = () => {
-    // Open universal gallery with all textures
-    openUniversalGallery('all', 0)
-  }
 
 
   return (
@@ -332,17 +324,6 @@ const GraniteColors = () => {
             })}
             <div className="granite-colors-empty"></div>
           </div>
-        </div>
-        
-        {/* All Textures Button */}
-        <div className="granite-colors-all-textures">
-          <Button 
-            variant="outline"
-            size="large"
-            onClick={handleViewAllTextures}
-          >
-            {currentContent.texturesButton}
-          </Button>
         </div>
         
         {/* Call to Action */}

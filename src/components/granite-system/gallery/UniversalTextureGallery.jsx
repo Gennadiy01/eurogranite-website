@@ -16,8 +16,15 @@ const UniversalTextureGallery = () => {
 
   const [activeFilter, setActiveFilter] = useState('all')
   const [currentTextureIndex, setCurrentTextureIndex] = useState(0)
+  const [sheetHeight, setSheetHeight] = useState(25) // 25%, 50%, 90%
+  const [isDraggingSheet, setIsDraggingSheet] = useState(false)
   const filterButtonsRef = useRef(null)
   const filtersContainerRef = useRef(null)
+  const sheetRef = useRef(null)
+  const startTouchY = useRef(0)
+  const startSheetHeight = useRef(25)
+  const touchMoveHandler = useRef(null)
+  const touchEndHandler = useRef(null)
 
   // Localization
   const modalLabels = {
@@ -260,6 +267,19 @@ const UniversalTextureGallery = () => {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [gallery.isOpen, handlePrevious, handleNext, closeGallery])
 
+  // Cleanup effect for touch handlers
+  useEffect(() => {
+    return () => {
+      // Clean up any remaining event listeners when component unmounts
+      if (touchMoveHandler.current) {
+        document.removeEventListener('touchmove', touchMoveHandler.current)
+      }
+      if (touchEndHandler.current) {
+        document.removeEventListener('touchend', touchEndHandler.current)
+      }
+    }
+  }, [])
+
   // Check if texture is in comparison
   const isInComparison = (textureId) => {
     return comparison.selectedTextures.some(texture => texture.id === textureId)
@@ -326,6 +346,76 @@ const UniversalTextureGallery = () => {
     return shortNames[language]?.[graniteType.id] || shortNames.en[graniteType.id] || graniteType.name[language] || graniteType.name.en
   }
 
+  // Sheet Modal functions
+  const snapToBreakpoint = (targetHeight) => {
+    const breakpoints = [25, 50, 90]
+    const closest = breakpoints.reduce((prev, curr) => 
+      Math.abs(curr - targetHeight) < Math.abs(prev - targetHeight) ? curr : prev
+    )
+    setSheetHeight(closest)
+  }
+
+  const handleSheetTouchStart = (e) => {
+    if (e.touches && e.touches.length > 0) {
+      e.preventDefault()
+      setIsDraggingSheet(true)
+      startTouchY.current = e.touches[0].clientY
+      startSheetHeight.current = sheetHeight
+      
+      // Create handlers with proper context
+      touchMoveHandler.current = (moveEvent) => {
+        if (!moveEvent.touches || moveEvent.touches.length === 0) return
+        
+        moveEvent.preventDefault()
+        const currentY = moveEvent.touches[0].clientY
+        const deltaY = startTouchY.current - currentY
+        const viewportHeight = window.innerHeight
+        const deltaPercent = (deltaY / viewportHeight) * 100
+        
+        const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
+        setSheetHeight(newHeight)
+      }
+      
+      touchEndHandler.current = () => {
+        setIsDraggingSheet(false)
+        snapToBreakpoint(sheetHeight)
+        
+        // Remove event listeners
+        if (touchMoveHandler.current) {
+          document.removeEventListener('touchmove', touchMoveHandler.current)
+        }
+        if (touchEndHandler.current) {
+          document.removeEventListener('touchend', touchEndHandler.current)
+        }
+        touchMoveHandler.current = null
+        touchEndHandler.current = null
+      }
+      
+      // Add event listeners to document
+      document.addEventListener('touchmove', touchMoveHandler.current, { passive: false })
+      document.addEventListener('touchend', touchEndHandler.current, { once: true })
+    }
+  }
+
+  const handleSheetTouchMove = () => {
+    // This is now handled by the dynamically created handler
+  }
+
+  const handleSheetTouchEnd = () => {
+    // This is now handled by the dynamically created handler
+  }
+
+  const toggleSheet = () => {
+    if (sheetHeight === 25) {
+      setSheetHeight(50)
+    } else if (sheetHeight === 50) {
+      setSheetHeight(90)
+    } else {
+      setSheetHeight(25)
+    }
+  }
+
+
   return (
     <div className="texture-gallery-modal">
       <div className="texture-gallery-overlay" onClick={closeGallery}></div>
@@ -382,86 +472,187 @@ const UniversalTextureGallery = () => {
           </div>
         </div>
 
-        {/* Main Content */}
+        {/* Main Content - Desktop & Mobile Responsive */}
         <div className="texture-gallery-content">
-          {/* Left: Description Panel */}
-          <div className="texture-gallery-description-section">
-            {currentTexture && (
-              <>
-                <div className="texture-info-header">
-                  <h3 className="texture-name">
-                    {currentTexture.name[language] || currentTexture.name.en}
-                  </h3>
-                  <div className="texture-group-badge">
-                    {currentTexture.groupName}
-                  </div>
-                </div>
-
-                <div className="texture-description">
-                  {currentTexture.description[language] || currentTexture.description.en}
-                </div>
-
-                {/* Compare Button */}
-                <div className="texture-actions">
-                  <button
-                    className={`compare-button ${
-                      isInComparison(currentTexture.id) ? 'added' : ''
-                    } ${comparison.selectedTextures.length >= 4 ? 'disabled' : ''}`}
-                    onClick={handleAddToComparison}
-                    disabled={
-                      isInComparison(currentTexture.id) || 
-                      comparison.selectedTextures.length >= 4
-                    }
-                    title={
-                      isInComparison(currentTexture.id) 
-                        ? labels.alreadyInComparisonTooltip
-                        : comparison.selectedTextures.length >= 4
-                        ? labels.maxCompareTooltip
-                        : ''
-                    }
-                  >
-                    {isInComparison(currentTexture.id) ? labels.addedToCompare : labels.addToCompare}
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-
-          {/* Center: Texture Viewer */}
-          <div className="texture-gallery-viewer-section">
-            {currentTexture && (
-              <TextureViewer 
-                texture={currentTexture}
-                onPrevious={handlePrevious}
-                onNext={handleNext}
-                canGoPrevious={currentTextureIndex > 0}
-                canGoNext={currentTextureIndex < filteredTextures.length - 1}
-              />
-            )}
-          </div>
-
-          {/* Right: Properties Panel */}
-          <div className="texture-gallery-properties-section">
-            {currentTexture && (
-              <>
-                {/* Technical Properties */}
-                {currentTexture.properties && (
-                  <div className="texture-properties">
-                    <h4>{labels.technicalProperties}</h4>
-                    <div className="properties-list">
-                      {Object.entries(currentTexture.properties).map(([key, value]) => (
-                        <div key={key} className="property-item">
-                          <span className="property-label">
-                            {labels.propertyLabels[key] || key}:
-                          </span>
-                          <span className="property-value">{value}</span>
-                        </div>
-                      ))}
+          {/* Desktop: Three Column Layout */}
+          <div className="texture-gallery-desktop-layout">
+            {/* Left: Description Panel */}
+            <div className="texture-gallery-description-section">
+              {currentTexture && (
+                <>
+                  <div className="texture-info-header">
+                    <h3 className="texture-name">
+                      {currentTexture.name[language] || currentTexture.name.en}
+                    </h3>
+                    <div className="texture-group-badge">
+                      {currentTexture.groupName}
                     </div>
                   </div>
+
+                  <div className="texture-description">
+                    {currentTexture.description[language] || currentTexture.description.en}
+                  </div>
+
+                  {/* Compare Button */}
+                  <div className="texture-actions">
+                    <button
+                      className={`compare-button ${
+                        isInComparison(currentTexture.id) ? 'added' : ''
+                      } ${comparison.selectedTextures.length >= 4 ? 'disabled' : ''}`}
+                      onClick={handleAddToComparison}
+                      disabled={
+                        isInComparison(currentTexture.id) || 
+                        comparison.selectedTextures.length >= 4
+                      }
+                      title={
+                        isInComparison(currentTexture.id) 
+                          ? labels.alreadyInComparisonTooltip
+                          : comparison.selectedTextures.length >= 4
+                          ? labels.maxCompareTooltip
+                          : ''
+                      }
+                    >
+                      {isInComparison(currentTexture.id) ? labels.addedToCompare : labels.addToCompare}
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Center: Texture Viewer */}
+            <div className="texture-gallery-viewer-section">
+              {currentTexture && (
+                <TextureViewer 
+                  texture={currentTexture}
+                  onPrevious={handlePrevious}
+                  onNext={handleNext}
+                  canGoPrevious={currentTextureIndex > 0}
+                  canGoNext={currentTextureIndex < filteredTextures.length - 1}
+                />
+              )}
+            </div>
+
+            {/* Right: Properties Panel */}
+            <div className="texture-gallery-properties-section">
+              {currentTexture && (
+                <>
+                  {/* Technical Properties */}
+                  {currentTexture.properties && (
+                    <div className="texture-properties">
+                      <h4>{labels.technicalProperties}</h4>
+                      <div className="properties-list">
+                        {Object.entries(currentTexture.properties).map(([key, value]) => (
+                          <div key={key} className="property-item">
+                            <span className="property-label">
+                              {labels.propertyLabels[key] || key}:
+                            </span>
+                            <span className="property-value">{value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile: Sheet Modal Layout */}
+          <div className="texture-gallery-mobile-layout">
+            {/* Full Screen Texture Viewer */}
+            <div className="texture-gallery-mobile-viewer">
+              {currentTexture && (
+                <TextureViewer 
+                  texture={currentTexture}
+                  onPrevious={handlePrevious}
+                  onNext={handleNext}
+                  canGoPrevious={currentTextureIndex > 0}
+                  canGoNext={currentTextureIndex < filteredTextures.length - 1}
+                />
+              )}
+            </div>
+
+            {/* Sheet Modal for Info & Properties */}
+            <div 
+              className={`texture-sheet-modal ${isDraggingSheet ? 'dragging' : ''}`}
+              style={{ height: `${sheetHeight}%` }}
+              ref={sheetRef}
+            >
+              {/* Sheet Handle */}
+              <div 
+                className="sheet-handle"
+                onTouchStart={handleSheetTouchStart}
+                onClick={toggleSheet}
+              >
+                <div className="sheet-handle-bar"></div>
+              </div>
+
+              {/* Sheet Content */}
+              <div className="sheet-content">
+                {currentTexture && (
+                  <>
+                    {/* Always visible header */}
+                    <div className="sheet-header">
+                      <div className="texture-info-header-mobile">
+                        <h3 className="texture-name">
+                          {currentTexture.name[language] || currentTexture.name.en}
+                        </h3>
+                        <div className="texture-group-badge">
+                          {currentTexture.groupName}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Expandable content */}
+                    <div className="sheet-expandable-content">
+                      {/* Description - visible at 50%+ */}
+                      {sheetHeight >= 40 && (
+                        <div className="texture-description-mobile">
+                          <div className="texture-description">
+                            {currentTexture.description[language] || currentTexture.description.en}
+                          </div>
+
+                          {/* Compare Button */}
+                          <div className="texture-actions">
+                            <button
+                              className={`compare-button ${
+                                isInComparison(currentTexture.id) ? 'added' : ''
+                              } ${comparison.selectedTextures.length >= 4 ? 'disabled' : ''}`}
+                              onClick={handleAddToComparison}
+                              disabled={
+                                isInComparison(currentTexture.id) || 
+                                comparison.selectedTextures.length >= 4
+                              }
+                            >
+                              {isInComparison(currentTexture.id) ? labels.addedToCompare : labels.addToCompare}
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Technical Properties - visible at 80%+ */}
+                      {sheetHeight >= 80 && currentTexture.properties && (
+                        <div className="texture-properties-mobile">
+                          <div className="texture-properties">
+                            <h4>{labels.technicalProperties}</h4>
+                            <div className="properties-list">
+                              {Object.entries(currentTexture.properties).map(([key, value]) => (
+                                <div key={key} className="property-item">
+                                  <span className="property-label">
+                                    {labels.propertyLabels[key] || key}:
+                                  </span>
+                                  <span className="property-value">{value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </>
                 )}
-              </>
-            )}
+              </div>
+            </div>
           </div>
         </div>
 
