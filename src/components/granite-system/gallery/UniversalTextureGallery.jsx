@@ -23,6 +23,7 @@ const UniversalTextureGallery = () => {
   const sheetRef = useRef(null)
   const startTouchY = useRef(0)
   const startSheetHeight = useRef(25)
+  const currentSheetHeight = useRef(25)
   const touchMoveHandler = useRef(null)
   const touchEndHandler = useRef(null)
 
@@ -352,6 +353,7 @@ const UniversalTextureGallery = () => {
     const closest = breakpoints.reduce((prev, curr) => 
       Math.abs(curr - targetHeight) < Math.abs(prev - targetHeight) ? curr : prev
     )
+    currentSheetHeight.current = closest
     setSheetHeight(closest)
   }
 
@@ -373,12 +375,13 @@ const UniversalTextureGallery = () => {
         const deltaPercent = (deltaY / viewportHeight) * 100
         
         const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
+        currentSheetHeight.current = newHeight
         setSheetHeight(newHeight)
       }
       
       touchEndHandler.current = () => {
         setIsDraggingSheet(false)
-        snapToBreakpoint(sheetHeight)
+        snapToBreakpoint(currentSheetHeight.current)
         
         // Remove event listeners
         if (touchMoveHandler.current) {
@@ -399,13 +402,16 @@ const UniversalTextureGallery = () => {
 
 
   const toggleSheet = () => {
+    let newHeight
     if (sheetHeight === 25) {
-      setSheetHeight(50)
+      newHeight = 50
     } else if (sheetHeight === 50) {
-      setSheetHeight(90)
+      newHeight = 90
     } else {
-      setSheetHeight(25)
+      newHeight = 25
     }
+    currentSheetHeight.current = newHeight
+    setSheetHeight(newHeight)
   }
 
 
