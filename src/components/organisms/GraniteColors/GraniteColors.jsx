@@ -6,7 +6,7 @@ import { graniteTypes } from '../../../constants/graniteData'
 
 const GraniteColors = () => {
   const { currentLanguage } = useLanguageStore()
-  const { openGallery } = useGraniteSystemStore()
+  const { openUniversalGallery } = useGraniteSystemStore()
   
   const content = {
     en: {
@@ -225,7 +225,13 @@ const GraniteColors = () => {
   }
 
   const handleViewTextures = (graniteType) => {
-    openGallery(graniteType.id, 0)
+    // Open universal gallery with filter set to specific granite type
+    openUniversalGallery(graniteType.id, 0)
+  }
+
+  const handleViewAllTextures = () => {
+    // Open universal gallery with all textures
+    openUniversalGallery('all', 0)
   }
 
 
@@ -326,6 +332,17 @@ const GraniteColors = () => {
             })}
             <div className="granite-colors-empty"></div>
           </div>
+        </div>
+        
+        {/* All Textures Button */}
+        <div className="granite-colors-all-textures">
+          <Button 
+            variant="outline"
+            size="large"
+            onClick={handleViewAllTextures}
+          >
+            {currentContent.texturesButton}
+          </Button>
         </div>
         
         {/* Call to Action */}

@@ -7,6 +7,7 @@ import Gallery from './pages/Gallery'
 import Articles from './pages/Articles'
 import Contact from './pages/Contact'
 import Footer from './components/organisms/Footer/Footer'
+import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           <Route path="/articles" element={<><Articles /><Footer /></>} />
           <Route path="/contact" element={<><Contact /><Footer /></>} />
         </Routes>
+        
+        {/* Global Modal Components */}
+        <UniversalTextureGallery />
       </Router>
     </div>
   )

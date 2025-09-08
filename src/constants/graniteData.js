@@ -185,6 +185,150 @@ export const graniteTypes = [
           finish: 'polished',
           maplePattern: 'visible'
         }
+      },
+      {
+        id: 'red-brown-002',
+        name: {
+          en: 'Vasylyvske Quarry',
+          ua: 'Василівське родовище',
+          de: 'Wassilewski Steinbruch',
+          pl: 'Kamieniołom Wasiłowski'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/2-vasylivske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/2-vasylivske-rodovyshhe.jpg',
+        description: {
+          en: 'Premium red-brown granite from Vasylyvske quarry with rich mineral composition and distinctive texture',
+          ua: 'Преміум червоно-коричневий граніт з Василівського родовища з багатим мінеральним складом та характерною текстурою',
+          de: 'Premium rotbrauner Granit aus dem Wassilewski Steinbruch mit reicher Mineralzusammensetzung und charakteristischer Textur',
+          pl: 'Premium czerwono-brązowy granit z kamieniołomu Wasiłowski o bogatym składzie mineralnym i charakterystycznej teksturze'
+        },
+        properties: {
+          density: '2.75 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'coarse-grained',
+          finish: 'polished',
+          quarry: 'Vasylyvske'
+        }
+      },
+      {
+        id: 'red-brown-003',
+        name: {
+          en: 'Didkovytske Heritage',
+          ua: 'Дідковицьке родовище',
+          de: 'Didkowyzki Erbe',
+          pl: 'Dziedzictwo Didkowyckie'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg',
+        description: {
+          en: 'Historic granite from Didkovytske deposit with deep red-brown tones and excellent durability',
+          ua: 'Історичний граніт з Дідковицького родовища з глибокими червоно-коричневими тонами та відмінною стійкістю',
+          de: 'Historischer Granit aus der Didkowyzki Lagerstätte mit tiefen rotbraunen Tönen und ausgezeichneter Haltbarkeit',
+          pl: 'Historyczny granit ze złoża Didkowyckie o głębokich czerwono-brązowych tonach i doskonałej trwałości'
+        },
+        properties: {
+          density: '2.73 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'medium-grained',
+          finish: 'natural',
+          heritage: 'historic'
+        }
+      },
+      {
+        id: 'red-brown-004',
+        name: {
+          en: 'Kapustynske Classic',
+          ua: 'Капустинське родовище',
+          de: 'Kapustynski Klassik',
+          pl: 'Kapustyński Klasyk'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/5-kapustynske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/5-kapustynske-rodovyshhe.jpg',
+        description: {
+          en: 'Classical red-brown granite from Kapustynske quarry with uniform texture and warm undertones',
+          ua: 'Класичний червоно-коричневий граніт з Капустинського родовища з рівномірною текстурою та теплими відтінками',
+          de: 'Klassischer rotbrauner Granit aus dem Kapustynski Steinbruch mit gleichmäßiger Textur und warmen Untertönen',
+          pl: 'Klasyczny czerwono-brązowy granit z kamieniołomu Kapustyński o jednolitej teksturze i ciepłych podtonach'
+        },
+        properties: {
+          density: '2.72 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'uniform',
+          finish: 'polished',
+          warmth: 'high'
+        }
+      },
+      {
+        id: 'red-brown-005',
+        name: {
+          en: 'Leznykivske Elite',
+          ua: 'Лезниківське родовище',
+          de: 'Lesnykiwski Elite',
+          pl: 'Leźnykiwska Elita'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/6-leznykivske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/6-leznykivske-rodovyshhe.jpg',
+        description: {
+          en: 'Elite granite from Leznykivske deposit with distinctive red-brown patterns and superior quality',
+          ua: 'Елітний граніт з Лезниківського родовища з характерними червоно-коричневими візерунками та вищою якістю',
+          de: 'Elite-Granit aus der Lesnykiwski Lagerstätte mit charakteristischen rotbraunen Mustern und überlegener Qualität',
+          pl: 'Elitarny granit ze złoża Leźnykiwskie o charakterystycznych czerwono-brązowych wzorach i najwyższej jakości'
+        },
+        properties: {
+          density: '2.76 g/cm³',
+          hardness: '7 Mohs',
+          pattern: 'distinctive',
+          finish: 'mirror',
+          quality: 'elite'
+        }
+      },
+      {
+        id: 'red-brown-006',
+        name: {
+          en: 'Mezhyritske Natural',
+          ua: 'Межиріцьке родовище',
+          de: 'Meshyryzki Natur',
+          pl: 'Międzyrzecki Naturalny'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/8-mezhyritske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/8-mezhyritske-rodovyshhe.jpg',
+        description: {
+          en: 'Natural red-brown granite from Mezhyritske quarry with organic patterns and earthy tones',
+          ua: 'Природний червоно-коричневий граніт з Межиріцького родовища з органічними візерунками та земляними тонами',
+          de: 'Natürlicher rotbrauner Granit aus dem Meshyryzki Steinbruch mit organischen Mustern und erdigen Tönen',
+          pl: 'Naturalny czerwono-brązowy granit z kamieniołomu Międzyrzecki o organicznych wzorach i ziemistych tonach'
+        },
+        properties: {
+          density: '2.71 g/cm³',
+          hardness: '6-7 Mohs',
+          pattern: 'organic',
+          finish: 'natural',
+          earthyTones: 'prominent'
+        }
+      },
+      {
+        id: 'red-brown-007',
+        name: {
+          en: 'Omelyanivske Premium',
+          ua: 'Омелянівське родовище',
+          de: 'Omeljaniwski Premium',
+          pl: 'Omelianowski Premium'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/9-omelyanivske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/9-omelyanivske-rodovyshhe.jpg',
+        description: {
+          en: 'Premium red-brown granite from Omelyanivske deposit with exceptional strength and beautiful color variations',
+          ua: 'Преміум червоно-коричневий граніт з Омелянівського родовища з виняткovou міцністю та красивими колірними варіаціями',
+          de: 'Premium rotbrauner Granit aus der Omeljaniwski Lagerstätte mit außergewöhnlicher Festigkeit und schönen Farbvariationen',
+          pl: 'Premium czerwono-brązowy granit ze złoża Omelianowski o wyjątkowej wytrzymałości i pięknych wariacjach kolorystycznych'
+        },
+        properties: {
+          density: '2.77 g/cm³',
+          hardness: '7 Mohs',
+          pattern: 'varied',
+          finish: 'premium',
+          strength: 'exceptional'
+        }
       }
     ]
   },

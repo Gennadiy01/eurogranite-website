@@ -9,6 +9,7 @@ const useGraniteSystemStore = create()(
       gallery: {
         isOpen: false,
         currentGroup: null,
+        currentFilter: 'all', // for universal gallery filtering
         currentTextureIndex: 0,
         selectedTexture: null,
         isLoading: false,
@@ -56,14 +57,40 @@ const useGraniteSystemStore = create()(
         }))
       },
 
+      // Universal Gallery actions (opens all textures with optional filter)
+      openUniversalGallery: (filterId = 'all', textureIndex = 0) => {
+        set((state) => ({
+          gallery: {
+            ...state.gallery,
+            isOpen: true,
+            currentGroup: null, // null means universal gallery
+            currentFilter: filterId,
+            currentTextureIndex: textureIndex,
+            error: null
+          }
+        }))
+      },
+
       closeGallery: () => {
         set((state) => ({
           gallery: {
             ...state.gallery,
             isOpen: false,
             currentGroup: null,
+            currentFilter: 'all',
             currentTextureIndex: 0,
             selectedTexture: null
+          }
+        }))
+      },
+
+      // Set filter for universal gallery
+      setGalleryFilter: (filterId) => {
+        set((state) => ({
+          gallery: {
+            ...state.gallery,
+            currentFilter: filterId,
+            currentTextureIndex: 0 // reset to first texture when filtering
           }
         }))
       },
@@ -395,6 +422,7 @@ const useGraniteSystemStore = create()(
           gallery: {
             isOpen: false,
             currentGroup: null,
+            currentFilter: 'all',
             currentTextureIndex: 0,
             selectedTexture: null,
             isLoading: false,

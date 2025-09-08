@@ -510,6 +510,24 @@ body {
   display: none;
 }
 
+/* All Textures Button Section */
+.granite-colors-all-textures {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--neutral-50);
+  border-radius: 1rem;
+  border: 2px dashed var(--neutral-300);
+  transition: all 0.2s ease;
+}
+
+.granite-colors-all-textures:hover {
+  border-color: var(--primary-400);
+  background: var(--primary-50);
+}
+
 .granite-color-card {
   background-color: var(--white);
   border-radius: 1.5rem;
@@ -991,6 +1009,15 @@ body {
   .footer-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+  }
+}
+
+/* Mobile Responsive for All Textures Button */
+@media (max-width: 767px) {
+  .granite-colors-all-textures {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
   }
 }
 
@@ -1608,5 +1635,1196 @@ body {
   
   .unique-proposition-cta {
     padding: 3rem;
+  }
+}
+
+/* ===== GRANITE TEXTURE GALLERY SYSTEM ===== */
+
+/* Legacy styles removed - using Universal Texture Gallery styles instead */
+
+/* Gallery Header */
+.texture-gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--neutral-200);
+  background: var(--neutral-50);
+}
+
+.texture-gallery-title h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--neutral-800);
+  margin: 0;
+}
+
+.texture-counter {
+  font-size: 0.875rem;
+  color: var(--neutral-500);
+  font-weight: 500;
+}
+
+.texture-gallery-close {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--neutral-200);
+  color: var(--neutral-600);
+  font-size: 1.25rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.texture-gallery-close:hover {
+  background: var(--neutral-300);
+  color: var(--neutral-800);
+}
+
+/* Gallery Content */
+.texture-gallery-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.texture-gallery-viewer {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--neutral-50);
+  border-right: 1px solid var(--neutral-200);
+  position: relative;
+}
+
+.texture-gallery-info {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background: var(--white);
+}
+
+/* Texture Info Panel */
+.texture-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.texture-info-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--neutral-800);
+  margin: 0;
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.texture-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.texture-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.texture-btn-primary {
+  background: var(--accent-orange);
+  color: var(--white);
+}
+
+.texture-btn-primary:hover {
+  background: var(--accent-orange-hover);
+}
+
+.texture-btn-disabled {
+  background: var(--neutral-300);
+  color: var(--neutral-500);
+  cursor: not-allowed;
+}
+
+.texture-description {
+  margin-bottom: 2rem;
+}
+
+.texture-description p {
+  color: var(--neutral-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Texture Properties */
+.texture-properties h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--neutral-800);
+  margin: 0 0 1rem 0;
+}
+
+.properties-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.property-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--neutral-50);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.property-label {
+  font-weight: 500;
+  color: var(--neutral-700);
+}
+
+.property-value {
+  color: var(--neutral-600);
+  text-align: right;
+}
+
+/* Gallery Navigation */
+.texture-gallery-navigation {
+  border-top: 1px solid var(--neutral-200);
+  background: var(--white);
+  padding: 1rem 2rem;
+}
+
+/* ===== TEXTURE VIEWER COMPONENT ===== */
+
+.texture-viewer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  background-color: var(--white);
+}
+
+.texture-viewer-empty,
+.texture-viewer-loading,
+.texture-viewer-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--neutral-500);
+}
+
+.texture-viewer-placeholder,
+.texture-viewer-loading,
+.texture-viewer-error {
+  text-align: center;
+}
+
+.placeholder-icon,
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--neutral-300);
+  border-top: 3px solid var(--accent-orange);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.texture-viewer-image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.texture-viewer-image-container.zoomed {
+  cursor: grab;
+}
+
+.texture-viewer-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Viewer Controls */
+.texture-viewer-controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+}
+
+.texture-control-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--white);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.texture-control-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.texture-control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.zoom-level {
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.texture-viewer-hint {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeInHint 0.5s ease 2s forwards;
+}
+
+@keyframes fadeInHint {
+  to { opacity: 1; }
+}
+
+/* ===== TEXTURE NAVIGATION COMPONENT ===== */
+
+.texture-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Navigation Controls */
+.texture-nav-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.texture-nav-btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--neutral-100);
+  color: var(--neutral-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.texture-nav-btn:hover:not(.disabled) {
+  background: var(--accent-orange);
+  color: var(--white);
+  border-color: var(--accent-orange);
+}
+
+.texture-nav-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Thumbnail Strip */
+.texture-thumbnails-container {
+  overflow: hidden;
+}
+
+.texture-thumbnails {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-300) transparent;
+}
+
+.texture-thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.texture-thumbnails::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.texture-thumbnails::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 2px;
+}
+
+.texture-thumbnail {
+  flex-shrink: 0;
+  width: 5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.texture-thumbnail:hover {
+  transform: translateY(-2px);
+}
+
+.texture-thumbnail.active {
+  box-shadow: 0 0 0 3px var(--accent-orange);
+}
+
+.texture-thumbnail-image {
+  width: 100%;
+  height: 4rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: var(--neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.texture-thumbnail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.2s ease;
+  display: block;
+}
+
+.texture-thumbnail-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.texture-thumbnail-image img[src=""] + .texture-thumbnail-loading,
+.texture-thumbnail-image img:not([src]) + .texture-thumbnail-loading {
+  opacity: 1;
+}
+
+.thumbnail-loading-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--neutral-300);
+  border-top: 2px solid var(--accent-orange);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.texture-thumbnail-name {
+  margin-top: 0.5rem;
+  text-align: center;
+  min-height: 0;
+}
+
+.texture-thumbnail-name span {
+  font-size: 0.75rem;
+  color: var(--neutral-600);
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hide thumbnail name when empty */
+.texture-thumbnail-name span:empty {
+  display: none;
+}
+
+.texture-thumbnail-name:has(span:empty) {
+  margin-top: 0;
+  height: 0;
+}
+
+.texture-thumbnail.active .texture-thumbnail-name span {
+  color: var(--accent-orange);
+  font-weight: 500;
+}
+
+.texture-thumbnail-indicator {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.indicator-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--accent-orange);
+  border-radius: 50%;
+  border: 2px solid var(--white);
+}
+
+/* Progress Indicator */
+.texture-navigation-progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--neutral-200);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-orange);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--neutral-500);
+  font-weight: 500;
+  min-width: 3rem;
+}
+
+.current-number {
+  color: var(--accent-orange);
+  font-weight: 600;
+}
+
+/* Navigation Hints */
+.texture-nav-hints {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
+.nav-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--neutral-700);
+  font-weight: 500;
+}
+
+.nav-hint kbd {
+  background: var(--neutral-300);
+  color: var(--neutral-800);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.625rem;
+  font-family: monospace;
+  font-weight: 600;
+  min-width: 1.5rem;
+  text-align: center;
+  border: 1px solid var(--neutral-400);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .texture-gallery-modal {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .texture-gallery-content {
+    flex-direction: column;
+  }
+  
+  .texture-gallery-viewer {
+    flex: 1;
+    border-right: none;
+    border-bottom: 1px solid var(--neutral-200);
+  }
+  
+  .texture-gallery-info {
+    flex: 0 0 auto;
+    max-height: 40%;
+    padding: 1.5rem;
+  }
+  
+  .texture-nav-hints {
+    display: none;
+  }
+}
+
+/* ===================================
+   UNIVERSAL TEXTURE GALLERY STYLES
+   ================================= */
+
+/* Universal Gallery Modal */
+.texture-gallery-modal {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
+}
+
+.texture-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(8px);
+}
+
+.texture-gallery-container {
+  position: relative !important;
+  width: min(95vw, 1400px) !important;
+  height: min(95vh, 900px) !important;
+  background: white;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: galleryFadeIn 0.3s ease-out;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
+
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Gallery Header */
+.texture-gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 1px solid var(--neutral-200);
+  background: white;
+  z-index: 10;
+}
+
+.texture-gallery-title-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.texture-gallery-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--neutral-900);
+  margin: 0;
+}
+
+.texture-gallery-counter {
+  background: var(--primary-100);
+  color: var(--primary-700);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.texture-gallery-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background: var(--neutral-100);
+  border-radius: 0.5rem;
+  color: var(--neutral-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.texture-gallery-close:hover {
+  background: var(--neutral-200);
+  color: var(--neutral-900);
+}
+
+/* Color Filter Section - Compact Mobile-First Design */
+.texture-gallery-filters {
+  padding: 1rem 1.5rem 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--neutral-200);
+  background: var(--neutral-50);
+  position: relative;
+}
+
+/* Scroll fade indicators for desktop */
+@media (min-width: 768px) {
+  .texture-gallery-filters::before,
+  .texture-gallery-filters::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2rem;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .texture-gallery-filters::before {
+    left: 0;
+    background: linear-gradient(to right, var(--neutral-50) 0%, transparent 100%);
+  }
+  
+  .texture-gallery-filters::after {
+    right: 0;
+    background: linear-gradient(to left, var(--neutral-50) 0%, transparent 100%);
+  }
+  
+  /* Show fade indicators when scrollable */
+  .texture-gallery-filters.scrollable::before,
+  .texture-gallery-filters.scrollable::after {
+    opacity: 1;
+  }
+}
+
+.filter-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--neutral-600);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-buttons {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  position: relative;
+}
+
+.filter-buttons::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Scroll indicators for tablets/desktop */
+@media (min-width: 768px) {
+  .filter-buttons {
+    scrollbar-width: thin; /* Show thin scrollbar on desktop */
+    scrollbar-color: var(--neutral-400) transparent;
+  }
+  
+  .filter-buttons::-webkit-scrollbar {
+    display: block;
+    height: 4px;
+  }
+  
+  .filter-buttons::-webkit-scrollbar-track {
+    background: var(--neutral-200);
+    border-radius: 2px;
+    margin: 0 1rem;
+  }
+  
+  .filter-buttons::-webkit-scrollbar-thumb {
+    background: var(--accent-orange);
+    border-radius: 2px;
+  }
+  
+  .filter-buttons::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-orange-hover);
+  }
+}
+
+.filter-button {
+  padding: 0.5rem 0.875rem;
+  border: 1.5px solid var(--neutral-300);
+  background: white;
+  border-radius: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--neutral-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  min-width: fit-content;
+}
+
+.filter-button::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.filter-button:hover {
+  border-color: var(--accent-orange);
+  background: rgba(234, 88, 12, 0.05);
+  color: var(--accent-orange);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-button.active {
+  border-color: var(--accent-orange);
+  background: var(--accent-orange);
+  color: white;
+  box-shadow: 0 2px 12px rgba(234, 88, 12, 0.3);
+}
+
+.filter-button.active::before {
+  background: white;
+}
+
+/* Color-specific filter styles with dot indicators */
+.filter-button.granite-filter-all::before {
+  background: linear-gradient(45deg, var(--granite-black) 25%, var(--granite-gray) 25%, var(--granite-gray) 50%, var(--granite-red-brown) 50%);
+}
+
+.filter-button.granite-filter-black::before {
+  background: var(--granite-black);
+}
+
+.filter-button.granite-filter-gray::before {
+  background: var(--granite-gray);
+}
+
+.filter-button.granite-filter-red-brown::before {
+  background: var(--granite-red-brown);
+}
+
+.filter-button.granite-filter-pink-gray::before {
+  background: var(--granite-pink-gray, #d4a5a5);
+}
+
+.filter-button.granite-filter-green::before {
+  background: var(--granite-green, #4ade80);
+}
+
+.filter-button.granite-filter-labradorite::before {
+  background: linear-gradient(45deg, var(--granite-black-green, #1e3a2e) 50%, var(--granite-gray-green, #6b7c63) 50%);
+}
+
+/* Main Content Layout - Three Column Layout */
+.texture-gallery-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.texture-gallery-description-section {
+  flex: 0 0 300px;
+  background: white;
+  border-right: 1px solid var(--neutral-200);
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.texture-gallery-viewer-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--neutral-100);
+  position: relative;
+}
+
+.texture-gallery-properties-section {
+  flex: 0 0 300px;
+  background: white;
+  border-left: 1px solid var(--neutral-200);
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Texture Info */
+.texture-info-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.texture-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--neutral-900);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.texture-group-badge {
+  display: inline-block;
+  background: var(--neutral-100);
+  color: var(--neutral-600);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: fit-content;
+}
+
+.texture-description {
+  color: var(--neutral-600);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* Compare Button */
+.texture-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.compare-button {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--primary-500);
+  background: var(--primary-500);
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.compare-button:hover:not(.disabled) {
+  background: var(--primary-600);
+  border-color: var(--primary-600);
+  transform: translateY(-1px);
+}
+
+.compare-button.added {
+  background: var(--success-500);
+  border-color: var(--success-500);
+}
+
+.compare-button.added:hover {
+  background: var(--success-600);
+  border-color: var(--success-600);
+}
+
+.compare-button.disabled {
+  background: var(--neutral-300);
+  border-color: var(--neutral-300);
+  color: var(--neutral-500);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Technical Properties */
+.texture-properties h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--neutral-900);
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid var(--neutral-200);
+  padding-bottom: 0.5rem;
+}
+
+.properties-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.property-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.property-label {
+  font-weight: 500;
+  color: var(--neutral-700);
+  font-size: 0.875rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.property-value {
+  font-weight: 400;
+  color: var(--neutral-900);
+  font-size: 0.875rem;
+  text-align: right;
+  flex: 0 0 auto;
+}
+
+/* Thumbnail Navigation */
+.texture-gallery-thumbnails {
+  border-top: 1px solid var(--neutral-200);
+  background: white;
+  padding: 1rem 2rem;
+}
+
+.thumbnail-scroll {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-400) transparent;
+}
+
+.thumbnail-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnail-scroll::-webkit-scrollbar-thumb {
+  background: var(--neutral-400);
+  border-radius: 3px;
+}
+
+.texture-thumbnail {
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--neutral-300);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  background: white;
+}
+
+.texture-thumbnail:hover {
+  border-color: var(--primary-400);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.texture-thumbnail.active {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 2px var(--primary-200);
+}
+
+.texture-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.group-indicator {
+  width: 100%;
+  height: 100%;
+}
+
+.group-indicator.granite-black { background: var(--granite-black); }
+.group-indicator.granite-gray { background: var(--granite-gray); }
+.group-indicator.granite-red-brown { background: var(--granite-red-brown); }
+.group-indicator.granite-pink-gray { background: var(--granite-pink-gray); }
+.group-indicator.granite-green { background: var(--granite-green); }
+.group-indicator.granite-labradorite { background: var(--granite-labradorite); }
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .texture-gallery-overlay {
+    padding: 0.5rem;
+  }
+  
+  .texture-gallery-container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .texture-gallery-modal {
+    padding: 0;
+  }
+  
+  .texture-gallery-header {
+    padding: 1rem 1.5rem 0.75rem;
+  }
+  
+  .texture-gallery-title {
+    font-size: 1.25rem;
+  }
+  
+  .texture-gallery-filters {
+    padding: 0.75rem 1rem 0.5rem 1rem;
+  }
+  
+  .filter-label {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .filter-buttons {
+    gap: 0.375rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .filter-button {
+    padding: 0.375rem 0.6rem;
+    font-size: 0.75rem;
+    border-radius: 1.25rem;
+  }
+  
+  .filter-button::before {
+    width: 6px;
+    height: 6px;
+    margin-right: 0.375rem;
+  }
+  
+  .texture-gallery-content {
+    flex-direction: column;
+  }
+  
+  .texture-gallery-description-section {
+    flex: 0 0 auto;
+    padding: 1rem 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--neutral-200);
+    overflow-y: visible;
+  }
+  
+  .texture-gallery-viewer-section {
+    flex: 1;
+    min-height: 300px;
+  }
+  
+  .texture-gallery-properties-section {
+    flex: 0 0 auto;
+    padding: 1rem 1.5rem;
+    border-left: none;
+    border-top: 1px solid var(--neutral-200);
+    overflow-y: visible;
+  }
+  
+  
+  .thumbnail-scroll {
+    gap: 0.5rem;
+  }
+  
+  .texture-thumbnail {
+    flex: 0 0 60px;
+    width: 60px;
+    height: 60px;
   }
 }
