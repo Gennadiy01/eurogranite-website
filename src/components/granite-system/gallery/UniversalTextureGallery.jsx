@@ -18,7 +18,6 @@ const UniversalTextureGallery = () => {
   const [currentTextureIndex, setCurrentTextureIndex] = useState(0)
   const [sheetHeight, setSheetHeight] = useState(25) // 25%, 50%, 90%
   const [isDraggingSheet, setIsDraggingSheet] = useState(false)
-  const dragEndTimeout = useRef(null)
   const filterButtonsRef = useRef(null)
   const filtersContainerRef = useRef(null)
   const sheetRef = useRef(null)
@@ -185,15 +184,24 @@ const UniversalTextureGallery = () => {
   // Handle navigation
   const handlePrevious = useCallback(() => {
     setCurrentTextureIndex(prev => prev > 0 ? prev - 1 : filteredTextures.length - 1)
+    // Reset sheet to initial position
+    setSheetHeight(25)
+    currentSheetHeight.current = 25
   }, [filteredTextures.length])
 
   const handleNext = useCallback(() => {
     setCurrentTextureIndex(prev => prev < filteredTextures.length - 1 ? prev + 1 : 0)
+    // Reset sheet to initial position
+    setSheetHeight(25)
+    currentSheetHeight.current = 25
   }, [filteredTextures.length])
 
   // Handle thumbnail click
   const handleThumbnailClick = (index) => {
     setCurrentTextureIndex(index)
+    // Reset sheet to initial position
+    setSheetHeight(25)
+    currentSheetHeight.current = 25
   }
 
   // Handle filter change
@@ -270,14 +278,30 @@ const UniversalTextureGallery = () => {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [gallery.isOpen, handlePrevious, handleNext, closeGallery])
 
-  // Cleanup effect for timeouts
+
+  // Reset sheet height when gallery opens with new texture
   useEffect(() => {
-    return () => {
-      if (dragEndTimeout.current) {
-        clearTimeout(dragEndTimeout.current)
+    if (gallery.isOpen) {
+      setSheetHeight(25)
+      currentSheetHeight.current = 25
+      
+      // Also find and set the correct texture index if a specific texture was selected
+      if (gallery.selectedTextureId) {
+        const textureIndex = filteredTextures.findIndex(t => t.id === gallery.selectedTextureId)
+        if (textureIndex !== -1 && textureIndex !== currentTextureIndex) {
+          setCurrentTextureIndex(textureIndex)
+        }
       }
     }
-  }, [])
+  }, [gallery.isOpen, gallery.selectedTextureId])
+
+  // Also try resetting on component mount when gallery is already open
+  useEffect(() => {
+    if (gallery.isOpen) {
+      setSheetHeight(25)
+      currentSheetHeight.current = 25
+    }
+  }, []) // Empty dependency array - runs only on mount
 
   // Cleanup effect for touch handlers and animations
 
@@ -362,11 +386,9 @@ const UniversalTextureGallery = () => {
       finalHeight = Math.max(15, Math.min(95, finalHeight + momentumOffset))
     }
 
-    // Only update if there's a meaningful change
-    if (Math.abs(finalHeight - currentSheetHeight.current) > 0.5) {
-      currentSheetHeight.current = finalHeight
-      setSheetHeight(finalHeight)
-    }
+    // Always update to ensure state consistency
+    currentSheetHeight.current = finalHeight
+    setSheetHeight(finalHeight)
   }
 
   const handleSheetTouchStart = (e) => {
@@ -392,10 +414,7 @@ const UniversalTextureGallery = () => {
     lastTouchTime.current = Date.now()
     velocity.current = 0
     
-    // Remove any existing transition for immediate response
-    if (sheetRef.current) {
-      sheetRef.current.style.transition = 'none'
-    }
+    // Keep transitions for smooth dragging experience
     
     // High-performance touch move handler with immediate response
     const handleTouchMove = (moveEvent) => {
@@ -421,25 +440,26 @@ const UniversalTextureGallery = () => {
       
       moveEvent.preventDefault()
       
-      // Immediate position update without clamping during drag for better responsiveness
-      const newHeight = startSheetHeight.current + deltaPercent
+      // Immediate position update with proper bounds during drag
+      const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
+      const oldHeight = currentSheetHeight.current
       currentSheetHeight.current = newHeight
       setSheetHeight(newHeight)
+      
     }
     
     const handleTouchEnd = () => {
-      // Clear any existing timeout
-      if (dragEndTimeout.current) {
-        clearTimeout(dragEndTimeout.current)
-      }
-      
-      // Small delay to ensure smooth transition
-      dragEndTimeout.current = setTimeout(() => {
-        setIsDraggingSheet(false)
-      }, 50)
+      setIsDraggingSheet(false)
       
       // Apply final position with momentum and bounds
       finishSheetPosition(currentSheetHeight.current, velocity.current)
+      
+      // Force re-render to ensure state consistency
+      setTimeout(() => {
+        if (currentSheetHeight.current !== sheetHeight) {
+          setSheetHeight(currentSheetHeight.current)
+        }
+      }, 10)
       
       document.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('touchend', handleTouchEnd)
@@ -460,6 +480,7 @@ const UniversalTextureGallery = () => {
     } else {
       newHeight = 25  // Minimal height showing just title
     }
+    
     
     // Smooth transition for button clicks
     if (sheetRef.current) {
@@ -665,44 +686,52 @@ const UniversalTextureGallery = () => {
 
                     {/* Expandable content with smooth opacity transitions */}
                     <div className="sheet-expandable-content">
-                      {/* Description - visible at 35%+ */}
-                      {sheetHeight >= 30 && (
-                        <div 
-                          className="texture-description-mobile"
-                          style={{ 
-                            opacity: Math.min(1, Math.max(0, (sheetHeight - 25) / 20)),
-                            transform: `translateY(${Math.max(0, 35 - sheetHeight) * 2}px)`
-                          }}
-                        >
-                          <div className="texture-description">
-                            {currentTexture.description[currentLanguage] || currentTexture.description.en}
-                          </div>
-
-                          {/* Compare Button */}
-                          <div className="texture-actions">
-                            <button
-                              className={`compare-button ${
-                                isInComparison(currentTexture.id) ? 'added' : ''
-                              } ${comparison.selectedTextures.length >= 4 ? 'disabled' : ''}`}
-                              onClick={handleAddToComparison}
-                              disabled={
-                                isInComparison(currentTexture.id) || 
-                                comparison.selectedTextures.length >= 4
-                              }
-                            >
-                              {isInComparison(currentTexture.id) ? labels.addedToCompare : labels.addToCompare}
-                            </button>
-                          </div>
+                      {/* Description - always rendered, controlled by CSS */}
+                      <div 
+                        className="texture-description-mobile"
+                        style={{ 
+                          opacity: sheetHeight >= 35 ? Math.min(1, (sheetHeight - 35) / 20) : 0,
+                          transform: `translateY(${Math.max(0, (40 - sheetHeight))}px)`,
+                          pointerEvents: sheetHeight >= 35 ? 'auto' : 'none',
+                          visibility: sheetHeight >= 30 ? 'visible' : 'hidden',
+                          display: 'block',
+                          position: 'relative',
+                          zIndex: 10
+                        }}
+                      >
+                        <div className="texture-description">
+                          {currentTexture.description[currentLanguage] || currentTexture.description.en}
                         </div>
-                      )}
 
-                      {/* Technical Properties - visible at 65%+ */}
-                      {sheetHeight >= 60 && currentTexture.properties && (
+                        {/* Compare Button */}
+                        <div className="texture-actions">
+                          <button
+                            className={`compare-button ${
+                              isInComparison(currentTexture.id) ? 'added' : ''
+                            } ${comparison.selectedTextures.length >= 4 ? 'disabled' : ''}`}
+                            onClick={handleAddToComparison}
+                            disabled={
+                              isInComparison(currentTexture.id) || 
+                              comparison.selectedTextures.length >= 4
+                            }
+                          >
+                            {isInComparison(currentTexture.id) ? labels.addedToCompare : labels.addToCompare}
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Technical Properties - always rendered, controlled by CSS */}
+                      {currentTexture.properties && (
                         <div 
                           className="texture-properties-mobile"
                           style={{ 
-                            opacity: Math.min(1, Math.max(0, (sheetHeight - 55) / 20)),
-                            transform: `translateY(${Math.max(0, 70 - sheetHeight) * 1.5}px)`
+                            opacity: sheetHeight >= 65 ? Math.min(1, (sheetHeight - 65) / 20) : 0,
+                            transform: `translateY(${Math.max(0, (70 - sheetHeight))}px)`,
+                            pointerEvents: sheetHeight >= 65 ? 'auto' : 'none',
+                            visibility: sheetHeight >= 60 ? 'visible' : 'hidden',
+                            display: 'block',
+                            position: 'relative',
+                            zIndex: 10
                           }}
                         >
                           <div className="texture-properties">
@@ -745,7 +774,6 @@ const UniversalTextureGallery = () => {
                   alt=""
                   loading="lazy"
                   onError={(e) => {
-                    console.log('Image failed to load:', texture.thumbUrl);
                     e.target.style.display = 'none';
                   }}
                 />
