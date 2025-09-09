@@ -2865,19 +2865,22 @@ body {
   contain: layout style paint;
 }
 
-/* Sheet Handle - Performance Optimized */
+/* Sheet Handle - Performance Optimized with better touch area */
 .sheet-handle {
   position: sticky;
   top: 0;
   z-index: 20;
-  padding: 0.75rem 0 0.5rem 0;
+  padding: 1rem 0 0.75rem 0; /* Larger touch area */
   background: var(--white);
   cursor: grab;
   user-select: none;
-  touch-action: none;
+  touch-action: none; /* Handle controls all touch - no scroll allowed */
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  /* Better touch target size */
+  min-height: 2.5rem; /* 40px minimum touch target */
   
   /* Prevent text selection and callouts */
   -webkit-touch-callout: none;
@@ -2910,11 +2913,20 @@ body {
   background: var(--neutral-400);
 }
 
-/* Sheet Content */
+/* Sheet Content - Scrollable with proper touch handling */
 .sheet-content {
   padding: 0 1.5rem;
   overflow-y: auto;
   height: calc(100% - 2rem); /* Account for handle */
+  
+  /* Ensure smooth scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y; /* Allow vertical scrolling only */
+  
+  /* Performance optimizations for scroll area */
+  will-change: scroll-position;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .sheet-header {
