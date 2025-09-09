@@ -2832,7 +2832,7 @@ body {
   touch-action: manipulation;
 }
 
-/* Sheet Modal Container */
+/* Sheet Modal Container - Optimized for Performance */
 .texture-sheet-modal {
   position: absolute;
   bottom: 0;
@@ -2841,18 +2841,31 @@ body {
   background: var(--white);
   border-radius: 1rem 1rem 0 0;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-  transition: height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 10;
   overflow: hidden;
-  touch-action: manipulation;
+  
+  /* Performance optimizations for smooth mobile interactions */
+  will-change: height;
   -webkit-overflow-scrolling: touch;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+  /* Touch optimizations */
+  touch-action: manipulation;
+  
+  /* Default smooth transition */
+  transition: height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .texture-sheet-modal.dragging {
   transition: none;
+  /* Enhanced performance during drag */
+  contain: layout style paint;
 }
 
-/* Sheet Handle */
+/* Sheet Handle - Performance Optimized */
 .sheet-handle {
   position: sticky;
   top: 0;
@@ -2865,10 +2878,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  /* Prevent text selection and callouts */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  
+  /* Performance optimizations */
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .sheet-handle:active {
@@ -2881,6 +2901,9 @@ body {
   background: var(--neutral-300);
   border-radius: 0.125rem;
   transition: background 0.2s ease;
+  
+  /* Hardware acceleration for smooth interactions */
+  will-change: background-color;
 }
 
 .sheet-handle:hover .sheet-handle-bar {

@@ -26,6 +26,10 @@ const UniversalTextureGallery = () => {
   const currentSheetHeight = useRef(25)
   const touchMoveHandler = useRef(null)
   const touchEndHandler = useRef(null)
+  const animationFrame = useRef(null)
+  const velocity = useRef(0)
+  const lastTouchY = useRef(0)
+  const lastTouchTime = useRef(0)
 
   // Localization
   const modalLabels = {
@@ -268,7 +272,7 @@ const UniversalTextureGallery = () => {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [gallery.isOpen, handlePrevious, handleNext, closeGallery])
 
-  // Cleanup effect for touch handlers
+  // Cleanup effect for touch handlers and animations
   useEffect(() => {
     return () => {
       // Clean up any remaining event listeners when component unmounts
@@ -277,6 +281,10 @@ const UniversalTextureGallery = () => {
       }
       if (touchEndHandler.current) {
         document.removeEventListener('touchend', touchEndHandler.current)
+      }
+      // Cancel any pending animation frames
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current)
       }
     }
   }, [])
@@ -347,41 +355,106 @@ const UniversalTextureGallery = () => {
     return shortNames[currentLanguage]?.[graniteType.id] || shortNames.en[graniteType.id] || graniteType.name[currentLanguage] || graniteType.name.en
   }
 
-  // Sheet Modal functions
-  const snapToBreakpoint = (targetHeight) => {
+  // Sheet Modal functions with improved snap and velocity
+  const snapToBreakpoint = (targetHeight, currentVelocity = 0) => {
     const breakpoints = [25, 50, 90]
-    const closest = breakpoints.reduce((prev, curr) => 
-      Math.abs(curr - targetHeight) < Math.abs(prev - targetHeight) ? curr : prev
-    )
-    currentSheetHeight.current = closest
-    setSheetHeight(closest)
+    let targetBreakpoint = targetHeight
+
+    // Use velocity to determine direction preference
+    if (Math.abs(currentVelocity) > 0.5) {
+      if (currentVelocity > 0) {
+        // Moving up, prefer higher breakpoint
+        targetBreakpoint = breakpoints.find(bp => bp > targetHeight) || breakpoints[breakpoints.length - 1]
+      } else {
+        // Moving down, prefer lower breakpoint  
+        targetBreakpoint = breakpoints.reverse().find(bp => bp < targetHeight) || breakpoints[0]
+      }
+      breakpoints.reverse() // restore original order
+    } else {
+      // Low velocity, use closest breakpoint
+      targetBreakpoint = breakpoints.reduce((prev, curr) => 
+        Math.abs(curr - targetHeight) < Math.abs(prev - targetHeight) ? curr : prev
+      )
+    }
+
+    // Smooth transition with CSS
+    if (sheetRef.current) {
+      sheetRef.current.style.transition = 'height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
+      setTimeout(() => {
+        if (sheetRef.current) {
+          sheetRef.current.style.transition = ''
+        }
+      }, 400)
+    }
+
+    currentSheetHeight.current = targetBreakpoint
+    setSheetHeight(targetBreakpoint)
   }
 
   const handleSheetTouchStart = (e) => {
     if (e.touches && e.touches.length > 0) {
-      e.preventDefault()
+      // Cancel any ongoing animation
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current)
+      }
+      
       setIsDraggingSheet(true)
       startTouchY.current = e.touches[0].clientY
       startSheetHeight.current = sheetHeight
+      lastTouchY.current = e.touches[0].clientY
+      lastTouchTime.current = Date.now()
+      velocity.current = 0
       
-      // Create handlers with proper context
+      // Remove CSS transitions during drag for immediate response
+      if (sheetRef.current) {
+        sheetRef.current.style.transition = 'none'
+      }
+      
+      // Optimized touch move handler with RAF throttling
       touchMoveHandler.current = (moveEvent) => {
         if (!moveEvent.touches || moveEvent.touches.length === 0) return
         
-        moveEvent.preventDefault()
+        const currentTime = Date.now()
+        const timeDelta = currentTime - lastTouchTime.current
+        
+        // Throttle to ~60fps
+        if (timeDelta < 16) return
+        
         const currentY = moveEvent.touches[0].clientY
         const deltaY = startTouchY.current - currentY
         const viewportHeight = window.innerHeight
         const deltaPercent = (deltaY / viewportHeight) * 100
         
+        // Calculate velocity for momentum
+        const velocityY = (lastTouchY.current - currentY) / timeDelta
+        velocity.current = velocityY * 100 // Scale for percentage
+        
         const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
-        currentSheetHeight.current = newHeight
-        setSheetHeight(newHeight)
+        
+        // Use requestAnimationFrame for smooth updates
+        if (animationFrame.current) {
+          cancelAnimationFrame(animationFrame.current)
+        }
+        
+        animationFrame.current = requestAnimationFrame(() => {
+          currentSheetHeight.current = newHeight
+          setSheetHeight(newHeight)
+        })
+        
+        lastTouchY.current = currentY
+        lastTouchTime.current = currentTime
       }
       
       touchEndHandler.current = () => {
         setIsDraggingSheet(false)
-        snapToBreakpoint(currentSheetHeight.current)
+        
+        // Use velocity for smarter snapping
+        snapToBreakpoint(currentSheetHeight.current, velocity.current)
+        
+        // Clean up
+        if (animationFrame.current) {
+          cancelAnimationFrame(animationFrame.current)
+        }
         
         // Remove event listeners
         if (touchMoveHandler.current) {
@@ -394,9 +467,15 @@ const UniversalTextureGallery = () => {
         touchEndHandler.current = null
       }
       
-      // Add event listeners to document
-      document.addEventListener('touchmove', touchMoveHandler.current, { passive: false })
-      document.addEventListener('touchend', touchEndHandler.current, { once: true })
+      // Add event listeners to document with optimized options
+      document.addEventListener('touchmove', touchMoveHandler.current, { 
+        passive: false,
+        capture: true 
+      })
+      document.addEventListener('touchend', touchEndHandler.current, { 
+        once: true,
+        passive: true
+      })
     }
   }
 
