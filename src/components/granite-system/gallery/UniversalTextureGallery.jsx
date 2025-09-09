@@ -293,7 +293,7 @@ const UniversalTextureGallery = () => {
         }
       }
     }
-  }, [gallery.isOpen, gallery.selectedTextureId])
+  }, [gallery.isOpen, gallery.selectedTextureId, filteredTextures, currentTextureIndex])
 
   // Also try resetting on component mount when gallery is already open
   useEffect(() => {
@@ -301,7 +301,7 @@ const UniversalTextureGallery = () => {
       setSheetHeight(25)
       currentSheetHeight.current = 25
     }
-  }, []) // Empty dependency array - runs only on mount
+  }, [gallery.isOpen]) // Include gallery.isOpen dependency
 
   // Cleanup effect for touch handlers and animations
 
@@ -442,7 +442,6 @@ const UniversalTextureGallery = () => {
       
       // Immediate position update with proper bounds during drag
       const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
-      const oldHeight = currentSheetHeight.current
       currentSheetHeight.current = newHeight
       setSheetHeight(newHeight)
       
