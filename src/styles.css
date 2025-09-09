@@ -2965,19 +2965,7 @@ body {
   white-space: nowrap;
 }
 
-/* Sheet Expandable Content */
-.sheet-expandable-content {
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: all 0.3s ease;
-}
-
-/* Content visibility based on sheet height */
-.texture-sheet-modal[style*="height: 50%"] .sheet-expandable-content,
-.texture-sheet-modal[style*="height: 90%"] .sheet-expandable-content {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Sheet Expandable Content - removed conflicting opacity/transform rules that override React inline styles */
 
 /* Mobile Description Section */
 .texture-description-mobile {
