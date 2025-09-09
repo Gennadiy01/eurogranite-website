@@ -18,6 +18,7 @@ const UniversalTextureGallery = () => {
   const [currentTextureIndex, setCurrentTextureIndex] = useState(0)
   const [sheetHeight, setSheetHeight] = useState(25) // 25%, 50%, 90%
   const [isDraggingSheet, setIsDraggingSheet] = useState(false)
+  const dragEndTimeout = useRef(null)
   const filterButtonsRef = useRef(null)
   const filtersContainerRef = useRef(null)
   const sheetRef = useRef(null)
@@ -269,6 +270,15 @@ const UniversalTextureGallery = () => {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [gallery.isOpen, handlePrevious, handleNext, closeGallery])
 
+  // Cleanup effect for timeouts
+  useEffect(() => {
+    return () => {
+      if (dragEndTimeout.current) {
+        clearTimeout(dragEndTimeout.current)
+      }
+    }
+  }, [])
+
   // Cleanup effect for touch handlers and animations
 
   // Check if texture is in comparison
@@ -337,59 +347,32 @@ const UniversalTextureGallery = () => {
     return shortNames[currentLanguage]?.[graniteType.id] || shortNames.en[graniteType.id] || graniteType.name[currentLanguage] || graniteType.name.en
   }
 
-  // Sheet Modal functions with improved snap and velocity
-  const snapToBreakpoint = (targetHeight, currentVelocity = 0) => {
-    const breakpoints = [25, 50, 90]
-    let targetBreakpoint
+  // Sheet Modal functions with free positioning and momentum
+  const finishSheetPosition = (targetHeight, currentVelocity = 0) => {
+    // Clamp height to reasonable bounds
+    let finalHeight = Math.max(15, Math.min(95, targetHeight))
     
-    // Velocity threshold for intelligent snapping
-    const VELOCITY_THRESHOLD = 15 // breakpoint units per second
-
-    // Use velocity to determine direction preference for intelligent snapping
-    if (Math.abs(currentVelocity) > VELOCITY_THRESHOLD) {
-      if (currentVelocity > 0) {
-        // Moving up with sufficient velocity, snap to next higher breakpoint
-        targetBreakpoint = breakpoints.find(bp => bp > targetHeight)
-        if (!targetBreakpoint) {
-          // Already at or above highest breakpoint, stay at highest
-          targetBreakpoint = breakpoints[breakpoints.length - 1]
-        }
-      } else {
-        // Moving down with sufficient velocity, snap to next lower breakpoint
-        targetBreakpoint = [...breakpoints].reverse().find(bp => bp < targetHeight)
-        if (!targetBreakpoint) {
-          // Already at or below lowest breakpoint, stay at lowest
-          targetBreakpoint = breakpoints[0]
-        }
-      }
-    } else {
-      // Low velocity or no velocity, snap to closest breakpoint
-      targetBreakpoint = breakpoints.reduce((closest, current) => 
-        Math.abs(current - targetHeight) < Math.abs(closest - targetHeight) ? current : closest
-      )
+    // Apply momentum if there's significant velocity
+    const MOMENTUM_THRESHOLD = 10 // velocity threshold for momentum
+    const MOMENTUM_MULTIPLIER = 0.3 // how much momentum affects final position
+    
+    if (Math.abs(currentVelocity) > MOMENTUM_THRESHOLD) {
+      // Add momentum to final position
+      const momentumOffset = currentVelocity * MOMENTUM_MULTIPLIER
+      finalHeight = Math.max(15, Math.min(95, finalHeight + momentumOffset))
     }
 
-    // Only animate if there's actually a change
-    if (targetBreakpoint !== currentSheetHeight.current) {
-      // Smooth transition with CSS
-      if (sheetRef.current) {
-        sheetRef.current.style.transition = 'height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
-        setTimeout(() => {
-          if (sheetRef.current) {
-            sheetRef.current.style.transition = ''
-          }
-        }, 400)
-      }
-
-      currentSheetHeight.current = targetBreakpoint
-      setSheetHeight(targetBreakpoint)
+    // Only update if there's a meaningful change
+    if (Math.abs(finalHeight - currentSheetHeight.current) > 0.5) {
+      currentSheetHeight.current = finalHeight
+      setSheetHeight(finalHeight)
     }
   }
 
   const handleSheetTouchStart = (e) => {
     if (!e.touches || e.touches.length === 0) return
     
-    // Simple Context7 approach - allow drag from anywhere except interactive content
+    // Allow drag from anywhere except interactive content
     const touchTarget = e.target
     const isInteractiveContent = touchTarget.closest('button') ||
                                 touchTarget.closest('input') ||
@@ -409,7 +392,12 @@ const UniversalTextureGallery = () => {
     lastTouchTime.current = Date.now()
     velocity.current = 0
     
-    // Simple touch move handler with velocity calculation
+    // Remove any existing transition for immediate response
+    if (sheetRef.current) {
+      sheetRef.current.style.transition = 'none'
+    }
+    
+    // High-performance touch move handler with immediate response
     const handleTouchMove = (moveEvent) => {
       if (!moveEvent.touches || moveEvent.touches.length === 0) return
       
@@ -419,11 +407,13 @@ const UniversalTextureGallery = () => {
       const viewportHeight = window.innerHeight
       const deltaPercent = (deltaY / viewportHeight) * 100
       
-      // Calculate velocity (pixels per millisecond, converted to breakpoint units per second)
+      // Calculate velocity for momentum (more responsive calculation)
       const timeDelta = currentTime - lastTouchTime.current
       if (timeDelta > 0) {
         const yDelta = currentY - lastTouchY.current
-        velocity.current = -(yDelta / viewportHeight * 100) / (timeDelta / 1000) // negative because up is positive
+        // Smoother velocity calculation with exponential smoothing
+        const newVelocity = -(yDelta / viewportHeight * 100) / (timeDelta / 1000)
+        velocity.current = velocity.current * 0.7 + newVelocity * 0.3 // smooth velocity
       }
       
       lastTouchY.current = currentY
@@ -431,14 +421,25 @@ const UniversalTextureGallery = () => {
       
       moveEvent.preventDefault()
       
-      const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
+      // Immediate position update without clamping during drag for better responsiveness
+      const newHeight = startSheetHeight.current + deltaPercent
+      currentSheetHeight.current = newHeight
       setSheetHeight(newHeight)
     }
     
     const handleTouchEnd = () => {
-      setIsDraggingSheet(false)
-      // Use calculated velocity for snap decision
-      snapToBreakpoint(sheetHeight, velocity.current)
+      // Clear any existing timeout
+      if (dragEndTimeout.current) {
+        clearTimeout(dragEndTimeout.current)
+      }
+      
+      // Small delay to ensure smooth transition
+      dragEndTimeout.current = setTimeout(() => {
+        setIsDraggingSheet(false)
+      }, 50)
+      
+      // Apply final position with momentum and bounds
+      finishSheetPosition(currentSheetHeight.current, velocity.current)
       
       document.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('touchend', handleTouchEnd)
@@ -450,23 +451,24 @@ const UniversalTextureGallery = () => {
 
 
   const toggleSheet = () => {
+    // Cycle through convenient positions but allow free positioning
     let newHeight
-    if (sheetHeight <= 30) {
-      newHeight = 50
-    } else if (sheetHeight <= 60) {
-      newHeight = 90
+    if (sheetHeight <= 35) {
+      newHeight = 60  // Medium height for description + actions
+    } else if (sheetHeight <= 70) {
+      newHeight = 90  // Full height for all properties
     } else {
-      newHeight = 25
+      newHeight = 25  // Minimal height showing just title
     }
     
-    // Use the same smooth transition as snapToBreakpoint
+    // Smooth transition for button clicks
     if (sheetRef.current) {
-      sheetRef.current.style.transition = 'height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
+      sheetRef.current.style.transition = 'height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)'
       setTimeout(() => {
         if (sheetRef.current) {
           sheetRef.current.style.transition = ''
         }
-      }, 400)
+      }, 300)
     }
     
     currentSheetHeight.current = newHeight
@@ -661,11 +663,17 @@ const UniversalTextureGallery = () => {
                       </div>
                     </div>
 
-                    {/* Expandable content */}
+                    {/* Expandable content with smooth opacity transitions */}
                     <div className="sheet-expandable-content">
-                      {/* Description - visible at 50%+ */}
-                      {sheetHeight >= 40 && (
-                        <div className="texture-description-mobile">
+                      {/* Description - visible at 35%+ */}
+                      {sheetHeight >= 30 && (
+                        <div 
+                          className="texture-description-mobile"
+                          style={{ 
+                            opacity: Math.min(1, Math.max(0, (sheetHeight - 25) / 20)),
+                            transform: `translateY(${Math.max(0, 35 - sheetHeight) * 2}px)`
+                          }}
+                        >
                           <div className="texture-description">
                             {currentTexture.description[currentLanguage] || currentTexture.description.en}
                           </div>
@@ -688,9 +696,15 @@ const UniversalTextureGallery = () => {
                         </div>
                       )}
 
-                      {/* Technical Properties - visible at 80%+ */}
-                      {sheetHeight >= 80 && currentTexture.properties && (
-                        <div className="texture-properties-mobile">
+                      {/* Technical Properties - visible at 65%+ */}
+                      {sheetHeight >= 60 && currentTexture.properties && (
+                        <div 
+                          className="texture-properties-mobile"
+                          style={{ 
+                            opacity: Math.min(1, Math.max(0, (sheetHeight - 55) / 20)),
+                            transform: `translateY(${Math.max(0, 70 - sheetHeight) * 1.5}px)`
+                          }}
+                        >
                           <div className="texture-properties">
                             <h4>{labels.technicalProperties}</h4>
                             <div className="properties-list">
