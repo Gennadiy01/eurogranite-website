@@ -24,12 +24,9 @@ const UniversalTextureGallery = () => {
   const startTouchY = useRef(0)
   const startSheetHeight = useRef(25)
   const currentSheetHeight = useRef(25)
-  const touchMoveHandler = useRef(null)
-  const touchEndHandler = useRef(null)
-  const animationFrame = useRef(null)
-  const velocity = useRef(0)
   const lastTouchY = useRef(0)
   const lastTouchTime = useRef(0)
+  const velocity = useRef(0)
 
   // Localization
   const modalLabels = {
@@ -273,21 +270,6 @@ const UniversalTextureGallery = () => {
   }, [gallery.isOpen, handlePrevious, handleNext, closeGallery])
 
   // Cleanup effect for touch handlers and animations
-  useEffect(() => {
-    return () => {
-      // Clean up any remaining event listeners when component unmounts
-      if (touchMoveHandler.current) {
-        document.removeEventListener('touchmove', touchMoveHandler.current)
-      }
-      if (touchEndHandler.current) {
-        document.removeEventListener('touchend', touchEndHandler.current)
-      }
-      // Cancel any pending animation frames
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current)
-      }
-    }
-  }, [])
 
   // Check if texture is in comparison
   const isInComparison = (textureId) => {
@@ -358,26 +340,126 @@ const UniversalTextureGallery = () => {
   // Sheet Modal functions with improved snap and velocity
   const snapToBreakpoint = (targetHeight, currentVelocity = 0) => {
     const breakpoints = [25, 50, 90]
-    let targetBreakpoint = targetHeight
+    let targetBreakpoint
+    
+    // Velocity threshold for intelligent snapping
+    const VELOCITY_THRESHOLD = 15 // breakpoint units per second
 
-    // Use velocity to determine direction preference
-    if (Math.abs(currentVelocity) > 0.5) {
+    // Use velocity to determine direction preference for intelligent snapping
+    if (Math.abs(currentVelocity) > VELOCITY_THRESHOLD) {
       if (currentVelocity > 0) {
-        // Moving up, prefer higher breakpoint
-        targetBreakpoint = breakpoints.find(bp => bp > targetHeight) || breakpoints[breakpoints.length - 1]
+        // Moving up with sufficient velocity, snap to next higher breakpoint
+        targetBreakpoint = breakpoints.find(bp => bp > targetHeight)
+        if (!targetBreakpoint) {
+          // Already at or above highest breakpoint, stay at highest
+          targetBreakpoint = breakpoints[breakpoints.length - 1]
+        }
       } else {
-        // Moving down, prefer lower breakpoint  
-        targetBreakpoint = breakpoints.reverse().find(bp => bp < targetHeight) || breakpoints[0]
+        // Moving down with sufficient velocity, snap to next lower breakpoint
+        targetBreakpoint = [...breakpoints].reverse().find(bp => bp < targetHeight)
+        if (!targetBreakpoint) {
+          // Already at or below lowest breakpoint, stay at lowest
+          targetBreakpoint = breakpoints[0]
+        }
       }
-      breakpoints.reverse() // restore original order
     } else {
-      // Low velocity, use closest breakpoint
-      targetBreakpoint = breakpoints.reduce((prev, curr) => 
-        Math.abs(curr - targetHeight) < Math.abs(prev - targetHeight) ? curr : prev
+      // Low velocity or no velocity, snap to closest breakpoint
+      targetBreakpoint = breakpoints.reduce((closest, current) => 
+        Math.abs(current - targetHeight) < Math.abs(closest - targetHeight) ? current : closest
       )
     }
 
-    // Smooth transition with CSS
+    // Only animate if there's actually a change
+    if (targetBreakpoint !== currentSheetHeight.current) {
+      // Smooth transition with CSS
+      if (sheetRef.current) {
+        sheetRef.current.style.transition = 'height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
+        setTimeout(() => {
+          if (sheetRef.current) {
+            sheetRef.current.style.transition = ''
+          }
+        }, 400)
+      }
+
+      currentSheetHeight.current = targetBreakpoint
+      setSheetHeight(targetBreakpoint)
+    }
+  }
+
+  const handleSheetTouchStart = (e) => {
+    if (!e.touches || e.touches.length === 0) return
+    
+    // Simple Context7 approach - allow drag from anywhere except interactive content
+    const touchTarget = e.target
+    const isInteractiveContent = touchTarget.closest('button') ||
+                                touchTarget.closest('input') ||
+                                touchTarget.closest('select') ||
+                                touchTarget.closest('textarea') ||
+                                touchTarget.closest('a[href]')
+    
+    if (isInteractiveContent) {
+      return
+    }
+    
+    const touch = e.touches[0]
+    setIsDraggingSheet(true)
+    startTouchY.current = touch.clientY
+    startSheetHeight.current = sheetHeight
+    lastTouchY.current = touch.clientY
+    lastTouchTime.current = Date.now()
+    velocity.current = 0
+    
+    // Simple touch move handler with velocity calculation
+    const handleTouchMove = (moveEvent) => {
+      if (!moveEvent.touches || moveEvent.touches.length === 0) return
+      
+      const currentY = moveEvent.touches[0].clientY
+      const currentTime = Date.now()
+      const deltaY = startTouchY.current - currentY
+      const viewportHeight = window.innerHeight
+      const deltaPercent = (deltaY / viewportHeight) * 100
+      
+      // Calculate velocity (pixels per millisecond, converted to breakpoint units per second)
+      const timeDelta = currentTime - lastTouchTime.current
+      if (timeDelta > 0) {
+        const yDelta = currentY - lastTouchY.current
+        velocity.current = -(yDelta / viewportHeight * 100) / (timeDelta / 1000) // negative because up is positive
+      }
+      
+      lastTouchY.current = currentY
+      lastTouchTime.current = currentTime
+      
+      moveEvent.preventDefault()
+      
+      const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
+      setSheetHeight(newHeight)
+    }
+    
+    const handleTouchEnd = () => {
+      setIsDraggingSheet(false)
+      // Use calculated velocity for snap decision
+      snapToBreakpoint(sheetHeight, velocity.current)
+      
+      document.removeEventListener('touchmove', handleTouchMove)
+      document.removeEventListener('touchend', handleTouchEnd)
+    }
+    
+    document.addEventListener('touchmove', handleTouchMove, { passive: false })
+    document.addEventListener('touchend', handleTouchEnd, { once: true })
+  }
+
+
+  const toggleSheet = () => {
+    let newHeight
+    if (sheetHeight <= 30) {
+      newHeight = 50
+    } else if (sheetHeight <= 60) {
+      newHeight = 90
+    } else {
+      newHeight = 25
+    }
+    
+    // Use the same smooth transition as snapToBreakpoint
     if (sheetRef.current) {
       sheetRef.current.style.transition = 'height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
       setTimeout(() => {
@@ -386,133 +468,7 @@ const UniversalTextureGallery = () => {
         }
       }, 400)
     }
-
-    currentSheetHeight.current = targetBreakpoint
-    setSheetHeight(targetBreakpoint)
-  }
-
-  const handleSheetTouchStart = (e) => {
-    if (!e.touches || e.touches.length === 0) return
     
-    const touch = e.touches[0]
-    const touchTarget = document.elementFromPoint(touch.clientX, touch.clientY)
-    
-    // Framework7-style: Allow drag from handle, header, or empty sheet areas
-    const isHandleArea = touchTarget?.closest('.sheet-handle') || 
-                        touchTarget?.closest('.sheet-header')
-    
-    // Allow drag from sheet itself but not from interactive/scrollable content
-    const isSheetArea = touchTarget?.closest('.texture-sheet-modal')
-    const isInteractiveContent = touchTarget?.closest('.sheet-content') ||
-                                touchTarget?.closest('button') ||
-                                touchTarget?.closest('input') ||
-                                touchTarget?.closest('[role="button"]')
-    
-    // Allow drag from handle/header OR from sheet areas that aren't interactive content
-    const canDrag = isHandleArea || (isSheetArea && !isInteractiveContent)
-    
-    if (!canDrag) {
-      return
-    }
-    
-    // Store initial touch info
-    setIsDraggingSheet(true)
-    startTouchY.current = touch.clientY
-    startSheetHeight.current = sheetHeight
-    lastTouchY.current = touch.clientY
-    lastTouchTime.current = Date.now()
-    velocity.current = 0
-    
-    // Cancel any ongoing animation
-    if (animationFrame.current) {
-      cancelAnimationFrame(animationFrame.current)
-    }
-    
-    // Remove CSS transitions during drag for immediate response
-    if (sheetRef.current) {
-      sheetRef.current.style.transition = 'none'
-    }
-    
-    // Simplified touch move handler - only preventDefault when actually dragging sheet
-    touchMoveHandler.current = (moveEvent) => {
-      if (!moveEvent.touches || moveEvent.touches.length === 0 || !isDraggingSheet) return
-      
-      const currentTime = Date.now()
-      const timeDelta = currentTime - lastTouchTime.current
-      
-      // Throttle to ~60fps
-      if (timeDelta < 16) return
-      
-      const currentY = moveEvent.touches[0].clientY
-      const deltaY = startTouchY.current - currentY
-      const viewportHeight = window.innerHeight
-      const deltaPercent = (deltaY / viewportHeight) * 100
-      
-      // Only prevent default if we're actually moving the sheet
-      if (Math.abs(deltaPercent) > 1) {
-        moveEvent.preventDefault()
-      }
-      
-      // Calculate velocity for momentum
-      const velocityY = (lastTouchY.current - currentY) / timeDelta
-      velocity.current = velocityY * 100 // Scale for percentage
-      
-      const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
-      
-      // Use requestAnimationFrame for smooth updates
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current)
-      }
-      
-      animationFrame.current = requestAnimationFrame(() => {
-        currentSheetHeight.current = newHeight
-        setSheetHeight(newHeight)
-      })
-      
-      lastTouchY.current = currentY
-      lastTouchTime.current = currentTime
-    }
-    
-    touchEndHandler.current = () => {
-      setIsDraggingSheet(false)
-      
-      // Use velocity for smarter snapping
-      snapToBreakpoint(currentSheetHeight.current, velocity.current)
-      
-      // Clean up
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current)
-      }
-      
-      // Remove event listeners
-      if (touchMoveHandler.current) {
-        document.removeEventListener('touchmove', touchMoveHandler.current)
-      }
-      if (touchEndHandler.current) {
-        document.removeEventListener('touchend', touchEndHandler.current)
-      }
-      touchMoveHandler.current = null
-      touchEndHandler.current = null
-    }
-    
-    // Add listeners - keep passive for better scroll performance
-    document.addEventListener('touchmove', touchMoveHandler.current, { passive: false })
-    document.addEventListener('touchend', touchEndHandler.current, { once: true, passive: true })
-    
-    // Prevent default since we already confirmed this is handle area
-    e.preventDefault()
-  }
-
-
-  const toggleSheet = () => {
-    let newHeight
-    if (sheetHeight === 25) {
-      newHeight = 50
-    } else if (sheetHeight === 50) {
-      newHeight = 90
-    } else {
-      newHeight = 25
-    }
     currentSheetHeight.current = newHeight
     setSheetHeight(newHeight)
   }
