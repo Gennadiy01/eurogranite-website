@@ -6,7 +6,7 @@ import TextureViewer from './TextureViewer'
 import { X } from 'lucide-react'
 
 const UniversalTextureGallery = () => {
-  const { language } = useLanguageStore()
+  const { currentLanguage } = useLanguageStore()
   const { 
     gallery, 
     closeGallery, 
@@ -163,13 +163,13 @@ const UniversalTextureGallery = () => {
         textures.push({
           ...texture,
           groupId: graniteType.id,
-          groupName: graniteType.name[language] || graniteType.name.en,
+          groupName: graniteType.name[currentLanguage] || graniteType.name.en,
           colorClass: graniteType.colorClass
         })
       })
     })
     return textures
-  }, [language])
+  }, [currentLanguage])
 
   // Filter textures based on active filter
   const filteredTextures = useMemo(() => {
@@ -305,7 +305,7 @@ const UniversalTextureGallery = () => {
 
   if (!gallery.isOpen) return null
 
-  const labels = modalLabels[language] || modalLabels.en
+  const labels = modalLabels[currentLanguage] || modalLabels.en
 
   // Short names for filter buttons to save space
   const getShortGraniteName = (graniteType) => {
@@ -344,7 +344,7 @@ const UniversalTextureGallery = () => {
       }
     }
     
-    return shortNames[language]?.[graniteType.id] || shortNames.en[graniteType.id] || graniteType.name[language] || graniteType.name.en
+    return shortNames[currentLanguage]?.[graniteType.id] || shortNames.en[graniteType.id] || graniteType.name[currentLanguage] || graniteType.name.en
   }
 
   // Sheet Modal functions
@@ -481,7 +481,7 @@ const UniversalTextureGallery = () => {
                 <>
                   <div className="texture-info-header">
                     <h3 className="texture-name">
-                      {currentTexture.name[language] || currentTexture.name.en}
+                      {currentTexture.name[currentLanguage] || currentTexture.name.en}
                     </h3>
                     <div className="texture-group-badge">
                       {currentTexture.groupName}
@@ -489,7 +489,7 @@ const UniversalTextureGallery = () => {
                   </div>
 
                   <div className="texture-description">
-                    {currentTexture.description[language] || currentTexture.description.en}
+                    {currentTexture.description[currentLanguage] || currentTexture.description.en}
                   </div>
 
                   {/* Compare Button */}
@@ -594,7 +594,7 @@ const UniversalTextureGallery = () => {
                     <div className="sheet-header">
                       <div className="texture-info-header-mobile">
                         <h3 className="texture-name">
-                          {currentTexture.name[language] || currentTexture.name.en}
+                          {currentTexture.name[currentLanguage] || currentTexture.name.en}
                         </h3>
                         <div className="texture-group-badge">
                           {currentTexture.groupName}
@@ -608,7 +608,7 @@ const UniversalTextureGallery = () => {
                       {sheetHeight >= 40 && (
                         <div className="texture-description-mobile">
                           <div className="texture-description">
-                            {currentTexture.description[language] || currentTexture.description.en}
+                            {currentTexture.description[currentLanguage] || currentTexture.description.en}
                           </div>
 
                           {/* Compare Button */}
@@ -665,7 +665,7 @@ const UniversalTextureGallery = () => {
                   index === currentTextureIndex ? 'active' : ''
                 }`}
                 onClick={() => handleThumbnailClick(index)}
-                aria-label={texture.name[language] || texture.name.en}
+                aria-label={texture.name[currentLanguage] || texture.name.en}
               >
                 <img
                   src={texture.thumbUrl}
