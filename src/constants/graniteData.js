@@ -1,4 +1,4 @@
-// Granite products data based on products color v3.html
+// Granite products data based on Ukrainian granite catalog documentation
 export const graniteTypes = [
   {
     id: 'black',
@@ -31,38 +31,34 @@ export const graniteTypes = [
       {
         type: 'granite',
         name: { en: 'Black Granite Cubes', ua: 'Чорна гранітна бруківка', de: 'Schwarze Granitpflaster', pl: 'Czarna kostka granitowa' },
-        characteristics: ['Density: 2.7 g/cm³', 'Compressive strength: 200 MPa', 'Water absorption: <0.5%']
-      },
-      {
-        type: 'labradorite',
-        name: { en: 'Black Labradorite', ua: 'Чорний лабрадорит', de: 'Schwarzer Labradorit', pl: 'Czarny labradoryt' },
-        characteristics: ['Hardness: 6-6.5 Mohs', 'Density: 2.68-2.72 g/cm³', 'Iridescent surface']
+        characteristics: ['Bulk density: 2900–3100 kg/m³', 'Compressive strength: 268–306 MPa', 'Water absorption: 0.05–0.11%']
       }
     ],
     textures: [
       {
         id: 'black-001',
         name: {
-          en: 'Premium Black Classic',
-          ua: 'Преміум чорний класичний',
-          de: 'Premium Schwarz Klassisch',
-          pl: 'Premium Czarny Klasyczny'
+          en: 'Gabbro',
+          ua: 'Gabbro',
+          de: 'Gabbro',
+          pl: 'Gabbro'
         },
         imageUrl: '/eurogranite-website/images/textures/black/gabro.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/black/gabro.jpg',
         description: {
-          en: 'Deep black granite with mirror finish and subtle mineral veining',
-          ua: 'Глибокий чорний граніт з дзеркальним покриттям та тонкими мінеральними прожилками',
-          de: 'Tiefer schwarzer Granit mit Spiegelfinish und subtiler Mineraladerung',
-          pl: 'Głęboki czarny granit z lustrzanym wykończeniem i subtelnymi żyłkami mineralnymi'
+          en: 'Black fine-grained anorthosite. A rich black color when polished. Quarry location: The village of Kamianobrodske, Zhytomyr region. Features: Extremely durable, ideal for paving stones, curbs, and facade panels.',
+          ua: 'Чорний дрібнозернистий анортозит. Насичений чорний колір при поліруванні. Видобуток: Село Кам\'янобрідське, Житомирська область. Особливості: Надзвичайно міцний, ідеальний для бруківки, бордюрів та фасадних панелей.',
+          de: 'Schwarzer feinkörniger Anorthosit. Beim Polieren hat er eine satte schwarze Farbe. Abbauort: Das Dorf Kamianobrodske, Region Schytomyr. Besonderheiten: Extrem haltbar und perfekt für Pflastersteine, Bordsteine und Fassadenplatten.',
+          pl: 'Czarny drobnoziarnisty anortozyt. Po wypolerowaniu ma nasycony czarny kolor. Lokalizacja kamieniołomu: Wieś Kamianobrodske, obwód żytomierski. Właściwości: Niezwykle trwały, idealny na kostkę brukową, krawężniki i płyty elewacyjne.'
         },
         properties: {
-          density: '2.7 g/cm³',
+          density: '2900–3100 kg/m³',
           hardness: '6-7 Mohs',
-          pattern: 'uniform',
-          finish: 'polished',
-          waterAbsorption: '<0.5%'
-        }
+          compressiveStrength: '268–306 MPa',
+          waterAbsorption: '0.05–0.11%',
+          quarry: 'Kamianobrodske'
+        },
+        groupName: 'Black Granite'
       }
     ]
   },
@@ -97,299 +93,34 @@ export const graniteTypes = [
       {
         type: 'granite',
         name: { en: 'Gray Granite Cubes', ua: 'Сіра гранітна бруківка', de: 'Graue Granitpflaster', pl: 'Szara kostka granitowa' },
-        characteristics: ['Density: 2.65 g/cm³', 'Compressive strength: 180 MPa', 'Frost resistance: F300']
+        characteristics: ['Bulk density: 2730–2740 kg/m³', 'Compressive strength: 220 MPa', 'Water absorption: 0.24%']
       }
     ],
     textures: [
       {
         id: 'gray-001',
         name: {
-          en: 'Classic Gray Standard',
-          ua: 'Класичний сірий стандарт',
-          de: 'Klassisch Grau Standard',
-          pl: 'Klasyczny Szary Standard'
+          en: 'Real Grey',
+          ua: 'Real Grey',
+          de: 'Real Grey',
+          pl: 'Real Grey'
         },
         imageUrl: '/eurogranite-website/images/textures/gray/pokost.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/gray/pokost.jpg',
         description: {
-          en: 'Versatile gray granite with consistent texture and excellent durability',
-          ua: 'Універсальний сірий граніт з однорідною текстурою та відмінною стійкістю',
-          de: 'Vielseitiger grauer Granit mit gleichmäßiger Textur und ausgezeichneter Haltbarkeit',
-          pl: 'Wszechstronny szary granit o jednolitej teksturze i doskonałej trwałości'
+          en: 'Grey granite. Steel gray with black and white inclusions. Quarry location: The Pokostivske deposit, Zhytomyr region. Features: One of the most common Ukrainian granites, used for stairs, countertops, and facades.',
+          ua: 'Сірий граніт. Сталево-сірий з чорними та білими вкрапленнями. Видобуток: Покостівське родовище, Житомирська область. Особливості: Найпоширеніший український граніт, використовується для сходів, стільниць та фасадів.',
+          de: 'Grauer Granit. Stahlgrau mit schwarzen und weißen Einschlüssen. Abbauort: Das Pokostivske-Vorkommen, Region Schytomyr. Besonderheiten: Einer der häufigsten ukrainischen Granite, wird für Treppen, Arbeitsplatten und Fassaden verwendet.',
+          pl: 'Szary granit. Stalowo-szary z czarnymi i białymi wtrąceniami. Lokalizacja kamieniołomu: Złoże Pokostivske, obwód żytomierski. Właściwości: Jeden z najpopularniejszych granitów ukraińskich, używany na schody, blaty i fasady.'
         },
         properties: {
-          density: '2.65 g/cm³',
+          density: '2730–2740 kg/m³',
           hardness: '6-7 Mohs',
-          pattern: 'uniform',
-          finish: 'natural',
-          frostResistance: 'F300'
-        }
-      }
-    ]
-  },
-  {
-    id: 'red-brown',
-    name: {
-      en: 'Red-Brown Granite',
-      ua: 'Червоно-коричневий граніт',
-      de: 'Rotbrauner Granit',
-      pl: 'Czerwono-brązowy Granit'
-    },
-    subtitle: {
-      en: 'Red-Brown Granite Elite',
-      ua: 'Red-Brown Granite Elite',
-      de: 'Red-Brown Granite Elite',
-      pl: 'Red-Brown Granite Elite'
-    },
-    badge: {
-      en: 'Unique',
-      ua: 'Унікальний',
-      de: 'Einzigartig',
-      pl: 'Unikalny'
-    },
-    description: {
-      en: 'Warm red-brown shade with natural texture and unique pattern',
-      ua: 'Теплий червоно-коричневий відтінок з природною текстурою та унікальним візерунком',
-      de: 'Warmer rotbrauner Farbton mit natürlicher Textur und einzigartigem Muster',
-      pl: 'Ciepły czerwono-brązowy odcień z naturalną teksturą i unikalnym wzorem'
-    },
-    colorClass: 'granite-red-brown',
-    materials: [
-      {
-        type: 'granite',
-        name: { en: 'Red-Brown Granite Cubes', ua: 'Червоно-коричнева гранітна бруківка', de: 'Rotbraune Granitpflaster', pl: 'Czerwono-brązowa kostka granitowa' },
-        characteristics: ['Density: 2.75 g/cm³', 'Compressive strength: 220 MPa', 'Unique iron oxide patterns']
-      }
-    ],
-    textures: [
-      {
-        id: 'red-brown-001',
-        name: {
-          en: 'Maple Red-Brown',
-          ua: 'Червоно-коричневий клен',
-          de: 'Ahorn Rotbraun',
-          pl: 'Klon Czerwono-brązowy'
+          compressiveStrength: '220 MPa',
+          waterAbsorption: '0.24%',
+          quarry: 'Pokostivske'
         },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/maple-red-gr6.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/maple-red-gr6.jpg',
-        description: {
-          en: 'Rich maple-toned granite with warm red-brown coloration and fine mineral structure',
-          ua: 'Насичений граніт кольору клена з теплим червоно-коричневим забарвленням та дрібною мінеральною структурою',
-          de: 'Reichhaltiger ahornfarbener Granit mit warmer rotbrauner Färbung und feiner Mineralstruktur',
-          pl: 'Bogaty granit w kolorze klonowym z ciepłym czerwono-brązowym zabarwieniem i drobną strukturą mineralną'
-        },
-        properties: {
-          density: '2.74 g/cm³',
-          hardness: '6-7 Mohs',
-          pattern: 'fine-grained',
-          finish: 'polished',
-          maplePattern: 'visible'
-        }
-      },
-      {
-        id: 'red-brown-002',
-        name: {
-          en: 'Vasylyvske Quarry',
-          ua: 'Василівське родовище',
-          de: 'Wassilewski Steinbruch',
-          pl: 'Kamieniołom Wasiłowski'
-        },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/2-vasylivske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/2-vasylivske-rodovyshhe.jpg',
-        description: {
-          en: 'Premium red-brown granite from Vasylyvske quarry with rich mineral composition and distinctive texture',
-          ua: 'Преміум червоно-коричневий граніт з Василівського родовища з багатим мінеральним складом та характерною текстурою',
-          de: 'Premium rotbrauner Granit aus dem Wassilewski Steinbruch mit reicher Mineralzusammensetzung und charakteristischer Textur',
-          pl: 'Premium czerwono-brązowy granit z kamieniołomu Wasiłowski o bogatym składzie mineralnym i charakterystycznej teksturze'
-        },
-        properties: {
-          density: '2.75 g/cm³',
-          hardness: '6-7 Mohs',
-          pattern: 'coarse-grained',
-          finish: 'polished',
-          quarry: 'Vasylyvske'
-        }
-      },
-      {
-        id: 'red-brown-003',
-        name: {
-          en: 'Didkovytske Heritage',
-          ua: 'Дідковицьке родовище',
-          de: 'Didkowyzki Erbe',
-          pl: 'Dziedzictwo Didkowyckie'
-        },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg',
-        description: {
-          en: 'Historic granite from Didkovytske deposit with deep red-brown tones and excellent durability',
-          ua: 'Історичний граніт з Дідковицького родовища з глибокими червоно-коричневими тонами та відмінною стійкістю',
-          de: 'Historischer Granit aus der Didkowyzki Lagerstätte mit tiefen rotbraunen Tönen und ausgezeichneter Haltbarkeit',
-          pl: 'Historyczny granit ze złoża Didkowyckie o głębokich czerwono-brązowych tonach i doskonałej trwałości'
-        },
-        properties: {
-          density: '2.73 g/cm³',
-          hardness: '6-7 Mohs',
-          pattern: 'medium-grained',
-          finish: 'natural',
-          heritage: 'historic'
-        }
-      },
-      {
-        id: 'red-brown-004',
-        name: {
-          en: 'Kapustynske Classic',
-          ua: 'Капустинське родовище',
-          de: 'Kapustynski Klassik',
-          pl: 'Kapustyński Klasyk'
-        },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/5-kapustynske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/5-kapustynske-rodovyshhe.jpg',
-        description: {
-          en: 'Classical red-brown granite from Kapustynske quarry with uniform texture and warm undertones',
-          ua: 'Класичний червоно-коричневий граніт з Капустинського родовища з рівномірною текстурою та теплими відтінками',
-          de: 'Klassischer rotbrauner Granit aus dem Kapustynski Steinbruch mit gleichmäßiger Textur und warmen Untertönen',
-          pl: 'Klasyczny czerwono-brązowy granit z kamieniołomu Kapustyński o jednolitej teksturze i ciepłych podtonach'
-        },
-        properties: {
-          density: '2.72 g/cm³',
-          hardness: '6-7 Mohs',
-          pattern: 'uniform',
-          finish: 'polished',
-          warmth: 'high'
-        }
-      },
-      {
-        id: 'red-brown-005',
-        name: {
-          en: 'Leznykivske Elite',
-          ua: 'Лезниківське родовище',
-          de: 'Lesnykiwski Elite',
-          pl: 'Leźnykiwska Elita'
-        },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/6-leznykivske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/6-leznykivske-rodovyshhe.jpg',
-        description: {
-          en: 'Elite granite from Leznykivske deposit with distinctive red-brown patterns and superior quality',
-          ua: 'Елітний граніт з Лезниківського родовища з характерними червоно-коричневими візерунками та вищою якістю',
-          de: 'Elite-Granit aus der Lesnykiwski Lagerstätte mit charakteristischen rotbraunen Mustern und überlegener Qualität',
-          pl: 'Elitarny granit ze złoża Leźnykiwskie o charakterystycznych czerwono-brązowych wzorach i najwyższej jakości'
-        },
-        properties: {
-          density: '2.76 g/cm³',
-          hardness: '7 Mohs',
-          pattern: 'distinctive',
-          finish: 'mirror',
-          quality: 'elite'
-        }
-      },
-      {
-        id: 'red-brown-006',
-        name: {
-          en: 'Mezhyritske Natural',
-          ua: 'Межиріцьке родовище',
-          de: 'Meshyryzki Natur',
-          pl: 'Międzyrzecki Naturalny'
-        },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/8-mezhyritske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/8-mezhyritske-rodovyshhe.jpg',
-        description: {
-          en: 'Natural red-brown granite from Mezhyritske quarry with organic patterns and earthy tones',
-          ua: 'Природний червоно-коричневий граніт з Межиріцького родовища з органічними візерунками та земляними тонами',
-          de: 'Natürlicher rotbrauner Granit aus dem Meshyryzki Steinbruch mit organischen Mustern und erdigen Tönen',
-          pl: 'Naturalny czerwono-brązowy granit z kamieniołomu Międzyrzecki o organicznych wzorach i ziemistych tonach'
-        },
-        properties: {
-          density: '2.71 g/cm³',
-          hardness: '6-7 Mohs',
-          pattern: 'organic',
-          finish: 'natural',
-          earthyTones: 'prominent'
-        }
-      },
-      {
-        id: 'red-brown-007',
-        name: {
-          en: 'Omelyanivske Premium',
-          ua: 'Омелянівське родовище',
-          de: 'Omeljaniwski Premium',
-          pl: 'Omelianowski Premium'
-        },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/9-omelyanivske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/9-omelyanivske-rodovyshhe.jpg',
-        description: {
-          en: 'Premium red-brown granite from Omelyanivske deposit with exceptional strength and beautiful color variations',
-          ua: 'Преміум червоно-коричневий граніт з Омелянівського родовища з виняткovou міцністю та красивими колірними варіаціями',
-          de: 'Premium rotbrauner Granit aus der Omeljaniwski Lagerstätte mit außergewöhnlicher Festigkeit und schönen Farbvariationen',
-          pl: 'Premium czerwono-brązowy granit ze złoża Omelianowski o wyjątkowej wytrzymałości i pięknych wariacjach kolorystycznych'
-        },
-        properties: {
-          density: '2.77 g/cm³',
-          hardness: '7 Mohs',
-          pattern: 'varied',
-          finish: 'premium',
-          strength: 'exceptional'
-        }
-      }
-    ]
-  },
-  {
-    id: 'pink-gray',
-    name: {
-      en: 'Pink-Gray Granite',
-      ua: 'Рожево-сірий граніт',
-      de: 'Rosa-grauer Granit',
-      pl: 'Różowo-szary Granit'
-    },
-    subtitle: {
-      en: 'Pink-Gray Granite Elegant',
-      ua: 'Pink-Gray Granite Elegant',
-      de: 'Pink-Gray Granite Elegant',
-      pl: 'Pink-Gray Granite Elegant'
-    },
-    badge: {
-      en: 'Elegant',
-      ua: 'Елегантний',
-      de: 'Elegant',
-      pl: 'Elegancki'
-    },
-    description: {
-      en: 'Refined pink-gray granite with delicate color transitions and sophisticated texture',
-      ua: 'Витончений рожево-сірий граніт з делікатними переходами кольорів та вишуканою текстурою',
-      de: 'Anspruchsvoller rosa-grauer Granit mit zarten Farbübergängen und raffinierter Textur',
-      pl: 'Wyrafinowany różowo-szary granit z delikatnymi przejściami kolorów i wykwintną teksturą'
-    },
-    colorClass: 'granite-pink-gray',
-    materials: [
-      {
-        type: 'granite',
-        name: { en: 'Pink-Gray Granite Cubes', ua: 'Рожево-сіра гранітна бруківка', de: 'Rosa-graue Granitpflaster', pl: 'Różowo-szara kostka granitowa' },
-        characteristics: ['Density: 2.66 g/cm³', 'Delicate color transitions', 'Sophisticated mineral patterns']
-      }
-    ],
-    textures: [
-      {
-        id: 'pink-gray-001',
-        name: {
-          en: 'Elegant Pink-Gray',
-          ua: 'Елегантний рожево-сірий',
-          de: 'Eleganter Rosa-Grau',
-          pl: 'Elegancki Różowo-Szary'
-        },
-        imageUrl: '/eurogranite-website/images/textures/pink-gray/leopard-gg1a.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/pink-gray/leopard-gg1a.jpg',
-        description: {
-          en: 'Sophisticated pink-gray granite with delicate color transitions and refined mineral patterns',
-          ua: 'Витончений рожево-сірий граніт з делікатними переходами кольорів та витонченими мінеральними візерунками',
-          de: 'Anspruchsvoller rosa-grauer Granit mit zarten Farbübergängen und raffinierten Mineralmustern',
-          pl: 'Wyrafinowany różowo-szary granit z delikatnymi przejściami kolorów i szlachetnymi wzorami mineralnymi'
-        },
-        properties: {
-          density: '2.66 g/cm³',
-          hardness: '6-7 Mohs',
-          pattern: 'transitional',
-          finish: 'polished',
-          colorTransitions: 'delicate'
-        }
+        groupName: 'Gray Granite'
       }
     ]
   },
@@ -424,33 +155,271 @@ export const graniteTypes = [
       {
         type: 'granite',
         name: { en: 'Green Granite Cubes', ua: 'Зелена гранітна бруківка', de: 'Grüne Granitpflaster', pl: 'Zielona kostka granitowa' },
-        characteristics: ['Density: 2.70 g/cm³', 'Rich natural color', 'Distinctive mineral patterns']
+        characteristics: ['Density: 2760 kg/m³', 'Compressive strength: 230–255 MPa', 'Water absorption: 0.15%']
       }
     ],
     textures: [
       {
         id: 'green-001',
         name: {
-          en: 'Natural Forest Green',
-          ua: 'Природний лісовий зелений',
-          de: 'Natürliches Waldgrün',
-          pl: 'Naturalny Leśny Zielony'
+          en: 'Verde Oliva',
+          ua: 'Verde Oliva',
+          de: 'Verde Oliva',
+          pl: 'Verde Oliva'
         },
         imageUrl: '/eurogranite-website/images/textures/green/maslavske.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/green/maslavske.jpg',
         description: {
-          en: 'Pure natural green granite with rich forest tones and distinctive mineral crystallization',
-          ua: 'Чистий природний зелений граніт з насиченими лісовими тонами та характерною мінеральною кристалізацією',
-          de: 'Reiner natürlicher grüner Granit mit reichen Waldtönen und charakteristischer Mineralkristallisation',
-          pl: 'Czysty naturalny zielony granit o bogatych leśnych tonach i charakterystycznej krystalizacji mineralnej'
+          en: 'Green fine-grained granite. Green with a unique pattern. Quarry location: The Maslaivske deposit, Zhytomyr region. Features: High resistance to heat and UV radiation.',
+          ua: 'Зелений дрібнозернистий граніт. Зелений з унікальним візерунком. Видобуток: Маслаївське родовище, Житомирська область. Особливості: Висока стійкість до спеки та ультрафіолету.',
+          de: 'Grüner feinkörniger Granit. Grün mit einem einzigartigen Muster. Abbauort: Das Maslaivske-Vorkommen, Region Schytomyr. Besonderheiten: Hohe Beständigkeit gegen Hitze und UV-Strahlung.',
+          pl: 'Zielony drobnoziarnisty granit. Zielony z unikalnym wzorem. Lokalizacja kamieniołomu: Złoże Maslaivske, obwód żytomierski. Właściwości: Wysoka odporność na ciepło i promieniowanie UV.'
         },
         properties: {
-          density: '2.70 g/cm³',
+          density: '2760 kg/m³',
           hardness: '6-7 Mohs',
-          pattern: 'crystalline',
-          finish: 'natural',
-          forestTones: 'rich'
-        }
+          compressiveStrength: '230–255 MPa',
+          waterAbsorption: '0.15%',
+          quarry: 'Maslaivske'
+        },
+        groupName: 'Green Granite'
+      }
+    ]
+  },
+  {
+    id: 'red-brown',
+    name: {
+      en: 'Red-Brown Granite',
+      ua: 'Червоно-коричневий граніт',
+      de: 'Rotbrauner Granit',
+      pl: 'Czerwono-brązowy Granit'
+    },
+    subtitle: {
+      en: 'Red-Brown Granite Elite',
+      ua: 'Red-Brown Granite Elite',
+      de: 'Red-Brown Granite Elite',
+      pl: 'Red-Brown Granite Elite'
+    },
+    badge: {
+      en: 'Unique',
+      ua: 'Унікальний',
+      de: 'Einzigartig',
+      pl: 'Unikalny'
+    },
+    description: {
+      en: 'Warm red-brown shade with natural texture and unique pattern',
+      ua: 'Теплий червоно-коричневий відтінок з природною текстурою та унікальним візерунком',
+      de: 'Warmer rotbrauner Farbton mit natürlicher Textur und einzigartigem Muster',
+      pl: 'Ciepły czerwono-brązowy odcień z naturalną teksturą i unikalnym wzorem'
+    },
+    colorClass: 'granite-red-brown',
+    materials: [
+      {
+        type: 'granite',
+        name: { en: 'Red-Brown Granite Cubes', ua: 'Червоно-коричнева гранітна бруківка', de: 'Rotbraune Granitpflaster', pl: 'Czerwono-brązowa kostka granitowa' },
+        characteristics: ['Various densities: 2470–2850 kg/m³', 'Compressive strength: 120–306 MPa', 'Water absorption: 0.13–1.02%']
+      }
+    ],
+    textures: [
+      {
+        id: 'red-brown-001',
+        name: {
+          en: 'Rosso Santiago',
+          ua: 'Rosso Santiago',
+          de: 'Rosso Santiago',
+          pl: 'Rosso Santiago'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/2-vasylivske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/2-vasylivske-rodovyshhe.jpg',
+        description: {
+          en: 'Brown-black coarse-grained granite. Red-brown with black and gray inclusions. Quarry location: The Kapustianske deposit, Kirovohrad region. Features: Strong, resistant to damage and temperature changes, perfect for cladding.',
+          ua: 'Коричнево-чорний грубозернистий граніт. Червоно-коричневий з чорними й сірими вкрапленнями. Видобуток: Капустянське родовище, Кіровоградська область. Особливості: Міцний, стійкий до пошкоджень та перепадів температур, ідеальний для облицювання.',
+          de: 'Braun-schwarzer grobkörniger Granit. Rot-braun mit schwarzen und grauen Einschlüssen. Abbauort: Das Kapustianske-Vorkommen, Region Kirowohrad. Besonderheiten: Stark, resistent gegen Beschädigungen und Temperaturschwankungen, ideal für Verkleidungen.',
+          pl: 'Brązowo-czarny gruboziarnisty granit. Czerwono-brązowy z czarnymi i szarymi wtrąceniami. Lokalizacja kamieniołomu: Złoże Kapustianske, obwód kirowohradzki. Właściwości: Mocny, odporny na uszkodzenia i zmiany temperatury, idealny do okładzin.'
+        },
+        properties: {
+          density: '2850 kg/m³',
+          hardness: '6-7 Mohs',
+          compressiveStrength: '120–165 MPa',
+          waterAbsorption: '0.13–0.22%',
+          quarry: 'Kapustianske'
+        },
+        groupName: 'Red-Brown Granite'
+      },
+      {
+        id: 'red-brown-002',
+        name: {
+          en: 'Rosa Ravena Extra',
+          ua: 'Rosa Ravena Extra',
+          de: 'Rosa Ravena Extra',
+          pl: 'Rosa Ravena Extra'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg',
+        description: {
+          en: 'Red-brown granite. Red-brown with a pinkish tint. Quarry location: The village of Zhadkivka, Korets district, Rivne region. Features: Resistant to moisture and low temperatures, first-class radiation safety.',
+          ua: 'Червоно-коричневий граніт. Червоно-коричневий із рожевим відтінком. Видобуток: Село Жадківка, Корецький район, Рівненська область. Особливості: Стійкий до вологи та низьких температур, належить до першого класу радіоактивної безпеки.',
+          de: 'Rot-brauner Granit. Rot-braun mit einem rosa Farbton. Abbauort: Das Dorf Zhadkivka, Bezirk Korets, Region Riwne. Besonderheiten: Beständig gegen Feuchtigkeit und niedrige Temperaturen, hat die erste Klasse der Strahlensicherheit.',
+          pl: 'Czerwono-brązowy granit. Czerwono-brązowy z różowawym odcieniem. Lokalizacja kamieniołomu: Wieś Żadkiwka, rejon korecki, obwód rówieński. Właściwości: Odporny na wilgoć i niskie temperatury, posiada pierwszą klasę bezpieczeństwa radiacyjnego.'
+        },
+        properties: {
+          density: '2695–2730 kg/m³',
+          hardness: '6-7 Mohs',
+          compressiveStrength: '212–240 MPa',
+          waterAbsorption: '0.15–0.41%',
+          quarry: 'Zhadkivka'
+        },
+        groupName: 'Red-Brown Granite'
+      },
+      {
+        id: 'red-brown-003',
+        name: {
+          en: 'Rosso Toledo',
+          ua: 'Rosso Toledo',
+          de: 'Rosso Toledo',
+          pl: 'Rosso Toledo'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/9-omelyanivske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/9-omelyanivske-rodovyshhe.jpg',
+        description: {
+          en: 'Carrot orange medium-grained granite. A vibrant carrot-orange with black and gray inclusions. Quarry location: The Omelyanivske deposit, Zhytomyr region. Features: One of the most popular granites in Ukraine, used for cladding facades, bridges, and embankments.',
+          ua: 'Морквяно-помаранчевий середньозернистий граніт. Морквяно-помаранчевий з чорними та сірими вкрапленнями. Видобуток: Омелянівське родовище, Житомирська область. Особливості: Один із найпопулярніших в Україні, використовується для облицювання фасадів, мостів та набережних.',
+          de: 'Karottenoranges mittelkörniges Granit. Ein lebhaftes Karottenorange mit schwarzen und grauen Einschlüssen. Abbauort: Das Omelyanivske-Vorkommen, Region Schytomyr. Besonderheiten: Einer der beliebtesten Granite in der Ukraine, wird für die Verkleidung von Fassaden, Brücken und Uferpromenaden verwendet.',
+          pl: 'Marchewkowo-pomarańczowy średnioziarnisty granit. Żywy pomarańcz marchewkowy z czarnymi i szarymi wtrąceniami. Lokalizacja kamieniołomu: Złoże Omelyanivske, obwód żytomierski. Właściwości: Jeden z najpopularniejszych granitów na Ukrainie, używany do okładzin fasad, mostów i nabrzeży.'
+        },
+        properties: {
+          density: '2600–2640 kg/m³',
+          hardness: '6-7 Mohs',
+          compressiveStrength: '240 MPa',
+          waterAbsorption: '0.15–1.02%',
+          quarry: 'Omelyanivske'
+        },
+        groupName: 'Red-Brown Granite'
+      },
+      {
+        id: 'red-brown-004',
+        name: {
+          en: 'Leopard',
+          ua: 'Leopard',
+          de: 'Leopard',
+          pl: 'Leopard'
+        },
+        imageUrl: '/eurogranite-website/images/textures/pink-gray/leopard-gg1a.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/pink-gray/leopard-gg1a.jpg',
+        description: {
+          en: 'Pinkish-grey coarse-grained granite. Dark gray with pink and beige inclusions, resembling a leopard\'s skin. Quarry location: The Kornynske deposit, Zhytomyr region. Features: High strength and resistance to temperature changes, first-class radiation safety.',
+          ua: 'Рожево-сірий грубозернистий граніт. Темно-сірий з рожевими та бежевими вкрапленнями, що нагадує шкіру леопарда. Видобуток: Корнинське родовище, Житомирська область. Особливості: Висока міцність та стійкість до перепадів температур, належить до першого класу радіаційної безпеки.',
+          de: 'Rosa-grauer grobkörniger Granit. Dunkelgrau mit rosa und beigen Einschlüssen, die an das Fell eines Leoparden erinnern. Abbauort: Das Kornynske-Vorkommen, Region Schytomyr. Besonderheiten: Hohe Festigkeit und Beständigkeit gegen Temperaturschwankungen, erste Klasse der Strahlensicherheit.',
+          pl: 'Różowo-szary gruboziarnisty granit. Ciemnoszary z różowymi i beżowymi wtrąceniami, przypominającymi skórę lamparta. Lokalizacja kamieniołomu: Złoże Kornynske, obwód żytomierski. Właściwości: Wysoka wytrzymałość i odporność na wahania temperatury, pierwsza klasa bezpieczeństwa radiacyjnego.'
+        },
+        properties: {
+          density: '2730 kg/m³',
+          hardness: '6-7 Mohs',
+          compressiveStrength: '190 MPa',
+          waterAbsorption: '0.31%',
+          quarry: 'Kornynske'
+        },
+        groupName: 'Red-Brown Granite'
+      },
+      {
+        id: 'red-brown-005',
+        name: {
+          en: 'Maple Red',
+          ua: 'Maple Red',
+          de: 'Maple Red',
+          pl: 'Maple Red'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/maple-red-gr6.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/maple-red-gr6.jpg',
+        description: {
+          en: 'Red fine-grained granite. A bright crimson-red with small black inclusions. Quarry location: The village of Liznyky, Zhytomyr region. Features: Considered an elite granite due to its popularity and high price, used for monuments and facades.',
+          ua: 'Червоний дрібнозернистий граніт. Яскравий малиново-червоний з дрібними чорними вкрапленнями. Видобуток: Село Лізники, Житомирська область. Особливості: Вважається елітним через свою популярність та високу ціну, використовується для монументів та фасадів.',
+          de: 'Roter feinkörniger Granit. Ein leuchtendes Himbeerrot mit kleinen schwarzen Einschlüssen. Abbauort: Das Dorf Liznyky, Region Schytomyr. Besonderheiten: Gilt aufgrund seiner Beliebtheit und seines hohen Preises als Elite-Granit, wird für Denkmäler und Fassaden verwendet.',
+          pl: 'Czerwony drobnoziarnisty granit. Jasny, malinowo-czerwony z drobnymi czarnymi wtrąceniami. Lokalizacja kamieniołomu: Wieś Liznyky, obwód żytomierski. Właściwości: Uważany za elitarny ze względu na swoją popularność i wysoką cenę, używany do pomników i fasad.'
+        },
+        properties: {
+          density: '2650 kg/m³',
+          hardness: '6-7 Mohs',
+          compressiveStrength: '135–260 MPa',
+          waterAbsorption: '0.18%',
+          quarry: 'Liznyky'
+        },
+        groupName: 'Red-Brown Granite'
+      },
+      {
+        id: 'red-brown-006',
+        name: {
+          en: 'Star of Ukraine',
+          ua: 'Star of Ukraine',
+          de: 'Star of Ukraine',
+          pl: 'Star of Ukraine'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/5-kapustynske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/5-kapustynske-rodovyshhe.jpg',
+        description: {
+          en: 'Light red-brown fine-grained granite. Light brown with a pinkish or dark brown tint. Quarry location: The Didkovytske deposit, Zhytomyr region. Features: Resistant to temperature fluctuations, used for countertops and monuments.',
+          ua: 'Світло червоно-коричневий дрібнозернистий граніт. Світло-коричневий з рожевим або темно-коричневим відтінком. Видобуток: Дідковицьке родовище, Житомирська область. Особливості: Стійкий до перепадів температур, використовується для стільниць та пам\'ятників.',
+          de: 'Hellrotbrauner feinkörniger Granit. Hellbraun mit einem rosa oder dunkelbraunen Farbton. Abbauort: Das Didkovytske-Vorkommen, Region Schytomyr. Besonderheiten: Beständig gegen Temperaturschwankungen, wird für Arbeitsplatten und Denkmäler verwendet.',
+          pl: 'Jasnoczerwono-brązowy drobnoziarnisty granit. Jasnobrązowy z różowym lub ciemnobrązowym odcieniem. Lokalizacja kamieniołomu: Złoże Didkovytske, obwód żytomierski. Właściwości: Odporny na wahania temperatury, używany na blaty i pomniki.'
+        },
+        properties: {
+          density: '2470–2770 kg/m³',
+          hardness: '6-7 Mohs',
+          compressiveStrength: '149–245 MPa',
+          waterAbsorption: '0.13–0.24%',
+          quarry: 'Didkovytske'
+        },
+        groupName: 'Red-Brown Granite'
+      },
+      {
+        id: 'red-brown-007',
+        name: {
+          en: 'Ukrainian Autumn',
+          ua: 'Ukrainian Autumn',
+          de: 'Ukrainian Autumn',
+          pl: 'Ukrainian Autumn'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/6-leznykivske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/6-leznykivske-rodovyshhe.jpg',
+        description: {
+          en: 'Brownish-greenish fine-grained granite. Brown or beige with shades of gray, green, and gold. Quarry location: The Vasylivske deposit, Zhytomyr region. Features: Popular for its autumnal colors and resistance to mechanical damage and temperature changes.',
+          ua: 'Коричнево-зеленуватий дрібнозернистий граніт. Коричневий або бежевий з відтінками сірого, зеленого та золотого. Видобуток: Василівське родовище, Житомирська область. Особливості: Популярний завдяки осіннім відтінкам та стійкості до механічних пошкоджень та перепадів температур.',
+          de: 'Bräunlich-grünliches feinkörniges Granit. Braun oder Beige mit Grau-, Grün- und Goldtönen. Abbauort: Das Vasylivske-Vorkommen, Region Schytomyr. Besonderheiten: Beliebt wegen seiner herbstlichen Farben und Beständigkeit gegen mechanische Beschädigungen und Temperaturschwankungen.',
+          pl: 'Brązowo-zielonkawy drobnoziarnisty granit. Brązowy lub beżowy z odcieniami szarości, zieleni i złota. Lokalizacja kamieniołomu: Złoże Vasylivske, obwód żytomierski. Właściwości: Popularny ze względu na jesienne kolory i odporność na uszkodzenia mechaniczne oraz zmiany temperatury.'
+        },
+        properties: {
+          density: '2680–2685 kg/m³',
+          hardness: '6-7 Mohs',
+          compressiveStrength: '180–210 MPa',
+          waterAbsorption: '0.45–0.48%',
+          quarry: 'Vasylivske'
+        },
+        groupName: 'Red-Brown Granite'
+      },
+      {
+        id: 'red-brown-008',
+        name: {
+          en: 'Flower of Ukraine',
+          ua: 'Flower of Ukraine',
+          de: 'Flower of Ukraine',
+          pl: 'Flower of Ukraine'
+        },
+        imageUrl: '/eurogranite-website/images/textures/red-brown/8-mezhyritske-rodovyshhe.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/8-mezhyritske-rodovyshhe.jpg',
+        description: {
+          en: 'Red-brown fine-grained granite. Pinkish-brown with dark inclusions. Quarry location: The Mezhyritske deposit, Zhytomyr region. Features: Resistant to scratches, impacts, and moisture, first-class radiation safety.',
+          ua: 'Червоно-коричневий дрібнозернистий граніт. Рожево-коричневий з темними вкрапленнями. Видобуток: Межиріцьке родовище, Житомирська область. Особливості: Стійкий до подряпин, ударів та вологи, належить до першого класу радіаційної безпеки.',
+          de: 'Rot-brauner feinkörniger Granit. Rosa-braun mit dunklen Einschlüssen. Abbauort: Das Mezhyritske-Vorkommen, Region Schytomyr. Besonderheiten: Kratz-, stoß- und feuchtigkeitsbeständig, erste Klasse der Strahlensicherheit.',
+          pl: 'Czerwono-brązowy drobnoziarnisty granit. Różowo-brązowy z ciemnymi wtrąceniami. Lokalizacja kamieniołomu: Złoże Mezhyritske, obwód żytomierski. Właściwości: Odporny na zarysowania, uderzenia i wilgoć, pierwsza klasa bezpieczeństwa radiacyjnego.'
+        },
+        properties: {
+          density: '2620 kg/m³',
+          hardness: '6-7 Mohs',
+          compressiveStrength: '171 MPa',
+          waterAbsorption: '0.55%',
+          quarry: 'Mezhyritske'
+        },
+        groupName: 'Red-Brown Granite'
       }
     ]
   },
@@ -485,33 +454,35 @@ export const graniteTypes = [
       {
         type: 'labradorite',
         name: { en: 'Labradorite Premium', ua: 'Лабрадорит преміум', de: 'Labradorit Premium', pl: 'Labradoryt Premium' },
-        characteristics: ['Hardness: 6-6.5 Mohs', 'Density: 2.68-2.72 g/cm³', 'Iridescent surface', 'Color play phenomenon']
+        characteristics: ['Bulk density: 2800–2860 kg/m³', 'Compressive strength: 135–166 MPa', 'Water absorption: 0.08–0.17%']
       }
     ],
     textures: [
       {
         id: 'labradorite-001',
         name: {
-          en: 'Mystical Blue Labradorite',
-          ua: 'Містичний синій лабрадорит',
-          de: 'Mystischer Blauer Labradorit',
-          pl: 'Mistyczny Niebieski Labradoryt'
+          en: 'Ukrainian Labradorite Volga Blue',
+          ua: 'Ukrainian Labradorite Volga Blue',
+          de: 'Ukrainian Labradorite Volga Blue',
+          pl: 'Ukrainian Labradorite Volga Blue'
         },
         imageUrl: '/eurogranite-website/images/textures/labradorite/labro.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/labradorite/labro.jpg',
         description: {
-          en: 'Exceptional labradorite with brilliant blue-green iridescence and magical color play effects',
-          ua: 'Винятковий лабрадорит з яскравою синьо-зеленою райдужністю та магічними ефектами гри кольорів',
-          de: 'Außergewöhnlicher Labradorit mit brillanter blau-grüner Irisierung und magischen Farbspieleffekten',
-          pl: 'Wyjątkowy labradoryt z brylantową niebiesko-zieloną tęczową i magicznymi efektami gry kolorów'
+          en: 'Coarse-grained black-blue rock with iridescence. A black-blue rock with metallic sheen and iridescence. Quarry location: The Pivnichne deposit, village of Osnyky, Zhytomyr region. Features: Used for wall cladding, flooring, and monuments.',
+          ua: 'Грубозерниста чорно-синя порода з іризацією. Чорно-синя порода з металевим блиском та іризацією. Видобуток: Північне родовище, село Осники, Житомирська область. Особливості: Використовується для облицювання стін, підлогового покриття та пам\'ятників.',
+          de: 'Grobkörniger schwarz-blauer Stein mit Irisieren. Ein schwarz-blauer Stein mit metallischem Glanz und Irisieren. Abbauort: Das Pivnichne-Vorkommen, Dorf Osnyky, Region Schytomyr. Besonderheiten: Wird für Wandverkleidungen, Bodenbeläge und Denkmäler verwendet.',
+          pl: 'Gruboziarnista czarno-niebieska skała z iryzacją. Czarno-niebieska skała z metalicznym połyskiem i iryzacją. Lokalizacja kamieniołomu: Złoże Pivnichne, wieś Osnyky, obwód żytomierski. Właściwości: Używany do okładzin ściennych, posadzek i pomników.'
         },
         properties: {
+          density: '2800–2860 kg/m³',
           hardness: '6-6.5 Mohs',
-          density: '2.68-2.72 g/cm³',
-          pattern: 'iridescent',
-          finish: 'polished',
-          labradorescence: 'blue-green'
-        }
+          compressiveStrength: '135–166 MPa',
+          waterAbsorption: '0.08–0.17%',
+          labradorescence: 'blue-metallic',
+          quarry: 'Pivnichne'
+        },
+        groupName: 'Labradorite'
       }
     ]
   }
