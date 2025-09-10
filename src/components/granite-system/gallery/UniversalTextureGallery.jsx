@@ -43,8 +43,9 @@ const UniversalTextureGallery = () => {
       showingTextures: 'Showing {{count}} textures',
       textureOf: '{{current}} of {{total}}',
       propertyLabels: {
-        density: 'Density',
-        hardness: 'Hardness',
+        density: 'Bulk density',
+        compressiveStrength: 'Compressive strength',
+        waterAbsorption: 'Water absorption',
         pattern: 'Pattern',
         finish: 'Finish',
         maplePattern: 'Maple Pattern',
@@ -55,7 +56,6 @@ const UniversalTextureGallery = () => {
         earthyTones: 'Earthy Tones',
         strength: 'Strength',
         frostResistance: 'Frost Resistance',
-        waterAbsorption: 'Water Absorption',
         labradorescence: 'Labradorescence',
         colorTransitions: 'Color Transitions',
         forestTones: 'Forest Tones'
@@ -74,8 +74,9 @@ const UniversalTextureGallery = () => {
       showingTextures: 'Показано {{count}} текстур',
       textureOf: '{{current}} з {{total}}',
       propertyLabels: {
-        density: 'Щільність',
-        hardness: 'Твердість',
+        density: 'Об\'ємна вага',
+        compressiveStrength: 'Міцність на стиск',
+        waterAbsorption: 'Водопоглинання',
         pattern: 'Візерунок',
         finish: 'Обробка',
         maplePattern: 'Кленовий візерунок',
@@ -86,7 +87,6 @@ const UniversalTextureGallery = () => {
         earthyTones: 'Земляні тони',
         strength: 'Міцність',
         frostResistance: 'Морозостійкість',
-        waterAbsorption: 'Водопоглинання',
         labradorescence: 'Лабрадоресценція',
         colorTransitions: 'Переходи кольорів',
         forestTones: 'Лісові тони'
@@ -106,7 +106,8 @@ const UniversalTextureGallery = () => {
       textureOf: '{{current}} von {{total}}',
       propertyLabels: {
         density: 'Dichte',
-        hardness: 'Härte',
+        compressiveStrength: 'Druckfestigkeit',
+        waterAbsorption: 'Wasseraufnahme',
         pattern: 'Muster',
         finish: 'Oberfläche',
         maplePattern: 'Ahorn-Muster',
@@ -117,7 +118,6 @@ const UniversalTextureGallery = () => {
         earthyTones: 'Erdige Töne',
         strength: 'Festigkeit',
         frostResistance: 'Frostbeständigkeit',
-        waterAbsorption: 'Wasseraufnahme',
         labradorescence: 'Labradoreszenz',
         colorTransitions: 'Farbübergänge',
         forestTones: 'Waldtöne'
@@ -136,8 +136,9 @@ const UniversalTextureGallery = () => {
       showingTextures: 'Wyświetlono {{count}} tekstur',
       textureOf: '{{current}} z {{total}}',
       propertyLabels: {
-        density: 'Gęstość',
-        hardness: 'Twardość',
+        density: 'Gęstość objętościowa',
+        compressiveStrength: 'Wytrzymałość na ściskanie',
+        waterAbsorption: 'Nasiąkliwość',
         pattern: 'Wzór',
         finish: 'Wykończenie',
         maplePattern: 'Wzór klonowy',
@@ -148,7 +149,6 @@ const UniversalTextureGallery = () => {
         earthyTones: 'Tony ziemi',
         strength: 'Wytrzymałość',
         frostResistance: 'Odporność na mróz',
-        waterAbsorption: 'Chłonność wody',
         labradorescence: 'Labradorescencja',
         colorTransitions: 'Przejścia kolorów',
         forestTones: 'Tony leśne'

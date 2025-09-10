@@ -53,7 +53,6 @@ export const graniteTypes = [
         },
         properties: {
           density: '2900–3100 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '268–306 MPa',
           waterAbsorption: '0.05–0.11%',
           quarry: 'Kamianobrodske'
@@ -115,7 +114,6 @@ export const graniteTypes = [
         },
         properties: {
           density: '2730–2740 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '220 MPa',
           waterAbsorption: '0.24%',
           quarry: 'Pokostivske'
@@ -177,7 +175,6 @@ export const graniteTypes = [
         },
         properties: {
           density: '2760 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '230–255 MPa',
           waterAbsorption: '0.15%',
           quarry: 'Maslaivske'
@@ -239,7 +236,6 @@ export const graniteTypes = [
         },
         properties: {
           density: '2850 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '120–165 MPa',
           waterAbsorption: '0.13–0.22%',
           quarry: 'Kapustianske'
@@ -257,14 +253,13 @@ export const graniteTypes = [
         imageUrl: '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg',
         description: {
-          en: 'Red-brown granite. Red-brown with a pinkish tint. Quarry location: The village of Zhadkivka, Korets district, Rivne region. Features: Resistant to moisture and low temperatures, first-class radiation safety.',
-          ua: 'Червоно-коричневий граніт. Червоно-коричневий із рожевим відтінком. Видобуток: Село Жадківка, Корецький район, Рівненська область. Особливості: Стійкий до вологи та низьких температур, належить до першого класу радіоактивної безпеки.',
-          de: 'Rot-brauner Granit. Rot-braun mit einem rosa Farbton. Abbauort: Das Dorf Zhadkivka, Bezirk Korets, Region Riwne. Besonderheiten: Beständig gegen Feuchtigkeit und niedrige Temperaturen, hat die erste Klasse der Strahlensicherheit.',
-          pl: 'Czerwono-brązowy granit. Czerwono-brązowy z różowawym odcieniem. Lokalizacja kamieniołomu: Wieś Żadkiwka, rejon korecki, obwód rówieński. Właściwości: Odporny na wilgoć i niskie temperatury, posiada pierwszą klasę bezpieczeństwa radiacyjnego.'
+          en: 'Red-brown granite. Red-brown with a pinkish tint. Quarry location: The village of Zhadkivka, Korets district, Rivne region. Features: Resistant to moisture and low temperatures.',
+          ua: 'Червоно-коричневий граніт. Червоно-коричневий із рожевим відтінком. Видобуток: Село Жадківка, Корецький район, Рівненська область. Особливості: Стійкий до вологи та низьких температур.',
+          de: 'Rot-brauner Granit. Rot-braun mit einem rosa Farbton. Abbauort: Das Dorf Zhadkivka, Bezirk Korets, Region Riwne. Besonderheiten: Beständig gegen Feuchtigkeit und niedrige Temperaturen.',
+          pl: 'Czerwono-brązowy granit. Czerwono-brązowy z różowawym odcieniem. Lokalizacja kamieniołomu: Wieś Żadkiwka, rejon korecki, obwód rówieński. Właściwości: Odporny na wilgoć i niskie temperatury.'
         },
         properties: {
           density: '2695–2730 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '212–240 MPa',
           waterAbsorption: '0.15–0.41%',
           quarry: 'Zhadkivka'
@@ -289,7 +284,6 @@ export const graniteTypes = [
         },
         properties: {
           density: '2600–2640 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '240 MPa',
           waterAbsorption: '0.15–1.02%',
           quarry: 'Omelyanivske'
@@ -307,14 +301,13 @@ export const graniteTypes = [
         imageUrl: '/eurogranite-website/images/textures/pink-gray/leopard-gg1a.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/pink-gray/leopard-gg1a.jpg',
         description: {
-          en: 'Pinkish-grey coarse-grained granite. Dark gray with pink and beige inclusions, resembling a leopard\'s skin. Quarry location: The Kornynske deposit, Zhytomyr region. Features: High strength and resistance to temperature changes, first-class radiation safety.',
-          ua: 'Рожево-сірий грубозернистий граніт. Темно-сірий з рожевими та бежевими вкрапленнями, що нагадує шкіру леопарда. Видобуток: Корнинське родовище, Житомирська область. Особливості: Висока міцність та стійкість до перепадів температур, належить до першого класу радіаційної безпеки.',
-          de: 'Rosa-grauer grobkörniger Granit. Dunkelgrau mit rosa und beigen Einschlüssen, die an das Fell eines Leoparden erinnern. Abbauort: Das Kornynske-Vorkommen, Region Schytomyr. Besonderheiten: Hohe Festigkeit und Beständigkeit gegen Temperaturschwankungen, erste Klasse der Strahlensicherheit.',
-          pl: 'Różowo-szary gruboziarnisty granit. Ciemnoszary z różowymi i beżowymi wtrąceniami, przypominającymi skórę lamparta. Lokalizacja kamieniołomu: Złoże Kornynske, obwód żytomierski. Właściwości: Wysoka wytrzymałość i odporność na wahania temperatury, pierwsza klasa bezpieczeństwa radiacyjnego.'
+          en: 'Pinkish-grey coarse-grained granite. Dark gray with pink and beige inclusions, resembling a leopard\'s skin. Quarry location: The Kornynske deposit, Zhytomyr region. Features: High strength and resistance to temperature changes.',
+          ua: 'Рожево-сірий грубозернистий граніт. Темно-сірий з рожевими та бежевими вкрапленнями, що нагадує шкіру леопарда. Видобуток: Корнинське родовище, Житомирська область. Особливості: Висока міцність та стійкість до перепадів температур.',
+          de: 'Rosa-grauer grobkörniger Granit. Dunkelgrau mit rosa und beigen Einschlüssen, die an das Fell eines Leoparden erinnern. Abbauort: Das Kornynske-Vorkommen, Region Schytomyr. Besonderheiten: Hohe Festigkeit und Beständigkeit gegen Temperaturschwankungen.',
+          pl: 'Różowo-szary gruboziarnisty granit. Ciemnoszary z różowymi i beżowymi wtrąceniami, przypominającymi skórę lamparta. Lokalizacja kamieniołomu: Złoże Kornynske, obwód żytomierski. Właściwości: Wysoka wytrzymałość i odporność na wahania temperatury.'
         },
         properties: {
           density: '2730 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '190 MPa',
           waterAbsorption: '0.31%',
           quarry: 'Kornynske'
@@ -339,7 +332,6 @@ export const graniteTypes = [
         },
         properties: {
           density: '2650 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '135–260 MPa',
           waterAbsorption: '0.18%',
           quarry: 'Liznyky'
@@ -364,7 +356,6 @@ export const graniteTypes = [
         },
         properties: {
           density: '2470–2770 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '149–245 MPa',
           waterAbsorption: '0.13–0.24%',
           quarry: 'Didkovytske'
@@ -382,14 +373,13 @@ export const graniteTypes = [
         imageUrl: '/eurogranite-website/images/textures/red-brown/6-leznykivske-rodovyshhe.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/6-leznykivske-rodovyshhe.jpg',
         description: {
-          en: 'Brownish-greenish fine-grained granite. Brown or beige with shades of gray, green, and gold. Quarry location: The Vasylivske deposit, Zhytomyr region. Features: Popular for its autumnal colors and resistance to mechanical damage and temperature changes.',
-          ua: 'Коричнево-зеленуватий дрібнозернистий граніт. Коричневий або бежевий з відтінками сірого, зеленого та золотого. Видобуток: Василівське родовище, Житомирська область. Особливості: Популярний завдяки осіннім відтінкам та стійкості до механічних пошкоджень та перепадів температур.',
-          de: 'Bräunlich-grünliches feinkörniges Granit. Braun oder Beige mit Grau-, Grün- und Goldtönen. Abbauort: Das Vasylivske-Vorkommen, Region Schytomyr. Besonderheiten: Beliebt wegen seiner herbstlichen Farben und Beständigkeit gegen mechanische Beschädigungen und Temperaturschwankungen.',
-          pl: 'Brązowo-zielonkawy drobnoziarnisty granit. Brązowy lub beżowy z odcieniami szarości, zieleni i złota. Lokalizacja kamieniołomu: Złoże Vasylivske, obwód żytomierski. Właściwości: Popularny ze względu na jesienne kolory i odporność na uszkodzenia mechaniczne oraz zmiany temperatury.'
+          en: 'Brown or beige with shades of gray, green, and gold. Quarry location: The Vasylivske deposit, Zhytomyr region. Features: Popular for its autumnal colors and resistance to mechanical damage and temperature changes.',
+          ua: 'Коричневий або бежевий з відтінками сірого, зеленого та золотого. Видобуток: Василівське родовище, Житомирська область. Особливості: Популярний завдяки осіннім відтінкам та стійкості до механічних пошкоджень та перепадів температур.',
+          de: 'Braun oder Beige mit Grau-, Grün- und Goldtönen. Abbauort: Das Vasylivske-Vorkommen, Region Schytomyr. Besonderheiten: Beliebt wegen seiner herbstlichen Farben und Beständigkeit gegen mechanische Beschädigungen und Temperaturschwankungen.',
+          pl: 'Brązowy lub beżowy z odcieniami szarości, zieleni i złota. Lokalizacja kamieniołomu: Złoże Vasylivske, obwód żytomierski. Właściwości: Popularny ze względu na jesienne kolory i odporność na uszkodzenia mechaniczne oraz zmiany temperatury.'
         },
         properties: {
           density: '2680–2685 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '180–210 MPa',
           waterAbsorption: '0.45–0.48%',
           quarry: 'Vasylivske'
@@ -407,14 +397,13 @@ export const graniteTypes = [
         imageUrl: '/eurogranite-website/images/textures/red-brown/8-mezhyritske-rodovyshhe.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/8-mezhyritske-rodovyshhe.jpg',
         description: {
-          en: 'Red-brown fine-grained granite. Pinkish-brown with dark inclusions. Quarry location: The Mezhyritske deposit, Zhytomyr region. Features: Resistant to scratches, impacts, and moisture, first-class radiation safety.',
-          ua: 'Червоно-коричневий дрібнозернистий граніт. Рожево-коричневий з темними вкрапленнями. Видобуток: Межиріцьке родовище, Житомирська область. Особливості: Стійкий до подряпин, ударів та вологи, належить до першого класу радіаційної безпеки.',
-          de: 'Rot-brauner feinkörniger Granit. Rosa-braun mit dunklen Einschlüssen. Abbauort: Das Mezhyritske-Vorkommen, Region Schytomyr. Besonderheiten: Kratz-, stoß- und feuchtigkeitsbeständig, erste Klasse der Strahlensicherheit.',
-          pl: 'Czerwono-brązowy drobnoziarnisty granit. Różowo-brązowy z ciemnymi wtrąceniami. Lokalizacja kamieniołomu: Złoże Mezhyritske, obwód żytomierski. Właściwości: Odporny na zarysowania, uderzenia i wilgoć, pierwsza klasa bezpieczeństwa radiacyjnego.'
+          en: 'Pinkish-brown with dark inclusions. Quarry location: The Mezhyritske deposit, Zhytomyr region. Features: Resistant to scratches, impacts, and moisture.',
+          ua: 'Рожево-коричневий з темними вкрапленнями. Видобуток: Межиріцьке родовище, Житомирська область. Особливості: Стійкий до подряпин, ударів та вологи.',
+          de: 'Rosa-braun mit dunklen Einschlüssen. Abbauort: Das Mezhyritske-Vorkommen, Region Schytomyr. Besonderheiten: Kratz-, stoß- und feuchtigkeitsbeständig.',
+          pl: 'Różowo-brązowy z ciemnymi wtrąceniami. Lokalizacja kamieniołomu: Złoże Mezhyritske, obwód żytomierski. Właściwości: Odporny na zarysowania, uderzenia i wilgoć.'
         },
         properties: {
           density: '2620 kg/m³',
-          hardness: '6-7 Mohs',
           compressiveStrength: '171 MPa',
           waterAbsorption: '0.55%',
           quarry: 'Mezhyritske'
@@ -469,17 +458,15 @@ export const graniteTypes = [
         imageUrl: '/eurogranite-website/images/textures/labradorite/labro.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/labradorite/labro.jpg',
         description: {
-          en: 'Coarse-grained black-blue rock with iridescence. A black-blue rock with metallic sheen and iridescence. Quarry location: The Pivnichne deposit, village of Osnyky, Zhytomyr region. Features: Used for wall cladding, flooring, and monuments.',
-          ua: 'Грубозерниста чорно-синя порода з іризацією. Чорно-синя порода з металевим блиском та іризацією. Видобуток: Північне родовище, село Осники, Житомирська область. Особливості: Використовується для облицювання стін, підлогового покриття та пам\'ятників.',
-          de: 'Grobkörniger schwarz-blauer Stein mit Irisieren. Ein schwarz-blauer Stein mit metallischem Glanz und Irisieren. Abbauort: Das Pivnichne-Vorkommen, Dorf Osnyky, Region Schytomyr. Besonderheiten: Wird für Wandverkleidungen, Bodenbeläge und Denkmäler verwendet.',
-          pl: 'Gruboziarnista czarno-niebieska skała z iryzacją. Czarno-niebieska skała z metalicznym połyskiem i iryzacją. Lokalizacja kamieniołomu: Złoże Pivnichne, wieś Osnyky, obwód żytomierski. Właściwości: Używany do okładzin ściennych, posadzek i pomników.'
+          en: 'A black-blue rock with metallic sheen and iridescence. Quarry location: The Pivnichne deposit, village of Osnyky, Zhytomyr region. Features: Used for wall cladding, flooring, and monuments.',
+          ua: 'Чорно-синя порода з металевим блиском та іризацією. Видобуток: Північне родовище, село Осники, Житомирська область. Особливості: Використовується для облицювання стін, підлогового покриття та пам\'ятників.',
+          de: 'Ein schwarz-blauer Stein mit metallischem Glanz und Irisieren. Abbauort: Das Pivnichne-Vorkommen, Dorf Osnyky, Region Schytomyr. Besonderheiten: Wird für Wandverkleidungen, Bodenbeläge und Denkmäler verwendet.',
+          pl: 'Czarno-niebieska skała z metalicznym połyskiem i iryzacją. Lokalizacja kamieniołomu: Złoże Pivnichne, wieś Osnyky, obwód żytomierski. Właściwości: Używany do okładzin ściennych, posadzek i pomników.'
         },
         properties: {
           density: '2800–2860 kg/m³',
-          hardness: '6-6.5 Mohs',
           compressiveStrength: '135–166 MPa',
           waterAbsorption: '0.08–0.17%',
-          labradorescence: 'blue-metallic',
           quarry: 'Pivnichne'
         },
         groupName: 'Labradorite'

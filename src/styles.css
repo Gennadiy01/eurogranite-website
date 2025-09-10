@@ -2989,17 +2989,12 @@ body {
   font-size: 0.875rem;
 }
 
-/* Mobile Properties Section */
+/* Mobile Properties Section - removed conflicting opacity/transform rules that override React inline styles */
 .texture-properties-mobile {
-  opacity: 0;
-  transform: translateY(1rem);
   transition: all 0.3s ease 0.1s;
 }
 
-.texture-sheet-modal[style*="height: 90%"] .texture-properties-mobile {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Removed CSS rule that was conflicting with React inline styles for texture-properties-mobile visibility */
 
 .texture-properties-mobile .texture-properties h4 {
   font-size: 0.875rem;
@@ -3042,6 +3037,397 @@ body {
 
 .texture-sheet-modal.dragging::before {
   opacity: 1;
+}
+
+/* ==========================================================================
+   PRODUCT CARDS SYSTEM
+   ========================================================================== */
+
+/* Product Card Base */
+.product-card {
+  background: var(--neutral-50);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Product Image Container */
+.product-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+/* Availability Badge */
+.product-availability-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.product-availability-badge.in-stock {
+  background: var(--success-100);
+  color: var(--success-700);
+  border: 1px solid var(--success-200);
+}
+
+.product-availability-badge.custom-order {
+  background: var(--warning-100);
+  color: var(--warning-700);
+  border: 1px solid var(--warning-200);
+}
+
+/* Exclusive Badge */
+.product-exclusive-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  color: white;
+  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.3);
+}
+
+/* Product Info Section */
+.product-info {
+  padding: 1.25rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--neutral-900);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Material Info Section */
+.product-material-info {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.texture-link {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary-600);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.texture-link:hover {
+  color: var(--primary-700);
+}
+
+.finish-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--neutral-700);
+}
+
+.finish-icon {
+  font-size: 1rem;
+}
+
+/* Dimensions */
+.product-dimensions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.dimensions-label {
+  color: var(--neutral-600);
+  font-weight: 500;
+}
+
+.dimensions-value {
+  color: var(--neutral-900);
+  font-weight: 600;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+/* Pricing Section */
+.product-pricing {
+  margin-bottom: 1rem;
+}
+
+.price-main {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-600);
+  margin-bottom: 0.25rem;
+}
+
+.price-note {
+  font-size: 0.75rem;
+  color: var(--neutral-500);
+  font-style: italic;
+}
+
+/* Description */
+.product-description {
+  font-size: 0.875rem;
+  color: var(--neutral-700);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* Features List */
+.product-features {
+  margin-bottom: 1rem;
+}
+
+.features-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--neutral-800);
+  margin-bottom: 0.5rem;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  position: relative;
+  font-size: 0.8rem;
+  color: var(--neutral-600);
+  padding-left: 1rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.feature-item::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--success-600);
+  font-weight: 600;
+}
+
+/* Lead Time */
+.product-lead-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: var(--warning-50);
+  border-radius: 0.375rem;
+  border: 1px solid var(--warning-200);
+  font-size: 0.8rem;
+}
+
+.lead-time-label {
+  color: var(--warning-700);
+  font-weight: 500;
+}
+
+.lead-time-value {
+  color: var(--warning-800);
+  font-weight: 600;
+}
+
+/* Product Actions */
+.product-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
+.product-actions .order-button {
+  flex: 2;
+}
+
+.product-actions .texture-button {
+  flex: 1;
+}
+
+/* Customization Note */
+.product-customization-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--neutral-100);
+  border-radius: 0.375rem;
+  border: 1px solid var(--neutral-200);
+  font-size: 0.75rem;
+  color: var(--neutral-600);
+}
+
+.customization-icon {
+  font-size: 0.875rem;
+}
+
+/* Products Grid Layout */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .product-image-container {
+    height: 180px;
+  }
+  
+  .product-info {
+    padding: 1rem;
+  }
+  
+  .product-actions {
+    flex-direction: column;
+  }
+  
+  .product-actions .order-button,
+  .product-actions .texture-button {
+    flex: 1;
+  }
+  
+  .product-name {
+    font-size: 1rem;
+  }
+  
+  .price-main {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-availability-badge,
+  .product-exclusive-badge {
+    top: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .product-exclusive-badge {
+    top: 2.75rem;
+  }
+}
+
+/* ==========================================================================
+   CUSTOMIZATION OPTIONS SECTION
+   ========================================================================== */
+
+.customization-option {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--neutral-50);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--neutral-200);
+}
+
+.customization-option:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.customization-icon-wrapper {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.customization-option-icon {
+  font-size: 1.5rem;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+.customization-option h3 {
+  color: var(--neutral-900);
+  margin-bottom: 1rem;
+}
+
+.customization-option p {
+  line-height: 1.6;
+  color: var(--neutral-600);
+}
+
+/* Mobile Responsive for Customization */
+@media (max-width: 768px) {
+  .customization-option {
+    padding: 1.5rem 1rem;
+  }
+  
+  .customization-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .customization-option-icon {
+    font-size: 1.25rem;
+  }
 }
 
 /* Smooth animations for Framework7-style feel */
