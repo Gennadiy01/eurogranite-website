@@ -1,6 +1,5 @@
 import React from 'react';
 import useLanguageStore from '../../../stores/languageStore';
-import useModalStore from '../../../stores/modalStore';
 import useGraniteSystemStore from '../../../stores/graniteSystemStore';
 import { graniteTypes } from '../../../constants/graniteData';
 import { surfaceFinishTypes, combinedFinishTypes } from '../../../constants/productsData';
@@ -8,7 +7,6 @@ import Button from '../../atoms/Button/Button';
 
 const ProductCard = ({ product }) => {
   const { currentLanguage } = useLanguageStore();
-  const { openModal } = useModalStore();
   const { openGallery } = useGraniteSystemStore();
 
   // Отримуємо дані про текстуру граніту
