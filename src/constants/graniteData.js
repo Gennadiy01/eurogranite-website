@@ -253,10 +253,10 @@ export const graniteTypes = [
         imageUrl: '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg',
         description: {
-          en: 'Red-brown granite. Red-brown with a pinkish tint. Quarry location: The village of Zhadkivka, Korets district, Rivne region. Features: Resistant to moisture and low temperatures.',
-          ua: 'Червоно-коричневий граніт. Червоно-коричневий із рожевим відтінком. Видобуток: Село Жадківка, Корецький район, Рівненська область. Особливості: Стійкий до вологи та низьких температур.',
-          de: 'Rot-brauner Granit. Rot-braun mit einem rosa Farbton. Abbauort: Das Dorf Zhadkivka, Bezirk Korets, Region Riwne. Besonderheiten: Beständig gegen Feuchtigkeit und niedrige Temperaturen.',
-          pl: 'Czerwono-brązowy granit. Czerwono-brązowy z różowawym odcieniem. Lokalizacja kamieniołomu: Wieś Żadkiwka, rejon korecki, obwód rówieński. Właściwości: Odporny na wilgoć i niskie temperatury.'
+          en: 'Red-brown with a pinkish tint. Quarry location: The village of Zhadkivka, Korets district, Rivne region. Features: Resistant to moisture and low temperatures.',
+          ua: 'Червоно-коричневий із рожевим відтінком. Видобуток: Село Жадківка, Корецький район, Рівненська область. Особливості: Стійкий до вологи та низьких температур.',
+          de: 'Rot-braun mit einem rosa Farbton. Abbauort: Das Dorf Zhadkivka, Bezirk Korets, Region Riwne. Besonderheiten: Beständig gegen Feuchtigkeit und niedrige Temperaturen.',
+          pl: 'Czerwono-brązowy z różowawym odcieniem. Lokalizacja kamieniołomu: Wieś Żadkiwka, rejon korecki, obwód rówieński. Właściwości: Odporny na wilgoć i niskie temperatury.'
         },
         properties: {
           density: '2695–2730 kg/m³',
@@ -373,10 +373,10 @@ export const graniteTypes = [
         imageUrl: '/eurogranite-website/images/textures/red-brown/6-leznykivske-rodovyshhe.jpg',
         thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/6-leznykivske-rodovyshhe.jpg',
         description: {
-          en: 'Brown or beige with shades of gray, green, and gold. Quarry location: The Vasylivske deposit, Zhytomyr region. Features: Popular for its autumnal colors and resistance to mechanical damage and temperature changes.',
-          ua: 'Коричневий або бежевий з відтінками сірого, зеленого та золотого. Видобуток: Василівське родовище, Житомирська область. Особливості: Популярний завдяки осіннім відтінкам та стійкості до механічних пошкоджень та перепадів температур.',
-          de: 'Braun oder Beige mit Grau-, Grün- und Goldtönen. Abbauort: Das Vasylivske-Vorkommen, Region Schytomyr. Besonderheiten: Beliebt wegen seiner herbstlichen Farben und Beständigkeit gegen mechanische Beschädigungen und Temperaturschwankungen.',
-          pl: 'Brązowy lub beżowy z odcieniami szarości, zieleni i złota. Lokalizacja kamieniołomu: Złoże Vasylivske, obwód żytomierski. Właściwości: Popularny ze względu na jesienne kolory i odporność na uszkodzenia mechaniczne oraz zmiany temperatury.'
+          en: 'Brown or beige with shades of gray, green, and gold fine-grained granite. Quarry location: The Vasylivske deposit, Zhytomyr region. Features: Popular for its autumnal colors and resistance to mechanical damage and temperature changes.',
+          ua: 'Коричневий або бежевий з відтінками сірого, зеленого та золотого дрібнозернистий граніт. Видобуток: Василівське родовище, Житомирська область. Особливості: Популярний завдяки осіннім відтінкам та стійкості до механічних пошкоджень та перепадів температур.',
+          de: 'Braun oder Beige mit Grau-, Grün- und Goldtönen feinkörniger Granit. Abbauort: Das Vasylivske-Vorkommen, Region Schytomyr. Besonderheiten: Beliebt wegen seiner herbstlichen Farben und Beständigkeit gegen mechanische Beschädigungen und Temperaturschwankungen.',
+          pl: 'Brązowy lub beżowy z odcieniami szarości, zieleni i złota drobnoziarnisty granit. Lokalizacja kamieniołomu: Złoże Vasylivske, obwód żytomierski. Właściwości: Popularny ze względu na jesienne kolory i odporność na uszkodzenia mechaniczne oraz zmiany temperatury.'
         },
         properties: {
           density: '2680–2685 kg/m³',

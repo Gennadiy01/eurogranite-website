@@ -72,8 +72,8 @@ const About = () => {
       stats: {
         title: "EuroGranite by Numbers",
         items: [
-          { number: "12+", label: "Years of Experience" },
-          { number: "15", label: "Granite Varieties" },
+          { number: "15+", label: "Years of Experience" },
+          { number: "12", label: "Granite Varieties" },
           { number: "25+", label: "Countries Served" },
           { number: "1000+", label: "Projects Completed" }
         ]
@@ -148,8 +148,8 @@ const About = () => {
       stats: {
         title: "EuroGranite в цифрах",
         items: [
-          { number: "12+", label: "Років досвіду" },
-          { number: "15", label: "Сортів граніту" },
+          { number: "15+", label: "Років досвіду" },
+          { number: "12", label: "Сортів граніту" },
           { number: "25+", label: "Обслуговуваних країн" },
           { number: "1000+", label: "Завершених проектів" }
         ]
@@ -224,8 +224,8 @@ const About = () => {
       stats: {
         title: "EuroGranite in Zahlen",
         items: [
-          { number: "12+", label: "Jahre Erfahrung" },
-          { number: "15", label: "Granitsorten" },
+          { number: "15+", label: "Jahre Erfahrung" },
+          { number: "12", label: "Granitsorten" },
           { number: "25+", label: "Belieferte Länder" },
           { number: "1000+", label: "Abgeschlossene Projekte" }
         ]
@@ -300,8 +300,8 @@ const About = () => {
       stats: {
         title: "EuroGranite w liczbach",
         items: [
-          { number: "12+", label: "Lat doświadczenia" },
-          { number: "15", label: "Odmian granitu" },
+          { number: "15+", label: "Lat doświadczenia" },
+          { number: "12", label: "Odmian granitu" },
           { number: "25+", label: "Obsługiwanych krajów" },
           { number: "1000+", label: "Ukończonych projektów" }
         ]
@@ -418,9 +418,13 @@ const About = () => {
       <section className="about-cta">
         <div className="container">
           <div className="about-cta-content">
-            <h2 className="about-cta-title">{text.cta.title}</h2>
-            <p className="about-cta-description">{text.cta.description}</p>
-            <a href="/contact" className="about-cta-button">{text.cta.button}</a>
+            <div className="about-cta-title-column">
+              <h2 className="about-cta-title">{text.cta.title}</h2>
+            </div>
+            <div className="about-cta-content-column">
+              <p className="about-cta-description">{text.cta.description}</p>
+              <a href="/contact" className="about-cta-button">{text.cta.button}</a>
+            </div>
           </div>
         </div>
       </section>

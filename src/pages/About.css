@@ -2,26 +2,28 @@
 
 .about-page {
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: var(--white);
 }
 
-/* Container */
-.container {
-  max-width: 1200px;
+/* Container використовує систему з Design System */
+.about-page .container {
+  width: 100%;
+  max-width: 80rem; /* 1280px відповідно до Design System */
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.5rem;
 }
 
-/* Hero Section */
+/* Hero Section - відповідно до Design System */
 .about-hero {
   position: relative;
-  height: 60vh;
-  min-height: 400px;
+  min-height: 100vh;
+  background-color: var(--neutral-900);
+  padding: 5rem 0;
+  padding-top: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-top: 80px;
 }
 
 .about-hero-background {
@@ -30,7 +32,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  background-color: var(--neutral-900);
   z-index: 1;
 }
 
@@ -48,50 +50,65 @@
   position: relative;
   z-index: 3;
   text-align: center;
-  color: white;
+  color: var(--white);
 }
 
+/* Використовуємо hero-title з Design System */
 .about-hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: 1rem;
   line-height: 1.2;
+  color: var(--white);
 }
 
+/* Використовуємо hero-description з Design System */
 .about-hero-subtitle {
-  font-size: 1.25rem;
-  font-weight: 300;
-  opacity: 0.9;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--neutral-200);
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* Section Titles */
+@media (min-width: 768px) {
+  .about-hero-title {
+    font-size: 4.5rem;
+  }
+  .about-hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Section Titles - використовуємо heading-2 з Design System */
 .about-section-title {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 2rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin-bottom: 3rem;
   text-align: center;
 }
 
+/* Підзаголовки - використовуємо heading-3 з Design System */
 .about-subsection-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #34495e;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--neutral-900);
   margin-bottom: 1rem;
 }
 
+/* Опис - використовуємо description-text з Design System */
 .about-subsection-text {
-  font-size: 1rem;
+  font-size: 1.125rem;
+  font-weight: 400;
   line-height: 1.6;
-  color: #555;
+  color: var(--neutral-600);
 }
 
-/* Overview Section */
+/* Overview Section - використовуємо section-bg-primary з Design System */
 .about-overview {
-  padding: 80px 0;
-  background-color: #f8f9fa;
+  padding: 5rem 0;
+  background-color: var(--neutral-50);
 }
 
 .about-overview-content {
@@ -102,21 +119,29 @@
 
 .about-overview-description {
   font-size: 1.125rem;
+  font-weight: 400;
   line-height: 1.7;
-  color: #555;
+  color: var(--neutral-600);
 }
 
 /* Company Section */
 .about-company {
-  padding: 80px 0;
-  background-color: #ffffff;
+  padding: 5rem 0;
+  background-color: var(--white);
 }
 
 .about-company-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1fr;
+  gap: 3rem;
   align-items: start;
+}
+
+@media (min-width: 768px) {
+  .about-company-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
 }
 
 .about-company-main {
@@ -125,41 +150,55 @@
 
 .about-company-description {
   font-size: 1.125rem;
+  font-weight: 400;
   line-height: 1.7;
-  color: #555;
+  color: var(--neutral-600);
 }
 
 .about-mission-vision {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 2rem;
 }
 
 .about-mission,
 .about-vision {
-  padding: 30px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid #3498db;
+  padding: 2rem;
+  background-color: var(--neutral-50);
+  border-radius: 0.5rem;
+  border-left: 4px solid var(--accent-orange);
 }
 
 /* Services Section */
 .about-services {
-  padding: 80px 0;
-  background-color: #f8f9fa;
+  padding: 5rem 0;
+  background-color: var(--neutral-50);
 }
 
 .about-services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .about-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
 }
 
 .about-service-card {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 0.5rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -171,35 +210,49 @@
 
 .about-service-title {
   font-size: 1.25rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 15px;
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin-bottom: 1rem;
 }
 
 .about-service-description {
   font-size: 1rem;
+  font-weight: 400;
   line-height: 1.6;
-  color: #555;
+  color: var(--neutral-600);
 }
 
 /* Values Section */
 .about-values {
-  padding: 80px 0;
-  background-color: #ffffff;
+  padding: 5rem 0;
+  background-color: var(--white);
 }
 
 .about-values-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .about-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
 }
 
 .about-value-card {
   text-align: center;
-  padding: 40px 30px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  background-color: var(--neutral-50);
+  border-radius: 0.5rem;
   transition: transform 0.3s ease;
 }
 
@@ -209,58 +262,65 @@
 
 .about-value-title {
   font-size: 1.25rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 15px;
+  font-weight: 700;
+  color: var(--neutral-900);
+  margin-bottom: 1rem;
 }
 
 .about-value-description {
   font-size: 1rem;
+  font-weight: 400;
   line-height: 1.6;
-  color: #555;
+  color: var(--neutral-600);
 }
 
-/* Statistics Section */
+/* Combined Statistics & CTA Section */
 .about-stats {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-  color: white;
+  padding: 5rem 0 3rem 0;
+  background-color: var(--neutral-800);
+  color: var(--white);
 }
 
 .about-stats .about-section-title {
-  color: white;
+  color: var(--white);
 }
 
 .about-stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .about-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .about-stat-card {
   text-align: center;
-  padding: 30px;
+  padding: 2rem;
 }
 
 .about-stat-number {
   font-size: 3rem;
   font-weight: 700;
-  color: white;
-  margin-bottom: 10px;
+  color: var(--accent-orange);
+  margin-bottom: 0.5rem;
 }
 
 .about-stat-label {
   font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 300;
+  color: var(--neutral-200);
+  font-weight: 400;
 }
 
-/* CTA Section */
+/* CTA Section - now part of combined section */
 .about-cta {
-  padding: 80px 0;
-  background-color: #2c3e50;
-  color: white;
+  padding: 3rem 0 5rem 0;
+  background-color: var(--neutral-800);
+  color: var(--white);
   text-align: center;
 }
 
@@ -269,70 +329,93 @@
   margin: 0 auto;
 }
 
+/* Desktop horizontal layout */
+@media (min-width: 768px) {
+  .about-cta {
+    text-align: left;
+  }
+  
+  .about-cta-content {
+    max-width: none;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
 .about-cta-title {
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: white;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+.about-cta-title-column {
+  /* Mobile: стандартне відображення */
+}
+
+.about-cta-content-column {
+  /* Mobile: стандартне відображення */
+}
+
+/* Desktop adjustments for columns */
+@media (min-width: 768px) {
+  .about-cta-title {
+    margin-bottom: 0;
+    font-size: 2.5rem;
+  }
 }
 
 .about-cta-description {
   font-size: 1.125rem;
+  font-weight: 400;
   line-height: 1.7;
-  margin-bottom: 30px;
-  opacity: 0.9;
+  margin-bottom: 2rem;
+  color: var(--neutral-200);
 }
 
+/* Використовуємо Button компонент стилі з Design System */
 .about-cta-button {
-  display: inline-block;
-  padding: 15px 30px;
-  background-color: #3498db;
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background-color: var(--accent-orange);
+  color: var(--white);
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 0.5rem;
   font-weight: 600;
-  font-size: 1.125rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
 .about-cta-button:hover {
-  background-color: #2980b9;
+  background-color: var(--accent-orange-hover);
   transform: translateY(-2px);
   text-decoration: none;
-  color: white;
+  color: var(--white);
 }
 
-/* Responsive Design */
+/* Responsive Design - оновлено відповідно до Design System */
 @media (max-width: 768px) {
   .about-hero-title {
     font-size: 2.5rem;
   }
 
   .about-hero-subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 
   .about-section-title {
     font-size: 2rem;
-  }
-
-  .about-company-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    margin-bottom: 2rem;
   }
 
   .about-company-main {
     text-align: center;
-  }
-
-  .about-mission-vision {
-    gap: 30px;
-  }
-
-  .about-services-grid,
-  .about-values-grid,
-  .about-stats-grid {
-    grid-template-columns: 1fr;
   }
 
   .about-stat-number {
@@ -343,35 +426,50 @@
     font-size: 2rem;
   }
 
-  .container {
-    padding: 0 15px;
+  .about-page .container {
+    padding: 0 1rem;
   }
 }
 
-@media (max-width: 480px) {
-  .about-hero {
-    height: 50vh;
-    min-height: 350px;
-  }
-
-  .about-hero-title {
-    font-size: 2rem;
-  }
-
-  .about-hero-subtitle {
-    font-size: 1rem;
-  }
-
-  .about-section-title {
-    font-size: 1.75rem;
-  }
-
+@media (max-width: 640px) {
   .about-overview,
   .about-company,
   .about-services,
   .about-values,
   .about-stats,
   .about-cta {
-    padding: 60px 0;
+    padding: 3rem 0; /* Використовуємо content-spacing-section для мобільних */
+  }
+
+  .about-hero-title {
+    font-size: 2rem;
+  }
+
+  .about-section-title {
+    font-size: 1.75rem;
+  }
+
+  .about-hero {
+    min-height: 70vh;
+    padding: 3rem 0;
+    padding-top: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .about-hero-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .about-section-title {
+    font-size: 1.5rem;
+  }
+
+  .about-page .container {
+    padding: 0 0.75rem;
   }
 }
