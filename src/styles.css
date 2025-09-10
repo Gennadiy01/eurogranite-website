@@ -1896,6 +1896,13 @@ body {
   animation: fadeInHint 0.5s ease 2s forwards;
 }
 
+/* Hide zoom instructions on mobile */
+@media (max-width: 768px) {
+  .texture-viewer-hint {
+    display: none;
+  }
+}
+
 @keyframes fadeInHint {
   to { opacity: 1; }
 }
@@ -2969,7 +2976,7 @@ body {
 
 /* Mobile Description Section */
 .texture-description-mobile {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .texture-description-mobile .texture-description {
@@ -2981,6 +2988,13 @@ body {
 
 .texture-description-mobile .texture-actions {
   margin-top: 1rem;
+}
+
+/* Hide compare functionality on mobile */
+@media (max-width: 768px) {
+  .texture-description-mobile .texture-actions {
+    display: none;
+  }
 }
 
 .texture-description-mobile .compare-button {
@@ -3008,8 +3022,9 @@ body {
 }
 
 .texture-properties-mobile .property-item {
-  padding: 0.375rem 0;
+  padding: 0.25rem 0;
   font-size: 0.8rem;
+  line-height: 1.0;
 }
 
 .texture-properties-mobile .property-label {
