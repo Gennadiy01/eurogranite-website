@@ -8,6 +8,7 @@ import Articles from './pages/Articles'
 import Contact from './pages/Contact'
 import Footer from './components/organisms/Footer/Footer'
 import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
+import ToastContainer from './components/molecules/ToastContainer'
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         
         {/* Global Modal Components */}
         <UniversalTextureGallery />
+        
+        {/* Global Toast Container */}
+        <ToastContainer />
       </Router>
     </div>
   )
