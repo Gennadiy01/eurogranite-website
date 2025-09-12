@@ -1404,8 +1404,41 @@ body {
 
 /* Additional spacing and layout classes */
 .space-y-8 > * + * { margin-top: 2rem; }
-.max-w-4xl { max-width: 56rem; }
-.max-w-6xl { max-width: 72rem; }
+.max-w-4xl { 
+  max-width: 100%; /* Full width on mobile */
+  padding: 0 1rem; /* Add padding for better readability */
+}
+
+.max-w-6xl { 
+  max-width: 100%; /* Full width on mobile */
+  padding: 0 1rem; /* Add padding for better readability */
+}
+
+/* Tablet: Allow more width */
+@media (min-width: 768px) {
+  .max-w-4xl { 
+    max-width: 48rem; /* Smaller than desktop but larger than mobile */
+    padding: 0 1.5rem;
+  }
+  
+  .max-w-6xl { 
+    max-width: 64rem;
+    padding: 0 1.5rem;
+  }
+}
+
+/* Desktop: Original sizes */
+@media (min-width: 1024px) {
+  .max-w-4xl { 
+    max-width: 56rem; /* Original size */
+    padding: 0;
+  }
+  
+  .max-w-6xl { 
+    max-width: 72rem; /* Original size */
+    padding: 0;
+  }
+}
 .mt-16 { margin-top: 4rem; }
 .text-2xl { font-size: 1.5rem; }
 .font-bold { font-weight: 700; }
@@ -1432,8 +1465,24 @@ body {
 }
 
 .description-text {
-  font-size: 1.125rem;
-  line-height: 1.75;
+  font-size: 0.875rem; /* Smaller for mobile: 14px */
+  line-height: 1.6;
+}
+
+/* Tablet: Medium size */
+@media (min-width: 768px) {
+  .description-text {
+    font-size: 1rem; /* 16px */
+    line-height: 1.65;
+  }
+}
+
+/* Desktop: Large size */
+@media (min-width: 1024px) {
+  .description-text {
+    font-size: 1.125rem; /* 18px - original size */
+    line-height: 1.75;
+  }
 }
 
 /* ========================================
