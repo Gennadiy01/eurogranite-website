@@ -1,3 +1,18 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://gennadiy01.github.io/eurogranite-website/sitemap.xml
+
+# Disallow admin areas if any exist in the future
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /src/
+
+# Allow important directories
+Allow: /images/
+Allow: /static/
+Allow: /manifest.json
+Allow: /favicon.ico

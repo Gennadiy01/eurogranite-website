@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../../atoms/Button/Button'
 import useLanguageStore from '../../../stores/languageStore'
 import { uniquePropositionContent } from '../../../constants/uniquePropositionData'
@@ -75,12 +76,16 @@ const UniqueProposition = () => {
               {content.callToAction}
             </p>
             <div className="unique-proposition-cta-buttons">
-              <Button variant="primary" size="large">
-                {content.buttons.contact}
-              </Button>
-              <Button variant="outline" size="large">
-                {content.buttons.catalog}
-              </Button>
+              <Link to="/contact#contact-form">
+                <Button variant="primary" size="large">
+                  {content.buttons.contact}
+                </Button>
+              </Link>
+              <Link to="/products">
+                <Button variant="outline" size="large">
+                  {content.buttons.catalog}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

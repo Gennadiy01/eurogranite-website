@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../../atoms/Button/Button'
 import useLanguageStore from '../../../stores/languageStore'
 import useGraniteSystemStore from '../../../stores/graniteSystemStore'
@@ -210,15 +211,7 @@ const GraniteColors = () => {
   const currentContent = content[currentLanguage] || content.en
 
 
-  const handleConsultationClick = () => {
-    const element = document.getElementById('contact')
-    element?.scrollIntoView({ behavior: 'smooth' })
-  }
 
-  const handleCatalogClick = () => {
-    const element = document.getElementById('products')
-    element?.scrollIntoView({ behavior: 'smooth' })
-  }
 
   const handleViewTextures = (graniteType) => {
     // Open universal gallery with filter set to specific granite type
@@ -336,20 +329,22 @@ const GraniteColors = () => {
               {currentContent.cta.subtitle}
             </p>
             <div className="granite-colors-cta-buttons">
-              <Button 
-                variant="primary"
-                size="large"
-                onClick={handleConsultationClick}
-              >
-                {currentContent.cta.primaryButton}
-              </Button>
-              <Button 
-                variant="outline"
-                size="large"
-                onClick={handleCatalogClick}
-              >
-                {currentContent.cta.secondaryButton}
-              </Button>
+              <Link to="/contact#contact-form">
+                <Button
+                  variant="primary"
+                  size="large"
+                >
+                  {currentContent.cta.primaryButton}
+                </Button>
+              </Link>
+              <Link to="/products">
+                <Button
+                  variant="outline"
+                  size="large"
+                >
+                  {currentContent.cta.secondaryButton}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

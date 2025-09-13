@@ -129,7 +129,7 @@ export const productsData = {
   samples: [
     {
       id: 'paver-gabbro-split-medium',
-      textureId: 'gabbro', // зв'язка з graniteData.js
+      textureId: 'black-001', // зв'язка з graniteData.js
       finishType: 'split',
       size: 'medium',
       dimensions: standardSizes.medium,
@@ -145,11 +145,10 @@ export const productsData = {
         de: 'Preis abhängig von der Bestellkomplexität',
         pl: 'Cena zależy od złożoności zamówienia'
       },
-      image: '/images/products/paver-gabbro-split-medium.jpg',
+      image: '/eurogranite-website/images/textures/black/gabro.jpg',
       images: [
-        '/images/products/paver-gabbro-split-medium-1.jpg',
-        '/images/products/paver-gabbro-split-medium-2.jpg',
-        '/images/products/paver-gabbro-split-medium-3.jpg'
+        '/eurogranite-website/images/textures/black/gabro.jpg',
+        '/eurogranite-website/images/textures/thumbs/black/gabro.jpg'
       ],
       name: {
         ua: 'Бруківка Габро колота 20x10x5см',
@@ -180,7 +179,7 @@ export const productsData = {
     },
     {
       id: 'paver-rosa-sawn-thermal-square',
-      textureId: 'rosa-ravenna-extra',
+      textureId: 'red-brown-002',
       finishType: 'sawn-thermal-top',
       size: 'square',
       dimensions: standardSizes.square,
@@ -196,11 +195,10 @@ export const productsData = {
         de: 'Kombinierte Bearbeitung - Premium-Preis',
         pl: 'Łączona obróbka - cena premium'
       },
-      image: '/images/products/paver-rosa-sawn-thermal-square.jpg',
+      image: '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
       images: [
-        '/images/products/paver-rosa-sawn-thermal-square-1.jpg',
-        '/images/products/paver-rosa-sawn-thermal-square-2.jpg',
-        '/images/products/paver-rosa-sawn-thermal-square-3.jpg'
+        '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
+        '/eurogranite-website/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg'
       ],
       name: {
         ua: 'Бруківка Rosa Ravenna пиляна+термо 15x15x5см',
@@ -237,7 +235,7 @@ export const productsData = {
     },
     {
       id: 'paver-labradorite-split-sawn-large',
-      textureId: 'ukrainian-labradorite',
+      textureId: 'labradorite-001',
       finishType: 'split-sawn-thermal',
       size: 'large',
       dimensions: standardSizes.large,
@@ -253,11 +251,10 @@ export const productsData = {
         de: 'Seltene Textur - Exklusivpreis',
         pl: 'Rzadka tekstura - cena ekskluzywna'
       },
-      image: '/images/products/paver-labradorite-split-sawn-large.jpg',
+      image: '/eurogranite-website/images/textures/labradorite/labro.jpg',
       images: [
-        '/images/products/paver-labradorite-split-sawn-large-1.jpg',
-        '/images/products/paver-labradorite-split-sawn-large-2.jpg',
-        '/images/products/paver-labradorite-split-sawn-large-3.jpg'
+        '/eurogranite-website/images/textures/labradorite/labro.jpg',
+        '/eurogranite-website/images/textures/thumbs/labradorite/labro.jpg'
       ],
       name: {
         ua: 'Бруківка Лабрадорит мікс-обробка 30x15x5см',

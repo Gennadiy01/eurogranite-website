@@ -1,11 +1,15 @@
 import React from 'react'
-import Header from '../components/organisms/Header/Header'
+import { Link } from 'react-router-dom'
 import useLanguageStore from '../stores/languageStore'
+import { getSEOData } from '../constants/seoData'
+import Header from '../components/organisms/Header/Header'
+import SEO from '../components/atoms/SEO'
 import './About.css'
 
 const About = () => {
   const { currentLanguage } = useLanguageStore()
   const lang = currentLanguage || 'en'
+  const seoData = getSEOData('about', currentLanguage)
 
   const content = {
     en: {
@@ -17,10 +21,10 @@ const About = () => {
       },
       about: {
         title: "Our Company",
-        description: "EuroGranite specializes in the extraction, processing, and distribution of premium Ukrainian granite. Our quarries are located in the heart of Ukraine's granite-rich regions, particularly in Zhytomyr, Kirovohrad, and Rivne oblasts. We pride ourselves on sustainable mining practices and delivering exceptional quality stone products.",
+        description: "EuroGranite specializes in the extraction, processing, and supply of premium Ukrainian granite. Our quarries are located in the heart of Ukraine's granite-rich regions, particularly in Zhytomyr, Kirovohrad, and Rivne oblasts. We pride ourselves on sustainable mining practices and delivering stone products of exceptional quality.",
         mission: {
           title: "Our Mission",
-          text: "To provide the world's finest granite products while maintaining the highest standards of quality, sustainability, and customer service."
+          text: "To create world-class granite products while adhering to the highest standards of quality, sustainability, and customer care."
         },
         vision: {
           title: "Our Vision", 
@@ -40,7 +44,7 @@ const About = () => {
           },
           {
             title: "European Distribution",
-            description: "Reliable logistics network delivering throughout Europe with flexible shipping options."
+            description: "Delivery throughout Europe with well-organized supply process."
           },
           {
             title: "Technical Support",
@@ -53,7 +57,7 @@ const About = () => {
         items: [
           {
             title: "Quality First",
-            description: "Every piece of granite meets our stringent quality standards before leaving our facilities."
+            description: "Every piece of granite undergoes inspection for compliance with our stringent quality standards before leaving our facilities."
           },
           {
             title: "Sustainability",
@@ -65,7 +69,7 @@ const About = () => {
           },
           {
             title: "Customer Focus",
-            description: "Building long-term partnerships through exceptional service and support."
+            description: "Forming partnerships for years through impeccable service and customer care."
           }
         ]
       },
@@ -75,12 +79,12 @@ const About = () => {
           { number: "15+", label: "Years of Experience" },
           { number: "12", label: "Granite Varieties" },
           { number: "25+", label: "Countries Served" },
-          { number: "1000+", label: "Projects Completed" }
+          { number: "500+", label: "Projects Completed" }
         ]
       },
       cta: {
         title: "Ready to Work with Us?",
-        description: "Contact our team today to discuss your granite needs and discover the EuroGranite difference.",
+        description: "Contact our team today to discuss your granite needs and discover the EuroGranite advantages.",
         button: "Get in Touch"
       }
     },
@@ -93,10 +97,10 @@ const About = () => {
       },
       about: {
         title: "Наша компанія",
-        description: "EuroGranite спеціалізується на видобутку, обробці та розповсюдженні преміум українського граніту. Наші кар'єри розташовані в серці гранітних регіонів України, зокрема в Житомирській, Кіровоградській та Рівненській областях. Ми пишаємося сталими практиками видобутку та доставкою виняткової якості кам'яних виробів.",
+        description: "EuroGranite спеціалізується на видобутку, обробці та постачанні преміум українського граніту. Наші кар'єри розташовані в серці гранітних регіонів України, зокрема в Житомирській, Кіровоградській та Рівненській областях. Ми пишаємося сталими практиками видобутку та доставкою кам'яних виробів виняткової якості.",
         mission: {
           title: "Наша місія",
-          text: "Надавати найкращі в світі гранітні вироби, підтримуючи найвищі стандарти якості, сталості та обслуговування клієнтів."
+          text: "Створювати гранітні вироби світового рівня, дотримуючись найвищих стандартів якості, сталого розвитку та турботи про клієнтів."
         },
         vision: {
           title: "Наше бачення",
@@ -116,7 +120,7 @@ const About = () => {
           },
           {
             title: "Європейська дистрибуція",
-            description: "Надійна логістична мережа з доставкою по всій Європі та гнучкими варіантами відвантаження."
+            description: "Доставка по всій Європі з чітко організованим процесом постачання."
           },
           {
             title: "Технічна підтримка",
@@ -129,7 +133,7 @@ const About = () => {
         items: [
           {
             title: "Якість понад усе",
-            description: "Кожен шматок граніту відповідає нашим суворим стандартам якості перед відправкою з наших підприємств."
+            description: "Кожен шматок граніту проходить перевірку на відповідність нашим суворим стандартам якості перед відправкою з наших підприємств."
           },
           {
             title: "Сталість",
@@ -141,7 +145,7 @@ const About = () => {
           },
           {
             title: "Орієнтація на клієнта",
-            description: "Побудова довгострокових партнерств через виняткове обслуговування та підтримку."
+            description: "Формування партнерських зв'язків на роки через бездоганне обслуговування та турботу про клієнтів."
           }
         ]
       },
@@ -151,12 +155,12 @@ const About = () => {
           { number: "15+", label: "Років досвіду" },
           { number: "12", label: "Сортів граніту" },
           { number: "25+", label: "Обслуговуваних країн" },
-          { number: "1000+", label: "Завершених проектів" }
+          { number: "500+", label: "Завершених проектів" }
         ]
       },
       cta: {
         title: "Готові працювати з нами?",
-        description: "Зв'яжіться з нашою командою сьогодні, щоб обговорити ваші потреби в граніті та відкрити для себе різницю EuroGranite.",
+        description: "Зв'яжіться з нашою командою сьогодні, щоб обговорити ваші потреби в граніті та відкрити для себе переваги EuroGranite.",
         button: "Зв'язатися"
       }
     },
@@ -169,10 +173,10 @@ const About = () => {
       },
       about: {
         title: "Unser Unternehmen",
-        description: "EuroGranite spezialisiert sich auf Gewinnung, Verarbeitung und Vertrieb von Premium-ukrainischem Granit. Unsere Steinbrüche befinden sich im Herzen der granitreichen Regionen der Ukraine, insbesondere in den Oblasten Zhytomyr, Kirovohrad und Rivne. Wir sind stolz auf nachhaltige Abbaumethoden und die Lieferung außergewöhnlicher Steinprodukte.",
+        description: "EuroGranite spezialisiert sich auf Gewinnung, Verarbeitung und Lieferung von Premium-ukrainischem Granit. Unsere Steinbrüche befinden sich im Herzen der granitreichen Regionen der Ukraine, insbesondere in den Oblasten Zhytomyr, Kirovohrad und Rivne. Wir sind stolz auf nachhaltige Abbaumethoden und die Lieferung von Steinprodukten außergewöhnlicher Qualität.",
         mission: {
           title: "Unsere Mission",
-          text: "Die weltbesten Granitprodukte zu liefern und dabei höchste Standards für Qualität, Nachhaltigkeit und Kundenservice aufrechtzuerhalten."
+          text: "Weltklasse-Granitprodukte zu schaffen und dabei höchste Standards für Qualität, Nachhaltigkeit und Kundenfürsorge einzuhalten."
         },
         vision: {
           title: "Unsere Vision",
@@ -192,7 +196,7 @@ const About = () => {
           },
           {
             title: "Europäischer Vertrieb",
-            description: "Zuverlässiges Logistiknetzwerk mit Lieferung in ganz Europa und flexiblen Versandoptionen."
+            description: "Lieferung in ganz Europa mit gut organisierten Lieferprozessen."
           },
           {
             title: "Technischer Support",
@@ -205,7 +209,7 @@ const About = () => {
         items: [
           {
             title: "Qualität zuerst",
-            description: "Jedes Granitstück erfüllt unsere strengen Qualitätsstandards, bevor es unsere Anlagen verlässt."
+            description: "Jedes Granitstück wird auf Einhaltung unserer strengen Qualitätsstandards überprüft, bevor es unsere Anlagen verlässt."
           },
           {
             title: "Nachhaltigkeit",
@@ -217,7 +221,7 @@ const About = () => {
           },
           {
             title: "Kundenfokus",
-            description: "Aufbau langfristiger Partnerschaften durch außergewöhnlichen Service und Support."
+            description: "Aufbau von Partnerschaften für Jahre durch tadellosen Service und Kundenfürsorge."
           }
         ]
       },
@@ -227,12 +231,12 @@ const About = () => {
           { number: "15+", label: "Jahre Erfahrung" },
           { number: "12", label: "Granitsorten" },
           { number: "25+", label: "Belieferte Länder" },
-          { number: "1000+", label: "Abgeschlossene Projekte" }
+          { number: "500+", label: "Abgeschlossene Projekte" }
         ]
       },
       cta: {
         title: "Bereit, mit uns zu arbeiten?",
-        description: "Kontaktieren Sie unser Team noch heute, um Ihre Granitbedürfnisse zu besprechen und den EuroGranite-Unterschied zu entdecken.",
+        description: "Kontaktieren Sie unser Team noch heute, um Ihre Granitbedürfnisse zu besprechen und die EuroGranite-Vorteile zu entdecken.",
         button: "Kontakt aufnehmen"
       }
     },
@@ -245,10 +249,10 @@ const About = () => {
       },
       about: {
         title: "Nasza firma",
-        description: "EuroGranite specjalizuje się w wydobyciu, przetwórstwie i dystrybucji premium ukraińskiego granitu. Nasze kamieniołomy znajdują się w sercu bogatych w granit regionów Ukrainy, szczególnie w obwodach żytomierskim, kirowohradskim i rówieńskim. Szczycimy się zrównoważonymi praktykami wydobywczymi i dostarczaniem wyjątkowej jakości produktów kamiennych.",
+        description: "EuroGranite specjalizuje się w wydobyciu, przetwórstwie i dostawie premium ukraińskiego granitu. Nasze kamieniołomy znajdują się w sercu bogatych w granit regionów Ukrainy, szczególnie w obwodach żytomierskim, kirowohradskim i rówieńskim. Szczycimy się zrównoważonymi praktykami wydobywczymi i dostarczaniem produktów kamiennych wyjątkowej jakości.",
         mission: {
           title: "Nasza misja",
-          text: "Dostarczanie najlepszych na świecie produktów granitowych przy zachowaniu najwyższych standardów jakości, zrównoważoności i obsługi klienta."
+          text: "Tworzenie światowej klasy produktów granitowych przy zachowaniu najwyższych standardów jakości, zrównoważonego rozwoju i opieki nad klientem."
         },
         vision: {
           title: "Nasja wizja",
@@ -268,7 +272,7 @@ const About = () => {
           },
           {
             title: "Dystrybucja europejska",
-            description: "Niezawodna sieć logistyczna z dostawami w całej Europie i elastycznymi opcjami wysyłki."
+            description: "Dostawa w całej Europie z dobrze zorganizowanymi procesami dostaw."
           },
           {
             title: "Wsparcie techniczne",
@@ -281,7 +285,7 @@ const About = () => {
         items: [
           {
             title: "Jakość przede wszystkim",
-            description: "Każdy kawałek granitu spełnia nasze rygorystyczne standardy jakości przed opuszczeniem naszych zakładów."
+            description: "Każdy kawałek granitu przechodzi kontrole zgodności z naszymi rygorystycznymi standardami jakości przed opuszczeniem naszych zakładów."
           },
           {
             title: "Zrównoważoność",
@@ -293,7 +297,7 @@ const About = () => {
           },
           {
             title: "Koncentracja na kliencie",
-            description: "Budowanie długoterminowych partnerstw poprzez wyjątkową obsługę i wsparcie."
+            description: "Budowanie partnerstw na lata poprzez nienaganną obsługę i opiekę nad klientem."
           }
         ]
       },
@@ -303,12 +307,12 @@ const About = () => {
           { number: "15+", label: "Lat doświadczenia" },
           { number: "12", label: "Odmian granitu" },
           { number: "25+", label: "Obsługiwanych krajów" },
-          { number: "1000+", label: "Ukończonych projektów" }
+          { number: "500+", label: "Ukończonych projektów" }
         ]
       },
       cta: {
         title: "Gotowi do współpracy?",
-        description: "Skontaktuj się z naszym zespołem już dziś, aby omówić swoje potrzeby granitowe i odkryć różnicę EuroGranite.",
+        description: "Skontaktuj się z naszym zespołem już dziś, aby omówić swoje potrzeby granitowe i odkryć zalety EuroGranite.",
         button: "Skontaktuj się"
       }
     }
@@ -318,6 +322,15 @@ const About = () => {
 
   return (
     <div className="about-page">
+      <SEO
+        title={seoData?.title}
+        description={seoData?.description}
+        keywords={seoData?.keywords}
+        canonical={seoData?.canonical}
+        ogImage={seoData?.ogImage}
+        currentLanguage={currentLanguage}
+        hreflang={seoData?.hreflang}
+      />
       <Header />
       
       {/* Hero Section */}
@@ -423,7 +436,7 @@ const About = () => {
             </div>
             <div className="about-cta-content-column">
               <p className="about-cta-description">{text.cta.description}</p>
-              <a href="/contact" className="about-cta-button">{text.cta.button}</a>
+              <Link to="/contact#contact-form" className="about-cta-button">{text.cta.button}</Link>
             </div>
           </div>
         </div>

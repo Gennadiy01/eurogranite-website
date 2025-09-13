@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useLanguageStore from '../stores/languageStore';
 import { productsData } from '../constants/productsData';
+import { getSEOData } from '../constants/seoData';
 import ProductCard from '../components/molecules/ProductCard';
 import Header from '../components/organisms/Header/Header';
+import SEO from '../components/atoms/SEO';
 
 const Products = () => {
   const { currentLanguage } = useLanguageStore();
+  const seoData = getSEOData('products', currentLanguage);
+
+  useEffect(() => {
+    // Scroll to top when page loads
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div className="products-page">
+      <SEO
+        title={seoData?.title}
+        description={seoData?.description}
+        keywords={seoData?.keywords}
+        canonical={seoData?.canonical}
+        ogImage={seoData?.ogImage}
+        currentLanguage={currentLanguage}
+        hreflang={seoData?.hreflang}
+      />
       <Header />
       <main className="pt-32">
       {/* Hero Section */}

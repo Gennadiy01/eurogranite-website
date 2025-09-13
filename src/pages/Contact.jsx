@@ -1,11 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import useLanguageStore from '../stores/languageStore'
+import { getSEOData } from '../constants/seoData'
 import Header from '../components/organisms/Header/Header'
 import ContactForm from '../components/molecules/ContactForm'
-import useLanguageStore from '../stores/languageStore'
+import SEO from '../components/atoms/SEO'
 import { contactInfoContent } from '../constants/contactFormData'
 
 const Contact = () => {
   const { currentLanguage } = useLanguageStore()
+  const location = useLocation()
+  const seoData = getSEOData('contact', currentLanguage)
+
+  useEffect(() => {
+    // Scroll to contact form if hash is present
+    if (location.hash === '#contact-form') {
+      setTimeout(() => {
+        const element = document.getElementById('contact-form')
+        if (element) {
+          const isMobile = window.innerWidth <= 768
+          const headerHeight = isMobile ? 80 : 96 // Approximate header height
+          const elementPosition = element.offsetTop - headerHeight - 20 // Extra 20px spacing
+
+          window.scrollTo({
+            top: elementPosition,
+            behavior: 'smooth'
+          })
+        }
+      }, 100) // Small delay to ensure page is fully loaded
+    }
+  }, [location.hash])
   
   const pageContent = {
     en: {
@@ -43,6 +67,15 @@ const Contact = () => {
 
   return (
     <div className="contact-page">
+      <SEO
+        title={seoData?.title}
+        description={seoData?.description}
+        keywords={seoData?.keywords}
+        canonical={seoData?.canonical}
+        ogImage={seoData?.ogImage}
+        currentLanguage={currentLanguage}
+        hreflang={seoData?.hreflang}
+      />
       <Header />
       <main className="pt-24">
         <section className="py-20 bg-neutral-50">
@@ -55,7 +88,7 @@ const Contact = () => {
                 {content.subtitle}
               </p>
             </div>
-            
+
             <div className="grid md-grid-cols-1 lg-grid-cols-3 gap-8 max-w-6xl mx-auto lg-contact-layout">
               {/* Contact Information */}
               <div className="bg-white p-8 rounded-2xl shadow-lg">
@@ -153,7 +186,9 @@ const Contact = () => {
               </div>
               
               {/* Contact Form */}
-              <ContactForm />
+              <div id="contact-form">
+                <ContactForm />
+              </div>
             </div>
           </div>
         </section>

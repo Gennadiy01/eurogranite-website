@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
 import useLanguageStore from '../../../stores/languageStore'
@@ -66,17 +67,7 @@ const Hero = () => {
   const content = heroContent[currentLanguage] || heroContent.en
   
   
-  const handleCatalogClick = () => {
-    // Navigate to products section
-    const element = document.getElementById('products')
-    element?.scrollIntoView({ behavior: 'smooth' })
-  }
   
-  const handleQuoteClick = () => {
-    // Navigate to contact section  
-    const element = document.getElementById('contact')
-    element?.scrollIntoView({ behavior: 'smooth' })
-  }
   
   return (
     <section className="hero-section">
@@ -96,21 +87,23 @@ const Hero = () => {
             
             {/* CTA Buttons */}
             <div className="hero-buttons">
-              <Button 
-                variant="primary"
-                size="large"
-                onClick={handleCatalogClick}
-              >
-                {content.ctaPrimary}
-              </Button>
-              <Button 
-                variant="outline"
-                size="large"
-                onClick={handleQuoteClick}
-                className="hero-button-outline"
-              >
-                {content.ctaSecondary}
-              </Button>
+              <Link to="/products">
+                <Button
+                  variant="primary"
+                  size="large"
+                >
+                  {content.ctaPrimary}
+                </Button>
+              </Link>
+              <Link to="/contact#contact-form">
+                <Button
+                  variant="outline"
+                  size="large"
+                  className="hero-button-outline"
+                >
+                  {content.ctaSecondary}
+                </Button>
+              </Link>
             </div>
             
             {/* Stats */}

@@ -33,14 +33,14 @@ const ProductCard = ({ product }) => {
   // Обробка кліку на текстуру
   const handleTextureClick = () => {
     if (textureData) {
-      openGallery(textureData.type);
+      openGallery(textureData.id);
     }
   };
 
   // Обробка кліку на замовлення
   const handleOrderClick = () => {
-    // Тут буде відкриття форми замовлення або переходу на contact
-    console.log('Order product:', product.id);
+    // Перенаправлення на Contact сторінку
+    window.location.href = '/eurogranite-website/contact';
   };
 
   return (
