@@ -40,8 +40,8 @@ const ProductCard = ({ product }) => {
 
   // Обробка кліку на замовлення
   const handleOrderClick = () => {
-    // Перенаправлення на Contact сторінку
-    window.location.href = '/eurogranite-website/contact';
+    // Перенаправлення на Contact сторінку з фокусом на форму
+    window.location.href = '/eurogranite-website/contact#contact-form';
   };
 
   return (
@@ -49,28 +49,28 @@ const ProductCard = ({ product }) => {
       {/* Зображення продукту */}
       <div className="product-image-container">
         <div className="product-image-wrapper">
-          <picture>
-            <source
-              srcSet={product.image}
-              type="image/webp"
-              onError={(e) => {
-                console.log('WebP failed to load:', product.image);
-              }}
-            />
-            <img
-              src={product.image.replace('.webp', '.jpg')}
-              alt={product.name[currentLanguage]}
-              className="product-image"
-              onLoad={(e) => {
-                console.log('Image loaded:', e.target.currentSrc || e.target.src);
-              }}
-              onError={(e) => {
-                console.log('Image failed to load:', e.target.src);
+          <img
+            src={product.image}
+            alt={product.name[currentLanguage]}
+            className="product-image"
+            onLoad={(e) => {
+              console.log('Image loaded:', e.target.src);
+            }}
+            onError={(e) => {
+              console.log('Image failed to load:', e.target.src);
+              // Спробуємо альтернативний формат
+              const currentSrc = e.target.src;
+              if (currentSrc.includes('.webp')) {
+                e.target.src = currentSrc.replace('.webp', '.jpg');
+              } else if (currentSrc.includes('.jpg')) {
+                e.target.src = currentSrc.replace('.jpg', '.webp');
+              } else {
+                // Якщо все не вдалося, показуємо placeholder
                 e.target.style.display = 'none';
                 e.target.closest('.product-image-wrapper').querySelector('.product-image-placeholder').style.display = 'flex';
-              }}
-            />
-          </picture>
+              }
+            }}
+          />
           <div className="product-image-placeholder" style={{ display: 'none' }}>
             <div className="placeholder-icon">📦</div>
             <div className="placeholder-text">

@@ -2924,7 +2924,7 @@ body {
 }
 
 .texture-name {
-  font-size: 1.25rem;
+  font-size: 18px;
   font-weight: 600;
   color: var(--neutral-900);
   margin: 0;
@@ -3359,7 +3359,7 @@ body {
 }
 
 .texture-info-header-mobile .texture-name {
-  font-size: 1.125rem;
+  font-size: 16px;
   font-weight: 600;
   color: var(--neutral-900);
   margin: 0;
@@ -3484,19 +3484,59 @@ body {
 .product-image-container {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 280px;
   overflow: hidden;
+  border-radius: 0.75rem 0.75rem 0 0;
 }
 
 .product-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.3s ease;
 }
 
 .product-card:hover .product-image {
   transform: scale(1.05);
+}
+
+/* Product Image Wrapper */
+.product-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Product Image Placeholder */
+.product-image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  border: 2px dashed #cbd5e0;
+}
+
+.placeholder-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.6;
+}
+
+.placeholder-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  line-height: 1.4;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 /* Availability Badge */
@@ -3549,7 +3589,7 @@ body {
 }
 
 .product-name {
-  font-size: 1.125rem;
+  font-size: 20px;
   font-weight: 600;
   color: var(--neutral-900);
   margin-bottom: 0.75rem;
@@ -3611,6 +3651,8 @@ body {
   color: var(--neutral-900);
   font-weight: 600;
   font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 18px;
+  vertical-align: inherit;
 }
 
 /* Pricing Section */
@@ -3764,7 +3806,7 @@ body {
   }
   
   .product-name {
-    font-size: 1rem;
+    font-size: 18px;
   }
   
   .price-main {
@@ -3820,7 +3862,7 @@ body {
 
 .customization-option-icon {
   font-size: 1.5rem;
-  filter: grayscale(1) brightness(0) invert(1);
+  color: var(--accent-orange);
 }
 
 .customization-option h3 {

@@ -43,6 +43,117 @@ export const ThermalIcon = ({ size = 16, color = "var(--accent-orange)" }) => (
   </svg>
 );
 
+// SVG іконки для кастомізації
+export const TextureIcon = ({ size = 24, color = "var(--accent-orange)" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    {/* Основний кристал граніту */}
+    <path
+      d="M12 2l8 4-8 14L4 6l8-4z"
+      fill={color}
+      fillOpacity="0.2"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinejoin="round"
+    />
+    {/* Внутрішня структура */}
+    <path d="M12 2v18" stroke={color} strokeWidth="1.5"/>
+    <path d="M4 6l8 4" stroke={color} strokeWidth="1.5"/>
+    <path d="M20 6l-8 4" stroke={color} strokeWidth="1.5"/>
+    {/* Точки включень мінералів */}
+    <circle cx="8" cy="8" r="1" fill={color}/>
+    <circle cx="16" cy="8" r="1" fill={color}/>
+    <circle cx="10" cy="12" r="0.8" fill={color}/>
+    <circle cx="14" cy="12" r="0.8" fill={color}/>
+    <circle cx="12" cy="16" r="1" fill={color}/>
+  </svg>
+);
+
+export const SurfaceIcon = ({ size = 24, color = "var(--accent-orange)" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    {/* Основний блок каменю */}
+    <rect x="2" y="8" width="20" height="10" fill={color} fillOpacity="0.1" stroke={color} strokeWidth="2" rx="1"/>
+
+    {/* Колота поверхня (зубчаста) */}
+    <path
+      d="M2 8l1-2 2 2 1-1 2 1 1-2 2 2 2-1 1 1 2-2 2 2 1-1 1 1"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinejoin="round"
+      fill="none"
+    />
+
+    {/* Пиляна поверхня (рівна) */}
+    <line x1="2" y1="18" x2="22" y2="18" stroke={color} strokeWidth="2"/>
+
+    {/* Термооброблена поверхня (хвилі) */}
+    <path
+      d="M3 10.5c1-0.5 2 0.5 3 0 1-0.5 2 0.5 3 0 1-0.5 2 0.5 3 0 1-0.5 2 0.5 3 0 1-0.5 2 0.5 3 0 1-0.5 2 0.5 3 0"
+      stroke={color}
+      strokeWidth="1.5"
+      fill="none"
+      strokeLinecap="round"
+    />
+
+    {/* Іскри від термообробки */}
+    <path d="M4 12l1-1-1-1" stroke={color} strokeWidth="1"/>
+    <path d="M8 13l1-1-1-1" stroke={color} strokeWidth="1"/>
+    <path d="M16 12l1-1-1-1" stroke={color} strokeWidth="1"/>
+    <path d="M20 13l1-1-1-1" stroke={color} strokeWidth="1"/>
+  </svg>
+);
+
+export const DimensionIcon = ({ size = 24, color = "var(--accent-orange)" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    {/* 3D блок бруківки */}
+    <path
+      d="M4 8l4-2 12 0 0 8-4 2-12 0z"
+      fill={color}
+      fillOpacity="0.1"
+      stroke={color}
+      strokeWidth="2"
+    />
+    {/* Верхня грань */}
+    <path
+      d="M4 8l4-2 12 0-4 2-12 0z"
+      fill={color}
+      fillOpacity="0.2"
+      stroke={color}
+      strokeWidth="1.5"
+    />
+    {/* Бічна грань */}
+    <path
+      d="M20 6v8l-4 2v-8z"
+      fill={color}
+      fillOpacity="0.3"
+      stroke={color}
+      strokeWidth="1.5"
+    />
+
+    {/* Розмірні лінії */}
+    {/* Довжина */}
+    <path d="M4 20h12" stroke={color} strokeWidth="1.5" markerEnd="url(#arrowhead)"/>
+    <path d="M16 20h-12" stroke={color} strokeWidth="1.5" markerEnd="url(#arrowhead)"/>
+    <text x="10" y="22" textAnchor="middle" fill={color} fontSize="6" fontWeight="bold">L</text>
+
+    {/* Ширина */}
+    <path d="M22 6v8" stroke={color} strokeWidth="1.5" markerEnd="url(#arrowhead)"/>
+    <path d="M22 14v-8" stroke={color} strokeWidth="1.5" markerEnd="url(#arrowhead)"/>
+    <text x="23" y="11" textAnchor="start" fill={color} fontSize="6" fontWeight="bold">W</text>
+
+    {/* Висота */}
+    <path d="M2 8v8" stroke={color} strokeWidth="1.5" markerEnd="url(#arrowhead)"/>
+    <path d="M2 16v-8" stroke={color} strokeWidth="1.5" markerEnd="url(#arrowhead)"/>
+    <text x="1" y="13" textAnchor="end" fill={color} fontSize="6" fontWeight="bold">H</text>
+
+    {/* Стрілочки для розмірних ліній */}
+    <defs>
+      <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="3" refY="2" orient="auto">
+        <polygon points="0 0, 6 2, 0 4" fill={color}/>
+      </marker>
+    </defs>
+  </svg>
+);
+
 // Типи обробки поверхні граніту
 export const surfaceFinishTypes = {
   split: {
@@ -293,7 +404,7 @@ export const productsData = {
         de: '29 €/m²',
         pl: '29 €/m²'
       },
-      image: '/eurogranite-website/images/products/korets-extra-100x100x50.webp',
+      image: '/eurogranite-website/images/products/korets-extra-100x100x50.jpg',
       name: {
         ua: 'Корец Екстра пиляно-колота',
         en: 'Korets Extra Sawn-Split',
@@ -644,22 +755,67 @@ export const productsData = {
   // Додаткова інформація про кастомізацію
   customizationOptions: {
     textures: {
-      ua: 'Доступні всі 12 текстур граніту з каталогу',
-      en: 'All 12 granite textures from catalog available',
-      de: 'Alle 12 Granittexturen aus dem Katalog verfügbar',
-      pl: 'Dostępne wszystkie 12 tekstur granitu z katalogu'
+      title: {
+        ua: 'Текстури граніту',
+        en: 'Granite Textures',
+        de: 'Granittexturen',
+        pl: 'Tekstury granitu'
+      },
+      description: {
+        ua: 'Оберіть з 12 унікальних текстур граніту з українських родовищ. Від класичного чорного габро до ексклюзивного зеленого Маславського граніту.',
+        en: 'Choose from 12 unique granite textures from Ukrainian deposits. From classic black gabbro to exclusive green Maslavske granite.',
+        de: 'Wählen Sie aus 12 einzigartigen Granittexturen aus ukrainischen Lagerstätten. Von klassischem schwarzem Gabbro bis zu exklusivem grünem Maslavske-Granit.',
+        pl: 'Wybierz spośród 12 unikalnych tekstur granitu z ukraińskich złóż. Od klasycznego czarnego gabro po ekskluzywny zielony granit Masławski.'
+      },
+      features: {
+        ua: ['12 унікальних текстур', 'Українські родовища', 'Природні відтінки', 'Високоякісний граніт'],
+        en: ['12 unique textures', 'Ukrainian deposits', 'Natural shades', 'High-quality granite'],
+        de: ['12 einzigartige Texturen', 'Ukrainische Lagerstätten', 'Natürliche Farbtöne', 'Hochwertiger Granit'],
+        pl: ['12 unikalnych tekstur', 'Ukraińskie złoża', 'Naturalne odcienie', 'Wysokiej jakości granit']
+      },
+      icon: <TextureIcon />
     },
     finishes: {
-      ua: 'Будь-яка комбінація обробки поверхонь',
-      en: 'Any combination of surface treatments',
-      de: 'Jede Kombination von Oberflächenbehandlungen',
-      pl: 'Dowolna kombinacja obróbek powierzchni'
+      title: {
+        ua: 'Обробка поверхні',
+        en: 'Surface Finishes',
+        de: 'Oberflächenbearbeitungen',
+        pl: 'Wykończenia powierzchni'
+      },
+      description: {
+        ua: 'Комбінуйте різні типи обробки: колота, пиляна та термооброблена поверхня. Створіть унікальний дизайн для вашого проекту.',
+        en: 'Combine different processing types: split, sawn and thermal treated surface. Create unique design for your project.',
+        de: 'Kombinieren Sie verschiedene Bearbeitungsarten: gespaltene, gesägte und thermisch behandelte Oberfläche. Schaffen Sie ein einzigartiges Design für Ihr Projekt.',
+        pl: 'Łącz różne rodzaje obróbki: łupaną, piłowaną i powierzchnię obrabianą termicznie. Stwórz unikalny design dla swojego projektu.'
+      },
+      features: {
+        ua: ['Колота поверхня', 'Пиляна обробка', 'Термообробка', 'Комбіновані варіанти'],
+        en: ['Split surface', 'Sawn processing', 'Thermal treatment', 'Combined options'],
+        de: ['Gespaltene Oberfläche', 'Gesägte Bearbeitung', 'Wärmebehandlung', 'Kombinierte Optionen'],
+        pl: ['Powierzchnia łupana', 'Obróbka piłowana', 'Obróbka termiczna', 'Opcje kombinowane']
+      },
+      icon: <SurfaceIcon />
     },
     sizes: {
-      ua: 'Нестандартні розміри за індивідуальним замовленням',
-      en: 'Custom sizes by individual order',
-      de: 'Individuelle Größen nach Einzelbestellung',
-      pl: 'Niestandardowe rozmiary na indywidualne zamówienie'
+      title: {
+        ua: 'Індивідуальні розміри',
+        en: 'Custom Dimensions',
+        de: 'Individuelle Abmessungen',
+        pl: 'Indywidualne wymiary'
+      },
+      description: {
+        ua: 'Замовте бруківку будь-яких розмірів під ваш проект. Стандартні та нестандартні форми для унікальних архітектурних рішень.',
+        en: 'Order pavers of any size for your project. Standard and custom shapes for unique architectural solutions.',
+        de: 'Bestellen Sie Pflastersteine jeder Größe für Ihr Projekt. Standard- und Sonderformen für einzigartige architektonische Lösungen.',
+        pl: 'Zamów kostkę brukową dowolnych rozmiarów dla swojego projektu. Standardowe i niestandardowe kształty dla unikalnych rozwiązań architektonicznych.'
+      },
+      features: {
+        ua: ['Будь-які розміри', 'Стандартні формати', 'Спеціальні форми', 'Точна геометрія'],
+        en: ['Any dimensions', 'Standard formats', 'Special shapes', 'Precise geometry'],
+        de: ['Beliebige Abmessungen', 'Standardformate', 'Spezielle Formen', 'Präzise Geometrie'],
+        pl: ['Dowolne wymiary', 'Standardowe formaty', 'Specjalne kształty', 'Precyzyjna geometria']
+      },
+      icon: <DimensionIcon />
     }
   }
 };

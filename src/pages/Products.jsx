@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useLanguageStore from '../stores/languageStore';
-import { productsData } from '../constants/productsData';
+import { productsData, TextureIcon, SurfaceIcon, DimensionIcon } from '../constants/productsData';
 import { getSEOData } from '../constants/seoData';
 import ProductCard from '../components/molecules/ProductCard';
 import Header from '../components/organisms/Header/Header';
@@ -106,61 +106,70 @@ const Products = () => {
               {/* Textures */}
               <div className="customization-option">
                 <div className="customization-icon-wrapper">
-                  <span className="customization-option-icon">🎨</span>
+                  <span className="customization-option-icon">
+                    <TextureIcon size={32} />
+                  </span>
                 </div>
                 <h3 className="heading-3 mb-4">
-                  {currentLanguage === 'ua' 
-                    ? 'Текстури' 
-                    : currentLanguage === 'en'
-                    ? 'Textures'
-                    : currentLanguage === 'de'
-                    ? 'Texturen'
-                    : 'Tekstury'
-                  }
+                  {productsData.customizationOptions.textures.title[currentLanguage]}
                 </h3>
-                <p className="text-neutral-700">
-                  {productsData.customizationOptions.textures[currentLanguage]}
+                <p className="text-neutral-700 mb-4">
+                  {productsData.customizationOptions.textures.description[currentLanguage]}
                 </p>
+                <ul className="text-sm text-neutral-600">
+                  {productsData.customizationOptions.textures.features[currentLanguage].map((feature, index) => (
+                    <li key={index} className="mb-1 flex items-center">
+                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-2 flex-shrink-0"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               {/* Surface Finishes */}
               <div className="customization-option">
                 <div className="customization-icon-wrapper">
-                  <span className="customization-option-icon">⚙️</span>
+                  <span className="customization-option-icon">
+                    <SurfaceIcon size={32} />
+                  </span>
                 </div>
                 <h3 className="heading-3 mb-4">
-                  {currentLanguage === 'ua' 
-                    ? 'Обробка поверхні' 
-                    : currentLanguage === 'en'
-                    ? 'Surface Finishes'
-                    : currentLanguage === 'de'
-                    ? 'Oberflächenbearbeitungen'
-                    : 'Wykończenia powierzchni'
-                  }
+                  {productsData.customizationOptions.finishes.title[currentLanguage]}
                 </h3>
-                <p className="text-neutral-700">
-                  {productsData.customizationOptions.finishes[currentLanguage]}
+                <p className="text-neutral-700 mb-4">
+                  {productsData.customizationOptions.finishes.description[currentLanguage]}
                 </p>
+                <ul className="text-sm text-neutral-600">
+                  {productsData.customizationOptions.finishes.features[currentLanguage].map((feature, index) => (
+                    <li key={index} className="mb-1 flex items-center">
+                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-2 flex-shrink-0"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               {/* Custom Sizes */}
               <div className="customization-option">
                 <div className="customization-icon-wrapper">
-                  <span className="customization-option-icon">📐</span>
+                  <span className="customization-option-icon">
+                    <DimensionIcon size={32} />
+                  </span>
                 </div>
                 <h3 className="heading-3 mb-4">
-                  {currentLanguage === 'ua' 
-                    ? 'Розміри' 
-                    : currentLanguage === 'en'
-                    ? 'Dimensions'
-                    : currentLanguage === 'de'
-                    ? 'Abmessungen'
-                    : 'Wymiary'
-                  }
+                  {productsData.customizationOptions.sizes.title[currentLanguage]}
                 </h3>
-                <p className="text-neutral-700">
-                  {productsData.customizationOptions.sizes[currentLanguage]}
+                <p className="text-neutral-700 mb-4">
+                  {productsData.customizationOptions.sizes.description[currentLanguage]}
                 </p>
+                <ul className="text-sm text-neutral-600">
+                  {productsData.customizationOptions.sizes.features[currentLanguage].map((feature, index) => (
+                    <li key={index} className="mb-1 flex items-center">
+                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-2 flex-shrink-0"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
