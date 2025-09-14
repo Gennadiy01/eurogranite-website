@@ -1670,6 +1670,11 @@ body {
 .py-12 { padding-top: 3rem; padding-bottom: 3rem; } /* 48px vertical */
 .py-8 { padding-top: 2rem; padding-bottom: 2rem; } /* 32px vertical */
 
+/* Mobile responsive padding adjustments */
+@media (max-width: 480px) {
+  .py-20 { padding-top: 2.5rem; padding-bottom: 5rem; } /* 40px top, 80px bottom for mobile */
+}
+
 /* Background colors */
 .bg-neutral-50 { background-color: var(--neutral-50); }
 .bg-neutral-100 { background-color: var(--neutral-100); }
