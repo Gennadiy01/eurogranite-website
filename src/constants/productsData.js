@@ -1,6 +1,48 @@
 // Дані продукції EuroGranite - Гранітна бруківка
 // Створено: вересень 2025
 
+// SVG іконки для типів обробки
+export const SplitIcon = ({ size = 16, color = "var(--accent-orange)" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <path
+      d="M2 8L8 14L14 8M2 2L8 8L14 2"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const SawnIcon = ({ size = 16, color = "var(--accent-orange)" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <rect
+      x="2" y="6" width="12" height="4"
+      fill={color}
+      rx="1"
+    />
+    <rect
+      x="4" y="4" width="8" height="8"
+      stroke={color}
+      strokeWidth="1.5"
+      fill="none"
+      rx="1"
+    />
+  </svg>
+);
+
+export const ThermalIcon = ({ size = 16, color = "var(--accent-orange)" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <path
+      d="M8 2v12M5 4l6 0M4 6l8 0M4 10l8 0M5 12l6 0"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <circle cx="8" cy="8" r="1.5" fill={color} />
+  </svg>
+);
+
 // Типи обробки поверхні граніту
 export const surfaceFinishTypes = {
   split: {
@@ -17,7 +59,7 @@ export const surfaceFinishTypes = {
       de: 'Natürliche Textur mit Relief-Oberfläche',
       pl: 'Naturalna tekstura z powierzchnią reliefową'
     },
-    icon: '⛏️'
+    icon: <SplitIcon />
   },
   sawn: {
     id: 'sawn',
@@ -33,7 +75,7 @@ export const surfaceFinishTypes = {
       de: 'Ebene Oberfläche nach Diamantschnitt',
       pl: 'Równa powierzchnia po cięciu diamentowym'
     },
-    icon: '🔷'
+    icon: <SawnIcon />
   },
   thermal: {
     id: 'thermal',
@@ -49,7 +91,7 @@ export const surfaceFinishTypes = {
       de: 'Rutschfeste Oberfläche nach Wärmebehandlung',
       pl: 'Powierzchnia antypoślizgowa po obróbce termicznej'
     },
-    icon: '🔥'
+    icon: <ThermalIcon />
   }
 };
 
@@ -74,15 +116,20 @@ export const combinedFinishTypes = {
       sides: 'sawn',
       bottom: 'sawn'
     },
-    icon: '🔷🔥'
+    icon: (
+      <div style={{ display: 'flex', gap: '2px' }}>
+        <SawnIcon />
+        <ThermalIcon />
+      </div>
+    )
   },
   'split-sawn-thermal': {
     id: 'split-sawn-thermal',
     name: {
-      ua: '2 сторони колоті, 2 пиляні + термо верх',
-      en: '2 sides split, 2 sawn + thermal top',
-      de: '2 Seiten gespalten, 2 gesägt + therm. Oberseite',
-      pl: '2 boki łupane, 2 piłowane + termo góra'
+      ua: '4 сторони колоті, 2 пиляні',
+      en: '4 sides split, 2 sawn',
+      de: '4 Seiten gespalten, 2 gesägt',
+      pl: '4 boki łupane, 2 piłowane'
     },
     description: {
       ua: 'Комбінована обробка для особливої текстури',
@@ -98,20 +145,54 @@ export const combinedFinishTypes = {
       right: 'sawn',
       bottom: 'sawn'
     },
-    icon: '⛏️🔷🔥'
+    icon: (
+      <div style={{ display: 'flex', gap: '2px' }}>
+        <SplitIcon />
+        <SawnIcon />
+      </div>
+    )
+  },
+  'split-sawn-pencil': {
+    id: 'split-sawn-pencil',
+    name: {
+      ua: '2 сторони колоті, 4 сторони пиляні',
+      en: '2 sides split, 4 sides sawn',
+      de: '2 Seiten gespalten, 4 Seiten gesägt',
+      pl: '2 boki łupane, 4 boki piłowane'
+    },
+    description: {
+      ua: 'Спеціальна обробка для бруківки з олівця',
+      en: 'Special processing for pencil blocks',
+      de: 'Spezielle Bearbeitung für Bleistift-Blöcke',
+      pl: 'Specjalna obróbka dla bloków ołówkowych'
+    },
+    surfaces: {
+      top: 'split',
+      bottom: 'split',
+      front: 'sawn',
+      back: 'sawn',
+      left: 'sawn',
+      right: 'sawn'
+    },
+    icon: (
+      <div style={{ display: 'flex', gap: '2px' }}>
+        <SplitIcon />
+        <SawnIcon />
+      </div>
+    )
   }
 };
 
-// Стандартні розміри бруківки
+// Стандартні розміри бруківки з лендінгу Euro-Granite
 export const standardSizes = {
-  small: { length: 10, width: 10, height: 5, unit: 'см' },
-  medium: { length: 20, width: 10, height: 5, unit: 'см' },
-  large: { length: 30, width: 15, height: 5, unit: 'см' },
-  square: { length: 15, width: 15, height: 5, unit: 'см' },
-  custom: { length: 'custom', width: 'custom', height: 'custom', unit: 'см' }
+  paver_200x100x50: { length: 200, width: 100, height: 50, unit: 'мм' },
+  paver_100x100x50: { length: 100, width: 100, height: 50, unit: 'мм' },
+  paver_100x100x60: { length: 100, width: 100, height: 60, unit: 'мм' },
+  paver_100x100x80: { length: 100, width: 100, height: 80, unit: 'мм' },
+  custom: { length: 'custom', width: 'custom', height: 'custom', unit: 'мм' }
 };
 
-// Дані продуктів - зразки гранітної бруківки
+// Дані продуктів - реальний каталог гранітної бруківки Euro-Granite
 export const productsData = {
   category: 'granite-pavers',
   categoryName: {
@@ -127,168 +208,436 @@ export const productsData = {
     pl: 'Wysokiej jakości kostka granitowa z różnymi typami wykończenia powierzchni. Każdy produkt może być wykonany na zamówienie z dowolnej dostępnej tekstury granitu.'
   },
   samples: [
+    // 1. Габро 200×100×50 - повний розпил + термообробка
     {
-      id: 'paver-gabbro-split-medium',
-      textureId: 'black-001', // зв'язка з graniteData.js
-      finishType: 'split',
-      size: 'medium',
-      dimensions: standardSizes.medium,
+      id: 'paver-gabbro-sawn-thermal-200x100x50',
+      textureId: 'black-001',
+      finishType: 'sawn-thermal-top',
+      size: 'paver_200x100x50',
+      dimensions: standardSizes.paver_200x100x50,
       price: {
-        ua: '450 грн/м²',
-        en: '$12.50/sqft',
-        de: '15.80 €/m²',
-        pl: '52 zł/m²'
+        ua: '1140 грн/м²',
+        en: '21 €/m²',
+        de: '21 €/m²',
+        pl: '21 €/m²'
       },
-      priceNote: {
-        ua: 'Ціна залежить від складності замовлення',
-        en: 'Price depends on order complexity',
-        de: 'Preis abhängig von der Bestellkomplexität',
-        pl: 'Cena zależy od złożoności zamówienia'
-      },
-      image: '/eurogranite-website/images/textures/black/gabro.jpg',
-      images: [
-        '/eurogranite-website/images/textures/black/gabro.jpg',
-        '/eurogranite-website/images/textures/thumbs/black/gabro.jpg'
-      ],
+      image: '/eurogranite-website/images/products/gabro-200x100x50.jpg',
       name: {
-        ua: 'Бруківка Габро колота 20x10x5см',
-        en: 'Gabbro Split Paver 20x10x5cm',
-        de: 'Gabbro Gespalten Pflasterstein 20x10x5cm',
-        pl: 'Kostka Gabro Łupana 20x10x5cm'
+        ua: 'Габро пиляна з термообробкою',
+        en: 'Gabbro Sawn with Thermal Treatment',
+        de: 'Gabbro gesägt mit Wärmebehandlung',
+        pl: 'Gabro piłowane z obróbką termiczną'
       },
       description: {
-        ua: 'Елегантна чорна бруківка з габро з природною колотою поверхнею. Ідеальна для створення преміальних пішохідних зон та доріжок.',
-        en: 'Elegant black gabbro paver with natural split surface. Perfect for creating premium pedestrian areas and walkways.',
-        de: 'Eleganter schwarzer Gabbro-Pflasterstein mit natürlicher gespaltener Oberfläche. Perfekt für die Gestaltung von Premium-Fußgängerzonen und Gehwegen.',
-        pl: 'Elegancka czarna kostka z gabro z naturalną łupaną powierzchnią. Idealna do tworzenia ekskluzywnych stref pieszych i chodników.'
+        ua: 'Бруківка з чорного граніту габро, пиляна з усіх боків з термообробленою верхньою поверхнею',
+        en: 'Black granite gabbro paving stones, sawn on all sides with flame-treated top surface',
+        de: 'Schwarze Granit-Gabbro-Pflastersteine, beidseitig gesägt mit wärmebehandelter Oberseite',
+        pl: 'Kostka brukowa z czarnego granitu gabro, piłowana ze wszystkich stron z płomieniowaną powierzchnią górną'
       },
       features: {
-        ua: ['Природна антислизька поверхня', 'Стійкість до морозу', 'Низьке водопоглинання'],
-        en: ['Natural anti-slip surface', 'Frost resistance', 'Low water absorption'],
-        de: ['Natürliche rutschfeste Oberfläche', 'Frostbeständigkeit', 'Geringe Wasseraufnahme'],
-        pl: ['Naturalna powierzchnia antypoślizgowa', 'Odporność na mróz', 'Niska nasiąkliwość wodna']
-      },
-      applications: {
-        ua: ['Пішохідні зони', 'Паркові доріжки', 'Приватні подвір\'я'],
-        en: ['Pedestrian areas', 'Park walkways', 'Private courtyards'],
-        de: ['Fußgängerzonen', 'Parkwege', 'Private Innenhöfe'],
-        pl: ['Strefy piesze', 'Ścieżki parkowe', 'Prywatne dziedzińce']
+        ua: ['Чорний граніт габро', 'Повний розпил + термообробка верхньої поверхні', 'Антислизька поверхня'],
+        en: ['Black granite gabbro', 'Full saw + thermal treatment of top surface', 'Anti-slip surface'],
+        de: ['Schwarzer Granit Gabbro', 'Vollständiger Schnitt + Wärmebehandlung der Oberseite', 'Rutschfeste Oberfläche'],
+        pl: ['Czarny granit gabro', 'Pełne cięcie + obróbka termiczna górnej powierzchni', 'Powierzchnia antypoślizgowa']
       },
       inStock: true,
       customizable: true
     },
+
+    // 2. Маславський зелений граніт 200×100×50
     {
-      id: 'paver-rosa-sawn-thermal-square',
+      id: 'paver-maslavske-green-200x100x50',
+      textureId: 'green-001',
+      finishType: 'sawn-thermal-top',
+      size: 'paver_200x100x50',
+      dimensions: standardSizes.paver_200x100x50,
+      price: {
+        ua: '2250 грн/м²',
+        en: '41 €/m²',
+        de: '41 €/m²',
+        pl: '41 €/m²'
+      },
+      image: '/eurogranite-website/images/products/maslavske-200x100x50.jpg',
+      name: {
+        ua: 'Зелений граніт Маславського родовища',
+        en: 'Green Granite from Maslavske Deposit',
+        de: 'Grüner Granit aus Maslavske Lagerstätte',
+        pl: 'Zielony granit ze złoża Masławskiego'
+      },
+      description: {
+        ua: 'Бруківка з зеленого граніту Маславського родовища, пиляна з усіх боків з термообробленою верхньою поверхнею',
+        en: 'Green granite paving stones from Maslavske deposit, sawn on all sides with flame-treated top surface',
+        de: 'Grüner Granit Verde Olive Pflastersteine, beidseitig gesägt, Oberseite geflammt',
+        pl: 'Kostka brukowa z zielonego granitu ze złoża Masławskiego, piłowana ze wszystkich stron z płomieniowaną powierzchnią górną'
+      },
+      features: {
+        ua: ['Зелений граніт (Verde Oliva)', 'Маславське родовище', 'Повний розпил + термообробка'],
+        en: ['Green granite (Verde Oliva)', 'Maslavske deposit', 'Full saw + thermal treatment'],
+        de: ['Grüner Granit (Verde Olive)', 'Maslavske Lagerstätte', 'Vollschnitt + Wärmebehandlung'],
+        pl: ['Zielony granit (Verde Oliva)', 'Złoże Masławskie', 'Pełne cięcie + obróbka termiczna']
+      },
+      inStock: true,
+      customizable: true
+    },
+
+    // 3. Корец Екстра пиляно-колота 100×100×50
+    {
+      id: 'paver-korets-extra-mixed-100x100x50',
+      textureId: 'red-brown-002',
+      finishType: 'split-sawn-thermal',
+      size: 'paver_100x100x50',
+      dimensions: standardSizes.paver_100x100x50,
+      price: {
+        ua: '1630 грн/м²',
+        en: '29 €/m²',
+        de: '29 €/m²',
+        pl: '29 €/m²'
+      },
+      image: '/eurogranite-website/images/products/korets-extra-100x100x50.webp',
+      name: {
+        ua: 'Корец Екстра пиляно-колота',
+        en: 'Korets Extra Sawn-Split',
+        de: 'Korets Extra gesägt-gespalten',
+        pl: 'Korec Extra piłowano-łupane'
+      },
+      description: {
+        ua: 'Бруківка з червоно-коричневого граніту Корецького родовища, лицьова сторона, низ та два бока розпиляні, два протилежні бока розколоті, верхня частина термічно оброблена',
+        en: 'Red-brown granite paving stones from Korets deposit, front side, bottom and two sides sawn, two opposite sides split, top surface flame-treated',
+        de: 'Rotbrauner Granit Rosa Raveno Extra Pflastersteine, Vorderseite, Unterseite zwei gegenüberliegende Seiten gesägt, zwei gegenüberliegende Seiten gespalten, Oberseite geflammt',
+        pl: 'Kostka brukowa z czerwono-brązowego granitu ze złoża Koreckiego, strona licowa, spód i dwa boki piłowane, dwa przeciwległe boki łupane, górna część płomieniowana'
+      },
+      features: {
+        ua: ['Червоно-коричневий граніт (Rosa Ravena Extra)', 'Корецьке родовище', 'Пиляно-колота зі смуги'],
+        en: ['Red-brown granite (Rosa Ravena Extra)', 'Korets deposit', 'Sawn-split from strip'],
+        de: ['Rotbrauner Granit (Rosa Raveno Extra)', 'Korets Lagerstätte', 'Gesägt-gespalten aus Streifen'],
+        pl: ['Czerwono-brązowy granit (Rosa Ravena Extra)', 'Złoże Koreckie', 'Piłowano-łupane z paska']
+      },
+      inStock: true,
+      customizable: true
+    },
+
+    // 4. Корец світлий повнопил 200×100×50
+    {
+      id: 'paver-korets-light-sawn-200x100x50',
       textureId: 'red-brown-002',
       finishType: 'sawn-thermal-top',
-      size: 'square',
-      dimensions: standardSizes.square,
+      size: 'paver_200x100x50',
+      dimensions: standardSizes.paver_200x100x50,
       price: {
-        ua: '580 грн/м²',
-        en: '$16.20/sqft',
-        de: '19.50 €/m²',
-        pl: '67 zł/m²'
+        ua: '1770 грн/м²',
+        en: '32 €/m²',
+        de: '32 €/m²',
+        pl: '32 €/m²'
       },
-      priceNote: {
-        ua: 'Комбінована обробка - підвищена вартість',
-        en: 'Combined processing - premium pricing',
-        de: 'Kombinierte Bearbeitung - Premium-Preis',
-        pl: 'Łączona obróbka - cena premium'
-      },
-      image: '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
-      images: [
-        '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
-        '/eurogranite-website/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg'
-      ],
+      image: '/eurogranite-website/images/products/korets-light-200x100x50.jpg',
       name: {
-        ua: 'Бруківка Rosa Ravenna пиляна+термо 15x15x5см',
-        en: 'Rosa Ravenna Sawn+Thermal Paver 15x15x5cm',
-        de: 'Rosa Ravenna Gesägt+Therm. Pflaster 15x15x5cm',
-        pl: 'Kostka Rosa Ravenna Piłowana+Termo 15x15x5cm'
+        ua: 'Корец світлий повнопил',
+        en: 'Korets Light Full Sawn',
+        de: 'Korets Hell vollständig gesägt',
+        pl: 'Korec jasny w pełni piłowany'
       },
       description: {
-        ua: 'Преміальна рожева бруківка з комбінованою обробкою. Пиляні сторони забезпечують рівність укладання, термооброблений верх - безпеку ходіння.',
-        en: 'Premium pink paver with combined processing. Sawn sides ensure even laying, thermally treated top provides walking safety.',
-        de: 'Premium rosa Pflasterstein mit kombinierter Bearbeitung. Gesägte Seiten gewährleisten gleichmäßiges Verlegen, thermisch behandelte Oberseite bietet Gehsicherheit.',
-        pl: 'Ekskluzywna różowa kostka z łączoną obróbką. Piłowane boki zapewniają równe układanie, termicznie obrobiona góra - bezpieczeństwo chodzenia.'
+        ua: 'Червоно-коричневий корецький граніт, бруківка пиляна з усіх сторін, термооброблена верхня поверхня',
+        en: 'Red-brown Korets granite paving stones, sawn on all sides, flame-treated top surface',
+        de: 'Rotbrauner Granit Rosa Raveno Extra Pflastersteine beidseitig gesägt, Oberseite wärmebehandelt',
+        pl: 'Czerwono-brązowa kostka granitowa z Korca, piłowana ze wszystkich stron, płomieniowana powierzchnia górna'
       },
       features: {
-        ua: ['Комбінована обробка поверхні', 'Унікальний рожевий відтінок', 'Максимальна безпека'],
-        en: ['Combined surface treatment', 'Unique pink shade', 'Maximum safety'],
-        de: ['Kombinierte Oberflächenbehandlung', 'Einzigartiger rosa Farbton', 'Maximale Sicherheit'],
-        pl: ['Łączona obróbka powierzchni', 'Unikalny różowy odcień', 'Maksymalne bezpieczeństwo']
+        ua: ['Червоно-коричневий граніт (Rosa Ravena Extra)', 'Корецьке родовище', 'Повний розпил + термообробка'],
+        en: ['Red-brown granite (Rosa Ravena Extra)', 'Korets deposit', 'Full saw + thermal treatment'],
+        de: ['Rotbrauner Granit (Rosa Raveno Extra)', 'Korets Lagerstätte', 'Vollschnitt + Wärmebehandlung'],
+        pl: ['Czerwono-brązowy granit (Rosa Ravena Extra)', 'Złoże Koreckie', 'Pełne cięcie + obróbka termiczna']
       },
-      applications: {
-        ua: ['Елітні об\'єкти', 'Торгові центри', 'Ресторанні тераси'],
-        en: ['Elite facilities', 'Shopping centers', 'Restaurant terraces'],
-        de: ['Elite-Anlagen', 'Einkaufszentren', 'Restaurant-Terrassen'],
-        pl: ['Obiekty elitarne', 'Centra handlowe', 'Tarasy restauracyjne']
-      },
-      inStock: false,
-      customizable: true,
-      leadTime: {
-        ua: '14-21 робочий день',
-        en: '14-21 business days',
-        de: '14-21 Arbeitstage',
-        pl: '14-21 dni roboczych'
-      }
+      inStock: true,
+      customizable: true
     },
+
+    // 5. Омелянівський граніт 200×100×50
     {
-      id: 'paver-labradorite-split-sawn-large',
+      id: 'paver-omelyanivske-200x100x50',
+      textureId: 'red-brown-003',
+      finishType: 'sawn-thermal-top',
+      size: 'paver_200x100x50',
+      dimensions: standardSizes.paver_200x100x50,
+      price: {
+        ua: '1920 грн/м²',
+        en: '35 €/m²',
+        de: '35 €/m²',
+        pl: '35 €/m²'
+      },
+      image: '/eurogranite-website/images/products/omelyanivske-200x100x50.jpg',
+      name: {
+        ua: 'Омелянівський граніт',
+        en: 'Omelyanivske Granite',
+        de: 'Omelyanivske Granit',
+        pl: 'Granit omelianowski'
+      },
+      description: {
+        ua: 'Бруківка з червоно-коричневого граніту Омелянівського родовища, пиляна з усіх боків з термообробленою верхньою поверхнею',
+        en: 'Red-brown granite paving stones from Omelyanivske deposit, sawn on all sides with flame-treated top surface',
+        de: 'Rotbrauner Granit Rosso Toledo Pflastersteine, beidseitig gesägt, Oberseite geflammt',
+        pl: 'Kostka brukowa z czerwono-brązowego granitu ze złoża Omelianowskiego, piłowana ze wszystkich stron z płomieniowaną powierzchnią górną'
+      },
+      features: {
+        ua: ['Червоно-коричневий граніт (Rosso Toledo)', 'Омелянівське родовище', 'Повний розпил + термообробка'],
+        en: ['Red-brown granite (Rosso Toledo)', 'Omelyanivske deposit', 'Full saw + thermal treatment'],
+        de: ['Rotbrauner Granit (Rosso Toledo)', 'Omelyanivske Lagerstätte', 'Vollschnitt + Wärmebehandlung'],
+        pl: ['Czerwono-brązowy granit (Rosso Toledo)', 'Złoże Omelianowskie', 'Pełne cięcie + obróbka termiczna']
+      },
+      inStock: true,
+      customizable: true
+    },
+
+    // 6. Лабрадорит змішаний 100×100×60
+    {
+      id: 'paver-labradorite-mixed-100x100x60',
       textureId: 'labradorite-001',
       finishType: 'split-sawn-thermal',
-      size: 'large',
-      dimensions: standardSizes.large,
+      size: 'paver_100x100x60',
+      dimensions: standardSizes.paver_100x100x60,
       price: {
-        ua: '720 грн/м²',
-        en: '$20.00/sqft',
-        de: '24.30 €/m²',
-        pl: '83 zł/m²'
+        ua: '600 грн/м²',
+        en: '15 €/m²',
+        de: '15 €/m²',
+        pl: '15 €/m²'
       },
-      priceNote: {
-        ua: 'Рідкісна текстура - ексклюзивна ціна',
-        en: 'Rare texture - exclusive pricing',
-        de: 'Seltene Textur - Exklusivpreis',
-        pl: 'Rzadka tekstura - cena ekskluzywna'
-      },
-      image: '/eurogranite-website/images/textures/labradorite/labro.jpg',
-      images: [
-        '/eurogranite-website/images/textures/labradorite/labro.jpg',
-        '/eurogranite-website/images/textures/thumbs/labradorite/labro.jpg'
-      ],
+      image: '/eurogranite-website/images/products/labradorite-mixed-100x100x60.jpg',
       name: {
-        ua: 'Бруківка Лабрадорит мікс-обробка 30x15x5см',
-        en: 'Labradorite Mixed-Finish Paver 30x15x5cm',
-        de: 'Labradorit Misch-Finish Pflaster 30x15x5cm',
-        pl: 'Kostka Labradoryt Mieszane wykończenie 30x15x5cm'
+        ua: 'Лабрадорит змішаний',
+        en: 'Labradorite Mixed',
+        de: 'Labradorit gemischt',
+        pl: 'Labradoryt mieszany'
       },
       description: {
-        ua: 'Унікальна бруківка з українського лабрадориту з комбінованою обробкою поверхонь. Створює неповторний візуальний ефект з райдужними переливами.',
-        en: 'Unique paver from Ukrainian labradorite with combined surface treatment. Creates unrepeatable visual effect with rainbow iridescence.',
-        de: 'Einzigartiger Pflasterstein aus ukrainischem Labradorit mit kombinierter Oberflächenbehandlung. Schafft unwiederholbaren visuellen Effekt mit Regenbogen-Irisierung.',
-        pl: 'Unikalna kostka z ukraińskiego labradoryt z łączoną obróbką powierzchni. Tworzy niepowtarzalny efekt wizualny z tęczową iryzacją.'
+        ua: 'Чорна гранітна бруківка з лабрадориту, лицьова сторона, низ, дві протилежні сторони розколоті, дві протилежні сторони пиляні',
+        en: 'Black granite labradorite paving stones, front side, bottom, two opposite sides split, two opposite sides sawn',
+        de: 'Schwarze Granit Labradorite Volga Blue Pflastersteine, Vorderseite, Unterseite, zwei gegenüberliegende Seiten gespalten, zwei gegenüberliegende Seiten gesägt',
+        pl: 'Czarna kostka granitowa z labradorytu, strona licowa, spód, dwie przeciwległe strony łupane, dwie przeciwległe strony piłowane'
       },
       features: {
-        ua: ['Лабрадоресценція (райдужні переливи)', 'Ексклюзивна комбінована обробка', 'Великий формат'],
-        en: ['Labradorescence (rainbow iridescence)', 'Exclusive combined treatment', 'Large format'],
-        de: ['Labradoreszenz (Regenbogen-Irisierung)', 'Exklusive kombinierte Behandlung', 'Großformat'],
-        pl: ['Labradorescencja (tęczowa iryzacja)', 'Ekskluzywna łączona obróbka', 'Duży format']
+        ua: ['Чорний лабрадорит (Volga Blue)', 'Колота екстра (змішаний тип)', 'Колота покращена'],
+        en: ['Black labradorite (Volga Blue)', 'Split extra (mixed type)', 'Split improved'],
+        de: ['Schwarzer Labradorit (Volga Blue)', 'Gespaltene Extra (gemischter Typ)', 'Gespaltene verbessert'],
+        pl: ['Czarny labradoryt (Volga Blue)', 'Łupane extra (typ mieszany)', 'Łupane ulepszone']
       },
-      applications: {
-        ua: ['Преміальні проекти', 'Музеї та галереї', 'Приватні маєтки'],
-        en: ['Premium projects', 'Museums and galleries', 'Private estates'],
-        de: ['Premium-Projekte', 'Museen und Galerien', 'Private Anwesen'],
-        pl: ['Projekty premium', 'Muzea i galerie', 'Prywatne posiadłości']
+      inStock: true,
+      customizable: true
+    },
+
+    // 7. Покостівський граніт 200×100×50
+    {
+      id: 'paver-pokostivka-200x100x50',
+      textureId: 'gray-001',
+      finishType: 'sawn-thermal-top',
+      size: 'paver_200x100x50',
+      dimensions: standardSizes.paver_200x100x50,
+      price: {
+        ua: '1470 грн/м²',
+        en: '27 €/m²',
+        de: '27 €/m²',
+        pl: '27 €/m²'
       },
-      inStock: false,
-      customizable: true,
-      leadTime: {
-        ua: '21-30 робочих днів',
-        en: '21-30 business days',
-        de: '21-30 Arbeitstage',
-        pl: '21-30 dni roboczych'
+      image: '/eurogranite-website/images/products/pokostivka-200x100x50.jpg',
+      name: {
+        ua: 'Покостівський граніт',
+        en: 'Pokostivka Granite',
+        de: 'Pokostivka Granit',
+        pl: 'Granit pokostowski'
       },
-      isExclusive: true
+      description: {
+        ua: 'Сірий граніт покостівка, бруківка пиляна з усіх сторін, термооброблена верхня поверхня',
+        en: 'Grey granite Pokostivka paving stones, sawn on all sides, flame-treated top surface',
+        de: 'Grauer Granit Grey Ukraine Pflastersteine beidseitig gesägt, Oberseite geflammt',
+        pl: 'Szara kostka granitowa pokostowska, piłowana ze wszystkich stron, płomieniowana powierzchnia górna'
+      },
+      features: {
+        ua: ['Сірий граніт (Grey Ukraine)', 'Покостівське родовище', 'Повний розпил + термообробка'],
+        en: ['Grey granite (Grey Ukraine)', 'Pokostivka deposit', 'Full saw + thermal treatment'],
+        de: ['Grauer Granit (Grey Ukraine)', 'Pokostivka Lagerstätte', 'Vollschnitt + Wärmebehandlung'],
+        pl: ['Szary granit (Grey Ukraine)', 'Złoże Pokostowskie', 'Pełne cięcie + obróbka termiczna']
+      },
+      inStock: true,
+      customizable: true
+    },
+
+    // 8. Межерицький граніт 200×100×50
+    {
+      id: 'paver-mezheritske-200x100x50',
+      textureId: 'red-brown-008',
+      finishType: 'sawn-thermal-top',
+      size: 'paver_200x100x50',
+      dimensions: standardSizes.paver_200x100x50,
+      price: {
+        ua: '2470 грн/м²',
+        en: '45 €/m²',
+        de: '45 €/m²',
+        pl: '45 €/m²'
+      },
+      image: '/eurogranite-website/images/products/mezheritske-200x100x50.jpg',
+      name: {
+        ua: 'Межерицький граніт',
+        en: 'Mezheritske Granite',
+        de: 'Mezheritske Granit',
+        pl: 'Granit mieżerycki'
+      },
+      description: {
+        ua: 'Бруківка з червоно-коричневого граніту Межерицького родовища, пиляна з усіх боків з термообробленою верхньою поверхнею',
+        en: 'Red-brown granite paving stones from Mezheritske deposit, sawn on all sides with flame-treated top surface',
+        de: 'Rotbrauner Granit Flower of Ukraine Pflastersteine, beidseitig gesägt, Oberseite geflammt',
+        pl: 'Kostka brukowa z czerwono-brązowego granitu ze złoża Mieżeryckiego, piłowana ze wszystkich stron z płomieniowaną powierzchnią górną'
+      },
+      features: {
+        ua: ['Червоно-коричневий граніт (Flower of Ukraine)', 'Межерицьке родовище', 'Повний розпил + термообробка'],
+        en: ['Red-brown granite (Flower of Ukraine)', 'Mezheritske deposit', 'Full saw + thermal treatment'],
+        de: ['Rotbrauner Granit (Flower of Ukraine)', 'Mezheritske Lagerstätte', 'Vollschnitt + Wärmebehandlung'],
+        pl: ['Czerwono-brązowy granit (Flower of Ukraine)', 'Złoże Mieżeryckie', 'Pełne cięcie + obróbka termiczna']
+      },
+      inStock: true,
+      customizable: true
+    },
+
+    // 9. Корец колотий з олівця 100×100×80
+    {
+      id: 'paver-korets-split-pencil-100x100x80',
+      textureId: 'red-brown-002',
+      finishType: 'split-sawn-pencil',
+      size: 'paver_100x100x80',
+      dimensions: standardSizes.paver_100x100x80,
+      price: {
+        ua: '1600 грн/м²',
+        en: '32 €/m²',
+        de: '32 €/m²',
+        pl: '32 €/m²'
+      },
+      image: '/eurogranite-website/images/products/korets-split-pencil-100x100x80.jpg',
+      name: {
+        ua: 'Корец колотий з олівця',
+        en: 'Korets Split from Pencil',
+        de: 'Korets aus Bleistift gespalten',
+        pl: 'Korec łupany z ołówka'
+      },
+      description: {
+        ua: 'Бруківка з червоно-коричневого граніту Корецького родовища, лицьова сторона та низ колоті, всі бока пиляні (бруківка колота з олівця)',
+        en: 'Red-brown granite paving stones from Korets deposit, front side and bottom split, all sides sawn (split from pencil blocks)',
+        de: 'Rotbrauner Granit Rosa Raveno Extra Pflastersteine, Vorderseite, Unterseite gespalten, alle Seiten gesägt',
+        pl: 'Kostka brukowa z czerwono-brązowego granitu ze złoża Koreckiego, strona licowa i spód łupane, wszystkie boki piłowane (kostka łupana z ołówka)'
+      },
+      features: {
+        ua: ['Червоно-коричневий граніт (Rosa Ravena Extra)', 'Корецьке родовище', 'Колота з олівця'],
+        en: ['Red-brown granite (Rosa Ravena Extra)', 'Korets deposit', 'Split from pencil'],
+        de: ['Rotbrauner Granit (Rosa Raveno Extra)', 'Korets Lagerstätte', 'Aus Bleistift gespalten'],
+        pl: ['Czerwono-brązowy granit (Rosa Ravena Extra)', 'Złoże Koreckie', 'Łupane z ołówka']
+      },
+      inStock: true,
+      customizable: true
+    },
+
+    // 10. Лабрадорит повнопил 200×100×50
+    {
+      id: 'paver-labradorite-sawn-200x100x50',
+      textureId: 'labradorite-001',
+      finishType: 'sawn-thermal-top',
+      size: 'paver_200x100x50',
+      dimensions: standardSizes.paver_200x100x50,
+      price: {
+        ua: '1050 грн/м²',
+        en: '19 €/m²',
+        de: '19 €/m²',
+        pl: '19 €/m²'
+      },
+      image: '/eurogranite-website/images/products/labradorite-sawn-200x100x50.jpg',
+      name: {
+        ua: 'Лабрадорит повнопил',
+        en: 'Labradorite Full Sawn',
+        de: 'Labradorit vollständig gesägt',
+        pl: 'Labradoryt w pełni piłowany'
+      },
+      description: {
+        ua: 'Чорна гранітна бруківка з лабрадориту, пиляна з усіх сторін, термооброблена верхня поверхня',
+        en: 'Black granite labradorite paving stones, sawn on all sides, flame-treated top surface',
+        de: 'Schwarze Granit Labradorite Volga Blue Pflastersteine, beidseitig gesägt, Oberseite geflammt',
+        pl: 'Czarna kostka granitowa z labradorytu, piłowana ze wszystkich stron, płomieniowana powierzchnia górna'
+      },
+      features: {
+        ua: ['Чорний лабрадорит (Volga Blue)', 'Повний розпил + термообробка', 'Термооброблена поверхня'],
+        en: ['Black labradorite (Volga Blue)', 'Full saw + thermal treatment', 'Thermally treated surface'],
+        de: ['Schwarzer Labradorit (Volga Blue)', 'Vollschnitt + Wärmebehandlung', 'Wärmebehandelte Oberfläche'],
+        pl: ['Czarny labradoryt (Volga Blue)', 'Pełne cięcie + obróbka termiczna', 'Powierzchnia termicznie obrobiona']
+      },
+      inStock: true,
+      customizable: true
+    },
+
+    // 11. Човнівський граніт 200×100×50
+    {
+      id: 'paver-chovnivske-200x100x50',
+      textureId: 'green-001',
+      finishType: 'sawn-thermal-top',
+      size: 'paver_200x100x50',
+      dimensions: standardSizes.paver_200x100x50,
+      price: {
+        ua: '2200 грн/м²',
+        en: '40 €/m²',
+        de: '40 €/m²',
+        pl: '40 €/m²'
+      },
+      image: '/eurogranite-website/images/products/chovnivske-200x100x50.jpg',
+      name: {
+        ua: 'Човнівський граніт',
+        en: 'Chovnivske Granite',
+        de: 'Chovnivske Granit',
+        pl: 'Granit czownowski'
+      },
+      description: {
+        ua: 'Світло-зелена гранітна бруківка Човнівського родовища, розпиляна з кожного боку, верхня частина термооброблена',
+        en: 'Light green granite paving stones from Chovnivske deposit, sawn on each side, top part flame-treated',
+        de: 'Hellgrüner Granit Chovnovske Pflastersteine, beidseitig gesägt, Oberseite geflammt',
+        pl: 'Jasno-zielona kostka granitowa ze złoża Czownowskiego, piłowana z każdej strony, górna część płomieniowana'
+      },
+      features: {
+        ua: ['Світло-зелений граніт', 'Човнівське родовище', 'Повний розпил + термообробка'],
+        en: ['Light green granite', 'Chovnivske deposit', 'Full saw + thermal treatment'],
+        de: ['Hellgrüner Granit', 'Chovnivske Lagerstätte', 'Vollschnitt + Wärmebehandlung'],
+        pl: ['Jasno-zielony granit', 'Złoże Czownowskie', 'Pełne cięcie + obróbka termiczna']
+      },
+      inStock: true,
+      customizable: true
+    },
+
+    // 12. Габро колоте 100×100×50
+    {
+      id: 'paver-gabbro-split-pencil-100x100x50',
+      textureId: 'black-001',
+      finishType: 'split-sawn-pencil',
+      size: 'paver_100x100x50',
+      dimensions: standardSizes.paver_100x100x50,
+      price: {
+        ua: '750 грн/м²',
+        en: '14 €/m²',
+        de: '14 €/m²',
+        pl: '14 €/m²'
+      },
+      image: '/eurogranite-website/images/products/gabbro-split-100x100x50.jpg',
+      name: {
+        ua: 'Габро колоте з олівця',
+        en: 'Gabbro Split from Pencil',
+        de: 'Gabbro aus Bleistift gespalten',
+        pl: 'Gabro łupane z ołówka'
+      },
+      description: {
+        ua: 'Бруківка з чорного граніту габро, лицьова сторона та низ колоті, всі бока пиляні (бруківка колота з олівця)',
+        en: 'Black granite gabbro paving stones, front side and bottom split, all sides sawn (split from pencil blocks)',
+        de: 'Schwarze Granit Gabbro Pflastersteine, Vorderseite, Unterseite gespalten, alle Seiten gesägt',
+        pl: 'Kostka brukowa z czarnego granitu gabro, strona licowa i spód łupane, wszystkie boki piłowane (kostka łupana z ołówka)'
+      },
+      features: {
+        ua: ['Чорний граніт габро', 'Колота з олівця', 'Пиляно-колота'],
+        en: ['Black granite gabbro', 'Split from pencil', 'Sawn-split'],
+        de: ['Schwarzer Granit Gabbro', 'Aus Bleistift gespalten', 'Gesägt-gespalten'],
+        pl: ['Czarny granit gabro', 'Łupane z ołówka', 'Piłowano-łupane']
+      },
+      inStock: true,
+      customizable: true
     }
   ],
   

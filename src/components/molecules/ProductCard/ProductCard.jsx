@@ -27,7 +27,8 @@ const ProductCard = ({ product }) => {
     if (dimensions.length === 'custom') {
       return currentLanguage === 'ua' ? 'Під замовлення' : 'Custom size';
     }
-    return `${dimensions.length}×${dimensions.width}×${dimensions.height} ${dimensions.unit}`;
+    // Розміри вже в мм
+    return `${dimensions.length}×${dimensions.width}×${dimensions.height}мм`;
   };
 
   // Обробка кліку на текстуру
@@ -47,21 +48,35 @@ const ProductCard = ({ product }) => {
     <div className="product-card">
       {/* Зображення продукту */}
       <div className="product-image-container">
-        <img 
-          src={product.image} 
-          alt={product.name[currentLanguage]}
-          className="product-image"
-          onError={(e) => {
-            e.target.src = '/images/textures/placeholder-product.jpg';
-          }}
-        />
-        
-        {/* Бейдж наявності */}
-        <div className={`product-availability-badge ${product.inStock ? 'in-stock' : 'custom-order'}`}>
-          {product.inStock 
-            ? (currentLanguage === 'ua' ? 'В наявності' : 'In Stock')
-            : (currentLanguage === 'ua' ? 'Під замовлення' : 'Custom Order')
-          }
+        <div className="product-image-wrapper">
+          <picture>
+            <source
+              srcSet={product.image}
+              type="image/webp"
+              onError={(e) => {
+                console.log('WebP failed to load:', product.image);
+              }}
+            />
+            <img
+              src={product.image.replace('.webp', '.jpg')}
+              alt={product.name[currentLanguage]}
+              className="product-image"
+              onLoad={(e) => {
+                console.log('Image loaded:', e.target.currentSrc || e.target.src);
+              }}
+              onError={(e) => {
+                console.log('Image failed to load:', e.target.src);
+                e.target.style.display = 'none';
+                e.target.closest('.product-image-wrapper').querySelector('.product-image-placeholder').style.display = 'flex';
+              }}
+            />
+          </picture>
+          <div className="product-image-placeholder" style={{ display: 'none' }}>
+            <div className="placeholder-icon">📦</div>
+            <div className="placeholder-text">
+              {product.name[currentLanguage]}
+            </div>
+          </div>
         </div>
 
         {/* Бейдж ексклюзивності */}
@@ -92,7 +107,7 @@ const ProductCard = ({ product }) => {
           </button>
           
           <div className="finish-info">
-            <span className="finish-icon" role="img" aria-label={finishInfo?.name[currentLanguage]}>
+            <span className="finish-icon" aria-label={finishInfo?.name[currentLanguage]}>
               {finishInfo?.icon}
             </span>
             <span className="finish-name">
@@ -164,7 +179,10 @@ const ProductCard = ({ product }) => {
             onClick={handleOrderClick}
             className="order-button"
           >
-            {currentLanguage === 'ua' ? 'Замовити' : 'Order Now'}
+            {currentLanguage === 'ua' ? 'Замовити'
+              : currentLanguage === 'en' ? 'Order Now'
+              : currentLanguage === 'de' ? 'Bestellen'
+              : 'Zamów teraz'}
           </Button>
           
           <Button
@@ -173,7 +191,10 @@ const ProductCard = ({ product }) => {
             onClick={handleTextureClick}
             className="texture-button"
           >
-            {currentLanguage === 'ua' ? 'Переглянути текстуру' : 'View Texture'}
+            {currentLanguage === 'ua' ? 'Текстури'
+              : currentLanguage === 'en' ? 'View Textures'
+              : currentLanguage === 'de' ? 'Texturen'
+              : 'Tekstury'}
           </Button>
         </div>
 
