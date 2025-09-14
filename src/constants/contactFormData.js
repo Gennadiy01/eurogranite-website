@@ -160,24 +160,24 @@ export const contactInfoContent = {
     title: 'Contact Information',
     workingHours: 'Working Hours',
     workingTime: 'Monday - Friday: 8:00 - 18:00',
-    socialMedia: 'Follow Us'
+    socialMedia: 'We are in touch'
   },
   ua: {
     title: 'Контактна інформація',
     workingHours: 'Робочі години',
     workingTime: 'Понеділок - П\'ятниця: 8:00 - 18:00',
-    socialMedia: 'Слідкуйте за нами'
+    socialMedia: 'Ми на зв\'язку'
   },
   de: {
     title: 'Kontaktinformationen',
     workingHours: 'Arbeitszeiten',
     workingTime: 'Montag - Freitag: 8:00 - 18:00',
-    socialMedia: 'Folgen Sie uns'
+    socialMedia: 'Wir sind erreichbar'
   },
   pl: {
     title: 'Informacje kontaktowe',
     workingHours: 'Godziny pracy',
     workingTime: 'Poniedziałek - Piątek: 8:00 - 18:00',
-    socialMedia: 'Śledź nas'
+    socialMedia: 'Jesteśmy w kontakcie'
   }
 }

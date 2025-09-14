@@ -93,7 +93,7 @@ const About = () => {
       subtitle: "Провідний постачальник преміум українського граніту та природного каменю",
       hero: {
         headline: "Досконалість у камені",
-        description: "Понад десятиліття EuroGranite перебуває в авангарді видобутку та обробки граніту, привносячи найкращий український природний камінь на ринки Європи та за її межами."
+        description: "Понад десятиліття EuroGranite перебуває в авангарді видобутку та обробки граніту, представляючи найкращий український природний камінь на ринках Європи та за її межами."
       },
       about: {
         title: "Наша компанія",
@@ -334,14 +334,14 @@ const About = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="about-hero">
-        <div className="about-hero-background">
-          <div className="about-hero-overlay"></div>
+      <section className="page-hero page-hero--compact">
+        <div className="page-hero-background">
+          <div className="page-hero-overlay"></div>
         </div>
         <div className="container">
-          <div className="about-hero-content">
-            <h1 className="about-hero-title">{text.title}</h1>
-            <p className="about-hero-subtitle">{text.subtitle}</p>
+          <div className="page-hero-content">
+            <h1 className="page-hero-title">{text.title}</h1>
+            <p className="page-hero-subtitle">{text.subtitle}</p>
           </div>
         </div>
       </section>

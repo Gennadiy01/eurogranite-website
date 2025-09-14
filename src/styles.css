@@ -95,8 +95,8 @@ body {
   color: var(--accent-orange);
   transition: transform 0.3s ease;
   cursor: pointer;
-  /* Mobile: 20px */
-  font-size: 1.25rem;
+  /* Mobile: 30px (збільшено в 1.5 рази) */
+  font-size: 1.875rem;
 }
 
 .logo-text:hover {
@@ -444,6 +444,170 @@ body {
 }
 
 /* ========================================
+   UNIFIED HERO SECTIONS
+   ======================================== */
+
+/* Base Hero Section - Common styles for all hero sections */
+.page-hero {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--neutral-900);
+  padding: 5rem 0;
+  padding-top: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Compact Hero variant for pages that need to show more content above the fold */
+.page-hero--compact {
+  min-height: 60vh;
+  padding: 3rem 0;
+  padding-top: 5rem;
+}
+
+/* Hero Background Layer */
+.page-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--neutral-900);
+  z-index: 1;
+}
+
+/* Hero Overlay for additional darkening */
+.page-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+/* Hero Content Container */
+.page-hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: var(--white);
+  max-width: 64rem; /* 64rem = 1024px */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero Title */
+.page-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: var(--white);
+}
+
+/* Hero Subtitle */
+.page-hero-subtitle {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--neutral-200);
+  max-width: 37.5rem; /* 600px */
+  margin: 0 auto;
+}
+
+/* Light Hero variant for pages that need light background */
+.page-hero--light {
+  background-color: var(--neutral-50);
+  padding-top: 6rem; /* Same padding as dark variant */
+  min-height: 50vh; /* Reduced height to show more content above the fold */
+  padding: 3rem 0;
+  padding-top: 5rem;
+}
+
+.page-hero--light .page-hero-background {
+  background-color: var(--neutral-50);
+}
+
+.page-hero--light .page-hero-overlay {
+  display: none; /* No overlay needed for light variant */
+}
+
+.page-hero--light .page-hero-title {
+  color: var(--neutral-900);
+}
+
+.page-hero--light .page-hero-subtitle {
+  color: var(--neutral-700);
+}
+
+/* Responsive breakpoints */
+@media (min-width: 768px) {
+  .page-hero-title {
+    font-size: 4.5rem;
+  }
+  .page-hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-hero {
+    min-height: 70vh;
+    padding: 3rem 0;
+    padding-top: 4rem;
+  }
+
+  .page-hero--compact {
+    min-height: 50vh;
+    padding: 2rem 0;
+    padding-top: 4rem;
+  }
+
+  .page-hero--light {
+    min-height: 40vh;
+    padding: 2rem 0;
+    padding-top: 4rem;
+  }
+
+  .page-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .page-hero-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero--compact {
+    min-height: 40vh;
+    padding: 1.5rem 0;
+    padding-top: 4rem;
+  }
+
+  .page-hero--light {
+    min-height: 35vh;
+    padding: 1.5rem 0;
+    padding-top: 4rem;
+  }
+
+  .page-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .page-hero-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .page-hero-content {
+    padding: 0 0.75rem;
+  }
+}
+
+/* ========================================
    GraniteColors Section Styles
    ======================================== */
 
@@ -702,7 +866,8 @@ body {
 
 .granite-colors-cta-buttons .custom-button {
   width: 100%;
-  max-width: 280px;
+  max-width: 340px;
+  min-width: 280px;
 }
 
 /* Responsive Design */
@@ -710,10 +875,16 @@ body {
   .granite-colors-cta-buttons {
     flex-direction: row;
   }
-  
+
   .granite-colors-cta-content {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .granite-colors-cta-buttons .custom-button {
+    width: auto;
+    min-width: 200px;
+    max-width: 250px;
   }
 }
 
@@ -753,6 +924,11 @@ body {
 @media (min-width: 1024px) {
   .granite-colors-title {
     font-size: 3rem;
+  }
+
+  .granite-colors-cta-buttons .custom-button {
+    min-width: 220px;
+    max-width: 280px;
   }
 }
 
@@ -1186,8 +1362,13 @@ body {
 .lg-gap-6 { gap: 1.5rem; }
 .xl-gap-8 { gap: 2rem; }
 
+@media (min-width: 768px) {
+  .md\:gap-6 { gap: 1.5rem; }
+}
+
 @media (min-width: 1024px) {
   .lg-gap-6 { gap: 1.5rem; }
+  .lg\:gap-8 { gap: 2rem; }
 }
 @media (min-width: 1280px) {
   .xl-gap-8 { gap: 2rem; }
@@ -1442,8 +1623,25 @@ body {
 .mt-16 { margin-top: 4rem; }
 .text-2xl { font-size: 1.5rem; }
 .font-bold { font-weight: 700; }
-.rounded-2xl { border-radius: 1rem; }
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
 .p-8 { padding: 2rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+
+/* Responsive padding utilities */
+@media (min-width: 768px) {
+  .md\:p-6 { padding: 1.5rem; }
+  .md\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:p-8 { padding: 2rem; }
+  .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+}
+
+.rounded-2xl { border-radius: 1rem; }
 .shadow-xl { 
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
@@ -1771,7 +1969,8 @@ body {
 
 .unique-proposition-cta-buttons .custom-button {
   width: 100%;
-  max-width: 280px;
+  max-width: 320px;
+  min-width: 280px;
 }
 
 /* Tablet breakpoint (768px+) */
@@ -1789,6 +1988,12 @@ body {
     flex-direction: row;
     justify-content: flex-start;
   }
+
+  .unique-proposition-cta-buttons .custom-button {
+    width: auto;
+    min-width: 180px;
+    max-width: 220px;
+  }
 }
 
 /* Desktop breakpoint (1024px+) */
@@ -1804,6 +2009,11 @@ body {
   
   .unique-proposition-cta {
     padding: 3rem;
+  }
+
+  .unique-proposition-cta-buttons .custom-button {
+    min-width: 200px;
+    max-width: 240px;
   }
 }
 

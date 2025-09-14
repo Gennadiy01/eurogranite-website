@@ -77,21 +77,26 @@ const Contact = () => {
         hreflang={seoData?.hreflang}
       />
       <Header />
-      <main className="pt-24">
-        <section className="py-20 bg-neutral-50">
+      <main>
+        <section className="page-hero page-hero--light">
+          <div className="page-hero-background"></div>
           <div className="container">
-            <div className="text-center mb-16">
-              <h1 className="heading-2 mb-6 text-neutral-900 tracking-tight">
+            <div className="page-hero-content">
+              <h1 className="page-hero-title">
                 {content.title}
               </h1>
-              <p className="description-text text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+              <p className="page-hero-subtitle">
                 {content.subtitle}
               </p>
             </div>
+          </div>
+        </section>
 
-            <div className="grid md-grid-cols-1 lg-grid-cols-3 gap-8 max-w-6xl mx-auto lg-contact-layout">
+        <section className="py-20">
+          <div className="container px-4 md:px-6 lg:px-8">
+            <div className="grid md-grid-cols-1 lg-grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto lg-contact-layout">
               {/* Contact Information */}
-              <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <div className="bg-white p-4 md:p-6 lg:p-8 rounded-2xl shadow-lg">
                 <h2 className="heading-3 mb-6 text-neutral-900">
                   {infoContent.title}
                 </h2>

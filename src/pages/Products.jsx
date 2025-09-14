@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useLanguageStore from '../stores/languageStore';
 import { productsData } from '../constants/productsData';
 import { getSEOData } from '../constants/seoData';
@@ -27,15 +28,18 @@ const Products = () => {
         hreflang={seoData?.hreflang}
       />
       <Header />
-      <main className="pt-32">
+      <main>
       {/* Hero Section */}
-      <section className="py-20 bg-neutral-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="hero-title mb-8">
+      <section className="page-hero">
+        <div className="page-hero-background">
+          <div className="page-hero-overlay"></div>
+        </div>
+        <div className="container">
+          <div className="page-hero-content">
+            <h1 className="page-hero-title">
               {productsData.categoryName[currentLanguage]}
             </h1>
-            <p className="text-xl leading-relaxed text-neutral-700">
+            <p className="page-hero-subtitle">
               {productsData.categoryDescription[currentLanguage]}
             </p>
           </div>
@@ -187,33 +191,20 @@ const Products = () => {
                 : 'Nasi eksperci pomogą Ci wybrać optymalne rozwiązanie dla Twojego projektu'
               }
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="tel:+380733864041"
-                className="btn btn-primary"
+            <div className="flex justify-center">
+              <Link
+                to="/contact#contact-form"
+                className="custom-button custom-button--primary px-8 py-4"
               >
-                {currentLanguage === 'ua' 
-                  ? 'Зателефонувати' 
-                  : currentLanguage === 'en'
-                  ? 'Call Us'
-                  : currentLanguage === 'de'
-                  ? 'Anrufen'
-                  : 'Zadzwoń'
-                }
-              </a>
-              <a
-                href="/contact"
-                className="btn btn-outline"
-              >
-                {currentLanguage === 'ua' 
-                  ? 'Написати повідомлення' 
+                {currentLanguage === 'ua'
+                  ? 'Написати повідомлення'
                   : currentLanguage === 'en'
                   ? 'Send Message'
                   : currentLanguage === 'de'
                   ? 'Nachricht senden'
                   : 'Wyślij wiadomość'
                 }
-              </a>
+              </Link>
             </div>
           </div>
         </div>
