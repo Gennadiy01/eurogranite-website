@@ -682,7 +682,7 @@ export const productsData = {
     // 11. Човнівський граніт 200×100×50
     {
       id: 'paver-chovnivske-200x100x50',
-      textureId: 'green-001',
+      textureId: 'green-002',
       finishType: 'sawn-thermal-top',
       size: 'paver_200x100x50',
       dimensions: standardSizes.paver_200x100x50,
