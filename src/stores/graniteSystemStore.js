@@ -71,6 +71,47 @@ const useGraniteSystemStore = create()(
         }))
       },
 
+      // Open gallery directly at specific texture
+      openGalleryAtTexture: (textureId, graniteTypes) => {
+        set((state) => {
+          // Create flat list of all textures to find global index
+          const allTextures = [];
+          graniteTypes.forEach(group => {
+            group.textures.forEach(texture => {
+              allTextures.push({ ...texture, groupName: group.name });
+            });
+          });
+
+          // Find texture in the flat list
+          const globalTextureIndex = allTextures.findIndex(texture => texture.id === textureId);
+
+          if (globalTextureIndex !== -1) {
+            return {
+              gallery: {
+                ...state.gallery,
+                isOpen: true,
+                currentGroup: null, // No filter, show all textures
+                currentFilter: 'all',
+                currentTextureIndex: globalTextureIndex,
+                error: null
+              }
+            };
+          }
+
+          // Fallback: open universal gallery if texture not found
+          return {
+            gallery: {
+              ...state.gallery,
+              isOpen: true,
+              currentGroup: null,
+              currentFilter: 'all',
+              currentTextureIndex: 0,
+              error: `Texture ${textureId} not found`
+            }
+          };
+        })
+      },
+
       closeGallery: () => {
         set((state) => ({
           gallery: {

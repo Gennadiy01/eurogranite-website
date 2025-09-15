@@ -7,7 +7,7 @@ import Button from '../../atoms/Button/Button';
 
 const ProductCard = ({ product }) => {
   const { currentLanguage } = useLanguageStore();
-  const { openGallery } = useGraniteSystemStore();
+  const { openGalleryAtTexture } = useGraniteSystemStore();
 
   // Отримуємо дані про текстуру граніту
   const textureData = graniteTypes.find(granite => 
@@ -33,8 +33,8 @@ const ProductCard = ({ product }) => {
 
   // Обробка кліку на текстуру
   const handleTextureClick = () => {
-    if (textureData) {
-      openGallery(textureData.id);
+    if (product.textureId) {
+      openGalleryAtTexture(product.textureId, graniteTypes);
     }
   };
 

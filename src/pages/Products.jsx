@@ -6,6 +6,7 @@ import { getSEOData } from '../constants/seoData';
 import ProductCard from '../components/molecules/ProductCard';
 import Header from '../components/organisms/Header/Header';
 import SEO from '../components/atoms/SEO';
+import UniversalTextureGallery from '../components/granite-system/gallery/UniversalTextureGallery';
 
 const Products = () => {
   const { currentLanguage } = useLanguageStore();
@@ -240,6 +241,9 @@ const Products = () => {
         </div>
       </section>
       </main>
+
+      {/* Universal Texture Gallery Modal */}
+      <UniversalTextureGallery />
     </div>
   );
 };

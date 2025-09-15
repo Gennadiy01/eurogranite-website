@@ -285,15 +285,22 @@ const UniversalTextureGallery = () => {
       setSheetHeight(25)
       currentSheetHeight.current = 25
       
-      // Also find and set the correct texture index if a specific texture was selected
+      // Find and set correct texture index when opening gallery at specific texture
+      if (gallery.currentTextureIndex !== undefined && gallery.currentTextureIndex !== currentTextureIndex) {
+        setCurrentTextureIndex(gallery.currentTextureIndex);
+        setActiveFilter('all'); // Always show all textures
+      }
+
+      // Fallback: find texture by ID if selectedTextureId is provided
       if (gallery.selectedTextureId) {
-        const textureIndex = filteredTextures.findIndex(t => t.id === gallery.selectedTextureId)
+        const textureIndex = allTextures.findIndex(t => t.id === gallery.selectedTextureId)
         if (textureIndex !== -1 && textureIndex !== currentTextureIndex) {
           setCurrentTextureIndex(textureIndex)
+          setActiveFilter('all'); // Always show all textures
         }
       }
     }
-  }, [gallery.isOpen, gallery.selectedTextureId, filteredTextures, currentTextureIndex])
+  }, [gallery.isOpen, gallery.currentTextureIndex, gallery.selectedTextureId, allTextures, currentTextureIndex])
 
   // Also try resetting on component mount when gallery is already open
   useEffect(() => {
