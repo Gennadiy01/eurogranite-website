@@ -8,7 +8,7 @@ const Footer = () => {
   const footerContent = {
     en: {
       company: 'Eurogranite',
-      description: 'Premium granite products for European markets. Quality certified manufacturing with environmental responsibility.',
+      description: 'Premium granite products for European markets. Guaranteed quality manufacturing with environmental responsibility.',
       quickLinks: 'Quick Links',
       contact: 'Contact Information',
       address: 'Ukraine, 10001, Zhytomyr, Maidan Zgody, build. 6, office 7',
@@ -24,7 +24,7 @@ const Footer = () => {
     },
     ua: {
       company: 'Єврограніт',
-      description: 'Преміальні гранітні вироби для Європейських ринків. Сертифікована якість виробництва з екологічною відповідальністю.',
+      description: 'Преміальні гранітні вироби для Європейських ринків. Гарантована якість виробництва з екологічною відповідальністю.',
       quickLinks: 'Швидкі посилання',
       contact: 'Контактна інформація',
       address: 'Україна, 10001, Житомир, Майдан Згоди, буд. 6, офіс 7',
@@ -40,7 +40,7 @@ const Footer = () => {
     },
     de: {
       company: 'Eurogranite',
-      description: 'Premium Granitprodukte für europäische Märkte. Qualitätszertifizierte Fertigung mit Umweltverantwortung.',
+      description: 'Premium Granitprodukte für europäische Märkte. Garantierte Qualität der Fertigung mit Umweltverantwortung.',
       quickLinks: 'Schnelle Links',
       contact: 'Kontaktinformationen',
       address: 'Ukraine, 10001, Zhytomyr, Maidan Zgody, Geb. 6, Büro 7',
@@ -56,7 +56,7 @@ const Footer = () => {
     },
     pl: {
       company: 'Eurogranite',
-      description: 'Produkty granitowe premium dla rynków europejskich. Certyfikowana jakość produkcji z odpowiedzialności środowiskowej.',
+      description: 'Produkty granitowe premium dla rynków europejskich. Gwarantowana jakość produkcji z odpowiedzialnością środowiskową.',
       quickLinks: 'Szybkie linki',
       contact: 'Informacje kontaktowe',
       address: 'Ukraina, 10001, Żytomierz, Plac Zgody, bud. 6, biuro 7',

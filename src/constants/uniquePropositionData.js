@@ -7,7 +7,7 @@ export const uniquePropositionContent = {
     features: [
       {
         title: "Індивідуальний підхід",
-        description: "Кожен замовлення виготовляємо за вашими унікальними вимогами"
+        description: "Кожне замовлення виготовляємо за вашими унікальними вимогами"
       },
       {
         title: "Будь-які розміри",
@@ -15,7 +15,7 @@ export const uniquePropositionContent = {
       },
       {
         title: "Різні типи поверхонь",
-        description: "Полірована, шліфована, антикована та інші види обробки"
+        description: "Колота, пиляна, з термообробкою та інші види обробки"
       },
       {
         title: "Широка палітра кольорів",
@@ -43,7 +43,7 @@ export const uniquePropositionContent = {
       },
       {
         title: "Various Surface Types",
-        description: "Polished, honed, antique and other finishing options"
+        description: "Split, sawn, thermal treated and other finishing options"
       },
       {
         title: "Wide Color Palette",
@@ -71,7 +71,7 @@ export const uniquePropositionContent = {
       },
       {
         title: "Verschiedene Oberflächenarten",
-        description: "Poliert, geschliffen, antik und andere Veredelungsoptionen"
+        description: "Gespalten, gesägt, thermisch behandelt und andere Veredelungsoptionen"
       },
       {
         title: "Breite Farbpalette",
@@ -99,14 +99,14 @@ export const uniquePropositionContent = {
       },
       {
         title: "Różne Typy Powierzchni",
-        description: "Polerowana, szlifowana, antykowana i inne opcje wykończenia"
+        description: "Łupana, piłowana, termicznie obrobiona i inne opcje wykończenia"
       },
       {
         title: "Szeroka Paleta Kolorów",
         description: "Od klasycznej czerni po rzadkie odcienie granitu"
       }
     ],
-    callToAction: "Proszę napisz do nas swoje preferencje: kolor, rozmiar, typ powierzchni i inne szczegóły. Na pewno znajdziemy rozwiązanie, które zaspokoי Twoje potrzeby i życzenia.",
+    callToAction: "Proszę napisz do nas swoje preferencje: kolor, rozmiar, typ powierzchni i inne szczegóły. Na pewno znajdziemy rozwiązanie, które zaspokoi Twoje potrzeby i życzenia.",
     buttons: {
       contact: "Skontaktuj się z nami",
       catalog: "Zobacz Katalog"

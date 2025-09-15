@@ -21,10 +21,10 @@ export const graniteTypes = [
       pl: 'TOP Wybór'
     },
     description: {
-      en: 'Elite black granite with deep rich color and mirror polishing',
-      ua: 'Елітний чорний граніт з глибоким насиченим кольором та дзеркальним поліруванням',
-      de: 'Elite schwarzer Granit mit tiefem, sattem Farbton und Spiegelpolierung',
-      pl: 'Elitarny czarny granit z głębokim nasyconym kolorem i lustrzanym polirowaniem'
+      en: 'Elite black granite with deep rich color and perfect processing quality',
+      ua: 'Елітний чорний граніт з глибоким насиченим кольором та досконалою якістю обробки',
+      de: 'Elite schwarzer Granit mit tiefem, sattem Farbton und perfekter Verarbeitungsqualität',
+      pl: 'Elitarny czarny granit z głębokim nasyconym kolorem i doskonałą jakością obróbki'
     },
     colorClass: 'granite-black',
     materials: [

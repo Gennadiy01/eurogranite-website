@@ -11,19 +11,19 @@ const GraniteColorSection = () => {
   const sectionContent = {
     en: {
       title: 'Premium-Class Materials',
-      subtitle: 'Elite granite varieties of the highest quality for the most demanding projects.\nEach type of granite is carefully selected and processed according to European quality standards.'
+      subtitle: 'Elite granite varieties of the highest quality for the most demanding projects.\nWe work exclusively with carefully selected raw materials and process them according to European quality standards.'
     },
     ua: {
-      title: 'Матеріали преміум-класу',
-      subtitle: 'Елітні сорти граніту найвищої якості для найвимогливіших проектів.\nКожен тип граніту ретельно відібраний та оброблений згідно з європейськими стандартами якості.'
+      title: 'Матеріали преміум класу',
+      subtitle: 'Елітні сорти граніту найвищої якості для найвимогливіших проектів.\nМи працюємо тільки з ретельно відібраною сировиною та обробляємо її відповідно до вимог європейських стандартів якості.'
     },
     de: {
       title: 'Premium-Klasse Materialien',
-      subtitle: 'Elite Granitsorten höchster Qualität für anspruchsvollste Projekte.\nJede Granitart wird sorgfältig ausgewählt und nach europäischen Qualitätsstandards verarbeitet.'
+      subtitle: 'Elite Granitsorten höchster Qualität für anspruchsvollste Projekte.\nWir arbeiten ausschließlich mit sorgfältig ausgewählten Rohstoffen und verarbeiten diese nach europäischen Qualitätsstandards.'
     },
     pl: {
       title: 'Materiały Klasy Premium',
-      subtitle: 'Elitarne odmiany granitu najwyższej jakości dla najbardziej wymagających projektów.\nKażdy typ granitu jest starannie wyselekcjonowany i przetwarzany zgodnie z europejskimi standardami jakości.'
+      subtitle: 'Elitarne odmiany granitu najwyższej jakości dla najbardziej wymagających projektów.\nPracujemy wyłącznie z starannie wyselekcjonowanymi surowcami i przetwarzamy je zgodnie z europejskimi standardami jakości.'
     }
   }
   

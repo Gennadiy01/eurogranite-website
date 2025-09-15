@@ -12,13 +12,13 @@ const GraniteColors = () => {
   const content = {
     en: {
       title: 'Premium-Class Materials',
-      subtitle: 'Elite granite varieties of the highest quality for the most demanding projects.\nEach granite type is carefully selected and processed according to European quality standards.',
+      subtitle: 'Elite granite varieties of the highest quality for the most demanding projects.\nWe work exclusively with carefully selected raw materials and process them according to European quality standards.',
       products: [
         {
           name: 'Black\nGranite',
           tag: 'TOP Choice',
           englishName: 'Black Granite Premium',
-          description: 'Elite black granite with deep saturated color and mirror polishing'
+          description: 'Elite black granite with deep saturated color and perfect processing quality'
         },
         {
           name: 'Gray\nGranite',
@@ -60,14 +60,14 @@ const GraniteColors = () => {
       buttonText: 'More Details'
     },
     ua: {
-      title: 'Матеріали преміум-класу',
-      subtitle: 'Елітні сорти граніту найвищої якості для найвимогливіших проектів.\nКожен тип граніту ретельно відібраний та оброблений згідно з європейськими стандартами якості.',
+      title: 'Матеріали преміум класу',
+      subtitle: 'Елітні сорти граніту найвищої якості для найвимогливіших проектів.\nМи працюємо тільки з ретельно відібраною сировиною та обробляємо її відповідно до вимог європейських стандартів якості.',
       products: [
         {
           name: 'Чорний\nграніт',
           tag: 'ТОП вибір',
           englishName: 'Black Granite Premium',
-          description: 'Елітний чорний граніт з глибоким насиченим кольором та дзеркальним поліруванням'
+          description: 'Елітний чорний граніт з глибоким насиченим кольором та досконалою якістю обробки'
         },
         {
           name: 'Сірий\nграніт',
@@ -110,13 +110,13 @@ const GraniteColors = () => {
     },
     de: {
       title: 'Premium-Klasse Materialien',
-      subtitle: 'Elite-Granitsorten höchster Qualität für anspruchsvollste Projekte.\nJede Granitart wird sorgfältig ausgewählt und nach europäischen Qualitätsstandards verarbeitet.',
+      subtitle: 'Elite-Granitsorten höchster Qualität für anspruchsvollste Projekte.\nWir arbeiten ausschließlich mit sorgfältig ausgewählten Rohstoffen und verarbeiten diese nach europäischen Qualitätsstandards.',
       products: [
         {
           name: 'Schwarzer\nGranit',
           tag: 'TOP Wahl',
           englishName: 'Black Granite Premium',
-          description: 'Elite schwarzer Granit mit tiefer gesättigter Farbe und Spiegelpolierung'
+          description: 'Elite schwarzer Granit mit tiefer gesättigter Farbe und perfekter Verarbeitungsqualität'
         },
         {
           name: 'Grauer\nGranit',
@@ -159,13 +159,13 @@ const GraniteColors = () => {
     },
     pl: {
       title: 'Materiały Klasy Premium',
-      subtitle: 'Elitarne odmiany granitu najwyższej jakości do najbardziej wymagających projektów.\nKażdy typ granitu jest starannie wyselekcjonowany i przetworzony zgodnie z europejskimi standardami jakości.',
+      subtitle: 'Elitarne odmiany granitu najwyższej jakości do najbardziej wymagających projektów.\nPracujemy wyłącznie z starannie wyselekcjonowanymi surowcami i przetwarzamy je zgodnie z europejskimi standardami jakości.',
       products: [
         {
           name: 'Czarny\nGranit',
           tag: 'TOP Wybór',
           englishName: 'Black Granite Premium',
-          description: 'Elitarny czarny granit z głębokim nasyconym kolorem i lustrzanym polerowanием'
+          description: 'Elitarny czarny granit z głębokim nasyconym kolorem i doskonałą jakością obróbki'
         },
         {
           name: 'Szary\nGranit',

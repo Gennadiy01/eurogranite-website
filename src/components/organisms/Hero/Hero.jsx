@@ -13,7 +13,7 @@ const Hero = () => {
     en: {
       title: 'Premium Granite Products',
       subtitle: 'for European Markets',
-      description: 'Leading manufacturer of high-quality granite products with over 15 years of experience serving European customers. ISO certified quality and environmental responsibility.',
+      description: 'Leading manufacturer of high-quality granite products with over 15 years of experience serving European customers. Guaranteed quality and environmental responsibility.',
       ctaPrimary: 'View Catalog',
       ctaSecondary: 'Get Quote',
       imageAlt: 'Modern granite production facility with advanced equipment and skilled workers',
@@ -26,7 +26,7 @@ const Hero = () => {
     ua: {
       title: 'Преміальні гранітні вироби',
       subtitle: 'для ринків Європи',
-      description: 'Провідний виробник виробів з високоякісного граніту з 15-річним досвідом. ISO сертифікована якість та екологічна відповідальність.',
+      description: 'Провідний виробник виробів з високоякісного граніту з 15-річним досвідом. Гарантована якість та екологічна відповідальність.',
       ctaPrimary: 'Переглянути каталог',
       ctaSecondary: 'Отримати пропозицію',
       imageAlt: 'Сучасне підприємство з виробництва граніту з передовим обладнанням та кваліфікованими працівниками',
@@ -39,7 +39,7 @@ const Hero = () => {
     de: {
       title: 'Premium Granitprodukte',
       subtitle: 'für Europäische Märkte',
-      description: 'Führender Hersteller hochwertiger Granitprodukte mit über 15 Jahren Erfahrung im Service für europäische Kunden. ISO-zertifizierte Qualität und Umweltverantwortung.',
+      description: 'Führender Hersteller hochwertiger Granitprodukte mit über 15 Jahren Erfahrung im Service für europäische Kunden. Garantierte Qualität und Umweltverantwortung.',
       ctaPrimary: 'Katalog ansehen',
       ctaSecondary: 'Angebot erhalten',
       imageAlt: 'Moderne Granitproduktionsstätte mit fortschrittlicher Ausrüstung und qualifizierten Arbeitern',
@@ -52,7 +52,7 @@ const Hero = () => {
     pl: {
       title: 'Premium Granit',
       subtitle: 'dla Europy',
-      description: 'Wiodący producent wysokiej jakości produktów granitowych z ponad 15-letnim doświadczeniem w obsłudze klientów europejskich. Jakość certyfikowana ISO i odpowiedzialność środowiskowa.',
+      description: 'Wiodący producent wysokiej jakości produktów granitowych z ponad 15-letnim doświadczeniem w obsłudze klientów europejskich. Gwarantowana jakość i odpowiedzialność środowiskowa.',
       ctaPrimary: 'Zobacz Katalog',
       ctaSecondary: 'Otrzymaj Ofertę',
       imageAlt: 'Nowoczesny zakład produkcji granitu z zaawansowanym sprzętem i wykwalifikowanymi pracownikami',

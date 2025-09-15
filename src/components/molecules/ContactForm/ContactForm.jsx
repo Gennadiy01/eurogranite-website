@@ -199,7 +199,7 @@ const ContactForm = () => {
   // Success state
   if (isSubmitted) {
     return (
-      <div className="bg-white p-4 md:p-6 lg:p-8 rounded-2xl shadow-lg contact-form-success-enter">
+      <div className="bg-white p-4 md:p-6 lg:p-8 rounded-2xl shadow-lg contact-form-success-enter lg-contact-grid-align">
         <div className="text-center">
           <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg className="w-6 h-6" fill="none" stroke="#059669" strokeWidth="2" viewBox="0 0 24 24">

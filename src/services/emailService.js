@@ -31,7 +31,7 @@ Our team will contact you shortly to discuss your project in detail.
 Your contact person:
 Yulia - Sales Manager
 Phone: +380 96 004 47 44
-Email: 7777sov@gmail.com
+Email: sales@euro-granite.com
 Available messengers: Viber, WhatsApp, Telegram
 
 Best regards,
@@ -61,7 +61,7 @@ EuroGranite Team
 Ваш менеджер:
 Юлія - Менеджер з продажу
 Телефон: +380 96 004 47 44
-Email: 7777sov@gmail.com
+Email: sales@euro-granite.com
 Доступні месенджери: Viber, WhatsApp, Telegram
 
 З повагою,
@@ -116,7 +116,7 @@ Nasz zespół skontaktuje się z Tobą wkrótce, aby szczegółowo omówić Twó
 Twoja osoba kontaktowa:
 Yulia - Menedżer ds. sprzedaży
 Telefon: +380 96 004 47 44
-E-mail: 7777sov@gmail.com
+E-mail: sales@euro-granite.com
 Dostępne komunikatory: Viber, WhatsApp, Telegram
 
 Z poważaniem,

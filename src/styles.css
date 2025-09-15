@@ -1285,6 +1285,13 @@ body {
   /* Contact page layout 1:1 ratio */
   .lg-contact-layout {
     grid-template-columns: 1fr 1fr;
+    align-items: stretch; /* Make cards equal height */
+  }
+
+  /* Contact page cards equal height */
+  .lg-contact-layout > * {
+    display: flex;
+    flex-direction: column;
   }
   
   /* Align submit button with social media section */
