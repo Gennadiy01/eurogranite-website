@@ -3865,6 +3865,34 @@ body {
   color: var(--accent-orange);
 }
 
+/* Сітка для особливостей кастомізації */
+.customization-features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.customization-feature-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Адаптивні стилі для сітки */
+@media (min-width: 768px) {
+  .customization-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .customization-features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .customization-option h3 {
   color: var(--neutral-900);
   margin-bottom: 1rem;

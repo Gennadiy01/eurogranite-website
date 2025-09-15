@@ -105,71 +105,92 @@ const Products = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Textures */}
               <div className="customization-option">
-                <div className="customization-icon-wrapper">
+                {/* Перший рядок - іконка і заголовок */}
+                <div className="flex items-center gap-3 mb-3">
                   <span className="customization-option-icon">
-                    <TextureIcon size={32} />
+                    <TextureIcon size={24} />
                   </span>
+                  <h3 className="heading-3">
+                    {productsData.customizationOptions.textures.title[currentLanguage]}
+                  </h3>
                 </div>
-                <h3 className="heading-3 mb-4">
-                  {productsData.customizationOptions.textures.title[currentLanguage]}
-                </h3>
-                <p className="text-neutral-700 mb-4">
-                  {productsData.customizationOptions.textures.description[currentLanguage]}
-                </p>
-                <ul className="text-sm text-neutral-600">
+
+                {/* Другий рядок - опис */}
+                <div className="mb-4">
+                  <p>
+                    {productsData.customizationOptions.textures.description[currentLanguage]}
+                  </p>
+                </div>
+
+                {/* Третій рядок - контент у колонках */}
+                <div className="text-sm text-neutral-600 text-left customization-features-grid">
                   {productsData.customizationOptions.textures.features[currentLanguage].map((feature, index) => (
-                    <li key={index} className="mb-1 flex items-center">
-                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-2 flex-shrink-0"></span>
-                      {feature}
-                    </li>
+                    <div key={index} className="customization-feature-item">
+                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-3 flex-shrink-0"></span>
+                      <span>{feature}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
               {/* Surface Finishes */}
               <div className="customization-option">
-                <div className="customization-icon-wrapper">
+                {/* Перший рядок - іконка і заголовок */}
+                <div className="flex items-center gap-3 mb-3">
                   <span className="customization-option-icon">
-                    <SurfaceIcon size={32} />
+                    <SurfaceIcon size={24} />
                   </span>
+                  <h3 className="heading-3">
+                    {productsData.customizationOptions.finishes.title[currentLanguage]}
+                  </h3>
                 </div>
-                <h3 className="heading-3 mb-4">
-                  {productsData.customizationOptions.finishes.title[currentLanguage]}
-                </h3>
-                <p className="text-neutral-700 mb-4">
-                  {productsData.customizationOptions.finishes.description[currentLanguage]}
-                </p>
-                <ul className="text-sm text-neutral-600">
+
+                {/* Другий рядок - опис */}
+                <div className="mb-4">
+                  <p>
+                    {productsData.customizationOptions.finishes.description[currentLanguage]}
+                  </p>
+                </div>
+
+                {/* Третій рядок - контент у колонках */}
+                <div className="text-sm text-neutral-600 text-left customization-features-grid">
                   {productsData.customizationOptions.finishes.features[currentLanguage].map((feature, index) => (
-                    <li key={index} className="mb-1 flex items-center">
-                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-2 flex-shrink-0"></span>
-                      {feature}
-                    </li>
+                    <div key={index} className="customization-feature-item">
+                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-3 flex-shrink-0"></span>
+                      <span>{feature}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
               {/* Custom Sizes */}
               <div className="customization-option">
-                <div className="customization-icon-wrapper">
+                {/* Перший рядок - іконка і заголовок */}
+                <div className="flex items-center gap-3 mb-3">
                   <span className="customization-option-icon">
-                    <DimensionIcon size={32} />
+                    <DimensionIcon size={24} />
                   </span>
+                  <h3 className="heading-3">
+                    {productsData.customizationOptions.sizes.title[currentLanguage]}
+                  </h3>
                 </div>
-                <h3 className="heading-3 mb-4">
-                  {productsData.customizationOptions.sizes.title[currentLanguage]}
-                </h3>
-                <p className="text-neutral-700 mb-4">
-                  {productsData.customizationOptions.sizes.description[currentLanguage]}
-                </p>
-                <ul className="text-sm text-neutral-600">
+
+                {/* Другий рядок - опис */}
+                <div className="mb-4">
+                  <p>
+                    {productsData.customizationOptions.sizes.description[currentLanguage]}
+                  </p>
+                </div>
+
+                {/* Третій рядок - контент у колонках */}
+                <div className="text-sm text-neutral-600 text-left customization-features-grid">
                   {productsData.customizationOptions.sizes.features[currentLanguage].map((feature, index) => (
-                    <li key={index} className="mb-1 flex items-center">
-                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-2 flex-shrink-0"></span>
-                      {feature}
-                    </li>
+                    <div key={index} className="customization-feature-item">
+                      <span className="w-2 h-2 bg-accent-orange rounded-full mr-3 flex-shrink-0"></span>
+                      <span>{feature}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </div>
