@@ -180,6 +180,30 @@ export const graniteTypes = [
           quarry: 'Maslaivske'
         },
         groupName: 'Green Granite'
+      },
+      {
+        id: 'green-002',
+        name: {
+          en: 'Chovnovske',
+          ua: 'Chovnovske',
+          de: 'Chovnovske',
+          pl: 'Chovnovske'
+        },
+        imageUrl: '/eurogranite-website/images/textures/green/chovnovske.jpg',
+        thumbUrl: '/eurogranite-website/images/textures/thumbs/green/chovnovske.jpg',
+        description: {
+          en: 'Green medium-grained granite. Unusual green color with gray and brown inclusions. Quarry location: Chovnova village, Khoroshiv district, Zhytomyr region. Features: High strength, frost resistance, very low water absorption, and resistance to natural climate conditions.',
+          ua: 'Зелений середньозернистий граніт. Дуже незвичайний зелений колір з сірими і коричневими вкрапленнями. Видобуток: Село Човнова, Хорошівський район, Житомирська область. Особливості: Висока міцність, морозостійкість, дуже низьке водопоглинання та стійкість до природного клімату.',
+          de: 'Grüner mittelkörniger Granit. Ungewöhnliche grüne Farbe mit grauen und braunen Einschlüssen. Abbauort: Dorf Chovnova, Bezirk Khoroshiv, Region Schytomyr. Besonderheiten: Hohe Festigkeit, Frostbeständigkeit, sehr geringe Wasseraufnahme und Beständigkeit gegen natürliche Klimabedingungen.',
+          pl: 'Zielony średnioziarnisty granit. Niezwykły zielony kolor z szarymi i brązowymi wtrąceniami. Lokalizacja kamieniołomu: Wieś Chovnova, rejon Khoroshiv, obwód żytomierski. Właściwości: Wysoka wytrzymałość, odporność na mróz, bardzo niskie pochlanianie wody i odporność na naturalne warunki klimatyczne.'
+        },
+        properties: {
+          density: '2700 kg/m³',
+          compressiveStrength: '90–120 MPa',
+          waterAbsorption: '0.2–0.5%',
+          quarry: 'Chovnova'
+        },
+        groupName: 'Green Granite'
       }
     ]
   },

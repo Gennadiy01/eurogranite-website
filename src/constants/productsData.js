@@ -370,10 +370,10 @@ export const productsData = {
       },
       image: '/eurogranite-website/images/products/maslavske-200x100x50.jpg',
       name: {
-        ua: 'Зелений граніт Маславського родовища',
-        en: 'Green Granite from Maslavske Deposit',
-        de: 'Grüner Granit aus Maslavske Lagerstätte',
-        pl: 'Zielony granit ze złoża Masławskiego'
+        ua: 'Зелений Маславський граніт',
+        en: 'Green Maslavsky Granite',
+        de: 'Grüner Maslavsky-Granit',
+        pl: 'Zielony granit Maslavsky'
       },
       description: {
         ua: 'Бруківка з зеленого граніту Маславського родовища, пиляна з усіх боків з термообробленою верхньою поверхнею',
