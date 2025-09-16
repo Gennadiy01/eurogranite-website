@@ -198,7 +198,19 @@ const UniversalTextureGallery = () => {
 
   // Handle thumbnail click
   const handleThumbnailClick = (index) => {
-    setCurrentTextureIndex(index)
+    // Find the clicked texture
+    const clickedTexture = filteredTextures[index]
+
+    // If the clicked texture is not in current filtered view, switch to 'all' filter
+    if (!filteredTextures.includes(clickedTexture)) {
+      setActiveFilter('all')
+      // Find the texture index in all textures
+      const allTextureIndex = allTextures.findIndex(t => t.id === clickedTexture.id)
+      setCurrentTextureIndex(allTextureIndex >= 0 ? allTextureIndex : 0)
+    } else {
+      setCurrentTextureIndex(index)
+    }
+
     // Reset sheet to initial position
     setSheetHeight(25)
     currentSheetHeight.current = 25
@@ -284,23 +296,30 @@ const UniversalTextureGallery = () => {
     if (gallery.isOpen) {
       setSheetHeight(25)
       currentSheetHeight.current = 25
-      
+
+      // Set filter based on gallery state
+      if (gallery.currentFilter && gallery.currentFilter !== 'all') {
+        setActiveFilter(gallery.currentFilter)
+      } else {
+        setActiveFilter('all')
+      }
+
       // Find and set correct texture index when opening gallery at specific texture
       if (gallery.currentTextureIndex !== undefined && gallery.currentTextureIndex !== currentTextureIndex) {
         setCurrentTextureIndex(gallery.currentTextureIndex);
-        setActiveFilter('all'); // Always show all textures
       }
 
       // Fallback: find texture by ID if selectedTextureId is provided
       if (gallery.selectedTextureId) {
         const textureIndex = allTextures.findIndex(t => t.id === gallery.selectedTextureId)
-        if (textureIndex !== -1 && textureIndex !== currentTextureIndex) {
+        if (textureIndex !== -1) {
+          // If specific texture is requested, always switch to 'all' filter to show it
+          setActiveFilter('all');
           setCurrentTextureIndex(textureIndex)
-          setActiveFilter('all'); // Always show all textures
         }
       }
     }
-  }, [gallery.isOpen, gallery.currentTextureIndex, gallery.selectedTextureId, allTextures, currentTextureIndex])
+  }, [gallery.isOpen, gallery.currentTextureIndex, gallery.selectedTextureId, gallery.currentFilter, allTextures, currentTextureIndex])
 
   // Also try resetting on component mount when gallery is already open
   useEffect(() => {

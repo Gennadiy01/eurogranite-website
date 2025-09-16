@@ -214,8 +214,8 @@ const GraniteColors = () => {
 
 
   const handleViewTextures = (graniteType) => {
-    // Open universal gallery with filter set to specific granite type
-    openUniversalGallery(graniteType.id, 0)
+    // Open universal gallery with all textures visible, starting from the first texture (Gabbro)
+    openUniversalGallery('all', 0)
   }
 
 

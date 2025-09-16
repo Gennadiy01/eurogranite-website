@@ -12,6 +12,7 @@ const useGraniteSystemStore = create()(
         currentFilter: 'all', // for universal gallery filtering
         currentTextureIndex: 0,
         selectedTexture: null,
+        selectedTextureId: null, // for direct texture access
         isLoading: false,
         error: null
       },
@@ -66,6 +67,7 @@ const useGraniteSystemStore = create()(
             currentGroup: null, // null means universal gallery
             currentFilter: filterId,
             currentTextureIndex: textureIndex,
+            selectedTextureId: null, // Clear selected texture ID when using filter
             error: null
           }
         }))
@@ -93,6 +95,7 @@ const useGraniteSystemStore = create()(
                 currentGroup: null, // No filter, show all textures
                 currentFilter: 'all',
                 currentTextureIndex: globalTextureIndex,
+                selectedTextureId: textureId,
                 error: null
               }
             };
@@ -106,6 +109,7 @@ const useGraniteSystemStore = create()(
               currentGroup: null,
               currentFilter: 'all',
               currentTextureIndex: 0,
+              selectedTextureId: textureId, // Still set the ID for fallback handling
               error: `Texture ${textureId} not found`
             }
           };
@@ -120,7 +124,8 @@ const useGraniteSystemStore = create()(
             currentGroup: null,
             currentFilter: 'all',
             currentTextureIndex: 0,
-            selectedTexture: null
+            selectedTexture: null,
+            selectedTextureId: null
           }
         }))
       },
@@ -466,6 +471,7 @@ const useGraniteSystemStore = create()(
             currentFilter: 'all',
             currentTextureIndex: 0,
             selectedTexture: null,
+            selectedTextureId: null,
             isLoading: false,
             error: null
           }
