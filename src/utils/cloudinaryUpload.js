@@ -1,5 +1,4 @@
 // Utility for uploading images to Cloudinary with proper structure and tags
-import { projectCategories, graniteTypeFilters } from '../constants/galleryData'
 
 const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`
 

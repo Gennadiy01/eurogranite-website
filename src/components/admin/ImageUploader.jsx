@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { uploadImageToCloudinary, uploadBatchImages, parseFilenameMetadata, validateImageFile } from '../../utils/cloudinaryUpload'
+import { uploadBatchImages, parseFilenameMetadata, validateImageFile } from '../../utils/cloudinaryUpload'
 import { projectCategories } from '../../constants/galleryData'
 
 const ImageUploader = ({ onUploadComplete }) => {

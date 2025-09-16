@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import CloudinaryImage from '../../atoms/CloudinaryImage/CloudinaryImage'
 import useLanguageStore from '../../../stores/languageStore'
 import { galleryProjects, projectCategories, getProjectsByCategory, getAllProjects } from '../../../constants/galleryData'
@@ -69,11 +69,11 @@ const ProjectGallery = () => {
     })
   }
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setSelectedImage(null)
-  }
+  }, [])
 
-  const navigateLightbox = (direction) => {
+  const navigateLightbox = useCallback((direction) => {
     if (!selectedImage) return
 
     const currentIndex = selectedImage.index
@@ -91,9 +91,9 @@ const ProjectGallery = () => {
       project: selectedImage.allProjects[newIndex],
       index: newIndex
     })
-  }
+  }, [selectedImage])
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = useCallback((e) => {
     if (!selectedImage) return
 
     if (e.key === 'Escape') {
@@ -103,7 +103,7 @@ const ProjectGallery = () => {
     } else if (e.key === 'ArrowRight') {
       navigateLightbox('next')
     }
-  }
+  }, [selectedImage, closeLightbox, navigateLightbox])
 
   useEffect(() => {
     if (selectedImage) {
@@ -118,7 +118,7 @@ const ProjectGallery = () => {
       document.removeEventListener('keydown', handleKeyPress)
       document.body.style.overflow = 'unset'
     }
-  }, [selectedImage])
+  }, [selectedImage, handleKeyPress])
 
   return (
     <section className="project-gallery-section">
