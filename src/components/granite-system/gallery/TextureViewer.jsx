@@ -8,7 +8,7 @@ const TextureViewer = ({ texture }) => {
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(!!texture)
   const [hasError, setHasError] = useState(false)
 
   const imageRef = useRef(null)
@@ -29,6 +29,37 @@ const TextureViewer = ({ texture }) => {
     setIsLoading(false)
     setHasError(false)
   }, [])
+
+  // Check if image is already loaded (from cache) when component mounts or texture changes
+  useEffect(() => {
+    if (texture?.imageUrl && imageRef.current) {
+      const img = imageRef.current
+      if (img.complete && img.naturalHeight !== 0) {
+        // Image is already loaded
+        setIsLoading(false)
+        setHasError(false)
+      }
+    }
+  }, [texture?.imageUrl])
+
+  // Additional check on component mount - delayed to ensure DOM is ready
+  useEffect(() => {
+    const checkImageLoaded = () => {
+      if (texture?.imageUrl && imageRef.current) {
+        const img = imageRef.current
+        if (img.complete && img.naturalHeight !== 0) {
+          setIsLoading(false)
+          setHasError(false)
+        }
+      }
+    }
+
+    // Check immediately and after a small delay
+    checkImageLoaded()
+    const timeoutId = setTimeout(checkImageLoaded, 100)
+
+    return () => clearTimeout(timeoutId)
+  }, [texture?.imageUrl])
 
   // Handle image error
   const handleImageError = useCallback(() => {
@@ -128,10 +159,10 @@ const TextureViewer = ({ texture }) => {
   // Attach global mouse events for dragging
   useEffect(() => {
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mousemove', handleMouseMove, { passive: false })
       document.addEventListener('mouseup', handleMouseUp)
       document.body.style.cursor = 'grabbing'
-      
+
       return () => {
         document.removeEventListener('mousemove', handleMouseMove)
         document.removeEventListener('mouseup', handleMouseUp)
@@ -177,6 +208,17 @@ const TextureViewer = ({ texture }) => {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [isZoomed, imagePosition])
 
+  // Add wheel event listener with proper passive: false
+  useEffect(() => {
+    const container = containerRef.current
+    if (container) {
+      container.addEventListener('wheel', handleWheel, { passive: false })
+      return () => {
+        container.removeEventListener('wheel', handleWheel)
+      }
+    }
+  }, [handleWheel])
+
   if (!texture) {
     return (
       <div className="texture-viewer texture-viewer-empty">
@@ -189,10 +231,9 @@ const TextureViewer = ({ texture }) => {
   }
 
   return (
-    <div 
+    <div
       className="texture-viewer"
       ref={containerRef}
-      onWheel={handleWheel}
     >
       {/* Loading state */}
       {isLoading && (

@@ -6,6 +6,7 @@ import About from './pages/About'
 import Gallery from './pages/Gallery'
 import Articles from './pages/Articles'
 import Contact from './pages/Contact'
+import AdminUpload from './pages/AdminUpload'
 import Footer from './components/organisms/Footer/Footer'
 import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
 import ToastContainer from './components/molecules/ToastContainer'
@@ -21,6 +22,7 @@ function App() {
           <Route path="/gallery" element={<><Gallery /><Footer /></>} />
           <Route path="/articles" element={<><Articles /><Footer /></>} />
           <Route path="/contact" element={<><Contact /><Footer /></>} />
+          <Route path="/admin/upload" element={<AdminUpload />} />
         </Routes>
         
         {/* Global Modal Components */}

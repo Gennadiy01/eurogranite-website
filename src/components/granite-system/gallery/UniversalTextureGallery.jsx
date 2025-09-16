@@ -19,6 +19,7 @@ const UniversalTextureGallery = () => {
   const [sheetHeight, setSheetHeight] = useState(25) // 25%, 50%, 90%
   const [isDraggingSheet, setIsDraggingSheet] = useState(false)
   const filterButtonsRef = useRef(null)
+  const wasGalleryOpenRef = useRef(false) // Track if gallery was already open
   const filtersContainerRef = useRef(null)
   const sheetRef = useRef(null)
   const startTouchY = useRef(0)
@@ -178,8 +179,20 @@ const UniversalTextureGallery = () => {
     return allTextures.filter(texture => texture.groupId === activeFilter)
   }, [allTextures, activeFilter])
 
-  // Current texture from filtered list
-  const currentTexture = filteredTextures[currentTextureIndex] || null
+  // Current texture from filtered list - using useMemo to ensure proper re-rendering
+  const currentTexture = useMemo(() => {
+    return filteredTextures[currentTextureIndex] || null
+  }, [filteredTextures, currentTextureIndex])
+
+  // Validate currentTextureIndex when filter changes
+  useEffect(() => {
+    setCurrentTextureIndex(prevIndex => {
+      if (filteredTextures.length > 0 && prevIndex >= filteredTextures.length) {
+        return 0
+      }
+      return prevIndex
+    })
+  }, [filteredTextures.length])
 
   // Handle navigation
   const handlePrevious = useCallback(() => {
@@ -198,22 +211,14 @@ const UniversalTextureGallery = () => {
 
   // Handle thumbnail click
   const handleThumbnailClick = (index) => {
-    // Find the clicked texture
-    const clickedTexture = filteredTextures[index]
-
-    // If the clicked texture is not in current filtered view, switch to 'all' filter
-    if (!filteredTextures.includes(clickedTexture)) {
-      setActiveFilter('all')
-      // Find the texture index in all textures
-      const allTextureIndex = allTextures.findIndex(t => t.id === clickedTexture.id)
-      setCurrentTextureIndex(allTextureIndex >= 0 ? allTextureIndex : 0)
-    } else {
+    // Validate index bounds
+    if (index >= 0 && index < filteredTextures.length) {
       setCurrentTextureIndex(index)
-    }
 
-    // Reset sheet to initial position
-    setSheetHeight(25)
-    currentSheetHeight.current = 25
+      // Reset sheet to initial position
+      setSheetHeight(25)
+      currentSheetHeight.current = 25
+    }
   }
 
   // Handle filter change
@@ -293,7 +298,10 @@ const UniversalTextureGallery = () => {
 
   // Reset sheet height when gallery opens with new texture
   useEffect(() => {
-    if (gallery.isOpen) {
+    if (gallery.isOpen && !wasGalleryOpenRef.current) {
+      // Gallery just opened - initialize state
+      wasGalleryOpenRef.current = true
+
       setSheetHeight(25)
       currentSheetHeight.current = 25
 
@@ -304,8 +312,8 @@ const UniversalTextureGallery = () => {
         setActiveFilter('all')
       }
 
-      // Find and set correct texture index when opening gallery at specific texture
-      if (gallery.currentTextureIndex !== undefined && gallery.currentTextureIndex !== currentTextureIndex) {
+      // Find and set correct texture index when opening gallery at specific texture (only on initial open)
+      if (gallery.currentTextureIndex !== undefined) {
         setCurrentTextureIndex(gallery.currentTextureIndex);
       }
 
@@ -318,16 +326,13 @@ const UniversalTextureGallery = () => {
           setCurrentTextureIndex(textureIndex)
         }
       }
+    } else if (!gallery.isOpen) {
+      // Gallery closed - reset the ref
+      wasGalleryOpenRef.current = false
     }
-  }, [gallery.isOpen, gallery.currentTextureIndex, gallery.selectedTextureId, gallery.currentFilter, allTextures, currentTextureIndex])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gallery.isOpen, gallery.selectedTextureId, gallery.currentFilter, allTextures]) // Removed gallery.currentTextureIndex to prevent cycle
 
-  // Also try resetting on component mount when gallery is already open
-  useEffect(() => {
-    if (gallery.isOpen) {
-      setSheetHeight(25)
-      currentSheetHeight.current = 25
-    }
-  }, [gallery.isOpen]) // Include gallery.isOpen dependency
 
   // Cleanup effect for touch handlers and animations
 
