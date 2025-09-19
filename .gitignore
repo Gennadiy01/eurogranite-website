@@ -25,3 +25,6 @@ yarn-error.log*
 
 # documentation
 /docs
+
+# utility scripts with API access
+/scripts

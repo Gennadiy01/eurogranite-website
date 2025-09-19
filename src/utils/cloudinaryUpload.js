@@ -20,7 +20,7 @@ export const uploadImageToCloudinary = async (file, metadata) => {
 
   // Generate public_id based on category and timestamp
   const timestamp = Date.now()
-  const publicId = `eurogranite/gallery/${category}/${graniteType}-${category}-${timestamp}`
+  const publicId = `eurogranite/gallery/${category}/${category}-${timestamp}`
 
   // Generate tags for filtering
   const tags = [
@@ -114,7 +114,7 @@ export const uploadBatchImages = async (files, onProgress) => {
  * @returns {Object} Generated metadata
  */
 export const parseFilenameMetadata = (filename) => {
-  // Example filename: "black-granite-driveway-large-2024-kyiv.jpg"
+  // Example filename: "driveway-001.jpg"
   const parts = filename.toLowerCase().replace(/\.(jpg|jpeg|png|webp)$/i, '').split('-')
 
   const metadata = {
@@ -125,9 +125,9 @@ export const parseFilenameMetadata = (filename) => {
     location: ''
   }
 
-  // Auto-detect category from filename
+  // Auto-detect category from filename (first part)
   const categories = ['driveway', 'walkway', 'plaza', 'courtyard']
-  const foundCategory = categories.find(cat => parts.some(part => part.includes(cat)))
+  const foundCategory = categories.find(cat => parts[0] && parts[0].includes(cat))
   if (foundCategory) {
     metadata.category = foundCategory.endsWith('s') ? foundCategory : `${foundCategory}s`
   }

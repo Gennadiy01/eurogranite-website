@@ -13,6 +13,7 @@ const CloudinaryImage = ({
   className = '',
   quality = 'auto',
   format = 'auto',
+  responsive = false,
   onClick,
   onLoad,
   onError,
@@ -21,8 +22,18 @@ const CloudinaryImage = ({
   // Get cloud name from environment or use default
   const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || 'eurogranite'
 
-  // Build optimized Cloudinary URL
-  const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_${width},h_${height},c_fill,f_${format},q_${quality}/${publicId}`
+  // Build optimized Cloudinary URL with responsive support
+  const buildImageUrl = (w, h) => {
+    if (responsive) {
+      // For responsive images, use different crop modes based on screen size
+      const isMobile = window.innerWidth <= 768
+      const cropMode = isMobile ? 'c_fill,g_center' : 'c_fit'
+      return `https://res.cloudinary.com/${cloudName}/image/upload/w_${w},h_${h},${cropMode},f_${format},q_${quality}/${publicId}`
+    }
+    return `https://res.cloudinary.com/${cloudName}/image/upload/w_${w},h_${h},c_fill,f_${format},q_${quality}/${publicId}`
+  }
+
+  const imageUrl = buildImageUrl(width, height)
 
   return (
     <img
@@ -48,6 +59,7 @@ CloudinaryImage.propTypes = {
   className: PropTypes.string,
   quality: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   format: PropTypes.string,
+  responsive: PropTypes.bool,
   onClick: PropTypes.func,
   onLoad: PropTypes.func,
   onError: PropTypes.func
