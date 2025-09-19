@@ -19,8 +19,8 @@ const CloudinaryImage = ({
   onError,
   ...props
 }) => {
-  // Get cloud name from environment or use default
-  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || 'eurogranite'
+  // Get cloud name from environment or use production default
+  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || 'dsunqfo3g'
 
   // Build optimized Cloudinary URL with responsive support
   const buildImageUrl = (w, h) => {
