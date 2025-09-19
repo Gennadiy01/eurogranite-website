@@ -16,29 +16,29 @@ const ProjectGallery = () => {
 
   const content = {
     en: {
-      title: 'Our Projects',
-      subtitle: 'Premium granite paving installations across various project types',
+      title: 'Discover the perfect combination of elegance and comfort in landscape design',
+      subtitle: 'Create a place where unforgettable memories are born. Contact us - and we will help bring your dreams to life.',
       filterAll: 'All Projects',
       loadMore: 'Load More',
       close: 'Close'
     },
     ua: {
-      title: 'Наші проекти',
-      subtitle: 'Преміум установки гранітної бруківки в різних типах проектів',
+      title: 'Відкрийте ідеальне поєднання елегантності й комфорту в ландшафтному дизайні',
+      subtitle: 'Створіть місце, де народжуються незабутні спогади. Зверніться до нас - і ми допоможемо втілити ваші мрії.',
       filterAll: 'Всі проекти',
       loadMore: 'Завантажити більше',
       close: 'Закрити'
     },
     de: {
-      title: 'Unsere Projekte',
-      subtitle: 'Premium-Granitpflaster-Installationen in verschiedenen Projekttypen',
+      title: 'Entdecken Sie die perfekte Kombination aus Eleganz und Komfort im Landschaftsdesign',
+      subtitle: 'Schaffen Sie einen Ort, an dem unvergessliche Erinnerungen entstehen. Kontaktieren Sie uns - und wir helfen Ihnen, Ihre Träume zu verwirklichen.',
       filterAll: 'Alle Projekte',
       loadMore: 'Mehr laden',
       close: 'Schließen'
     },
     pl: {
-      title: 'Nasze Projekty',
-      subtitle: 'Instalacje premium granitowej kostki brukowej w różnych typach projektów',
+      title: 'Odkryj idealne połączenie elegancji i komfortu w projektowaniu krajobrazu',
+      subtitle: 'Stwórz miejsce, gdzie rodzą się niezapomniane wspomnienia. Skontaktuj się z nami - a pomożemy Ci spełnić Twoje marzenia.',
       filterAll: 'Wszystkie projekty',
       loadMore: 'Załaduj więcej',
       close: 'Zamknij'

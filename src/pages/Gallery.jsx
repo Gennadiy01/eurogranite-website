@@ -13,20 +13,20 @@ const Gallery = () => {
 
   const content = {
     en: {
-      title: "Our Gallery",
-      subtitle: "Showcase of premium granite paving projects and installations"
+      title: "Landscape Solutions Gallery",
+      subtitle: "Discover endless possibilities of landscape design. Our gallery showcases options for creating harmonious spaces for pathways, streets and plazas. Wide product range allows you to implement any landscaping ideas to your taste."
     },
     ua: {
-      title: "Наша галерея",
-      subtitle: "Демонстрація проектів та установок преміум гранітної бруківки"
+      title: "Галерея ландшафтних рішень",
+      subtitle: "Відкрийте безмежні можливості ландшафтного дизайну. Наша галерея демонструє варіанти створення гармонійних просторів для доріжок, вулиць та майданчиків. Широкий асортимент продукції дозволяє реалізувати будь-які ідеї благоустрою на ваш смак."
     },
     de: {
-      title: "Unsere Galerie",
-      subtitle: "Präsentation von Premium-Granitpflaster-Projekten und Installationen"
+      title: "Galerie der Landschaftslösungen",
+      subtitle: "Entdecken Sie die endlosen Möglichkeiten der Landschaftsgestaltung. Unsere Galerie zeigt Optionen für die Schaffung harmonischer Räume für Wege, Straßen und Plätze. Das breite Produktsortiment ermöglicht es, alle Landschaftsideen nach Ihrem Geschmack umzusetzen."
     },
     pl: {
-      title: "Nasza galeria",
-      subtitle: "Prezentacja projektów i instalacji premium granitowej kostki brukowej"
+      title: "Galeria Rozwiązań Krajobrazowych",
+      subtitle: "Odkryj nieskończone możliwości projektowania krajobrazu. Nasza galeria prezentuje opcje tworzenia harmonijnych przestrzeni dla ścieżek, ulic i placów. Szeroka gama produktów pozwala na realizację wszelkich pomysłów zagospodarowania według Twojego gustu."
     }
   }
 
@@ -46,7 +46,7 @@ const Gallery = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="page-hero page-hero--compact">
+      <section className="page-hero page-hero--fullscreen">
         <div className="page-hero-background">
           <div className="page-hero-overlay"></div>
         </div>
