@@ -4016,11 +4016,14 @@ body {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  cursor: pointer;
   background: var(--white);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
   aspect-ratio: 3/2;
+}
+
+.gallery-item-clickable {
+  cursor: pointer;
 }
 
 .gallery-item:hover {
@@ -4432,6 +4435,10 @@ body {
 
   .gallery-item {
     aspect-ratio: 4/3;
+  }
+
+  .gallery-item-clickable {
+    cursor: default;
   }
 
   .filter-button {

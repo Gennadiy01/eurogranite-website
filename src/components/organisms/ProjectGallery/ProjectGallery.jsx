@@ -64,6 +64,11 @@ const ProjectGallery = () => {
   }
 
   const openLightbox = (project, index) => {
+    // Disable lightbox on mobile devices (≤768px) since image size is the same
+    if (window.innerWidth <= 768) {
+      return
+    }
+
     setSelectedImage({
       project,
       index,
@@ -189,7 +194,7 @@ const ProjectGallery = () => {
             filteredProjects.map((project, index) => (
               <div
                 key={project.id}
-                className="gallery-item"
+                className={`gallery-item ${window.innerWidth > 768 ? 'gallery-item-clickable' : ''}`}
                 onClick={() => openLightbox(project, index)}
               >
                 <CloudinaryImage
