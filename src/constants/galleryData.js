@@ -34,6 +34,17 @@ export const projectCategories = [
     },
     cloudinaryFolder: 'dsunqfo3g/plaza',
     tags: ['gallery', 'plaza']
+  },
+  {
+    id: 'driveway',
+    name: {
+      en: 'Streets',
+      ua: 'Вулиці',
+      de: 'Straßen',
+      pl: 'Ulice'
+    },
+    cloudinaryFolder: 'dsunqfo3g/driveway',
+    tags: ['gallery', 'driveway']
   }
 ]
 
@@ -1719,6 +1730,469 @@ export const galleryProjects = [
       ua: 'Проект гранітного мощення площі',
       de: 'Granit-Platz-Pflasterung',
       pl: 'Projekt granitowej kostki na placu'
+    }
+  },
+  // Driveway projects - 33 images
+  {
+    id: 'driveway-01',
+    publicId: 'driveway-15_bmhqtg',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-02',
+    publicId: 'driveway-14_knhb0j',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-03',
+    publicId: 'driveway-19_tylfzw',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-04',
+    publicId: 'driveway-12_e6muxq',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-05',
+    publicId: 'driveway-13_oox8xk',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-06',
+    publicId: 'driveway-11_hwo1pf',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-07',
+    publicId: 'driveway-10_cngtbx',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-08',
+    publicId: 'driveway-09_kcnysd',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-09',
+    publicId: 'driveway-08_ota2x9',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-10',
+    publicId: 'driveway-07_gpiv2c',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-11',
+    publicId: 'driveway-06_ygl7dy',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-12',
+    publicId: 'driveway-05_b7vvlg',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-13',
+    publicId: 'driveway-04_lzdgdy',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-14',
+    publicId: 'driveway-03_qtpkur',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-15',
+    publicId: 'driveway-02_tj4kao',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-16',
+    publicId: 'driveway-01_enldfq',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-17',
+    publicId: 'driveway-33_s4puqh',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-18',
+    publicId: 'driveway-32_tiwa2b',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-19',
+    publicId: 'driveway-31_ltugdk',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-20',
+    publicId: 'driveway-30_uvy1te',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-21',
+    publicId: 'driveway-29_u7y5jj',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-22',
+    publicId: 'driveway-27_pjl2s4',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-23',
+    publicId: 'driveway-28_upokvo',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-24',
+    publicId: 'driveway-26_je2hnx',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-25',
+    publicId: 'driveway-25_fgid5x',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-26',
+    publicId: 'driveway-24_dtmae5',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-27',
+    publicId: 'driveway-23_jprvlk',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-28',
+    publicId: 'driveway-22_q1l2z6',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-29',
+    publicId: 'driveway-21_qgomyz',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-30',
+    publicId: 'driveway-20_cwsv81',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-31',
+    publicId: 'driveway-18_apouub',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-32',
+    publicId: 'driveway-17_qfhfqe',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
+    }
+  },
+  {
+    id: 'driveway-33',
+    publicId: 'driveway-16_dy8kbb',
+    category: 'driveway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'driveway'],
+    alt: {
+      en: 'Granite street paving project',
+      ua: 'Проект гранітного мощення вулиці',
+      de: 'Granit-Straßenpflasterung',
+      pl: 'Projekt granitowej kostki na ulicy'
     }
   }
 ]
