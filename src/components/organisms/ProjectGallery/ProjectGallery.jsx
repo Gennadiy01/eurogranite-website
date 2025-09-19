@@ -9,6 +9,8 @@ const ProjectGallery = () => {
   const [filteredProjects, setFilteredProjects] = useState(galleryProjects)
   const [selectedImage, setSelectedImage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [lightboxImageLoading, setLightboxImageLoading] = useState(false)
+  const [showLightboxLoader, setShowLightboxLoader] = useState(false)
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
 
@@ -69,19 +71,50 @@ const ProjectGallery = () => {
       return
     }
 
+    setLightboxImageLoading(true)
+    setShowLightboxLoader(false)
+
+    // Show loader after 1 second delay
+    const loaderTimeout = setTimeout(() => {
+      if (lightboxImageLoading) {
+        setShowLightboxLoader(true)
+      }
+    }, 1000)
+
     setSelectedImage({
       project,
       index,
-      allProjects: filteredProjects
+      allProjects: filteredProjects,
+      loaderTimeout
     })
   }
 
   const closeLightbox = useCallback(() => {
+    if (selectedImage?.loaderTimeout) {
+      clearTimeout(selectedImage.loaderTimeout)
+    }
     setSelectedImage(null)
-  }, [])
+    setLightboxImageLoading(false)
+    setShowLightboxLoader(false)
+  }, [selectedImage])
 
   const navigateLightbox = useCallback((direction) => {
     if (!selectedImage) return
+
+    // Clear previous timeout
+    if (selectedImage.loaderTimeout) {
+      clearTimeout(selectedImage.loaderTimeout)
+    }
+
+    setLightboxImageLoading(true)
+    setShowLightboxLoader(false)
+
+    // Show loader after 1 second delay
+    const loaderTimeout = setTimeout(() => {
+      if (lightboxImageLoading) {
+        setShowLightboxLoader(true)
+      }
+    }, 1000)
 
     const currentIndex = selectedImage.index
     const totalImages = selectedImage.allProjects.length
@@ -96,9 +129,10 @@ const ProjectGallery = () => {
     setSelectedImage({
       ...selectedImage,
       project: selectedImage.allProjects[newIndex],
-      index: newIndex
+      index: newIndex,
+      loaderTimeout
     })
-  }, [selectedImage])
+  }, [selectedImage, lightboxImageLoading])
 
   // Swipe handlers for mobile
   const handleTouchStart = (e) => {
@@ -136,6 +170,31 @@ const ProjectGallery = () => {
       navigateLightbox('next')
     }
   }, [selectedImage, closeLightbox, navigateLightbox])
+
+  // Preload adjacent images
+  useEffect(() => {
+    if (selectedImage) {
+      const currentIndex = selectedImage.index
+      const totalImages = selectedImage.allProjects.length
+      const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || 'dsunqfo3g'
+
+      // Preload next image
+      const nextIndex = currentIndex < totalImages - 1 ? currentIndex + 1 : 0
+      const nextProject = selectedImage.allProjects[nextIndex]
+      if (nextProject) {
+        const nextImg = new Image()
+        nextImg.src = `https://res.cloudinary.com/${cloudName}/image/upload/w_1600,h_1067,c_fit,f_auto,q_auto/${nextProject.publicId}`
+      }
+
+      // Preload previous image
+      const prevIndex = currentIndex > 0 ? currentIndex - 1 : totalImages - 1
+      const prevProject = selectedImage.allProjects[prevIndex]
+      if (prevProject) {
+        const prevImg = new Image()
+        prevImg.src = `https://res.cloudinary.com/${cloudName}/image/upload/w_1600,h_1067,c_fit,f_auto,q_auto/${prevProject.publicId}`
+      }
+    }
+  }, [selectedImage])
 
   useEffect(() => {
     if (selectedImage) {
@@ -272,6 +331,11 @@ const ProjectGallery = () => {
               </button>
 
               <div className="lightbox-image-container">
+                {lightboxImageLoading && showLightboxLoader && (
+                  <div className="lightbox-image-loader">
+                    <div className="lightbox-loading-spinner"></div>
+                  </div>
+                )}
                 <CloudinaryImage
                   publicId={selectedImage.project.publicId}
                   alt={selectedImage.project.alt?.[currentLanguage] || selectedImage.project.alt?.en || `Granite paving project ${selectedImage.project.id}`}
@@ -279,6 +343,20 @@ const ProjectGallery = () => {
                   height={1600}
                   className="lightbox-image"
                   responsive={true}
+                  onLoad={() => {
+                    if (selectedImage?.loaderTimeout) {
+                      clearTimeout(selectedImage.loaderTimeout)
+                    }
+                    setLightboxImageLoading(false)
+                    setShowLightboxLoader(false)
+                  }}
+                  onError={() => {
+                    if (selectedImage?.loaderTimeout) {
+                      clearTimeout(selectedImage.loaderTimeout)
+                    }
+                    setLightboxImageLoading(false)
+                    setShowLightboxLoader(false)
+                  }}
                 />
               </div>
 
