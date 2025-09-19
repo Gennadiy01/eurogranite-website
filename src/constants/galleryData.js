@@ -12,6 +12,17 @@ export const projectCategories = [
     },
     cloudinaryFolder: 'dsunqfo3g/courtyard',
     tags: ['gallery', 'courtyard']
+  },
+  {
+    id: 'walkway',
+    name: {
+      en: 'Walkways',
+      ua: 'Пішохідні доріжки',
+      de: 'Gehwege',
+      pl: 'Chodniki'
+    },
+    cloudinaryFolder: 'dsunqfo3g/walkway',
+    tags: ['gallery', 'walkway']
   }
 ]
 
@@ -603,6 +614,511 @@ export const galleryProjects = [
       ua: 'Проект гранітного мощення внутрішнього дворика',
       de: 'Granit-Innenhof-Pflasterung',
       pl: 'Projekt granitowej kostki na dziedzińcu'
+    }
+  },
+  // Walkway projects - 36 images
+  {
+    id: 'walkway-01',
+    publicId: 'walkway-08_gfw89g',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-02',
+    publicId: 'walkway-17_r38zzj',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-03',
+    publicId: 'walkway-16_f2usn1',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-04',
+    publicId: 'walkway-15_hxgrck',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-05',
+    publicId: 'walkway-14_zyqdlv',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-06',
+    publicId: 'walkway-01_wvylqa',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-07',
+    publicId: 'walkway-13_otbxvc',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-08',
+    publicId: 'walkway-27_oftr6r',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-09',
+    publicId: 'walkway-26_gex9ug',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-10',
+    publicId: 'walkway-25_oso5ou',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-11',
+    publicId: 'walkway-24_jmoitt',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-12',
+    publicId: 'walkway-18_jf8yez',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-13',
+    publicId: 'walkway-12_tvp64y',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-14',
+    publicId: 'walkway-11_zzwxnu',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-15',
+    publicId: 'walkway-09_dbnyrw',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-16',
+    publicId: 'walkway-10_x7qd4h',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-17',
+    publicId: 'walkway-07_ihfpo7',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-18',
+    publicId: 'walkway-06_kneef8',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-19',
+    publicId: 'walkway-04_nurqpz',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-20',
+    publicId: 'walkway-05_sfx5ru',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-21',
+    publicId: 'walkway-03_vdptce',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-22',
+    publicId: 'walkway-36_ioewch',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-23',
+    publicId: 'walkway-02_t1bn44',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-24',
+    publicId: 'walkway-35_k3gl1h',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-25',
+    publicId: 'walkway-34_yvrauy',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-26',
+    publicId: 'walkway-33_ajfcu0',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-27',
+    publicId: 'walkway-32_oxh2dy',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-28',
+    publicId: 'walkway-31_n70lkg',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-29',
+    publicId: 'walkway-30_ymnr9z',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-30',
+    publicId: 'walkway-29_iu2x3a',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-31',
+    publicId: 'walkway-28_rca6dl',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-32',
+    publicId: 'walkway-23_ysgdqy',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-33',
+    publicId: 'walkway-19_aepyfu',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-34',
+    publicId: 'walkway-20_ublb9t',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-35',
+    publicId: 'walkway-22_lge7oh',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
+    }
+  },
+  {
+    id: 'walkway-36',
+    publicId: 'walkway-21_mxgk2p',
+    category: 'walkway',
+    width: 1920,
+    height: 1280,
+    tags: ['gallery', 'walkway'],
+    alt: {
+      en: 'Granite walkway paving project',
+      ua: 'Проект гранітного мощення пішохідної доріжки',
+      de: 'Granit-Gehweg-Pflasterung',
+      pl: 'Projekt granitowej kostki na chodniku'
     }
   }
 ]
