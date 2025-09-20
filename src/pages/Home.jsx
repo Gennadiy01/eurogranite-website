@@ -6,8 +6,8 @@ import Hero from '../components/organisms/Hero/Hero'
 import UniqueProposition from '../components/organisms/UniqueProposition/UniqueProposition'
 import GraniteColors from '../components/organisms/GraniteColors/GraniteColors'
 import ModalManager from '../components/organisms/ModalManager/ModalManager'
-import SEO from '../components/atoms/SEO'
-import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
+import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
+import LazySchemaLoader from '../components/atoms/StructuredData/LazySchemaLoader'
 
 const Home = () => {
   const { currentLanguage } = useLanguageStore()
@@ -15,18 +15,21 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <SEO
+      <OptimizedSEO
         title={seoData?.title}
         description={seoData?.description}
         keywords={seoData?.keywords}
         canonical={seoData?.canonical}
         ogImage={seoData?.ogImage}
         currentLanguage={currentLanguage}
-        hreflang={seoData?.hreflang}
+        pagePath={seoData?.pagePath}
       />
-      <OrganizationSchema />
-      <LocalBusinessSchema />
-      <BreadcrumbSchema />
+      {/* Optimized Lazy-loaded Structured Data */}
+      <LazySchemaLoader
+        schemas={['organization', 'localbusiness', 'breadcrumb']}
+        currentLanguage={currentLanguage}
+        pagePath="/"
+      />
       <Header />
       <main>
         <Hero />
