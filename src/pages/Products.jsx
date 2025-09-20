@@ -5,9 +5,9 @@ import { productsData, TextureIcon, SurfaceIcon, DimensionIcon } from '../consta
 import { getSEOData } from '../constants/seoData';
 import ProductCard from '../components/molecules/ProductCard';
 import Header from '../components/organisms/Header/Header';
-import SEO from '../components/atoms/SEO';
+import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO';
+import LazySchemaLoader from '../components/atoms/StructuredData/LazySchemaLoader';
 import UniversalTextureGallery from '../components/granite-system/gallery/UniversalTextureGallery';
-import { OrganizationSchema, ProductSchema, BreadcrumbSchema } from '../components/atoms/StructuredData';
 
 const Products = () => {
   const { currentLanguage } = useLanguageStore();
@@ -20,18 +20,20 @@ const Products = () => {
 
   return (
     <div className="products-page">
-      <SEO
+      <OptimizedSEO
         title={seoData?.title}
         description={seoData?.description}
         keywords={seoData?.keywords}
         canonical={seoData?.canonical}
         ogImage={seoData?.ogImage}
         currentLanguage={currentLanguage}
-        hreflang={seoData?.hreflang}
+        pagePath={seoData?.pagePath}
       />
-      <OrganizationSchema />
-      <ProductSchema productType="general" />
-      <BreadcrumbSchema />
+      <LazySchemaLoader
+        schemas={['organization', 'product', 'breadcrumb']}
+        currentLanguage={currentLanguage}
+        pagePath="/products"
+      />
       <Header />
       <main>
       {/* Hero Section */}
