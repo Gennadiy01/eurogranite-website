@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-// Mock React Router before imports
+// Mock React Router
 jest.mock('react-router-dom');
 
 test('renders EuroGranite logo', () => {
