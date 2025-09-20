@@ -117,22 +117,21 @@ export const seoData = {
 };
 
 // Функція для отримання SEO даних для конкретної сторінки
-export const getSEOData = (page, language = 'en') => {
+export const getSEOData = (page, language = 'en', currentPath = '') => {
   const pageData = seoData[page];
   if (!pageData) return null;
+
+  // Use currentPath if provided, otherwise use canonical from pageData
+  const pagePath = currentPath || pageData.canonical;
 
   return {
     title: pageData.title[language],
     description: pageData.description[language],
     keywords: pageData.keywords[language],
-    canonical: pageData.canonical,
+    canonical: pagePath, // Will be processed by SEO component with language prefix
     ogImage: pageData.ogImage,
-    hreflang: {
-      ua: pageData.canonical,
-      en: pageData.canonical,
-      de: pageData.canonical,
-      pl: pageData.canonical
-    }
+    pagePath: pagePath, // Pass to SEO component for hreflang generation
+    // Remove old hreflang object as it's now handled automatically by SEO component
   };
 };
 

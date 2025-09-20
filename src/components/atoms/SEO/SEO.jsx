@@ -7,7 +7,8 @@ const SEO = ({
   canonical,
   ogImage,
   currentLanguage = 'en',
-  hreflang = {} // { en: '/path', ua: '/path', de: '/path', pl: '/path' }
+  hreflang = {}, // { en: '/path', ua: '/path', de: '/path', pl: '/path' }
+  pagePath = '' // current page path without language prefix
 }) => {
   useEffect(() => {
     // Update title
@@ -34,15 +35,23 @@ const SEO = ({
       metaKeywords.setAttribute('content', keywords);
     }
 
-    // Update canonical link
-    if (canonical) {
+    // Update canonical link with automatic language prefix
+    const canonicalUrl = canonical || pagePath;
+    if (canonicalUrl !== undefined) {
       let canonicalLink = document.querySelector('link[rel="canonical"]');
       if (!canonicalLink) {
         canonicalLink = document.createElement('link');
         canonicalLink.setAttribute('rel', 'canonical');
         document.head.appendChild(canonicalLink);
       }
-      canonicalLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${canonical}`);
+
+      // Generate canonical URL with language prefix
+      const languagePrefix = `/${currentLanguage}`;
+      const fullCanonicalPath = canonicalUrl === '/' || canonicalUrl === ''
+        ? `${languagePrefix}/`
+        : `${languagePrefix}${canonicalUrl.startsWith('/') ? canonicalUrl : '/' + canonicalUrl}`;
+
+      canonicalLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${fullCanonicalPath}`);
     }
 
     // Update Open Graph meta tags
@@ -60,10 +69,14 @@ const SEO = ({
       }
     }
 
-    if (canonical) {
+    if (canonicalUrl !== undefined) {
       let ogUrl = document.querySelector('meta[property="og:url"]');
       if (ogUrl) {
-        ogUrl.setAttribute('content', `https://gennadiy01.github.io/eurogranite-website${canonical}`);
+        const languagePrefix = `/${currentLanguage}`;
+        const fullCanonicalPath = canonicalUrl === '/' || canonicalUrl === ''
+          ? `${languagePrefix}/`
+          : `${languagePrefix}${canonicalUrl.startsWith('/') ? canonicalUrl : '/' + canonicalUrl}`;
+        ogUrl.setAttribute('content', `https://gennadiy01.github.io/eurogranite-website${fullCanonicalPath}`);
       }
     }
 
@@ -92,20 +105,39 @@ const SEO = ({
       }
     }
 
-    // Update hreflang links
-    if (Object.keys(hreflang).length > 0) {
-      // Remove existing hreflang links
-      document.querySelectorAll('link[hreflang]').forEach(link => link.remove());
+    // Update hreflang links with proper language prefixes
+    const supportedLanguages = ['ua', 'en', 'de', 'pl'];
+    const currentPath = canonicalUrl || pagePath || '';
 
-      // Add new hreflang links
-      Object.entries(hreflang).forEach(([lang, path]) => {
-        const hreflangLink = document.createElement('link');
-        hreflangLink.setAttribute('rel', 'alternate');
-        hreflangLink.setAttribute('hreflang', lang);
-        hreflangLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${path}`);
-        document.head.appendChild(hreflangLink);
-      });
-    }
+    // Remove existing hreflang links
+    document.querySelectorAll('link[hreflang]').forEach(link => link.remove());
+
+    // Add hreflang links for all supported languages
+    supportedLanguages.forEach(lang => {
+      const hreflangLink = document.createElement('link');
+      hreflangLink.setAttribute('rel', 'alternate');
+      hreflangLink.setAttribute('hreflang', lang === 'ua' ? 'uk' : lang); // ISO 639-1 code for Ukrainian
+
+      // Generate proper language-prefixed URL
+      const fullPath = currentPath === '/' || currentPath === ''
+        ? `/${lang}/`
+        : `/${lang}${currentPath.startsWith('/') ? currentPath : '/' + currentPath}`;
+
+      hreflangLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${fullPath}`);
+      document.head.appendChild(hreflangLink);
+    });
+
+    // Add x-default hreflang pointing to English version for international users
+    const xDefaultLink = document.createElement('link');
+    xDefaultLink.setAttribute('rel', 'alternate');
+    xDefaultLink.setAttribute('hreflang', 'x-default');
+
+    const defaultPath = currentPath === '/' || currentPath === ''
+      ? '/en/'
+      : `/en${currentPath.startsWith('/') ? currentPath : '/' + currentPath}`;
+
+    xDefaultLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${defaultPath}`);
+    document.head.appendChild(xDefaultLink);
 
     // Update html lang attribute
     if (currentLanguage) {
@@ -118,7 +150,7 @@ const SEO = ({
       document.documentElement.setAttribute('lang', langMap[currentLanguage] || 'en');
     }
 
-  }, [title, description, keywords, canonical, ogImage, currentLanguage, hreflang]);
+  }, [title, description, keywords, canonical, ogImage, currentLanguage, hreflang, pagePath]);
 
   return null; // This component doesn't render anything
 };
