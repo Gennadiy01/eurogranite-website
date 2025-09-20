@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher'
 import useLanguageStore from '../../../stores/languageStore'
 
@@ -7,42 +7,48 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { currentLanguage } = useLanguageStore()
   const location = useLocation()
-  const lang = currentLanguage || 'en'
+  const { lang: urlLang } = useParams()
+  const lang = urlLang || currentLanguage || 'ua'
   
   
-  // Navigation items
+  // Helper function to create localized URLs
+  const createLocalizedPath = (path) => {
+    return path === '/' ? `/${lang}` : `/${lang}${path}`
+  }
+
+  // Navigation items with localized paths
   const navItems = {
     en: [
-      { to: '/', label: 'Home' },
-      { to: '/products', label: 'Products' },
-      { to: '/about', label: 'About Us' },
-      { to: '/contact', label: 'Contact' },
-      { to: '/gallery', label: 'Gallery' },
-      { to: '/articles', label: 'Articles' }
+      { to: createLocalizedPath('/'), label: 'Home' },
+      { to: createLocalizedPath('/products'), label: 'Products' },
+      { to: createLocalizedPath('/about'), label: 'About Us' },
+      { to: createLocalizedPath('/contact'), label: 'Contact' },
+      { to: createLocalizedPath('/gallery'), label: 'Gallery' },
+      { to: createLocalizedPath('/articles'), label: 'Articles' }
     ],
     ua: [
-      { to: '/', label: 'Головна' },
-      { to: '/products', label: 'Продукція' },
-      { to: '/about', label: 'Про нас' },
-      { to: '/contact', label: 'Контакти' },
-      { to: '/gallery', label: 'Галерея' },
-      { to: '/articles', label: 'Статті' }
+      { to: createLocalizedPath('/'), label: 'Головна' },
+      { to: createLocalizedPath('/products'), label: 'Продукція' },
+      { to: createLocalizedPath('/about'), label: 'Про нас' },
+      { to: createLocalizedPath('/contact'), label: 'Контакти' },
+      { to: createLocalizedPath('/gallery'), label: 'Галерея' },
+      { to: createLocalizedPath('/articles'), label: 'Статті' }
     ],
     de: [
-      { to: '/', label: 'Startseite' },
-      { to: '/products', label: 'Produkte' },
-      { to: '/about', label: 'Über uns' },
-      { to: '/contact', label: 'Kontakt' },
-      { to: '/gallery', label: 'Galerie' },
-      { to: '/articles', label: 'Artikel' }
+      { to: createLocalizedPath('/'), label: 'Startseite' },
+      { to: createLocalizedPath('/products'), label: 'Produkte' },
+      { to: createLocalizedPath('/about'), label: 'Über uns' },
+      { to: createLocalizedPath('/contact'), label: 'Kontakt' },
+      { to: createLocalizedPath('/gallery'), label: 'Galerie' },
+      { to: createLocalizedPath('/articles'), label: 'Artikel' }
     ],
     pl: [
-      { to: '/', label: 'Główna' },
-      { to: '/products', label: 'Produkty' },
-      { to: '/about', label: 'O nas' },
-      { to: '/contact', label: 'Kontakt' },
-      { to: '/gallery', label: 'Galeria' },
-      { to: '/articles', label: 'Artykuły' }
+      { to: createLocalizedPath('/'), label: 'Główna' },
+      { to: createLocalizedPath('/products'), label: 'Produkty' },
+      { to: createLocalizedPath('/about'), label: 'O nas' },
+      { to: createLocalizedPath('/contact'), label: 'Kontakt' },
+      { to: createLocalizedPath('/gallery'), label: 'Galeria' },
+      { to: createLocalizedPath('/articles'), label: 'Artykuły' }
     ]
   }
   
@@ -56,7 +62,7 @@ const Header = () => {
         <div className="header-mobile items-center justify-between py-4 min-h-60px">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="logo-text">
+            <Link to={createLocalizedPath('/')} className="logo-text">
               EuroGranite
             </Link>
           </div>
@@ -89,7 +95,7 @@ const Header = () => {
           
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="logo-text">
+            <Link to={createLocalizedPath('/')} className="logo-text">
               EuroGranite
             </Link>
           </div>

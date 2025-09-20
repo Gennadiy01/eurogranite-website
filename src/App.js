@@ -10,24 +10,67 @@ import AdminUpload from './pages/AdminUpload'
 import Footer from './components/organisms/Footer/Footer'
 import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
 import ToastContainer from './components/molecules/ToastContainer'
+import LocalizedLayout from './components/routing/LocalizedLayout'
+import LanguageRedirect from './components/routing/LanguageRedirect'
 
 function App() {
   return (
     <div className="App">
       <Router basename="/eurogranite-website">
         <Routes>
-          <Route path="/" element={<><Home /><Footer /></>} />
-          <Route path="/products" element={<><Products /><Footer /></>} />
-          <Route path="/about" element={<><About /><Footer /></>} />
-          <Route path="/gallery" element={<><Gallery /><Footer /></>} />
-          <Route path="/articles" element={<><Articles /><Footer /></>} />
-          <Route path="/contact" element={<><Contact /><Footer /></>} />
+          {/* Language redirect for non-localized URLs */}
+          <Route path="/" element={<LanguageRedirect />} />
+          <Route path="/products" element={<LanguageRedirect />} />
+          <Route path="/about" element={<LanguageRedirect />} />
+          <Route path="/gallery" element={<LanguageRedirect />} />
+          <Route path="/articles" element={<LanguageRedirect />} />
+          <Route path="/contact" element={<LanguageRedirect />} />
+
+          {/* Localized routes */}
+          <Route path="/:lang" element={
+            <LocalizedLayout>
+              <Home />
+              <Footer />
+            </LocalizedLayout>
+          } />
+          <Route path="/:lang/products" element={
+            <LocalizedLayout>
+              <Products />
+              <Footer />
+            </LocalizedLayout>
+          } />
+          <Route path="/:lang/about" element={
+            <LocalizedLayout>
+              <About />
+              <Footer />
+            </LocalizedLayout>
+          } />
+          <Route path="/:lang/gallery" element={
+            <LocalizedLayout>
+              <Gallery />
+              <Footer />
+            </LocalizedLayout>
+          } />
+          <Route path="/:lang/articles" element={
+            <LocalizedLayout>
+              <Articles />
+              <Footer />
+            </LocalizedLayout>
+          } />
+          <Route path="/:lang/contact" element={
+            <LocalizedLayout>
+              <Contact />
+              <Footer />
+            </LocalizedLayout>
+          } />
+
+          {/* Admin route (no localization needed) */}
           <Route path="/admin/upload" element={<AdminUpload />} />
         </Routes>
-        
+
         {/* Global Modal Components */}
         <UniversalTextureGallery />
-        
+
         {/* Global Toast Container */}
         <ToastContainer />
       </Router>

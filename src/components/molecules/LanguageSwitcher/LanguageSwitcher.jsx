@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import useLanguageStore from '../../../stores/languageStore'
 
 const LanguageSwitcher = ({ className = '' }) => {
@@ -6,6 +7,9 @@ const LanguageSwitcher = ({ className = '' }) => {
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef(null)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const { lang: urlLang } = useParams()
+  const navigate = useNavigate()
+  const location = useLocation()
   
   const currentLang = availableLanguages.find(lang => lang.code === currentLanguage)
   const otherLanguages = availableLanguages.filter(lang => lang.code !== currentLanguage)
@@ -26,7 +30,13 @@ const LanguageSwitcher = ({ className = '' }) => {
   const handleLanguageSelect = (languageCode) => {
     setLanguage(languageCode)
     setIsOpen(false) // Закриваємо меню після вибору
-    
+
+    // Navigate to the same page but with new language
+    const currentPath = location.pathname.replace('/eurogranite-website', '')
+    const pathWithoutLang = urlLang ? currentPath.replace(`/${urlLang}`, '') : currentPath
+    const newPath = pathWithoutLang === '' || pathWithoutLang === '/' ? `/${languageCode}` : `/${languageCode}${pathWithoutLang}`
+    navigate(newPath)
+
     // Очищуємо timeout якщо існує
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
