@@ -13,31 +13,34 @@ const ProjectGallery = () => {
   const [showLightboxLoader, setShowLightboxLoader] = useState(false)
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
+  const [mobileSlideIndex, setMobileSlideIndex] = useState(0)
+  const [mobileTouchStart, setMobileTouchStart] = useState(null)
+  const [mobileTouchEnd, setMobileTouchEnd] = useState(null)
 
   const content = {
     en: {
-      title: 'Discover the perfect combination of elegance and comfort in landscape design',
+      title: 'Discover the perfect combination of elegance and comfort\nin landscape design',
       subtitle: 'Create a place where unforgettable memories are born. Contact us - and we will help bring your dreams to life.',
       filterAll: 'All Projects',
       loadMore: 'Load More',
       close: 'Close'
     },
     ua: {
-      title: 'Відкрийте ідеальне поєднання елегантності й комфорту в ландшафтному дизайні',
+      title: 'Відкрийте ідеальне поєднання елегантності й комфорту\nв ландшафтному дизайні',
       subtitle: 'Створіть місце, де народжуються незабутні спогади. Зверніться до нас - і ми допоможемо втілити ваші мрії.',
       filterAll: 'Всі проекти',
       loadMore: 'Завантажити більше',
       close: 'Закрити'
     },
     de: {
-      title: 'Entdecken Sie die perfekte Kombination aus Eleganz und Komfort im Landschaftsdesign',
+      title: 'Entdecken Sie die perfekte Kombination aus Eleganz und Komfort\nim Landschaftsdesign',
       subtitle: 'Schaffen Sie einen Ort, an dem unvergessliche Erinnerungen entstehen. Kontaktieren Sie uns - und wir helfen Ihnen, Ihre Träume zu verwirklichen.',
       filterAll: 'Alle Projekte',
       loadMore: 'Mehr laden',
       close: 'Schließen'
     },
     pl: {
-      title: 'Odkryj idealne połączenie elegancji i komfortu w projektowaniu krajobrazu',
+      title: 'Odkryj idealne połączenie elegancji i komfortu\nw projektowaniu krajobrazu',
       subtitle: 'Stwórz miejsce, gdzie rodzą się niezapomniane wspomnienia. Skontaktuj się z nami - a pomożemy Ci spełnić Twoje marzenia.',
       filterAll: 'Wszystkie projekty',
       loadMore: 'Załaduj więcej',
@@ -53,6 +56,7 @@ const ProjectGallery = () => {
     } else {
       setFilteredProjects(getProjectsByCategory(activeCategory))
     }
+    setMobileSlideIndex(0) // Reset slide index when category changes
   }, [activeCategory])
 
   const handleCategoryChange = (categoryId) => {
@@ -159,6 +163,37 @@ const ProjectGallery = () => {
     }
   }
 
+  // Mobile slider swipe handlers
+  const handleMobileTouchStart = (e) => {
+    setMobileTouchEnd(null)
+    setMobileTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleMobileTouchMove = (e) => {
+    setMobileTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleMobileTouchEnd = () => {
+    if (!mobileTouchStart || !mobileTouchEnd) return
+
+    const distance = mobileTouchStart - mobileTouchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      // Next slide
+      setMobileSlideIndex(prev =>
+        prev < filteredProjects.length - 1 ? prev + 1 : 0
+      )
+    }
+    if (isRightSwipe) {
+      // Previous slide
+      setMobileSlideIndex(prev =>
+        prev > 0 ? prev - 1 : filteredProjects.length - 1
+      )
+    }
+  }
+
   const handleKeyPress = useCallback((e) => {
     if (!selectedImage) return
 
@@ -243,8 +278,8 @@ const ProjectGallery = () => {
           ))}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="project-gallery-grid">
+        {/* Desktop Gallery Grid */}
+        <div className="project-gallery-grid desktop-gallery">
           {isLoading ? (
             <div className="gallery-loading">
               <div className="loading-spinner"></div>
@@ -253,7 +288,7 @@ const ProjectGallery = () => {
             filteredProjects.map((project, index) => (
               <div
                 key={project.id}
-                className={`gallery-item ${window.innerWidth > 768 ? 'gallery-item-clickable' : ''}`}
+                className="gallery-item gallery-item-clickable"
                 onClick={() => openLightbox(project, index)}
               >
                 <CloudinaryImage
@@ -274,6 +309,48 @@ const ProjectGallery = () => {
               </div>
             ))
           )}
+        </div>
+
+        {/* Mobile Slider */}
+        <div className="mobile-gallery-slider">
+          {isLoading ? (
+            <div className="gallery-loading">
+              <div className="loading-spinner"></div>
+            </div>
+          ) : filteredProjects.length > 0 ? (
+            <div
+              className="mobile-slide-container"
+              onTouchStart={handleMobileTouchStart}
+              onTouchMove={handleMobileTouchMove}
+              onTouchEnd={handleMobileTouchEnd}
+            >
+              <div className="mobile-slide-wrapper">
+                <CloudinaryImage
+                  publicId={filteredProjects[mobileSlideIndex]?.publicId}
+                  alt={filteredProjects[mobileSlideIndex]?.alt?.[currentLanguage] || filteredProjects[mobileSlideIndex]?.alt?.en || `Granite paving project ${filteredProjects[mobileSlideIndex]?.id}`}
+                  width={800}
+                  height={600}
+                  className="mobile-slide-image"
+                />
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="mobile-slide-indicators">
+                <span className="slide-counter">
+                  {mobileSlideIndex + 1} / {filteredProjects.length}
+                </span>
+                <div className="slide-dots">
+                  {filteredProjects.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`slide-dot ${index === mobileSlideIndex ? 'active' : ''}`}
+                      onClick={() => setMobileSlideIndex(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
 
         {/* Lightbox Modal */}
