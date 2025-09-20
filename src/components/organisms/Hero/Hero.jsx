@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
 import useLanguageStore from '../../../stores/languageStore'
-import heroImage from '../../../assets/Im_Hero.jpg'
+// Оптимізоване зображення для Hero секції
+const heroImageSrc = require('../../../assets/Im_Hero.jpg')
 
 const Hero = () => {
   const { currentLanguage } = useLanguageStore()
@@ -138,10 +139,11 @@ const Hero = () => {
           {/* Right side - Direct Image */}
           <div className="hero-image">
             <img
-              src={heroImage}
+              src={heroImageSrc}
+              loading="eager"
+              decoding="async"
               alt={content.imageAlt}
               className="hero-main-image"
-              loading="eager"
             />
           </div>
           

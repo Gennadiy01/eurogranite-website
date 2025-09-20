@@ -32,9 +32,11 @@
     <meta name="twitter:description" content="High-quality granite pavers and products from Ukrainian quarries. Premium granite paving stones with custom processing options." />
     
     <!-- Preload critical fonts -->
+    <!-- Font preload optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     
     <!-- Preload Hero image - removed to avoid warnings on non-home pages -->
     <!-- <link rel="preload" as="image" href="%PUBLIC_URL%/Im_Hero.jpg"> -->
