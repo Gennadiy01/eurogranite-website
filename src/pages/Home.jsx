@@ -7,6 +7,7 @@ import UniqueProposition from '../components/organisms/UniqueProposition/UniqueP
 import GraniteColors from '../components/organisms/GraniteColors/GraniteColors'
 import ModalManager from '../components/organisms/ModalManager/ModalManager'
 import SEO from '../components/atoms/SEO'
+import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
 
 const Home = () => {
   const { currentLanguage } = useLanguageStore()
@@ -23,6 +24,9 @@ const Home = () => {
         currentLanguage={currentLanguage}
         hreflang={seoData?.hreflang}
       />
+      <OrganizationSchema />
+      <LocalBusinessSchema />
+      <BreadcrumbSchema />
       <Header />
       <main>
         <Hero />

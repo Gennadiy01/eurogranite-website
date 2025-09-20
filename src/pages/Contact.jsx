@@ -6,6 +6,7 @@ import Header from '../components/organisms/Header/Header'
 import ContactForm from '../components/molecules/ContactForm'
 import SEO from '../components/atoms/SEO'
 import { contactInfoContent } from '../constants/contactFormData'
+import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
 
 const Contact = () => {
   const { currentLanguage } = useLanguageStore()
@@ -76,6 +77,9 @@ const Contact = () => {
         currentLanguage={currentLanguage}
         hreflang={seoData?.hreflang}
       />
+      <OrganizationSchema />
+      <LocalBusinessSchema />
+      <BreadcrumbSchema />
       <Header />
       <main>
         <section className="page-hero page-hero--light">

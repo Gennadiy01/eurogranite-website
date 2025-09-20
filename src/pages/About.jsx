@@ -4,6 +4,7 @@ import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
 import Header from '../components/organisms/Header/Header'
 import SEO from '../components/atoms/SEO'
+import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
 import './About.css'
 
 const About = () => {
@@ -331,6 +332,9 @@ const About = () => {
         currentLanguage={currentLanguage}
         hreflang={seoData?.hreflang}
       />
+      <OrganizationSchema />
+      <LocalBusinessSchema />
+      <BreadcrumbSchema />
       <Header />
       
       {/* Hero Section */}

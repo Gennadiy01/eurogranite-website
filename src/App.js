@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import About from './pages/About'
@@ -15,8 +16,9 @@ import LanguageRedirect from './components/routing/LanguageRedirect'
 
 function App() {
   return (
-    <div className="App">
-      <Router basename="/eurogranite-website">
+    <HelmetProvider>
+      <div className="App">
+        <Router basename="/eurogranite-website">
         <Routes>
           {/* Language redirect for non-localized URLs */}
           <Route path="/" element={<LanguageRedirect />} />
@@ -73,8 +75,9 @@ function App() {
 
         {/* Global Toast Container */}
         <ToastContainer />
-      </Router>
-    </div>
+        </Router>
+      </div>
+    </HelmetProvider>
   )
 }
 

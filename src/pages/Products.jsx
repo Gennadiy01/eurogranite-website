@@ -7,6 +7,7 @@ import ProductCard from '../components/molecules/ProductCard';
 import Header from '../components/organisms/Header/Header';
 import SEO from '../components/atoms/SEO';
 import UniversalTextureGallery from '../components/granite-system/gallery/UniversalTextureGallery';
+import { OrganizationSchema, ProductSchema, BreadcrumbSchema } from '../components/atoms/StructuredData';
 
 const Products = () => {
   const { currentLanguage } = useLanguageStore();
@@ -28,6 +29,9 @@ const Products = () => {
         currentLanguage={currentLanguage}
         hreflang={seoData?.hreflang}
       />
+      <OrganizationSchema />
+      <ProductSchema productType="general" />
+      <BreadcrumbSchema />
       <Header />
       <main>
       {/* Hero Section */}

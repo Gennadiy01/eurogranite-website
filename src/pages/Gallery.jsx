@@ -4,6 +4,7 @@ import ProjectGallery from '../components/organisms/ProjectGallery/ProjectGaller
 import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
 import SEO from '../components/atoms/SEO'
+import { OrganizationSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
 import '../styles/components/organisms/ProjectGallery.scss'
 import './About.css'
 
@@ -43,6 +44,8 @@ const Gallery = () => {
         currentLanguage={currentLanguage}
         hreflang={seoData?.hreflang}
       />
+      <OrganizationSchema />
+      <BreadcrumbSchema />
       <Header />
 
       {/* Hero Section */}
