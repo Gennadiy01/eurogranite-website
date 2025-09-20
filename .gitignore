@@ -26,8 +26,9 @@ yarn-error.log*
 # documentation
 /docs
 
-# utility scripts with API access
-/scripts
+# utility scripts with API access (excluding build scripts)
+/scripts/*
+!/scripts/generate-sitemap.js
 
 # backups
 /backups
