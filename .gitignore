@@ -28,3 +28,6 @@ yarn-error.log*
 
 # utility scripts with API access
 /scripts
+
+# backups
+/backups
