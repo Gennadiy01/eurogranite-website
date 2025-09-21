@@ -66,7 +66,7 @@ export const galleryProjects = [
   },
   {
     id: 'courtyard-02',
-    publicId: 'courtyard-26_pq2jmc',
+    publicId: 'courtyard-09_ubui9t',
     category: 'courtyard',
     width: 1920,
     height: 1280,
@@ -262,7 +262,7 @@ export const galleryProjects = [
   },
   {
     id: 'courtyard-16',
-    publicId: 'courtyard-09_ubui9t',
+    publicId: 'courtyard-26_pq2jmc',
     category: 'courtyard',
     width: 1920,
     height: 1280,
