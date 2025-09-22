@@ -1,1 +1,23 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/eurogranite-website/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Page Not Found - EuroGranite"/><meta name="robots" content="noindex, nofollow"/><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload='this.onload=null,this.rel="stylesheet"'><noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript><link rel="apple-touch-icon" href="/eurogranite-website/logo192.png"/><link rel="manifest" href="/eurogranite-website/manifest.json"/><title>Page Not Found | EuroGranite</title><script defer="defer" src="/eurogranite-website/static/js/main.8c49c117.js"></script><link href="/eurogranite-website/static/css/main.98feabf2.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Page Not Found | EuroGranite</title>
+    <script type="text/javascript">
+      // Redirect to the main app and let React handle the 404
+      var pathSegments = location.pathname.split('/').filter(function(segment) {
+        return segment;
+      });
+      var newPath = '/eurogranite-website/';
+      if (pathSegments.length > 1) {
+        // Keep the original path as hash for React to handle
+        newPath += '#' + location.pathname;
+      }
+      location.replace(newPath);
+    </script>
+  </head>
+  <body>
+    <h1>Redirecting...</h1>
+    <p>If you're not redirected automatically, <a href="/eurogranite-website/">click here</a>.</p>
+  </body>
+</html>

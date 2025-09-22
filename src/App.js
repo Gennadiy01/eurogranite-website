@@ -16,7 +16,8 @@ const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
-  const currentPath = window.location.pathname
+  // Check for hash-based routing from 404.html redirects
+  const currentPath = window.location.hash ? window.location.hash.substring(1) : window.location.pathname
 
   // Determine which page to render based on current path
   const getCurrentPage = () => {
