@@ -60,13 +60,11 @@
     <!-- GitHub Pages SPA fix -->
     <script type="text/javascript">
       (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) {
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+        console.log('SPA fix running:', l.search, l.pathname);
+        if (l.search && l.search[1] === '/' ) {
+          var path = l.search.slice(2).replace(/~and~/g, '&'); // Remove /?
+          console.log('Redirecting to:', l.pathname + path);
+          window.history.replaceState(null, null, l.pathname + path + l.hash);
         }
       }(window.location))
     </script>
