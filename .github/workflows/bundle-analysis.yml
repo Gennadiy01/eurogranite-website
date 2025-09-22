@@ -28,11 +28,6 @@ jobs:
         npm run bundle:size
         echo "Bundle analysis complete"
 
-    - name: Generate bundle report
-      run: |
-        npm run ci:bundle-check
-        echo "Bundle report generated"
-
     - name: Comment on PR
       if: github.event_name == 'pull_request'
       uses: actions/github-script@v7
