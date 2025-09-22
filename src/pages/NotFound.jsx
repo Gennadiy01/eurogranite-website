@@ -3,15 +3,11 @@ import { Helmet } from 'react-helmet-async'
 import Footer from '../components/organisms/Footer/Footer'
 import Button from '../components/atoms/Button/Button'
 import useLanguageStore from '../stores/languageStore'
-import { getLanguageFromPath } from '../utils/languageUtils'
 
 const NotFound = () => {
-  const currentLanguage = getLanguageFromPath(window.location.pathname)
-  const { setLanguage } = useLanguageStore()
+  const { currentLanguage } = useLanguageStore()
 
-  React.useEffect(() => {
-    setLanguage(currentLanguage)
-  }, [currentLanguage, setLanguage])
+  // Language is already set by App.js, so we don't need to set it again here
 
   const content = {
     ua: {

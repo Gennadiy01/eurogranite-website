@@ -21,12 +21,26 @@ function App() {
   const { setLanguage } = useLanguageStore()
 
   // Check for hash-based routing from 404.html redirects
-  const currentPath = window.location.hash ? window.location.hash.substring(1) : window.location.pathname
+  const [currentPath, setCurrentPath] = React.useState(
+    window.location.hash ? window.location.hash.substring(1) : window.location.pathname
+  )
+
+  // Listen for hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const newPath = window.location.hash ? window.location.hash.substring(1) : window.location.pathname
+      setCurrentPath(newPath)
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
 
   // Update language store based on current path
   useEffect(() => {
     const detectedLanguage = getLanguageFromPath(currentPath)
     setLanguage(detectedLanguage)
+    console.log('Language detection:', { currentPath, detectedLanguage }) // Debug log
   }, [currentPath, setLanguage])
 
   // Determine which page to render based on current path
