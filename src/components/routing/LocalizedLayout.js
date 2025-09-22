@@ -1,37 +1,58 @@
 import React, { useEffect, useMemo } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import useLanguageStore from '../../stores/languageStore'
+import Footer from '../organisms/Footer/Footer'
 
-const LocalizedLayout = ({ children }) => {
+const LocalizedLayout = ({ children, showFooter = true }) => {
   const { lang } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
-  const { setLanguage, currentLanguage } = useLanguageStore()
+  const {
+    setLanguage,
+    currentLanguage,
+    getBrowserLanguage,
+    isSupportedLanguage
+  } = useLanguageStore()
 
   const supportedLanguages = useMemo(() => ['ua', 'en', 'de', 'pl'], [])
 
   useEffect(() => {
-    if (lang && supportedLanguages.includes(lang)) {
+    if (lang && isSupportedLanguage(lang)) {
+      // Valid language in URL - update store if different
       if (currentLanguage !== lang) {
         setLanguage(lang)
       }
     } else if (!lang) {
-      // Redirect to default language if no language in URL
-      const defaultLang = 'ua'
+      // No language in URL - detect browser language or use default
+      const preferredLang = getBrowserLanguage()
       const currentPath = location.pathname.replace('/eurogranite-website', '')
-      navigate(`/${defaultLang}${currentPath}`, { replace: true })
+      navigate(`/${preferredLang}${currentPath}`, { replace: true })
     } else {
-      // Invalid language, redirect to default
-      navigate('/ua', { replace: true })
+      // Invalid language - redirect to browser-detected or default
+      const fallbackLang = getBrowserLanguage()
+      navigate(`/${fallbackLang}`, { replace: true })
     }
-  }, [lang, currentLanguage, setLanguage, navigate, location.pathname, supportedLanguages])
+  }, [
+    lang,
+    currentLanguage,
+    setLanguage,
+    navigate,
+    location.pathname,
+    getBrowserLanguage,
+    isSupportedLanguage
+  ])
 
   // Don't render if language is not set correctly
   if (!lang || !supportedLanguages.includes(lang)) {
     return null
   }
 
-  return <>{children}</>
+  return (
+    <>
+      {children}
+      {showFooter && <Footer />}
+    </>
+  )
 }
 
 export default LocalizedLayout

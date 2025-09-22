@@ -2,24 +2,24 @@ import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import '@testing-library/jest-dom'
-import App from './App'
+import App from '../../src/App'
 
 // Mock the lazy loaded components to test lazy loading behavior
-jest.mock('./pages/Home', () => {
+jest.mock('../../src/pages/Home', () => {
   const mockReact = require('react')
   return mockReact.forwardRef((props, ref) => (
     mockReact.createElement('div', { ref, 'data-testid': 'home-page' }, 'Home Page')
   ))
 })
 
-jest.mock('./pages/Products', () => {
+jest.mock('../../src/pages/Products', () => {
   const mockReact = require('react')
   return mockReact.forwardRef((props, ref) => (
     mockReact.createElement('div', { ref, 'data-testid': 'products-page' }, 'Products Page')
   ))
 })
 
-jest.mock('./pages/About', () => {
+jest.mock('../../src/pages/About', () => {
   const mockReact = require('react')
   return mockReact.forwardRef((props, ref) => (
     mockReact.createElement('div', { ref, 'data-testid': 'about-page' }, 'About Page')
@@ -27,7 +27,7 @@ jest.mock('./pages/About', () => {
 })
 
 // Mock language store
-jest.mock('./stores/languageStore', () => ({
+jest.mock('../../src/stores/languageStore', () => ({
   __esModule: true,
   default: () => ({
     currentLanguage: 'ua',

@@ -1,0 +1,89 @@
+name: Bundle Analysis
+
+on:
+  pull_request:
+    branches: [master, main]
+  push:
+    branches: [master, main]
+
+jobs:
+  bundle-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build and analyze bundle
+      run: |
+        npm run bundle:size
+        echo "Bundle analysis complete"
+
+    - name: Generate bundle report
+      run: |
+        npm run ci:bundle-check
+        echo "Bundle report generated"
+
+    - name: Comment on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+
+          // Read bundle analysis results
+          const buildDir = './build/static/js';
+          if (!fs.existsSync(buildDir)) {
+            console.log('Build directory not found');
+            return;
+          }
+
+          const jsFiles = fs.readdirSync(buildDir).filter(f => f.endsWith('.js'));
+          let totalSize = 0;
+          let mainSize = 0;
+
+          jsFiles.forEach(file => {
+            const size = fs.statSync(path.join(buildDir, file)).size;
+            totalSize += size;
+            if (file.includes('main.')) mainSize = size;
+          });
+
+          const formatBytes = (bytes) => {
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return (bytes / Math.pow(k, i)).toFixed(1) + sizes[i];
+          };
+
+          const maxSize = 500 * 1024; // 500KB
+          const status = mainSize <= maxSize ? '✅' : '⚠️';
+
+          const comment = `## 📦 Bundle Analysis
+
+          ${status} **Bundle Size Check**
+
+          | Metric | Size | Status |
+          |--------|------|--------|
+          | Main Bundle | ${formatBytes(mainSize)} | ${mainSize <= maxSize ? '✅ Within limit' : '⚠️ Exceeds 500KB'} |
+          | Total JS | ${formatBytes(totalSize)} | ℹ️ |
+          | Chunks | ${jsFiles.length} files | ${jsFiles.length > 1 ? '✅ Code splitting active' : '⚠️ No splitting'} |
+
+          ${mainSize > maxSize ? '**⚠️ Bundle size exceeds target. Consider optimizing or code splitting.**' : ''}
+          `;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });

@@ -1,0 +1,96 @@
+.page-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  width: 100%;
+
+  &__content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  &__text {
+    margin: 0;
+    color: #666;
+    font-size: 1rem;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Error boundary styles
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  width: 100%;
+  padding: 2rem;
+
+  &__content {
+    text-align: center;
+    max-width: 500px;
+
+    h2 {
+      color: #e74c3c;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+  }
+
+  &__retry-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #2980b9;
+    }
+  }
+
+  &__details {
+    margin-top: 2rem;
+    text-align: left;
+
+    summary {
+      cursor: pointer;
+      color: #e74c3c;
+      margin-bottom: 1rem;
+    }
+
+    pre {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+  }
+}

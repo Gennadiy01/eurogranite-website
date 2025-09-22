@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-import Home from './pages/Home'
-import Products from './pages/Products'
-import About from './pages/About'
-import Gallery from './pages/Gallery'
-import Articles from './pages/Articles'
-import Contact from './pages/Contact'
-import AdminUpload from './pages/AdminUpload'
-import Footer from './components/organisms/Footer/Footer'
+import LazyLoadErrorBoundary from './components/atoms/ErrorBoundary'
+import PageLoader from './components/atoms/PageLoader'
 import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
 import ToastContainer from './components/molecules/ToastContainer'
 import LocalizedLayout from './components/routing/LocalizedLayout'
 import LanguageRedirect from './components/routing/LanguageRedirect'
+
+// Lazy load all page components
+const Home = lazy(() => import('./pages/Home'))
+const Products = lazy(() => import('./pages/Products'))
+const About = lazy(() => import('./pages/About'))
+const Gallery = lazy(() => import('./pages/Gallery'))
+const Articles = lazy(() => import('./pages/Articles'))
+const Contact = lazy(() => import('./pages/Contact'))
+const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 
 function App() {
   return (
@@ -28,46 +31,70 @@ function App() {
           <Route path="/articles" element={<LanguageRedirect />} />
           <Route path="/contact" element={<LanguageRedirect />} />
 
-          {/* Localized routes */}
+          {/* Localized routes with lazy loading */}
           <Route path="/:lang" element={
-            <LocalizedLayout>
-              <Home />
-              <Footer />
-            </LocalizedLayout>
+            <LazyLoadErrorBoundary>
+              <Suspense fallback={<PageLoader />}>
+                <LocalizedLayout>
+                  <Home />
+                </LocalizedLayout>
+              </Suspense>
+            </LazyLoadErrorBoundary>
           } />
           <Route path="/:lang/products" element={
-            <LocalizedLayout>
-              <Products />
-              <Footer />
-            </LocalizedLayout>
+            <LazyLoadErrorBoundary>
+              <Suspense fallback={<PageLoader />}>
+                <LocalizedLayout>
+                  <Products />
+                </LocalizedLayout>
+              </Suspense>
+            </LazyLoadErrorBoundary>
           } />
           <Route path="/:lang/about" element={
-            <LocalizedLayout>
-              <About />
-              <Footer />
-            </LocalizedLayout>
+            <LazyLoadErrorBoundary>
+              <Suspense fallback={<PageLoader />}>
+                <LocalizedLayout>
+                  <About />
+                </LocalizedLayout>
+              </Suspense>
+            </LazyLoadErrorBoundary>
           } />
           <Route path="/:lang/gallery" element={
-            <LocalizedLayout>
-              <Gallery />
-              <Footer />
-            </LocalizedLayout>
+            <LazyLoadErrorBoundary>
+              <Suspense fallback={<PageLoader />}>
+                <LocalizedLayout>
+                  <Gallery />
+                </LocalizedLayout>
+              </Suspense>
+            </LazyLoadErrorBoundary>
           } />
           <Route path="/:lang/articles" element={
-            <LocalizedLayout>
-              <Articles />
-              <Footer />
-            </LocalizedLayout>
+            <LazyLoadErrorBoundary>
+              <Suspense fallback={<PageLoader />}>
+                <LocalizedLayout>
+                  <Articles />
+                </LocalizedLayout>
+              </Suspense>
+            </LazyLoadErrorBoundary>
           } />
           <Route path="/:lang/contact" element={
-            <LocalizedLayout>
-              <Contact />
-              <Footer />
-            </LocalizedLayout>
+            <LazyLoadErrorBoundary>
+              <Suspense fallback={<PageLoader />}>
+                <LocalizedLayout>
+                  <Contact />
+                </LocalizedLayout>
+              </Suspense>
+            </LazyLoadErrorBoundary>
           } />
 
           {/* Admin route (no localization needed) */}
-          <Route path="/admin/upload" element={<AdminUpload />} />
+          <Route path="/admin/upload" element={
+            <LazyLoadErrorBoundary>
+              <Suspense fallback={<PageLoader />}>
+                <AdminUpload />
+              </Suspense>
+            </LazyLoadErrorBoundary>
+          } />
         </Routes>
 
         {/* Global Modal Components */}
