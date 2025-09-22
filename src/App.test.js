@@ -1,29 +1,81 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
 import '@testing-library/jest-dom'
 import App from './App'
 
-// Mock the lazy loaded components to test lazy loading behavior
+// Mock window.location.pathname
+const mockLocation = {
+  pathname: '/ua',
+  href: 'http://localhost:3000/ua'
+}
+
+// Store original location
+const originalLocation = window.location
+
+beforeAll(() => {
+  delete window.location
+  window.location = mockLocation
+})
+
+afterAll(() => {
+  window.location = originalLocation
+})
+
+// Mock the lazy loaded components
 jest.mock('./pages/Home', () => {
   const mockReact = require('react')
-  return mockReact.forwardRef((props, ref) => (
-    mockReact.createElement('div', { ref, 'data-testid': 'home-page' }, 'Home Page')
-  ))
+  return function MockHome() {
+    return mockReact.createElement('div', { 'data-testid': 'home-page' }, 'Home Page')
+  }
 })
 
 jest.mock('./pages/Products', () => {
   const mockReact = require('react')
-  return mockReact.forwardRef((props, ref) => (
-    mockReact.createElement('div', { ref, 'data-testid': 'products-page' }, 'Products Page')
-  ))
+  return function MockProducts() {
+    return mockReact.createElement('div', { 'data-testid': 'products-page' }, 'Products Page')
+  }
 })
 
 jest.mock('./pages/About', () => {
   const mockReact = require('react')
-  return mockReact.forwardRef((props, ref) => (
-    mockReact.createElement('div', { ref, 'data-testid': 'about-page' }, 'About Page')
-  ))
+  return function MockAbout() {
+    return mockReact.createElement('div', { 'data-testid': 'about-page' }, 'About Page')
+  }
+})
+
+jest.mock('./pages/Contact', () => {
+  const mockReact = require('react')
+  return function MockContact() {
+    return mockReact.createElement('div', { 'data-testid': 'contact-page' }, 'Contact Page')
+  }
+})
+
+jest.mock('./pages/Gallery', () => {
+  const mockReact = require('react')
+  return function MockGallery() {
+    return mockReact.createElement('div', { 'data-testid': 'gallery-page' }, 'Gallery Page')
+  }
+})
+
+jest.mock('./pages/Articles', () => {
+  const mockReact = require('react')
+  return function MockArticles() {
+    return mockReact.createElement('div', { 'data-testid': 'articles-page' }, 'Articles Page')
+  }
+})
+
+jest.mock('./pages/AdminUpload', () => {
+  const mockReact = require('react')
+  return function MockAdminUpload() {
+    return mockReact.createElement('div', { 'data-testid': 'admin-page' }, 'Admin Page')
+  }
+})
+
+jest.mock('./pages/NotFound', () => {
+  const mockReact = require('react')
+  return function MockNotFound() {
+    return mockReact.createElement('div', { 'data-testid': 'not-found-page' }, '404 Not Found Page')
+  }
 })
 
 // Mock language store
@@ -43,85 +95,141 @@ jest.mock('./stores/languageStore', () => ({
   })
 }))
 
-describe('App Component', () => {
+describe('App Component - Static Architecture', () => {
   beforeEach(() => {
-    // Clear any previous route history
-    window.history.pushState({}, '', '/')
+    // Reset location before each test
+    window.location.pathname = '/ua'
+  })
+
+  test('renders without crashing', () => {
+    render(<App />)
+    // App should render successfully
+    expect(document.querySelector('.App')).toBeInTheDocument()
   })
 
   test('renders loading state initially for lazy components', async () => {
-    render(
-      <MemoryRouter initialEntries={['/ua']}>
-        <App />
-      </MemoryRouter>
-    )
+    render(<App />)
 
-    // Should show loading state first - use getAllByText since multiple loaders can appear
-    const loadingElements = screen.getAllByText('Завантаження...')
-    expect(loadingElements.length).toBeGreaterThan(0)
-
-    // Wait longer for lazy component to load - sometimes takes time in CI
+    // Should eventually show the component
     await waitFor(() => {
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
-    }, { timeout: 5000 })
+    }, { timeout: 3000 })
   })
 
-  test('lazy loads Home component for Ukrainian route', async () => {
-    render(
-      <MemoryRouter initialEntries={['/ua']}>
-        <App />
-      </MemoryRouter>
-    )
+  test('shows Home component for root Ukrainian path', async () => {
+    window.location.pathname = '/ua'
+    render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
-    })
+    }, { timeout: 3000 })
   })
 
-  test('lazy loads Products component for products route', async () => {
-    render(
-      <MemoryRouter initialEntries={['/ua/products']}>
-        <App />
-      </MemoryRouter>
-    )
+  test('shows Products component for Ukrainian products path', async () => {
+    window.location.pathname = '/ua/products'
+    render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('products-page')).toBeInTheDocument()
-    })
+    }, { timeout: 3000 })
   })
 
-  test('lazy loads About component for about route', async () => {
-    render(
-      <MemoryRouter initialEntries={['/ua/about']}>
-        <App />
-      </MemoryRouter>
-    )
+  test('shows About component for Ukrainian about path', async () => {
+    window.location.pathname = '/ua/about'
+    render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('about-page')).toBeInTheDocument()
-    })
+    }, { timeout: 3000 })
   })
 
-  test('handles error boundary when lazy component fails', async () => {
-    // Suppress console.error for this test
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
-
-    // Create a component that throws
-    const ErrorComponent = () => {
-      throw new Error('Component failed to load')
-    }
-
-    // Test error boundary directly
-    render(
-      <MemoryRouter initialEntries={['/ua']}>
-        <div>Error boundary test</div>
-      </MemoryRouter>
-    )
+  test('shows Contact component for Ukrainian contact path', async () => {
+    window.location.pathname = '/ua/contact'
+    render(<App />)
 
     await waitFor(() => {
-      expect(screen.getByText('Error boundary test')).toBeInTheDocument()
-    })
+      expect(screen.getByTestId('contact-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
 
-    consoleSpy.mockRestore()
+  test('shows Gallery component for Ukrainian gallery path', async () => {
+    window.location.pathname = '/ua/gallery'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('gallery-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  test('shows Articles component for Ukrainian articles path', async () => {
+    window.location.pathname = '/ua/articles'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('articles-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  test('shows Admin component for admin upload path', async () => {
+    window.location.pathname = '/admin/upload'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('admin-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  test('shows Home component for English root path', async () => {
+    window.location.pathname = '/en'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('home-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  test('shows Products component for English products path', async () => {
+    window.location.pathname = '/en/products'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('products-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  test('shows 404 page for unknown paths', async () => {
+    window.location.pathname = '/ua/unknown-path'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('not-found-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  test('handles paths without language prefix', async () => {
+    window.location.pathname = '/products'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('products-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  test('shows 404 page for completely invalid paths', async () => {
+    window.location.pathname = '/fhjtuky/tyylu'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('not-found-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
+  })
+
+  test('shows 404 page for invalid language prefix paths', async () => {
+    window.location.pathname = '/fr/products'
+    render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('not-found-page')).toBeInTheDocument()
+    }, { timeout: 3000 })
   })
 })

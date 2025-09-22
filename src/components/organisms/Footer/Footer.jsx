@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import useLanguageStore from '../../../stores/languageStore'
 
 const Footer = () => {
@@ -82,9 +81,9 @@ const Footer = () => {
           
           {/* Company Info */}
           <div className="footer-column">
-            <Link to="/" className="footer-title logo-text">
+            <a href="/" className="footer-title logo-text">
               EuroGranite
-            </Link>
+            </a>
             <p className="footer-description">
               {content.description}
             </p>
@@ -125,12 +124,12 @@ const Footer = () => {
             <ul className="footer-links">
               {content.links.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    to={link.href}
+                  <a
+                    href={link.href}
                     className="footer-link"
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

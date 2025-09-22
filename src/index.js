@@ -1,16 +1,17 @@
 import React from 'react';
-import { hydrate, render } from 'react-dom';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const rootElement = document.getElementById('root');
+const container = document.getElementById('root');
 
-// Support for react-snap: use hydrate for pre-rendered content, render for development
-if (rootElement.hasChildNodes()) {
-  hydrate(<App />, rootElement);
+// Support for static generation: use hydrateRoot for pre-rendered content, createRoot for development
+if (container.hasChildNodes()) {
+  hydrateRoot(container, <App />);
 } else {
-  render(<App />, rootElement);
+  const root = createRoot(container);
+  root.render(<App />);
 }
 
 // If you want to start measuring performance in your app, pass a function

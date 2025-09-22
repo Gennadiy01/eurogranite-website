@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import useLanguageStore from '../stores/languageStore';
+import { getLanguageFromPath } from '../utils/languageUtils';
 import { productsData, TextureIcon, SurfaceIcon, DimensionIcon } from '../constants/productsData';
 import { getSEOData } from '../constants/seoData';
 import ProductCard from '../components/molecules/ProductCard';
@@ -8,9 +8,18 @@ import Header from '../components/organisms/Header/Header';
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO';
 import LazySchemaLoader from '../components/atoms/StructuredData/LazySchemaLoader';
 import UniversalTextureGallery from '../components/granite-system/gallery/UniversalTextureGallery';
+import Footer from '../components/organisms/Footer/Footer';
 
 const Products = () => {
-  const { currentLanguage } = useLanguageStore();
+  const { currentLanguage, setLanguage } = useLanguageStore();
+
+  useEffect(() => {
+    const language = getLanguageFromPath(window.location.pathname)
+    if (currentLanguage !== language) {
+      setLanguage(language)
+    }
+  }, [currentLanguage, setLanguage])
+
   const seoData = getSEOData('products', currentLanguage);
 
   useEffect(() => {
@@ -19,7 +28,8 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="products-page">
+    <>
+      <div className="products-page">
       <OptimizedSEO
         title={seoData?.title}
         description={seoData?.description}
@@ -229,8 +239,8 @@ const Products = () => {
               }
             </p>
             <div className="flex justify-center">
-              <Link
-                to="/contact#contact-form"
+              <a
+                href="/contact#contact-form"
                 className="custom-button custom-button--primary px-8 py-4"
               >
                 {currentLanguage === 'ua'
@@ -241,7 +251,7 @@ const Products = () => {
                   ? 'Nachricht senden'
                   : 'Wyślij wiadomość'
                 }
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -250,7 +260,9 @@ const Products = () => {
 
       {/* Universal Texture Gallery Modal */}
       <UniversalTextureGallery />
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 };
 

@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/organisms/Header/Header'
 import ProjectGallery from '../components/organisms/ProjectGallery/ProjectGallery'
 import useLanguageStore from '../stores/languageStore'
+import { getLanguageFromPath } from '../utils/languageUtils'
 import { getSEOData } from '../constants/seoData'
 import SEO from '../components/atoms/SEO'
 import { OrganizationSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
+import Footer from '../components/organisms/Footer/Footer'
 import '../styles/components/organisms/ProjectGallery.scss'
 import './About.css'
 
 const Gallery = () => {
-  const { currentLanguage } = useLanguageStore()
+  const { currentLanguage, setLanguage } = useLanguageStore()
+
+  useEffect(() => {
+    const language = getLanguageFromPath(window.location.pathname)
+    if (currentLanguage !== language) {
+      setLanguage(language)
+    }
+  }, [currentLanguage, setLanguage])
+
   const seoData = getSEOData('gallery', currentLanguage)
 
   const content = {
@@ -34,7 +44,8 @@ const Gallery = () => {
   const text = content[currentLanguage] || content.en
 
   return (
-    <div className="gallery-page">
+    <>
+      <div className="gallery-page">
       <SEO
         title={seoData?.title}
         description={seoData?.description}
@@ -64,7 +75,9 @@ const Gallery = () => {
       <main>
         <ProjectGallery />
       </main>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 

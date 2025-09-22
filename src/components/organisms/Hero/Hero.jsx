@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
 import useLanguageStore from '../../../stores/languageStore'
@@ -88,15 +87,15 @@ const Hero = () => {
             
             {/* CTA Buttons */}
             <div className="hero-buttons">
-              <Link to="/products">
+              <a href="/products">
                 <Button
                   variant="primary"
                   size="large"
                 >
                   {content.ctaPrimary}
                 </Button>
-              </Link>
-              <Link to="/contact#contact-form">
+              </a>
+              <a href="/contact#contact-form">
                 <Button
                   variant="outline"
                   size="large"
@@ -104,7 +103,7 @@ const Hero = () => {
                 >
                   {content.ctaSecondary}
                 </Button>
-              </Link>
+              </a>
             </div>
             
             {/* Stats */}

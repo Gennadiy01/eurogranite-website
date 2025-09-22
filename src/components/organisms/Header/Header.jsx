@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
 import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher'
-import useLanguageStore from '../../../stores/languageStore'
+import { getLanguageFromPath } from '../../../utils/languageUtils'
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { currentLanguage } = useLanguageStore()
-  const location = useLocation()
-  const { lang: urlLang } = useParams()
-  const lang = urlLang || currentLanguage || 'ua'
+  const currentPath = window.location.pathname
+  const lang = getLanguageFromPath(currentPath) || 'ua'
   
   
   // Helper function to create localized URLs
@@ -62,9 +59,9 @@ const Header = () => {
         <div className="header-mobile items-center justify-between py-4 min-h-60px">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to={createLocalizedPath('/')} className="logo-text">
+            <a href={createLocalizedPath('/')} className="logo-text">
               EuroGranite
-            </Link>
+            </a>
           </div>
           
           {/* Right section - Language Switcher + Mobile Menu Button */}
@@ -95,21 +92,21 @@ const Header = () => {
           
           {/* Logo */}
           <div className="flex items-center">
-            <Link to={createLocalizedPath('/')} className="logo-text">
+            <a href={createLocalizedPath('/')} className="logo-text">
               EuroGranite
-            </Link>
+            </a>
           </div>
           
           {/* Desktop Navigation */}
           <div className="flex items-center space-x-2.5 lg-space-x-4 xl-space-x-6 whitespace-nowrap flex-1 justify-center max-w-4xl mx-auto">
             {navigation.map((item) => (
-              <Link
+              <a
                 key={item.to}
-                to={item.to}
-                className={`nav-menu-item ${location.pathname === item.to ? 'text-accent-orange' : ''}`}
+                href={item.to}
+                className={`nav-menu-item ${currentPath === item.to ? 'text-accent-orange' : ''}`}
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </div>
           
@@ -178,21 +175,21 @@ const Header = () => {
           <div className="flex items-center justify-between gap-4 mb-2">
             {/* Logo */}
             <div className="flex items-center">
-              <Link to="/" className="logo-text">
+              <a href={createLocalizedPath('/')} className="logo-text">
                 EuroGranite
-              </Link>
+              </a>
             </div>
             
             {/* Navigation (768-1023px) */}
             <div className="flex items-center space-x-4 whitespace-nowrap">
               {navigation.map((item) => (
-                <Link
+                <a
                   key={item.to}
-                  to={item.to}
-                  className={`nav-menu-item ${location.pathname === item.to ? 'text-accent-orange' : ''}`}
+                  href={item.to}
+                  className={`nav-menu-item ${currentPath === item.to ? 'text-accent-orange' : ''}`}
                 >
                   {item.label}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -260,18 +257,18 @@ const Header = () => {
           <div className="header-mobile bg-neutral-800 shadow-lg rounded-lg mt-2 py-4">
             <div className="flex flex-col space-y-2 px-4">
               {navigation.map((item) => (
-                <Link
+                <a
                   key={item.to}
-                  to={item.to}
+                  href={item.to}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`text-left py-2 font-medium transition-colors ${
-                    location.pathname === item.to 
+                    currentPath === item.to 
                       ? 'text-accent-orange' 
                       : 'text-white hover:text-accent-orange'
                   }`}
                 >
                   {item.label}
-                </Link>
+                </a>
               ))}
               <div className="border-t border-neutral-600 pt-4 mt-4">
                 {/* Mobile Social Media */}

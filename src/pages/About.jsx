@@ -1,14 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import useLanguageStore from '../stores/languageStore'
+import { getLanguageFromPath } from '../utils/languageUtils'
 import { getSEOData } from '../constants/seoData'
 import Header from '../components/organisms/Header/Header'
 import SEO from '../components/atoms/SEO'
 import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
+import Footer from '../components/organisms/Footer/Footer'
 import './About.css'
 
 const About = () => {
-  const { currentLanguage } = useLanguageStore()
+  const { currentLanguage, setLanguage } = useLanguageStore()
+
+  useEffect(() => {
+    const language = getLanguageFromPath(window.location.pathname)
+    if (currentLanguage !== language) {
+      setLanguage(language)
+    }
+  }, [currentLanguage, setLanguage])
+
   const lang = currentLanguage || 'en'
   const seoData = getSEOData('about', currentLanguage)
 
@@ -322,7 +331,8 @@ const About = () => {
   const text = content[lang] || content.en
 
   return (
-    <div className="about-page">
+    <>
+      <div className="about-page">
       <SEO
         title={seoData?.title}
         description={seoData?.description}
@@ -440,12 +450,14 @@ const About = () => {
             </div>
             <div className="about-cta-content-column">
               <p className="about-cta-description">{text.cta.description}</p>
-              <Link to="/contact#contact-form" className="about-cta-button">{text.cta.button}</Link>
+              <a href="/contact#contact-form" className="about-cta-button">{text.cta.button}</a>
             </div>
           </div>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 

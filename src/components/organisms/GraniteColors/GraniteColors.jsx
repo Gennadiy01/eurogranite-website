@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Button from '../../atoms/Button/Button'
 import useLanguageStore from '../../../stores/languageStore'
 import useGraniteSystemStore from '../../../stores/graniteSystemStore'
@@ -329,22 +328,22 @@ const GraniteColors = () => {
               {currentContent.cta.subtitle}
             </p>
             <div className="granite-colors-cta-buttons">
-              <Link to="/contact#contact-form">
+              <a href="/contact#contact-form">
                 <Button
                   variant="primary"
                   size="large"
                 >
                   {currentContent.cta.primaryButton}
                 </Button>
-              </Link>
-              <Link to="/products">
+              </a>
+              <a href="/products">
                 <Button
                   variant="outline"
                   size="large"
                 >
                   {currentContent.cta.secondaryButton}
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

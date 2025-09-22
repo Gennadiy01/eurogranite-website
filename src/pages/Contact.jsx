@@ -1,21 +1,28 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 import useLanguageStore from '../stores/languageStore'
+import { getLanguageFromPath } from '../utils/languageUtils'
 import { getSEOData } from '../constants/seoData'
 import Header from '../components/organisms/Header/Header'
 import ContactForm from '../components/molecules/ContactForm'
 import SEO from '../components/atoms/SEO'
 import { contactInfoContent } from '../constants/contactFormData'
 import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
+import Footer from '../components/organisms/Footer/Footer'
 
 const Contact = () => {
-  const { currentLanguage } = useLanguageStore()
-  const location = useLocation()
+  const { currentLanguage, setLanguage } = useLanguageStore()
   const seoData = getSEOData('contact', currentLanguage)
 
   useEffect(() => {
+    const language = getLanguageFromPath(window.location.pathname)
+    if (currentLanguage !== language) {
+      setLanguage(language)
+    }
+  }, [currentLanguage, setLanguage])
+
+  useEffect(() => {
     // Scroll to contact form if hash is present
-    if (location.hash === '#contact-form') {
+    if (window.location.hash === '#contact-form') {
       setTimeout(() => {
         const element = document.getElementById('contact-form')
         if (element) {
@@ -30,7 +37,7 @@ const Contact = () => {
         }
       }, 100) // Small delay to ensure page is fully loaded
     }
-  }, [location.hash])
+  }, [])
   
   const pageContent = {
     en: {
@@ -67,7 +74,8 @@ const Contact = () => {
   const infoContent = contactInfoContent[currentLanguage] || contactInfoContent.en
 
   return (
-    <div className="contact-page">
+    <>
+      <div className="contact-page">
       <SEO
         title={seoData?.title}
         description={seoData?.description}
@@ -202,7 +210,9 @@ const Contact = () => {
           </div>
         </section>
       </main>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 

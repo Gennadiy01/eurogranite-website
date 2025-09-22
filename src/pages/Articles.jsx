@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/organisms/Header/Header'
 import useLanguageStore from '../stores/languageStore'
+import { getLanguageFromPath } from '../utils/languageUtils'
+import Footer from '../components/organisms/Footer/Footer'
 
 const Articles = () => {
-  const { currentLanguage } = useLanguageStore()
+  const { currentLanguage, setLanguage } = useLanguageStore()
+
+  useEffect(() => {
+    const language = getLanguageFromPath(window.location.pathname)
+    if (currentLanguage !== language) {
+      setLanguage(language)
+    }
+  }, [currentLanguage, setLanguage])
+
   const lang = currentLanguage || 'en'
 
   const content = {
@@ -32,7 +42,8 @@ const Articles = () => {
   const text = content[lang] || content.en
 
   return (
-    <div className="articles-page">
+    <>
+      <div className="articles-page">
       <Header />
       <main className="pt-32">
         <section className="py-20 bg-neutral-50">
@@ -47,7 +58,9 @@ const Articles = () => {
           </div>
         </section>
       </main>
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 

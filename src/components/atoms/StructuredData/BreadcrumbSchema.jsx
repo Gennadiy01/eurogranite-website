@@ -1,14 +1,30 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { useParams, useLocation } from 'react-router-dom'
 import useLanguageStore from '../../../stores/languageStore'
 
 const BreadcrumbSchema = () => {
-  const { lang } = useParams()
-  const location = useLocation()
   const { currentLanguage } = useLanguageStore()
 
-  const currentLang = lang || currentLanguage || 'ua'
+  // Parse current path from window.location
+  const getCurrentPath = () => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname
+    }
+    return '/'
+  }
+
+  const getCurrentLang = () => {
+    const path = getCurrentPath()
+    const segments = path.split('/').filter(segment => segment !== '')
+    // Check if first segment is a language code
+    const langFromPath = segments[0]
+    if (['ua', 'en', 'de', 'pl'].includes(langFromPath)) {
+      return langFromPath
+    }
+    return currentLanguage || 'ua'
+  }
+
+  const currentLang = getCurrentLang()
   const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
 
   const breadcrumbLabels = {
@@ -50,7 +66,7 @@ const BreadcrumbSchema = () => {
 
   // Parse current path to build breadcrumbs
   const buildBreadcrumbs = () => {
-    const path = location.pathname.replace('/eurogranite-website', '')
+    const path = getCurrentPath().replace('/eurogranite-website', '')
     const segments = path.split('/').filter(segment => segment !== '')
 
     const breadcrumbs = []
