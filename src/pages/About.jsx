@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useLanguageStore from '../stores/languageStore'
-import { getLanguageFromPath } from '../utils/languageUtils'
 import { getSEOData } from '../constants/seoData'
 import Header from '../components/organisms/Header/Header'
 import SEO from '../components/atoms/SEO'
@@ -9,7 +8,7 @@ import Footer from '../components/organisms/Footer/Footer'
 import './About.css'
 
 const About = () => {
-  const { currentLanguage, setLanguage } = useLanguageStore()
+  const { currentLanguage } = useLanguageStore()
 
   // Language is managed by App.js for hash routing, no need to set it here
 

@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from '../components/organisms/Header/Header'
 import ProjectGallery from '../components/organisms/ProjectGallery/ProjectGallery'
 import useLanguageStore from '../stores/languageStore'
-import { getLanguageFromPath } from '../utils/languageUtils'
 import { getSEOData } from '../constants/seoData'
 import SEO from '../components/atoms/SEO'
 import { OrganizationSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
@@ -11,7 +10,7 @@ import '../styles/components/organisms/ProjectGallery.scss'
 import './About.css'
 
 const Gallery = () => {
-  const { currentLanguage, setLanguage } = useLanguageStore()
+  const { currentLanguage } = useLanguageStore()
 
   // Language is managed by App.js for hash routing, no need to set it here
 

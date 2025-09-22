@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import useLanguageStore from '../stores/languageStore';
-import { getLanguageFromPath } from '../utils/languageUtils';
 import { productsData, TextureIcon, SurfaceIcon, DimensionIcon } from '../constants/productsData';
 import { getSEOData } from '../constants/seoData';
 import ProductCard from '../components/molecules/ProductCard';
@@ -11,7 +10,7 @@ import UniversalTextureGallery from '../components/granite-system/gallery/Univer
 import Footer from '../components/organisms/Footer/Footer';
 
 const Products = () => {
-  const { currentLanguage, setLanguage } = useLanguageStore();
+  const { currentLanguage } = useLanguageStore();
 
   // Language is managed by App.js for hash routing, no need to set it here
 

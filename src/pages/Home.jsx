@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
-import { getLanguageFromPath } from '../utils/languageUtils'
 import Header from '../components/organisms/Header/Header'
 import Hero from '../components/organisms/Hero/Hero'
 import UniqueProposition from '../components/organisms/UniqueProposition/UniqueProposition'
@@ -12,7 +11,7 @@ import LazySchemaLoader from '../components/atoms/StructuredData/LazySchemaLoade
 import Footer from '../components/organisms/Footer/Footer'
 
 const Home = () => {
-  const { currentLanguage, setLanguage } = useLanguageStore()
+  const { currentLanguage } = useLanguageStore()
 
   // Language is managed by App.js for hash routing, no need to set it here
 
