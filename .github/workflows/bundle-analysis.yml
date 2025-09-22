@@ -3,8 +3,14 @@ name: Bundle Analysis
 on:
   pull_request:
     branches: [master, main]
-  push:
-    branches: [master, main]
+
+# Disable on push to avoid duplicate runs with deploy workflow
+# push:
+#   branches: [master, main]
+
+concurrency:
+  group: bundle-analysis-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   bundle-analysis:
