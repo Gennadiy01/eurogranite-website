@@ -56,8 +56,9 @@ describe('App Component', () => {
       </MemoryRouter>
     )
 
-    // Should show loading state first
-    expect(screen.getByText('Завантаження...')).toBeInTheDocument()
+    // Should show loading state first - use getAllByText since multiple loaders can appear
+    const loadingElements = screen.getAllByText('Завантаження...')
+    expect(loadingElements.length).toBeGreaterThan(0)
 
     // Wait for lazy component to load
     await waitFor(() => {
