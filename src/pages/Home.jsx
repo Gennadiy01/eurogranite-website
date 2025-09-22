@@ -14,12 +14,7 @@ import Footer from '../components/organisms/Footer/Footer'
 const Home = () => {
   const { currentLanguage, setLanguage } = useLanguageStore()
 
-  useEffect(() => {
-    const language = getLanguageFromPath(window.location.pathname)
-    if (currentLanguage !== language) {
-      setLanguage(language)
-    }
-  }, [currentLanguage, setLanguage])
+  // Language is managed by App.js for hash routing, no need to set it here
 
   const seoData = getSEOData('home', currentLanguage)
 

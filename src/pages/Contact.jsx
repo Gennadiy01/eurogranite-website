@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import useLanguageStore from '../stores/languageStore'
-import { getLanguageFromPath } from '../utils/languageUtils'
 import { getSEOData } from '../constants/seoData'
 import Header from '../components/organisms/Header/Header'
 import ContactForm from '../components/molecules/ContactForm'
@@ -10,15 +9,10 @@ import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../co
 import Footer from '../components/organisms/Footer/Footer'
 
 const Contact = () => {
-  const { currentLanguage, setLanguage } = useLanguageStore()
+  const { currentLanguage } = useLanguageStore()
   const seoData = getSEOData('contact', currentLanguage)
 
-  useEffect(() => {
-    const language = getLanguageFromPath(window.location.pathname)
-    if (currentLanguage !== language) {
-      setLanguage(language)
-    }
-  }, [currentLanguage, setLanguage])
+  // Language is managed by App.js for hash routing, no need to set it here
 
   useEffect(() => {
     // Scroll to contact form if hash is present
