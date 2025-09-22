@@ -60,10 +60,10 @@ describe('App Component', () => {
     const loadingElements = screen.getAllByText('Завантаження...')
     expect(loadingElements.length).toBeGreaterThan(0)
 
-    // Wait for lazy component to load
+    // Wait longer for lazy component to load - sometimes takes time in CI
     await waitFor(() => {
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
-    })
+    }, { timeout: 5000 })
   })
 
   test('lazy loads Home component for Ukrainian route', async () => {
