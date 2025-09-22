@@ -5,13 +5,13 @@
     <title>Page Not Found | EuroGranite</title>
     <script type="text/javascript">
       // Redirect to the main app and let React handle the 404
-      var pathSegments = location.pathname.split('/').filter(function(segment) {
-        return segment;
-      });
+      var originalPath = location.pathname;
+      // Remove /eurogranite-website prefix if it exists
+      var cleanPath = originalPath.replace('/eurogranite-website', '');
       var newPath = '/eurogranite-website/';
-      if (pathSegments.length > 1) {
-        // Keep the original path as hash for React to handle
-        newPath += '#' + location.pathname;
+      if (cleanPath && cleanPath !== '/') {
+        // Keep the clean path as hash for React to handle
+        newPath += '#' + cleanPath;
       }
       location.replace(newPath);
     </script>

@@ -1,9 +1,11 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import LazyLoadErrorBoundary from './components/atoms/ErrorBoundary'
 import PageLoader from './components/atoms/PageLoader'
 import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
 import ToastContainer from './components/molecules/ToastContainer'
+import useLanguageStore from './stores/languageStore'
+import { getLanguageFromPath } from './utils/languageUtils'
 
 // Lazy load all page components
 const Home = lazy(() => import('./pages/Home'))
@@ -16,8 +18,16 @@ const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
+  const { setLanguage } = useLanguageStore()
+
   // Check for hash-based routing from 404.html redirects
   const currentPath = window.location.hash ? window.location.hash.substring(1) : window.location.pathname
+
+  // Update language store based on current path
+  useEffect(() => {
+    const detectedLanguage = getLanguageFromPath(currentPath)
+    setLanguage(detectedLanguage)
+  }, [currentPath, setLanguage])
 
   // Determine which page to render based on current path
   const getCurrentPage = () => {
