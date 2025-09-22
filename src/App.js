@@ -95,6 +95,9 @@ function App() {
               </Suspense>
             </LazyLoadErrorBoundary>
           } />
+
+          {/* Catch-all route for any unmatched paths */}
+          <Route path="*" element={<LanguageRedirect />} />
         </Routes>
 
         {/* Global Modal Components */}
