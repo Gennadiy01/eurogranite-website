@@ -60,20 +60,13 @@
     <!-- GitHub Pages SPA fix -->
     <script type="text/javascript">
       (function(l) {
-        // Only process if we have the redirect format and it's not corrupted
-        if (l.search && l.search[1] === '/' && l.search.indexOf('~and~') < 50) {
-          var path = l.search.slice(2); // Remove '/?'
-
-          // Clean up any corruption
-          path = path.replace(/&.*$/, ''); // Remove everything after first &
-          path = path.replace(/~and~/g, ''); // Remove ~and~ artifacts
-
-          // Ensure path starts with language code
-          if (path && (path.match(/^(ua|en|de|pl)/))) {
-            window.history.replaceState(null, null,
-              l.pathname + path + l.hash
-            );
-          }
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
         }
       }(window.location))
     </script>

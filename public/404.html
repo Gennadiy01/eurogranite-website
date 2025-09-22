@@ -4,41 +4,18 @@
     <meta charset="utf-8">
     <title>Eurogranite</title>
     <script type="text/javascript">
-      (function() {
-        // GitHub Pages SPA fix with protection against loops
-        var l = window.location;
-
-        // Don't redirect if we're already in a redirect state
-        if (l.search.indexOf('?/') !== -1) {
-          return;
-        }
-
-        // Only redirect SPA routes, not actual 404s
-        var path = l.pathname;
-        var validRoutes = ['/ua', '/en', '/de', '/pl'];
-        var isValidRoute = false;
-
-        for (var i = 0; i < validRoutes.length; i++) {
-          if (path.indexOf('/eurogranite-website' + validRoutes[i]) === 0) {
-            isValidRoute = true;
-            break;
-          }
-        }
-
-        if (isValidRoute) {
-          var segments = path.split('/');
-          var redirectPath = '/?/' + segments.slice(2).join('/');
-
-          l.replace(
-            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            '/eurogranite-website' + redirectPath + l.search + l.hash
-          );
-        }
-      })();
+      // GitHub Pages SPA hack
+      var segmentCount = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
     </script>
   </head>
   <body>
-    <h1>Page Not Found</h1>
-    <p>If you're not redirected automatically, <a href="/eurogranite-website/">go to homepage</a>.</p>
   </body>
 </html>
