@@ -39,19 +39,14 @@ function App() {
   // Update language store based on current path
   useEffect(() => {
     const detectedLanguage = getLanguageFromPath(currentPath)
-    const { currentLanguage } = useLanguageStore.getState()
 
     console.log('Language detection:', {
       currentPath,
-      detectedLanguage,
-      storedLanguage: currentLanguage,
-      willUpdate: detectedLanguage !== currentLanguage
+      detectedLanguage
     })
 
-    // Always update language based on URL, even if different from stored
-    if (detectedLanguage !== currentLanguage) {
-      setLanguage(detectedLanguage)
-    }
+    // Always update language based on URL
+    setLanguage(detectedLanguage)
   }, [currentPath, setLanguage])
 
   // Determine which page to render based on current path
