@@ -66,6 +66,8 @@ function App() {
         return <Contact />
       case 'admin/upload':
         return <AdminUpload />
+      case '404':
+        return <NotFound />
       default:
         return <NotFound />
     }

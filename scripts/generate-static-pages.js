@@ -306,7 +306,42 @@ const notFoundTemplate = () => {
     mainCssFile = cssFiles.find(file => file.startsWith('main.') && file.endsWith('.css'))
   }
 
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/eurogranite-website/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Page Not Found - EuroGranite"/><meta name="robots" content="noindex, nofollow"/><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload='this.onload=null,this.rel="stylesheet"'><noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript><link rel="apple-touch-icon" href="/eurogranite-website/logo192.png"/><link rel="manifest" href="/eurogranite-website/manifest.json"/><title>Page Not Found | EuroGranite</title>${mainJsFile ? `<script defer="defer" src="/eurogranite-website/static/js/${mainJsFile}"></script>` : ''}${mainCssFile ? `<link href="/eurogranite-website/static/css/${mainCssFile}" rel="stylesheet">` : ''}</head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>`
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/eurogranite-website/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Page Not Found - EuroGranite" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="apple-touch-icon" href="/eurogranite-website/logo192.png" />
+    <link rel="manifest" href="/eurogranite-website/manifest.json" />
+    <title>Page Not Found | EuroGranite</title>
+
+    ${mainCssFile ? `<link href="/eurogranite-website/static/css/${mainCssFile}" rel="stylesheet">` : ''}
+
+    <!-- Set initial state for React to show 404 page -->
+    <script>
+        window.__INITIAL_STATE__ = {
+            language: 'en',
+            page: '404',
+            route: '/404'
+        };
+    </script>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    ${mainJsFile ? `<script defer="defer" src="/eurogranite-website/static/js/${mainJsFile}"></script>` : ''}
+</body>
+</html>`
 }
 
 const notFoundPath = path.join(buildDir, '404.html')
