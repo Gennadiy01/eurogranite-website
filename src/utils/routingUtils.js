@@ -19,20 +19,14 @@ export const normalizePath = (path) => {
 }
 
 /**
- * Отримує поточний шлях з різних джерел (hash, pathname)
+ * Отримує поточний шлях з pathname (статичні маршрути)
  */
 export const getCurrentPath = () => {
   if (typeof window === 'undefined') {
     return '/'
   }
 
-  // Спочатку перевіряємо hash (для сумісності з legacy роутингом)
-  const hashPath = window.location.hash ? window.location.hash.substring(1) : ''
-  if (hashPath) {
-    return normalizePath(hashPath)
-  }
-
-  // Потім pathname
+  // Для продакшн завжди використовуємо pathname (статичні маршрути)
   return normalizePath(window.location.pathname)
 }
 

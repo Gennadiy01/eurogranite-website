@@ -3,6 +3,7 @@ import useLanguageStore from '../../../stores/languageStore';
 import useGraniteSystemStore from '../../../stores/graniteSystemStore';
 import { graniteTypes } from '../../../constants/graniteData';
 import { surfaceFinishTypes, combinedFinishTypes } from '../../../constants/productsData';
+import { createLocalizedPath } from '../../../utils/urlUtils';
 import Button from '../../atoms/Button/Button';
 
 const ProductCard = ({ product }) => {
@@ -40,8 +41,8 @@ const ProductCard = ({ product }) => {
 
   // Обробка кліку на замовлення
   const handleOrderClick = () => {
-    // Перенаправлення на Contact сторінку з фокусом на форму
-    window.location.href = '/eurogranite-website/contact#contact-form';
+    // Перенаправлення на Contact сторінку з правильним мовним шляхом
+    window.location.href = createLocalizedPath('contact', currentLanguage);
   };
 
   return (
