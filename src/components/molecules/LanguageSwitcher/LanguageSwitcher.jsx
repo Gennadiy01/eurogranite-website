@@ -17,7 +17,7 @@ const useRouterLocationSafe = () => {
 
     // Try to get router location dynamically
     try {
-      const routerModule = require('react-router-dom')
+      require('react-router-dom')
       // In development mode with router, we can access location differently
       setLocation({ pathname: window.location.pathname })
     } catch (error) {
