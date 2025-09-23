@@ -5,7 +5,6 @@ import PageLoader from './components/atoms/PageLoader'
 import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
 import ToastContainer from './components/molecules/ToastContainer'
 import useLanguageStore from './stores/languageStore'
-import { parseRoute, getCurrentPath, isValidPage, testRouteParsing } from './utils/routingUtils'
 
 // Lazy load all page components
 const Home = lazy(() => import('./pages/Home'))
@@ -20,70 +19,37 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 function App() {
   const { setLanguage } = useLanguageStore()
 
-  // Get initial state from server-side generation or browser
+  // Get initial state from static HTML generation
   const getInitialState = () => {
+    // For static sites, always use window.__INITIAL_STATE__ set by static page generation
     if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
       return window.__INITIAL_STATE__
     }
 
-    // Fallback to current location parsing using centralized routing
-    const currentPath = getCurrentPath()
-    return parseRoute(currentPath)
+    // Fallback for development
+    return {
+      language: 'en',
+      page: '',
+      route: '/'
+    }
   }
 
-  const [appState, setAppState] = React.useState(getInitialState())
+  const appState = getInitialState()
 
-  // Check for hash-based routing from 404.html redirects (legacy support)
-  const [, setCurrentPath] = React.useState(appState.route)
-
-  // Listen for hash changes (legacy support)
+  // Set language once on mount
   useEffect(() => {
-    const handleHashChange = () => {
-      const newPath = getCurrentPath()
-      setCurrentPath(newPath)
-
-      // Use centralized routing parsing
-      const routeData = parseRoute(newPath)
-      setAppState(routeData)
-    }
-
-    // Only add listener if no initial state (legacy mode)
-    if (!window.__INITIAL_STATE__) {
-      window.addEventListener('hashchange', handleHashChange)
-      return () => window.removeEventListener('hashchange', handleHashChange)
-    }
-  }, [])
-
-  // Update language store based on app state
-  useEffect(() => {
-    console.log('Language detection:', {
-      currentPath: appState.route,
-      detectedLanguage: appState.language,
+    console.log('Static page loaded:', {
+      language: appState.language,
       page: appState.page,
-      initialState: !!window.__INITIAL_STATE__
+      route: appState.route
     })
 
-    // Always update language based on app state
     setLanguage(appState.language)
-  }, [appState, setLanguage])
+  }, [appState.language, appState.page, appState.route, setLanguage])
 
-  // Test routing system on app load (development only)
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🧪 Testing routing system...')
-      testRouteParsing()
-    }
-  }, [])
-
-  // Determine which page to render based on app state
+  // Determine which page to render based on static generation
   const getCurrentPage = () => {
-    const page = appState.page
-
-    // Validate page using centralized validation
-    if (!isValidPage(page)) {
-      console.warn(`Invalid page: "${page}". Rendering NotFound component.`)
-      return <NotFound />
-    }
+    const page = appState.page || ''
 
     switch (page) {
       case '':
