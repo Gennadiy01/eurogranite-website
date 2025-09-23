@@ -126,110 +126,194 @@ describe('App Component - Static Architecture', () => {
   })
 
   test('shows Products component for Ukrainian products path', async () => {
-    window.location.pathname = '/ua/products'
+    window.__INITIAL_STATE__ = {
+      language: 'ua',
+      page: 'products',
+      route: '/ua/products'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('products-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows About component for Ukrainian about path', async () => {
-    window.location.pathname = '/ua/about'
+    window.__INITIAL_STATE__ = {
+      language: 'ua',
+      page: 'about',
+      route: '/ua/about'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('about-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows Contact component for Ukrainian contact path', async () => {
-    window.location.pathname = '/ua/contact'
+    window.__INITIAL_STATE__ = {
+      language: 'ua',
+      page: 'contact',
+      route: '/ua/contact'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('contact-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows Gallery component for Ukrainian gallery path', async () => {
-    window.location.pathname = '/ua/gallery'
+    window.__INITIAL_STATE__ = {
+      language: 'ua',
+      page: 'gallery',
+      route: '/ua/gallery'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('gallery-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows Articles component for Ukrainian articles path', async () => {
-    window.location.pathname = '/ua/articles'
+    window.__INITIAL_STATE__ = {
+      language: 'ua',
+      page: 'articles',
+      route: '/ua/articles'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('articles-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows Admin component for admin upload path', async () => {
-    window.location.pathname = '/admin/upload'
+    window.__INITIAL_STATE__ = {
+      language: 'en',
+      page: 'admin/upload',
+      route: '/admin/upload'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('admin-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows Home component for English root path', async () => {
-    window.location.pathname = '/en'
+    window.__INITIAL_STATE__ = {
+      language: 'en',
+      page: '',
+      route: '/en'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows Products component for English products path', async () => {
-    window.location.pathname = '/en/products'
+    window.__INITIAL_STATE__ = {
+      language: 'en',
+      page: 'products',
+      route: '/en/products'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('products-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows 404 page for unknown paths', async () => {
-    window.location.pathname = '/ua/unknown-path'
+    window.__INITIAL_STATE__ = {
+      language: 'ua',
+      page: 'unknown-path',
+      route: '/ua/unknown-path'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('not-found-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('handles paths without language prefix', async () => {
-    window.location.pathname = '/products'
+    window.__INITIAL_STATE__ = {
+      language: 'en',
+      page: 'products',
+      route: '/products'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('products-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows 404 page for completely invalid paths', async () => {
-    window.location.pathname = '/fhjtuky/tyylu'
+    window.__INITIAL_STATE__ = {
+      language: 'en',
+      page: 'fhjtuky/tyylu',
+      route: '/fhjtuky/tyylu'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('not-found-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 
   test('shows 404 page for invalid language prefix paths', async () => {
-    window.location.pathname = '/fr/products'
+    window.__INITIAL_STATE__ = {
+      language: 'en',
+      page: 'fr/products',
+      route: '/fr/products'
+    }
     render(<App />)
 
     await waitFor(() => {
       expect(screen.getByTestId('not-found-page')).toBeInTheDocument()
     }, { timeout: 3000 })
+
+    // Cleanup
+    delete window.__INITIAL_STATE__
   })
 })
