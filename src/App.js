@@ -1,9 +1,13 @@
 import React, { Suspense, lazy, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import LazyLoadErrorBoundary from './components/atoms/ErrorBoundary'
 import PageLoader from './components/atoms/PageLoader'
+import Footer from './components/organisms/Footer/Footer'
 import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
 import ToastContainer from './components/molecules/ToastContainer'
+import LocalizedLayout from './components/routing/LocalizedLayout'
+import LanguageRedirect from './components/routing/LanguageRedirect'
 import useLanguageStore from './stores/languageStore'
 
 // Lazy load all page components
@@ -16,17 +20,20 @@ const Contact = lazy(() => import('./pages/Contact'))
 const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
-function App() {
+// Check if we're in static mode (for production builds)
+const isStaticMode = () => {
+  return typeof window !== 'undefined' && window.__INITIAL_STATE__
+}
+
+// Static App component for production
+const StaticApp = () => {
   const { setLanguage } = useLanguageStore()
 
   // Get initial state from static HTML generation
   const getInitialState = () => {
-    // For static sites, always use window.__INITIAL_STATE__ set by static page generation
     if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
       return window.__INITIAL_STATE__
     }
-
-    // Fallback for development
     return {
       language: 'en',
       page: '',
@@ -43,7 +50,6 @@ function App() {
       page: appState.page,
       route: appState.route
     })
-
     setLanguage(appState.language)
   }, [appState.language, appState.page, appState.route, setLanguage])
 
@@ -79,6 +85,7 @@ function App() {
         <LazyLoadErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             {getCurrentPage()}
+            <Footer />
           </Suspense>
         </LazyLoadErrorBoundary>
 
@@ -90,6 +97,95 @@ function App() {
       </div>
     </HelmetProvider>
   )
+}
+
+// Dynamic App component for development
+const DynamicApp = () => {
+  // Dynamic basename based on environment - for development use no basename
+  const basename = process.env.NODE_ENV === 'development' ? '' : '/eurogranite-website'
+
+  return (
+    <HelmetProvider>
+      <div className="App">
+        <Router basename={basename}>
+          <LazyLoadErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                {/* Language redirect for non-localized URLs */}
+                <Route path="/" element={<LanguageRedirect />} />
+                <Route path="/products" element={<LanguageRedirect />} />
+                <Route path="/about" element={<LanguageRedirect />} />
+                <Route path="/gallery" element={<LanguageRedirect />} />
+                <Route path="/articles" element={<LanguageRedirect />} />
+                <Route path="/contact" element={<LanguageRedirect />} />
+
+                {/* Localized routes */}
+                <Route path="/:lang" element={
+                  <LocalizedLayout>
+                    <Home />
+                    <Footer />
+                  </LocalizedLayout>
+                } />
+                <Route path="/:lang/products" element={
+                  <LocalizedLayout>
+                    <Products />
+                    <Footer />
+                  </LocalizedLayout>
+                } />
+                <Route path="/:lang/about" element={
+                  <LocalizedLayout>
+                    <About />
+                    <Footer />
+                  </LocalizedLayout>
+                } />
+                <Route path="/:lang/gallery" element={
+                  <LocalizedLayout>
+                    <Gallery />
+                    <Footer />
+                  </LocalizedLayout>
+                } />
+                <Route path="/:lang/articles" element={
+                  <LocalizedLayout>
+                    <Articles />
+                    <Footer />
+                  </LocalizedLayout>
+                } />
+                <Route path="/:lang/contact" element={
+                  <LocalizedLayout>
+                    <Contact />
+                    <Footer />
+                  </LocalizedLayout>
+                } />
+
+                {/* Admin route (no localization needed) */}
+                <Route path="/admin/upload" element={<AdminUpload />} />
+
+                {/* 404 route */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </LazyLoadErrorBoundary>
+
+          {/* Global Modal Components */}
+          <UniversalTextureGallery />
+
+          {/* Global Toast Container */}
+          <ToastContainer />
+        </Router>
+      </div>
+    </HelmetProvider>
+  )
+}
+
+// Main App component that chooses between static and dynamic mode
+function App() {
+  // Use static mode if __INITIAL_STATE__ is available (production)
+  // Use dynamic mode for development
+  if (isStaticMode()) {
+    return <StaticApp />
+  }
+
+  return <DynamicApp />
 }
 
 export default App

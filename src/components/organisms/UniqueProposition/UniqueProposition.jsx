@@ -75,7 +75,7 @@ const UniqueProposition = () => {
               {content.callToAction}
             </p>
             <div className="unique-proposition-cta-buttons">
-              <a href="/contact#contact-form">
+              <a href="/contact?focus=form#contact-form">
                 <Button variant="primary" size="large">
                   {content.buttons.contact}
                 </Button>

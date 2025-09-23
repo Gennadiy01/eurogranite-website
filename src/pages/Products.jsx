@@ -234,7 +234,7 @@ const Products = () => {
             </p>
             <div className="flex justify-center">
               <a
-                href="/contact#contact-form"
+                href="/contact?focus=form#contact-form"
                 className="custom-button custom-button--primary px-8 py-4"
               >
                 {currentLanguage === 'ua'

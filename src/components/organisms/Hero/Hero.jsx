@@ -95,7 +95,7 @@ const Hero = () => {
                   {content.ctaPrimary}
                 </Button>
               </a>
-              <a href="/contact#contact-form">
+              <a href="/contact?focus=form#contact-form">
                 <Button
                   variant="outline"
                   size="large"

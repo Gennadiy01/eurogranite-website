@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher'
 import useLanguageStore from '../../../stores/languageStore'
-import { createLocalizedPath } from '../../../utils/urlUtils'
+import { createLocalizedPath, BASE_URL } from '../../../utils/urlUtils'
 import { parseRoute, getCurrentPath } from '../../../utils/routingUtils'
 
 const Header = () => {
@@ -21,7 +21,7 @@ const Header = () => {
   // Helper function to determine if navigation item is active
   const isNavItemActive = (navPath) => {
     // Extract page from navigation path
-    const navPage = navPath.replace('/eurogranite-website', '').replace(`/${lang}`, '').replace(/\//g, '') || ''
+    const navPage = navPath.replace(BASE_URL, '').replace(`/${lang}`, '').replace(/\//g, '') || ''
 
     // Special case for home page
     if (navPage === '' && currentPage === '') {

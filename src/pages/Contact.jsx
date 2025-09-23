@@ -15,21 +15,102 @@ const Contact = () => {
   // Language is managed by App.js for hash routing, no need to set it here
 
   useEffect(() => {
-    // Scroll to contact form if hash is present
-    if (window.location.hash === '#contact-form') {
-      setTimeout(() => {
+    // Check for focus parameter and scroll to contact form
+    const urlParams = new URLSearchParams(window.location.search)
+    const shouldFocus = urlParams.get('focus') === 'form' || window.location.hash === '#contact-form'
+
+    if (shouldFocus) {
+      const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window
+      const isDevToolsMobile = window.innerWidth <= 768 && !('ontouchstart' in window) // Chrome DevTools mobile simulation
+
+      const scrollToForm = () => {
         const element = document.getElementById('contact-form')
         if (element) {
-          const isMobile = window.innerWidth <= 768
-          const headerHeight = isMobile ? 80 : 96 // Approximate header height
-          const elementPosition = element.offsetTop - headerHeight - 20 // Extra 20px spacing
+          const headerHeight = isMobile || isDevToolsMobile ? 80 : 96
+          const elementPosition = element.offsetTop - headerHeight - 20
 
           window.scrollTo({
             top: elementPosition,
             behavior: 'smooth'
           })
         }
-      }, 100) // Small delay to ensure page is fully loaded
+      }
+
+      // Scroll immediately without waiting
+      setTimeout(scrollToForm, 100)
+
+      const nameInput = document.getElementById('name')
+      if (nameInput) {
+        if (isDevToolsMobile) {
+          // Chrome DevTools mobile simulation - try direct focus first, then visual indicator
+          setTimeout(() => {
+            try {
+              nameInput.focus()
+              // If focus worked, no need for animation
+              console.log('DevTools: Focus successful')
+            } catch (e) {
+              console.log('DevTools: Focus failed, showing visual indicator')
+              // Fall back to visual indicator
+              showVisualIndicator(nameInput)
+            }
+
+            // Check if focus actually worked after a short delay
+            setTimeout(() => {
+              if (document.activeElement !== nameInput) {
+                console.log('DevTools: Focus verification failed, showing visual indicator')
+                showVisualIndicator(nameInput)
+              }
+            }, 200)
+          }, 800)
+        } else if (isMobile) {
+          // Real mobile device - only visual indicator
+          setTimeout(() => {
+            showVisualIndicator(nameInput)
+          }, 1000)
+        } else {
+          // Desktop: Direct focus
+          setTimeout(() => {
+            nameInput.focus()
+          }, 800)
+        }
+      }
+    }
+
+    function showVisualIndicator(nameInput) {
+      // Add pulsing animation to indicate where to tap
+      nameInput.style.boxShadow = '0 0 0 4px rgba(255, 165, 0, 0.5)'
+      nameInput.style.transition = 'box-shadow 0.3s ease'
+      nameInput.style.animation = 'pulse 2s infinite'
+
+      // Add CSS animation if not exists
+      if (!document.getElementById('pulse-animation')) {
+        const style = document.createElement('style')
+        style.id = 'pulse-animation'
+        style.textContent = `
+          @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 165, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 165, 0, 0); }
+          }
+        `
+        document.head.appendChild(style)
+      }
+
+      // Remove animation after user interacts
+      const removeAnimation = () => {
+        nameInput.style.animation = ''
+        nameInput.style.boxShadow = ''
+        nameInput.removeEventListener('focus', removeAnimation)
+        nameInput.removeEventListener('touchstart', removeAnimation)
+        nameInput.removeEventListener('click', removeAnimation)
+      }
+
+      nameInput.addEventListener('focus', removeAnimation)
+      nameInput.addEventListener('touchstart', removeAnimation)
+      nameInput.addEventListener('click', removeAnimation)
+
+      // Remove animation after 10 seconds
+      setTimeout(removeAnimation, 10000)
     }
   }, [])
   

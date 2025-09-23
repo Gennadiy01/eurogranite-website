@@ -1,25 +1,63 @@
 import React, { useState, useRef, useEffect } from 'react'
 import useLanguageStore from '../../../stores/languageStore'
 import { createLocalizedPath } from '../../../utils/urlUtils'
+import { parseRoute, getCurrentPath } from '../../../utils/routingUtils'
+
+// Hook for safe router location usage
+const useRouterLocationSafe = () => {
+  const [location, setLocation] = useState(null)
+
+  useEffect(() => {
+    // Check if we're in a router context
+    if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
+      // Static mode - no router
+      setLocation(null)
+      return
+    }
+
+    // Try to get router location dynamically
+    try {
+      const routerModule = require('react-router-dom')
+      // In development mode with router, we can access location differently
+      setLocation({ pathname: window.location.pathname })
+    } catch (error) {
+      setLocation(null)
+    }
+  }, [])
+
+  return location
+}
 
 const LanguageSwitcher = ({ className = '' }) => {
   const { currentLanguage, availableLanguages } = useLanguageStore()
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef(null)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const location = useRouterLocationSafe()
 
   const currentLang = availableLanguages.find(lang => lang.code === currentLanguage)
   const otherLanguages = availableLanguages.filter(lang => lang.code !== currentLanguage)
 
-  // Get current page from static state
+  // Get current page - hybrid approach for both static and dynamic modes
   const getCurrentPage = () => {
+    // For static mode (production)
     if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
       return window.__INITIAL_STATE__.page || ''
     }
-    return ''
+
+    // For dynamic mode (development) - try router location first
+    if (location && location.pathname) {
+      const route = parseRoute(location.pathname)
+      return route.page || ''
+    }
+
+    // Fallback: parse current URL path directly
+    const currentPath = getCurrentPath()
+    const route = parseRoute(currentPath)
+    return route.page || ''
   }
 
-  // Create language URL for a specific language
+  // Create language URL for a specific language - preserving current page
   const createLanguageUrl = (languageCode) => {
     const currentPage = getCurrentPage()
     return createLocalizedPath(currentPage, languageCode)

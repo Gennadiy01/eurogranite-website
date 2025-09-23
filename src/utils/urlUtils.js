@@ -2,7 +2,7 @@
 
 // Базовий URL для GitHub Pages
 export const BASE_URL = process.env.NODE_ENV === 'development'
-  ? '/eurogranite-website'  // localhost:3005/eurogranite-website
+  ? ''  // localhost без префіксу
   : '/eurogranite-website'  // github pages
 
 export const DOMAIN = process.env.NODE_ENV === 'development'
@@ -14,12 +14,24 @@ export const createLocalizedPath = (path, targetLang = 'en') => {
   // Очищуємо шлях від початкового слешу
   const cleanPath = path.startsWith('/') ? path.slice(1) : path
 
-  // Для англійської мови (за замовчуванням) - без префіксу мови
+  // В development режимі всі мови мають префікс (включно з en)
+  // В production англійська мова без префіксу
+  const shouldUseEnglishPrefix = process.env.NODE_ENV === 'development'
+
+  // Для англійської мови
   if (targetLang === 'en') {
-    return cleanPath ? `${BASE_URL}/${cleanPath}/` : `${BASE_URL}/`
+    if (shouldUseEnglishPrefix) {
+      // Development: en має префікс як і інші мови
+      return cleanPath
+        ? `${BASE_URL}/${targetLang}/${cleanPath}/`
+        : `${BASE_URL}/${targetLang}/`
+    } else {
+      // Production: en без префіксу мови
+      return cleanPath ? `${BASE_URL}/${cleanPath}/` : `${BASE_URL}/`
+    }
   }
 
-  // Для інших мов - з префіксом мови
+  // Для інших мов - завжди з префіксом мови
   return cleanPath
     ? `${BASE_URL}/${targetLang}/${cleanPath}/`
     : `${BASE_URL}/${targetLang}/`

@@ -19,6 +19,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
+    "react-router-dom": "^7.9.1",
     "react-scripts": "^5.0.1",
     "sass": "^1.92.1",
     "web-vitals": "^2.1.4",
@@ -26,6 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:dev": "cross-env PUBLIC_URL= react-scripts start",
     "prebuild": "node scripts/generate-sitemap.js",
     "build": "react-scripts build && node scripts/generate-static-pages.js",
     "test": "react-scripts test",
@@ -42,6 +44,7 @@
     "bundle:check": "node scripts/bundle-size-check.js",
     "bundle:compare": "node scripts/bundle-compare.js compare",
     "bundle:save": "node scripts/bundle-compare.js save",
+    "build:local": "npm run prebuild && set PUBLIC_URL=.&& set GENERATE_SOURCEMAP=false&& react-scripts build && node scripts/generate-local-pages.js",
     "test:regression": "node scripts/regression-test.js",
     "test:refactoring": "npm run test:regression"
   },
@@ -65,6 +68,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "cross-env": "^10.0.0",
     "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "webpack-bundle-analyzer": "^4.10.2"

@@ -328,7 +328,7 @@ const GraniteColors = () => {
               {currentContent.cta.subtitle}
             </p>
             <div className="granite-colors-cta-buttons">
-              <a href="/contact#contact-form">
+              <a href="/contact?focus=form#contact-form">
                 <Button
                   variant="primary"
                   size="large"

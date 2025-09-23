@@ -3,6 +3,7 @@
  */
 
 import { getLanguageFromPath } from './languageUtils'
+import { BASE_URL } from './urlUtils'
 
 /**
  * Нормалізує шлях, видаляючи зайві слеші та пробіли
@@ -37,7 +38,7 @@ export const parseRoute = (path) => {
   const normalizedPath = normalizePath(path)
 
   // Видаляємо базовий шлях
-  const withoutBasePath = normalizedPath.replace('/eurogranite-website', '') || '/'
+  const withoutBasePath = normalizedPath.replace(BASE_URL, '') || '/'
 
   // Визначаємо мову
   const language = getLanguageFromPath(normalizedPath)

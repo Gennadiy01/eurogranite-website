@@ -41,8 +41,8 @@ const ProductCard = ({ product }) => {
 
   // Обробка кліку на замовлення
   const handleOrderClick = () => {
-    // Перенаправлення на Contact сторінку з правильним мовним шляхом
-    window.location.href = createLocalizedPath('contact', currentLanguage);
+    // Перенаправлення на Contact сторінку з правильним мовним шляхом та focus параметром
+    window.location.href = createLocalizedPath('contact', currentLanguage) + '?focus=form#contact-form';
   };
 
   return (
