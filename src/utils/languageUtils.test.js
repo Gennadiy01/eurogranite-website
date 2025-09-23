@@ -29,23 +29,23 @@ describe('Language Utilities', () => {
     })
 
     test('returns default language for paths without language prefix', () => {
-      expect(getLanguageFromPath('/')).toBe('ua')
-      expect(getLanguageFromPath('/products')).toBe('ua')
-      expect(getLanguageFromPath('/about')).toBe('ua')
-      expect(getLanguageFromPath('/contact')).toBe('ua')
+      expect(getLanguageFromPath('/')).toBe('en')
+      expect(getLanguageFromPath('/products')).toBe('en')
+      expect(getLanguageFromPath('/about')).toBe('en')
+      expect(getLanguageFromPath('/contact')).toBe('en')
     })
 
     test('returns default language for invalid language codes', () => {
-      expect(getLanguageFromPath('/fr')).toBe('ua')
-      expect(getLanguageFromPath('/es')).toBe('ua')
-      expect(getLanguageFromPath('/it')).toBe('ua')
-      expect(getLanguageFromPath('/ru')).toBe('ua')
+      expect(getLanguageFromPath('/fr')).toBe('en')
+      expect(getLanguageFromPath('/es')).toBe('en')
+      expect(getLanguageFromPath('/it')).toBe('en')
+      expect(getLanguageFromPath('/ru')).toBe('en')
     })
 
     test('handles empty or undefined paths', () => {
-      expect(getLanguageFromPath('')).toBe('ua')
-      expect(getLanguageFromPath(undefined)).toBe('ua')
-      expect(getLanguageFromPath(null)).toBe('ua')
+      expect(getLanguageFromPath('')).toBe('en')
+      expect(getLanguageFromPath(undefined)).toBe('en')
+      expect(getLanguageFromPath(null)).toBe('en')
     })
 
     test('handles complex paths with subdirectories', () => {
@@ -64,7 +64,7 @@ describe('Language Utilities', () => {
   describe('getSupportedLanguages', () => {
     test('returns array of supported language codes', () => {
       const languages = getSupportedLanguages()
-      expect(languages).toEqual(['ua', 'en', 'de', 'pl'])
+      expect(languages).toEqual(['en', 'ua', 'de', 'pl'])
       expect(Array.isArray(languages)).toBe(true)
       expect(languages.length).toBe(4)
     })

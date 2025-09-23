@@ -90,7 +90,7 @@ describe('useLanguageStore', () => {
       writable: true
     })
 
-    expect(result.current.getBrowserLanguage()).toBe('ua')
+    expect(result.current.getBrowserLanguage()).toBe('en')
   })
 
   test('isSupportedLanguage correctly identifies supported languages', () => {
