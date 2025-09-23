@@ -3,6 +3,20 @@ import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import App from './App'
 
+// Mock react-router-dom before any imports that might use it
+jest.mock('react-router-dom', () => {
+  const mockReact = require('react')
+  return {
+    BrowserRouter: ({ children }) => mockReact.createElement('div', { 'data-testid': 'mock-router' }, children),
+    Routes: ({ children }) => mockReact.createElement('div', { 'data-testid': 'mock-routes' }, children),
+    Route: ({ element }) => element,
+    useParams: () => ({ lang: 'ua' }),
+    useNavigate: () => jest.fn(),
+    useLocation: () => ({ pathname: '/ua' }),
+    __esModule: true
+  }
+}, { virtual: true })
+
 // Mock window.location.pathname
 const mockLocation = {
   pathname: '/ua',
