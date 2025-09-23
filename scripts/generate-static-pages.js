@@ -329,8 +329,25 @@ const notFoundTemplate = () => {
 
     <!-- Set initial state for React to show 404 page -->
     <script>
+        // Detect language from URL path for 404 pages
+        function detectLanguageFromPath() {
+            const path = window.location.pathname;
+            const segments = path.replace('/eurogranite-website', '').split('/').filter(Boolean);
+
+            // Check if first segment is a language code
+            const supportedLanguages = ['ua', 'de', 'pl'];
+            if (segments.length > 0 && supportedLanguages.includes(segments[0])) {
+                return segments[0];
+            }
+
+            // Default to English
+            return 'en';
+        }
+
+        const detectedLanguage = detectLanguageFromPath();
+
         window.__INITIAL_STATE__ = {
-            language: 'en',
+            language: detectedLanguage,
             page: '404',
             route: '/404'
         };
