@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import Footer from '../components/organisms/Footer/Footer'
 import Button from '../components/atoms/Button/Button'
 import useLanguageStore from '../stores/languageStore'
+import { createLocalizedPath } from '../utils/urlUtils'
 
 const NotFound = () => {
   const { currentLanguage } = useLanguageStore()
@@ -66,7 +67,7 @@ const NotFound = () => {
     if (window.history.length > 1) {
       window.history.back()
     } else {
-      window.location.href = `/${currentLanguage}`
+      window.location.href = createLocalizedPath('', currentLanguage)
     }
   }
 
@@ -130,43 +131,41 @@ const NotFound = () => {
             </div>
 
             {/* Navigation buttons */}
-            <div className="flex flex-col items-center gap-4 max-w-md mx-auto content-spacing-xl">
+            <div className="flex flex-col items-center gap-4 max-w-md mx-auto content-spacing-xl notfound-buttons">
               <Button
                 variant="primary"
                 size="large"
-                onClick={() => window.location.href = `/${currentLanguage}`}
-                className="w-full"
+                onClick={() => window.location.href = createLocalizedPath('', currentLanguage)}
+                className="notfound-button"
               >
                 {t.homeLink}
               </Button>
 
-              <div className="flex flex-col gap-3 w-full">
-                <Button
-                  variant="outline"
-                  size="large"
-                  onClick={() => window.location.href = `/${currentLanguage}/products`}
-                  className="w-full"
-                  style={{
-                    borderColor: 'var(--neutral-400)',
-                    color: 'var(--white)'
-                  }}
-                >
-                  {t.productsLink}
-                </Button>
+              <Button
+                variant="outline"
+                size="large"
+                onClick={() => window.location.href = createLocalizedPath('products', currentLanguage)}
+                className="notfound-button"
+                style={{
+                  borderColor: 'var(--neutral-400)',
+                  color: 'var(--white)'
+                }}
+              >
+                {t.productsLink}
+              </Button>
 
-                <Button
-                  variant="outline"
-                  size="large"
-                  onClick={() => window.location.href = `/${currentLanguage}/contact`}
-                  className="w-full"
-                  style={{
-                    borderColor: 'var(--neutral-400)',
-                    color: 'var(--white)'
-                  }}
-                >
-                  {t.contactLink}
-                </Button>
-              </div>
+              <Button
+                variant="outline"
+                size="large"
+                onClick={() => window.location.href = createLocalizedPath('contact', currentLanguage)}
+                className="notfound-button"
+                style={{
+                  borderColor: 'var(--neutral-400)',
+                  color: 'var(--white)'
+                }}
+              >
+                {t.contactLink}
+              </Button>
             </div>
 
             {/* Back button */}

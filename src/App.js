@@ -5,7 +5,7 @@ import PageLoader from './components/atoms/PageLoader'
 import UniversalTextureGallery from './components/granite-system/gallery/UniversalTextureGallery'
 import ToastContainer from './components/molecules/ToastContainer'
 import useLanguageStore from './stores/languageStore'
-import { getLanguageFromPath } from './utils/languageUtils'
+import { parseRoute, getCurrentPath, isValidPage, testRouteParsing } from './utils/routingUtils'
 
 // Lazy load all page components
 const Home = lazy(() => import('./pages/Home'))
@@ -20,53 +20,85 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 function App() {
   const { setLanguage } = useLanguageStore()
 
-  // Check for hash-based routing from 404.html redirects
-  const [currentPath, setCurrentPath] = React.useState(
-    window.location.hash ? window.location.hash.substring(1) : window.location.pathname
-  )
-
-  // Listen for hash changes
-  useEffect(() => {
-    const handleHashChange = () => {
-      const newPath = window.location.hash ? window.location.hash.substring(1) : window.location.pathname
-      setCurrentPath(newPath)
+  // Get initial state from server-side generation or browser
+  const getInitialState = () => {
+    if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
+      return window.__INITIAL_STATE__
     }
 
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
+    // Fallback to current location parsing using centralized routing
+    const currentPath = getCurrentPath()
+    return parseRoute(currentPath)
+  }
+
+  const [appState, setAppState] = React.useState(getInitialState())
+
+  // Check for hash-based routing from 404.html redirects (legacy support)
+  const [, setCurrentPath] = React.useState(appState.route)
+
+  // Listen for hash changes (legacy support)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const newPath = getCurrentPath()
+      setCurrentPath(newPath)
+
+      // Use centralized routing parsing
+      const routeData = parseRoute(newPath)
+      setAppState(routeData)
+    }
+
+    // Only add listener if no initial state (legacy mode)
+    if (!window.__INITIAL_STATE__) {
+      window.addEventListener('hashchange', handleHashChange)
+      return () => window.removeEventListener('hashchange', handleHashChange)
+    }
   }, [])
 
-  // Update language store based on current path
+  // Update language store based on app state
   useEffect(() => {
-    const detectedLanguage = getLanguageFromPath(currentPath)
-
     console.log('Language detection:', {
-      currentPath,
-      detectedLanguage
+      currentPath: appState.route,
+      detectedLanguage: appState.language,
+      page: appState.page,
+      initialState: !!window.__INITIAL_STATE__
     })
 
-    // Always update language based on URL
-    setLanguage(detectedLanguage)
-  }, [currentPath, setLanguage])
+    // Always update language based on app state
+    setLanguage(appState.language)
+  }, [appState, setLanguage])
 
-  // Determine which page to render based on current path
+  // Test routing system on app load (development only)
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🧪 Testing routing system...')
+      testRouteParsing()
+    }
+  }, [])
+
+  // Determine which page to render based on app state
   const getCurrentPage = () => {
-    const path = currentPath.replace(/^\/(ua|en|de|pl)/, '') || '/'
+    const page = appState.page
 
-    switch (path) {
-      case '/':
+    // Validate page using centralized validation
+    if (!isValidPage(page)) {
+      console.warn(`Invalid page: "${page}". Rendering NotFound component.`)
+      return <NotFound />
+    }
+
+    switch (page) {
+      case '':
         return <Home />
-      case '/products':
+      case 'products':
         return <Products />
-      case '/about':
+      case 'about':
         return <About />
-      case '/gallery':
+      case 'gallery':
         return <Gallery />
-      case '/articles':
+      case 'articles':
         return <Articles />
-      case '/contact':
+      case 'contact':
         return <Contact />
-      case '/admin/upload':
+      case 'admin/upload':
         return <AdminUpload />
       default:
         return <NotFound />

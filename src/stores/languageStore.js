@@ -3,8 +3,8 @@ import { persist } from 'zustand/middleware'
 
 // Helper function to detect browser language
 const detectBrowserLanguage = () => {
-  const supportedLanguages = ['ua', 'en', 'de', 'pl']
-  const defaultLanguage = 'ua'
+  const supportedLanguages = ['en', 'ua', 'de', 'pl']
+  const defaultLanguage = 'en'
 
   // Check browser language
   const browserLang = navigator.language?.split('-')[0] || navigator.language
@@ -16,11 +16,11 @@ const detectBrowserLanguage = () => {
 const useLanguageStore = create(
   persist(
     (set, get) => ({
-      // State - Default to Ukrainian (consistent with LocalizedLayout)
-      currentLanguage: 'ua',
+      // State - Default to English
+      currentLanguage: 'en',
       availableLanguages: [
-        { code: 'ua', name: 'Українська', flag: '🇺🇦' },
         { code: 'en', name: 'English', flag: '🇺🇸' },
+        { code: 'ua', name: 'Українська', flag: '🇺🇦' },
         { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
         { code: 'pl', name: 'Polski', flag: '🇵🇱' }
       ],
@@ -43,7 +43,7 @@ const useLanguageStore = create(
         const { currentLanguage } = get()
 
         // Only detect browser language if no language is persisted
-        if (!currentLanguage || currentLanguage === 'ua') {
+        if (!currentLanguage || currentLanguage === 'en') {
           const detectedLang = detectBrowserLanguage()
           if (detectedLang !== currentLanguage) {
             get().setLanguage(detectedLang)

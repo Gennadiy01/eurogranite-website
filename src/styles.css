@@ -1830,6 +1830,29 @@ body {
   font-size: 1rem;
 }
 
+/* NotFound Page Button Styles */
+.notfound-buttons .notfound-button {
+  width: 100%;
+  min-width: 280px;
+  max-width: 350px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .notfound-buttons .notfound-button {
+    min-width: 250px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notfound-buttons .notfound-button {
+    min-width: 220px;
+    max-width: 280px;
+  }
+}
+
 /* Hover Lift Effect */
 .hover-lift:hover:not(:disabled) {
   transform: translateY(-2px);

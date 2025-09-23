@@ -1,51 +1,70 @@
 import React, { useState } from 'react'
 import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher'
-import { getLanguageFromPath } from '../../../utils/languageUtils'
+import useLanguageStore from '../../../stores/languageStore'
+import { createLocalizedPath } from '../../../utils/urlUtils'
+import { parseRoute, getCurrentPath } from '../../../utils/routingUtils'
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const currentPath = window.location.pathname
-  const lang = getLanguageFromPath(currentPath) || 'ua'
-  
-  
-  // Helper function to create localized URLs
-  const createLocalizedPath = (path) => {
-    return path === '/' ? `/${lang}` : `/${lang}${path}`
+  const { currentLanguage } = useLanguageStore()
+  const lang = currentLanguage || 'en'
+
+  // Get current page for navigation highlighting using centralized routing
+  const currentRoute = parseRoute(getCurrentPath())
+  const currentPage = currentRoute.page
+
+  // Helper function to create localized URLs (static mode)
+  const createNavPath = (path) => {
+    return createLocalizedPath(path, lang)
+  }
+
+  // Helper function to determine if navigation item is active
+  const isNavItemActive = (navPath) => {
+    // Extract page from navigation path
+    const navPage = navPath.replace('/eurogranite-website', '').replace(`/${lang}`, '').replace(/\//g, '') || ''
+
+    // Special case for home page
+    if (navPage === '' && currentPage === '') {
+      return true
+    }
+
+    // Compare pages exactly
+    return navPage === currentPage
   }
 
   // Navigation items with localized paths
   const navItems = {
     en: [
-      { to: createLocalizedPath('/'), label: 'Home' },
-      { to: createLocalizedPath('/products'), label: 'Products' },
-      { to: createLocalizedPath('/about'), label: 'About Us' },
-      { to: createLocalizedPath('/contact'), label: 'Contact' },
-      { to: createLocalizedPath('/gallery'), label: 'Gallery' },
-      { to: createLocalizedPath('/articles'), label: 'Articles' }
+      { to: createNavPath(''), label: 'Home' },
+      { to: createNavPath('products'), label: 'Products' },
+      { to: createNavPath('about'), label: 'About Us' },
+      { to: createNavPath('contact'), label: 'Contact' },
+      { to: createNavPath('gallery'), label: 'Gallery' },
+      { to: createNavPath('articles'), label: 'Articles' }
     ],
     ua: [
-      { to: createLocalizedPath('/'), label: 'Головна' },
-      { to: createLocalizedPath('/products'), label: 'Продукція' },
-      { to: createLocalizedPath('/about'), label: 'Про нас' },
-      { to: createLocalizedPath('/contact'), label: 'Контакти' },
-      { to: createLocalizedPath('/gallery'), label: 'Галерея' },
-      { to: createLocalizedPath('/articles'), label: 'Статті' }
+      { to: createNavPath(''), label: 'Головна' },
+      { to: createNavPath('products'), label: 'Продукція' },
+      { to: createNavPath('about'), label: 'Про нас' },
+      { to: createNavPath('contact'), label: 'Контакти' },
+      { to: createNavPath('gallery'), label: 'Галерея' },
+      { to: createNavPath('articles'), label: 'Статті' }
     ],
     de: [
-      { to: createLocalizedPath('/'), label: 'Startseite' },
-      { to: createLocalizedPath('/products'), label: 'Produkte' },
-      { to: createLocalizedPath('/about'), label: 'Über uns' },
-      { to: createLocalizedPath('/contact'), label: 'Kontakt' },
-      { to: createLocalizedPath('/gallery'), label: 'Galerie' },
-      { to: createLocalizedPath('/articles'), label: 'Artikel' }
+      { to: createNavPath(''), label: 'Startseite' },
+      { to: createNavPath('products'), label: 'Produkte' },
+      { to: createNavPath('about'), label: 'Über uns' },
+      { to: createNavPath('contact'), label: 'Kontakt' },
+      { to: createNavPath('gallery'), label: 'Galerie' },
+      { to: createNavPath('articles'), label: 'Artikel' }
     ],
     pl: [
-      { to: createLocalizedPath('/'), label: 'Główna' },
-      { to: createLocalizedPath('/products'), label: 'Produkty' },
-      { to: createLocalizedPath('/about'), label: 'O nas' },
-      { to: createLocalizedPath('/contact'), label: 'Kontakt' },
-      { to: createLocalizedPath('/gallery'), label: 'Galeria' },
-      { to: createLocalizedPath('/articles'), label: 'Artykuły' }
+      { to: createNavPath(''), label: 'Główna' },
+      { to: createNavPath('products'), label: 'Produkty' },
+      { to: createNavPath('about'), label: 'O nas' },
+      { to: createNavPath('contact'), label: 'Kontakt' },
+      { to: createNavPath('gallery'), label: 'Galeria' },
+      { to: createNavPath('articles'), label: 'Artykuły' }
     ]
   }
   
@@ -59,7 +78,7 @@ const Header = () => {
         <div className="header-mobile items-center justify-between py-4 min-h-60px">
           {/* Logo */}
           <div className="flex items-center">
-            <a href={createLocalizedPath('/')} className="logo-text">
+            <a href={createNavPath('')} className="logo-text">
               EuroGranite
             </a>
           </div>
@@ -92,7 +111,7 @@ const Header = () => {
           
           {/* Logo */}
           <div className="flex items-center">
-            <a href={createLocalizedPath('/')} className="logo-text">
+            <a href={createNavPath('')} className="logo-text">
               EuroGranite
             </a>
           </div>
@@ -103,7 +122,7 @@ const Header = () => {
               <a
                 key={item.to}
                 href={item.to}
-                className={`nav-menu-item ${currentPath === item.to ? 'text-accent-orange' : ''}`}
+                className={`nav-menu-item ${isNavItemActive(item.to) ? 'text-accent-orange' : ''}`}
               >
                 {item.label}
               </a>
@@ -186,7 +205,7 @@ const Header = () => {
                 <a
                   key={item.to}
                   href={item.to}
-                  className={`nav-menu-item ${currentPath === item.to ? 'text-accent-orange' : ''}`}
+                  className={`nav-menu-item ${isNavItemActive(item.to) ? 'text-accent-orange' : ''}`}
                 >
                   {item.label}
                 </a>
@@ -262,8 +281,8 @@ const Header = () => {
                   href={item.to}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`text-left py-2 font-medium transition-colors ${
-                    currentPath === item.to 
-                      ? 'text-accent-orange' 
+                    isNavItemActive(item.to)
+                      ? 'text-accent-orange'
                       : 'text-white hover:text-accent-orange'
                   }`}
                 >

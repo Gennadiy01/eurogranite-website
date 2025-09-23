@@ -1,0 +1,21 @@
+# Redirects for development and production
+# Handle language-specific routes by redirecting to main app
+
+# Ukrainian routes
+/eurogranite-website/ua/* /eurogranite-website/#/ua/:splat 200
+/ua/* /eurogranite-website/#/ua/:splat 200
+
+# German routes
+/eurogranite-website/de/* /eurogranite-website/#/de/:splat 200
+/de/* /eurogranite-website/#/de/:splat 200
+
+# Polish routes
+/eurogranite-website/pl/* /eurogranite-website/#/pl/:splat 200
+/pl/* /eurogranite-website/#/pl/:splat 200
+
+# English routes (default, no prefix needed)
+/eurogranite-website/en/* /eurogranite-website/#/en/:splat 200
+/en/* /eurogranite-website/#/en/:splat 200
+
+# Fallback for all other routes
+/* /eurogranite-website/404.html 404

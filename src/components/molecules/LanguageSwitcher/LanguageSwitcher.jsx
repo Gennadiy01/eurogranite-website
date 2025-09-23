@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import useLanguageStore from '../../../stores/languageStore'
 import { getLanguageFromPath } from '../../../utils/languageUtils'
+import { createLocalizedPath, getCurrentPath } from '../../../utils/urlUtils'
 
 const LanguageSwitcher = ({ className = '' }) => {
   const { currentLanguage, availableLanguages, setLanguage } = useLanguageStore()
@@ -28,14 +29,20 @@ const LanguageSwitcher = ({ className = '' }) => {
     setLanguage(languageCode)
     setIsOpen(false) // Закриваємо меню після вибору
 
-    // Navigate to the same page but with new language
-    const currentPath = window.location.pathname
+    // Get current path and extract page info
+    const currentPath = getCurrentPath()
     const currentLang = getLanguageFromPath(currentPath)
-    const pathWithoutLang = currentLang ? currentPath.replace(`/${currentLang}`, '') : currentPath
-    const newPath = pathWithoutLang === '' || pathWithoutLang === '/' ? `/${languageCode}` : `/${languageCode}${pathWithoutLang}`
 
-    // Navigate to new URL
-    window.location.href = newPath
+    // Remove language prefix to get the page path
+    const pathWithoutLang = currentLang
+      ? currentPath.replace(new RegExp(`^/(${currentLang})`), '')
+      : currentPath
+
+    // Create new localized URL
+    const newUrl = createLocalizedPath(pathWithoutLang || '', languageCode)
+
+    // Navigate to new static URL
+    window.location.href = newUrl
 
     // Очищуємо timeout якщо існує
     if (timeoutRef.current) {

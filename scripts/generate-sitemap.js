@@ -19,17 +19,22 @@ function getCurrentDate() {
 
 function generateHreflangLinks(routePath) {
   return languages.map(lang => {
-    const href = routePath === ''
-      ? `${baseUrl}/${lang}/`
-      : `${baseUrl}/${lang}/${routePath}`;
-    return `    <xhtml:link rel="alternate" hreflang="${lang}" href="${href}" />`;
+    // English is the default without language prefix
+    const href = lang === 'en'
+      ? (routePath === '' ? `${baseUrl}/` : `${baseUrl}/${routePath}/`)
+      : (routePath === '' ? `${baseUrl}/${lang}/` : `${baseUrl}/${lang}/${routePath}/`);
+
+    // Use 'uk' for Ukrainian hreflang according to ISO 639-1
+    const hreflang = lang === 'ua' ? 'uk' : lang;
+    return `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${href}" />`;
   }).join('\n');
 }
 
 function generateUrlEntry(route, language) {
-  const loc = route.path === ''
-    ? `${baseUrl}/${language}/`
-    : `${baseUrl}/${language}/${route.path}`;
+  // English is the default without language prefix
+  const loc = language === 'en'
+    ? (route.path === '' ? `${baseUrl}/` : `${baseUrl}/${route.path}/`)
+    : (route.path === '' ? `${baseUrl}/${language}/` : `${baseUrl}/${language}/${route.path}/`);
 
   const hreflangLinks = generateHreflangLinks(route.path);
 
