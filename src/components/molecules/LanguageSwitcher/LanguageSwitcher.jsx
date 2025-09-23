@@ -1,16 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react'
 import useLanguageStore from '../../../stores/languageStore'
-import { getLanguageFromPath } from '../../../utils/languageUtils'
-import { createLocalizedPath, getCurrentPath } from '../../../utils/urlUtils'
+import { createLocalizedPath } from '../../../utils/urlUtils'
 
 const LanguageSwitcher = ({ className = '' }) => {
-  const { currentLanguage, availableLanguages, setLanguage } = useLanguageStore()
+  const { currentLanguage, availableLanguages } = useLanguageStore()
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef(null)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
-  
+
   const currentLang = availableLanguages.find(lang => lang.code === currentLanguage)
   const otherLanguages = availableLanguages.filter(lang => lang.code !== currentLanguage)
+
+  // Get current page from static state
+  const getCurrentPage = () => {
+    if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
+      return window.__INITIAL_STATE__.page || ''
+    }
+    return ''
+  }
+
+  // Create language URL for a specific language
+  const createLanguageUrl = (languageCode) => {
+    const currentPage = getCurrentPage()
+    return createLocalizedPath(currentPage, languageCode)
+  }
   
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
@@ -23,32 +36,6 @@ const LanguageSwitcher = ({ className = '' }) => {
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false)
     }, 300) // 300ms затримка
-  }
-  
-  const handleLanguageSelect = (languageCode) => {
-    setLanguage(languageCode)
-    setIsOpen(false) // Закриваємо меню після вибору
-
-    // Get current path and extract page info
-    const currentPath = getCurrentPath()
-    const currentLang = getLanguageFromPath(currentPath)
-
-    // Remove language prefix to get the page path
-    const pathWithoutLang = currentLang
-      ? currentPath.replace(new RegExp(`^/(${currentLang})`), '')
-      : currentPath
-
-    // Create new localized URL
-    const newUrl = createLocalizedPath(pathWithoutLang || '', languageCode)
-
-    // Navigate to new static URL
-    window.location.href = newUrl
-
-    // Очищуємо timeout якщо існує
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
-    }
   }
   
   // Detect touch device on mount
@@ -114,18 +101,15 @@ const LanguageSwitcher = ({ className = '' }) => {
           }}
         >
           {otherLanguages.map((language) => (
-            <button
+            <a
               key={language.code}
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                handleLanguageSelect(language.code)
-              }}
-              className="w-full px-4 py-2 text-sm font-medium text-white hover:text-accent-orange hover:bg-neutral-700 transition-colors text-left block"
-              style={{ padding: '8px 16px' }}
+              href={createLanguageUrl(language.code)}
+              className="w-full px-4 py-2 text-sm font-medium text-white hover:text-accent-orange hover:bg-neutral-700 transition-colors text-left block no-underline"
+              style={{ padding: '8px 16px', display: 'block' }}
+              onClick={() => setIsOpen(false)}
             >
               {language.code.toUpperCase()}
-            </button>
+            </a>
           ))}
         </div>
       )}
