@@ -4,28 +4,15 @@
     <meta charset="utf-8">
     <title>Page Not Found | EuroGranite</title>
     <script type="text/javascript">
-      // Enhanced 404 handler for static HTML structure
+      // Static HTML 404 handler - redirect to main page
       var originalPath = location.pathname;
       console.log('404 redirect: originalPath =', originalPath);
 
-      // Remove /eurogranite-website prefix if it exists
-      var cleanPath = originalPath.replace('/eurogranite-website', '') || '/';
-      console.log('404 redirect: cleanPath =', cleanPath);
-
-      // For development: redirect to main app with proper path
-      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-        var newPath = '/eurogranite-website/#' + cleanPath;
-        console.log('404 redirect: dev mode, redirecting to', newPath);
-        location.replace(newPath);
-      } else {
-        // For production: redirect to base path and let React handle routing
-        var newPath = '/eurogranite-website/';
-        if (cleanPath && cleanPath !== '/') {
-          newPath += '#' + cleanPath;
-        }
-        console.log('404 redirect: prod mode, redirecting to', newPath);
-        location.replace(newPath);
-      }
+      // For static HTML structure, just redirect to main page
+      // Let React app handle the routing internally
+      var newPath = '/eurogranite-website/';
+      console.log('404 redirect: redirecting to main page', newPath);
+      location.replace(newPath);
     </script>
   </head>
   <body>
