@@ -40,6 +40,10 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Bundle size analysis
+        run: npm run bundle:size
+        continue-on-error: false
         
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -39,6 +39,8 @@
     "perf:analyze": "npm run build:clean && npx webpack-bundle-analyzer build/static/js/*.js",
     "ci:bundle-check": "npm run build:clean && npx webpack-bundle-analyzer build/static/js/*.js --no-open",
     "bundle:size": "npm run build:clean && node scripts/bundle-size-check.js",
+    "bundle:compare": "node scripts/bundle-compare.js compare",
+    "bundle:save": "node scripts/bundle-compare.js save",
     "test:regression": "node scripts/regression-test.js",
     "test:refactoring": "npm run test:regression"
   },

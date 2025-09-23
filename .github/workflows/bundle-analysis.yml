@@ -1,90 +1,82 @@
 name: Bundle Analysis
 
 on:
+  push:
+    branches: [ master ]
   pull_request:
-    branches: [master, main]
+    branches: [ master ]
 
-# Disable on push to avoid duplicate runs with deploy workflow
-# push:
-#   branches: [master, main]
-
-concurrency:
-  group: bundle-analysis-${{ github.ref }}
-  cancel-in-progress: true
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
   bundle-analysis:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build and analyze bundle
-      run: |
-        npm run bundle:size
-        echo "Bundle analysis complete"
+      - name: Run bundle size analysis
+        id: bundle-check
+        run: |
+          npm run bundle:size > bundle-report.txt 2>&1
+          echo "Bundle analysis completed"
+          cat bundle-report.txt
+        continue-on-error: true
 
-    - name: Comment on PR
-      if: github.event_name == 'pull_request'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const fs = require('fs');
-          const path = require('path');
+      - name: Upload bundle report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-analysis-report
+          path: bundle-report.txt
+          retention-days: 30
 
-          // Read bundle analysis results
-          const buildDir = './build/static/js';
-          if (!fs.existsSync(buildDir)) {
-            console.log('Build directory not found');
-            return;
-          }
+      - name: Comment on PR with bundle analysis
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = './bundle-report.txt';
 
-          const jsFiles = fs.readdirSync(buildDir).filter(f => f.endsWith('.js'));
-          let totalSize = 0;
-          let mainSize = 0;
+            if (fs.existsSync(path)) {
+              const report = fs.readFileSync(path, 'utf8');
 
-          jsFiles.forEach(file => {
-            const size = fs.statSync(path.join(buildDir, file)).size;
-            totalSize += size;
-            if (file.includes('main.')) mainSize = size;
-          });
+              const comment = `## 📦 Bundle Analysis Report
 
-          const formatBytes = (bytes) => {
-            const k = 1024;
-            const sizes = ['B', 'KB', 'MB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return (bytes / Math.pow(k, i)).toFixed(1) + sizes[i];
-          };
+              \`\`\`
+              ${report}
+              \`\`\`
 
-          const maxSize = 500 * 1024; // 500KB
-          const status = mainSize <= maxSize ? '✅' : '⚠️';
+              > This analysis runs automatically on every PR to monitor bundle size changes.
+              `;
 
-          const comment = `## 📦 Bundle Analysis
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
 
-          ${status} **Bundle Size Check**
-
-          | Metric | Size | Status |
-          |--------|------|--------|
-          | Main Bundle | ${formatBytes(mainSize)} | ${mainSize <= maxSize ? '✅ Within limit' : '⚠️ Exceeds 500KB'} |
-          | Total JS | ${formatBytes(totalSize)} | ℹ️ |
-          | Chunks | ${jsFiles.length} files | ${jsFiles.length > 1 ? '✅ Code splitting active' : '⚠️ No splitting'} |
-
-          ${mainSize > maxSize ? '**⚠️ Bundle size exceeds target. Consider optimizing or code splitting.**' : ''}
-          `;
-
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: comment
-          });
+      - name: Check bundle size limits
+        run: |
+          if npm run bundle:size; then
+            echo "✅ Bundle size check passed"
+          else
+            echo "❌ Bundle size check failed - bundle exceeds limits"
+            echo "Please check the bundle analysis report for recommendations"
+            exit 1
+          fi
