@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import useLanguageStore from '../stores/languageStore';
 import { productsData, TextureIcon, SurfaceIcon, DimensionIcon } from '../constants/productsData';
 import { getSEOData } from '../constants/seoData';
+import { createLocalizedPath } from '../utils/urlUtils';
 import ProductCard from '../components/molecules/ProductCard';
 import Header from '../components/organisms/Header/Header';
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO';
@@ -15,6 +16,11 @@ const Products = () => {
   // Language is managed by App.js for hash routing, no need to set it here
 
   const seoData = getSEOData('products', currentLanguage);
+
+  // Обробка кліку на CTA кнопку - аналогічно до кнопки "Замовити"
+  const handleContactClick = () => {
+    window.location.href = createLocalizedPath('contact', currentLanguage) + '?focus=form#contact-form';
+  };
 
   useEffect(() => {
     // Scroll to top when page loads
@@ -233,8 +239,8 @@ const Products = () => {
               }
             </p>
             <div className="flex justify-center">
-              <a
-                href="/contact?focus=form#contact-form"
+              <button
+                onClick={handleContactClick}
                 className="custom-button custom-button--primary px-8 py-4"
               >
                 {currentLanguage === 'ua'
@@ -245,7 +251,7 @@ const Products = () => {
                   ? 'Nachricht senden'
                   : 'Wyślij wiadomość'
                 }
-              </a>
+              </button>
             </div>
           </div>
         </div>

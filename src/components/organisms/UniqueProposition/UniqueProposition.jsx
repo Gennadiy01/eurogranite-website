@@ -2,11 +2,21 @@ import React from 'react'
 import Button from '../../atoms/Button/Button'
 import useLanguageStore from '../../../stores/languageStore'
 import { uniquePropositionContent } from '../../../constants/uniquePropositionData'
+import { createLocalizedPath } from '../../../utils/urlUtils'
 import advantagesImg from '../../../assets/images/advantages_img.webp'
 
 const UniqueProposition = () => {
   const { currentLanguage } = useLanguageStore()
   const content = uniquePropositionContent[currentLanguage]
+
+  // Обробники кліку для CTA кнопок - аналогічно до кнопки "Замовити"
+  const handleContactClick = () => {
+    window.location.href = createLocalizedPath('contact', currentLanguage) + '?focus=form#contact-form';
+  };
+
+  const handleProductsClick = () => {
+    window.location.href = createLocalizedPath('products', currentLanguage);
+  };
   
   return (
     <section 
@@ -75,16 +85,20 @@ const UniqueProposition = () => {
               {content.callToAction}
             </p>
             <div className="unique-proposition-cta-buttons">
-              <a href="/contact?focus=form#contact-form">
-                <Button variant="primary" size="large">
-                  {content.buttons.contact}
-                </Button>
-              </a>
-              <a href="/products">
-                <Button variant="outline" size="large">
-                  {content.buttons.catalog}
-                </Button>
-              </a>
+              <Button
+                variant="primary"
+                size="large"
+                onClick={handleContactClick}
+              >
+                {content.buttons.contact}
+              </Button>
+              <Button
+                variant="outline"
+                size="large"
+                onClick={handleProductsClick}
+              >
+                {content.buttons.catalog}
+              </Button>
             </div>
           </div>
         </div>

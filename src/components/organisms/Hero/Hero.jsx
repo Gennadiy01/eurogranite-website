@@ -2,11 +2,21 @@ import React from 'react'
 import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
 import useLanguageStore from '../../../stores/languageStore'
+import { createLocalizedPath } from '../../../utils/urlUtils'
 // Оптимізоване зображення для Hero секції
 const heroImageSrc = require('../../../assets/Im_Hero.jpg')
 
 const Hero = () => {
   const { currentLanguage } = useLanguageStore()
+
+  // Обробники кліку для CTA кнопок - аналогічно до кнопки "Замовити"
+  const handleProductsClick = () => {
+    window.location.href = createLocalizedPath('products', currentLanguage);
+  };
+
+  const handleContactClick = () => {
+    window.location.href = createLocalizedPath('contact', currentLanguage) + '?focus=form#contact-form';
+  };
   
   // Temporary text data (will be moved to i18n in Phase 2)
   const heroContent = {
@@ -87,23 +97,21 @@ const Hero = () => {
             
             {/* CTA Buttons */}
             <div className="hero-buttons">
-              <a href="/products">
-                <Button
-                  variant="primary"
-                  size="large"
-                >
-                  {content.ctaPrimary}
-                </Button>
-              </a>
-              <a href="/contact?focus=form#contact-form">
-                <Button
-                  variant="outline"
-                  size="large"
-                  className="hero-button-outline"
-                >
-                  {content.ctaSecondary}
-                </Button>
-              </a>
+              <Button
+                variant="primary"
+                size="large"
+                onClick={handleProductsClick}
+              >
+                {content.ctaPrimary}
+              </Button>
+              <Button
+                variant="outline"
+                size="large"
+                className="hero-button-outline"
+                onClick={handleContactClick}
+              >
+                {content.ctaSecondary}
+              </Button>
             </div>
             
             {/* Stats */}

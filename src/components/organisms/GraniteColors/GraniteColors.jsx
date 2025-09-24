@@ -3,10 +3,20 @@ import Button from '../../atoms/Button/Button'
 import useLanguageStore from '../../../stores/languageStore'
 import useGraniteSystemStore from '../../../stores/graniteSystemStore'
 import { graniteTypes } from '../../../constants/graniteData'
+import { createLocalizedPath } from '../../../utils/urlUtils'
 
 const GraniteColors = () => {
   const { currentLanguage } = useLanguageStore()
   const { openUniversalGallery } = useGraniteSystemStore()
+
+  // Обробники кліку для CTA кнопок - аналогічно до кнопки "Замовити"
+  const handleContactClick = () => {
+    window.location.href = createLocalizedPath('contact', currentLanguage) + '?focus=form#contact-form';
+  };
+
+  const handleProductsClick = () => {
+    window.location.href = createLocalizedPath('products', currentLanguage);
+  };
   
   const content = {
     en: {
@@ -328,22 +338,20 @@ const GraniteColors = () => {
               {currentContent.cta.subtitle}
             </p>
             <div className="granite-colors-cta-buttons">
-              <a href="/contact?focus=form#contact-form">
-                <Button
-                  variant="primary"
-                  size="large"
-                >
-                  {currentContent.cta.primaryButton}
-                </Button>
-              </a>
-              <a href="/products">
-                <Button
-                  variant="outline"
-                  size="large"
-                >
-                  {currentContent.cta.secondaryButton}
-                </Button>
-              </a>
+              <Button
+                variant="primary"
+                size="large"
+                onClick={handleContactClick}
+              >
+                {currentContent.cta.primaryButton}
+              </Button>
+              <Button
+                variant="outline"
+                size="large"
+                onClick={handleProductsClick}
+              >
+                {currentContent.cta.secondaryButton}
+              </Button>
             </div>
           </div>
         </div>

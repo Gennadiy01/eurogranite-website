@@ -6,7 +6,7 @@ export const BASE_URL = process.env.NODE_ENV === 'development'
   : '/eurogranite-website'  // github pages
 
 export const DOMAIN = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:3005'
+  ? 'http://localhost:3001'
   : 'https://gennadiy01.github.io'
 
 // Створення локалізованого URL без hash
