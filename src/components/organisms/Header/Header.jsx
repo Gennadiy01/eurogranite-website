@@ -194,7 +194,7 @@ const Header = () => {
           <div className="flex items-center justify-between gap-4 mb-2">
             {/* Logo */}
             <div className="flex items-center">
-              <a href={createLocalizedPath('/')} className="logo-text">
+              <a href={createNavPath('')} className="logo-text">
                 EuroGranite
               </a>
             </div>

@@ -14,24 +14,8 @@ export const createLocalizedPath = (path, targetLang = 'en') => {
   // Очищуємо шлях від початкового слешу
   const cleanPath = path.startsWith('/') ? path.slice(1) : path
 
-  // В development режимі всі мови мають префікс (включно з en)
-  // В production англійська мова без префіксу
-  const shouldUseEnglishPrefix = process.env.NODE_ENV === 'development'
-
-  // Для англійської мови
-  if (targetLang === 'en') {
-    if (shouldUseEnglishPrefix) {
-      // Development: en має префікс як і інші мови
-      return cleanPath
-        ? `${BASE_URL}/${targetLang}/${cleanPath}/`
-        : `${BASE_URL}/${targetLang}/`
-    } else {
-      // Production: en без префіксу мови
-      return cleanPath ? `${BASE_URL}/${cleanPath}/` : `${BASE_URL}/`
-    }
-  }
-
-  // Для інших мов - завжди з префіксом мови
+  // Всі мови тепер мають свої директорії (включно з en)
+  // Це забезпечує консистентну SEO структуру
   return cleanPath
     ? `${BASE_URL}/${targetLang}/${cleanPath}/`
     : `${BASE_URL}/${targetLang}/`
