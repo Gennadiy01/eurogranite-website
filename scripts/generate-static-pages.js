@@ -148,10 +148,8 @@ const generateHreflangTags = (page) => {
   const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
 
   return languages.map(lang => {
-    // English is the default without language prefix
-    const url = lang === 'en'
-      ? `${baseUrl}/${page ? page + '/' : ''}`
-      : `${baseUrl}/${lang}/${page ? page + '/' : ''}`
+    // All languages now have their own subdirectories
+    const url = `${baseUrl}/${lang}/${page ? page + '/' : ''}`
 
     const hreflang = lang === 'ua' ? 'uk' : lang
     return `<link rel="alternate" hreflang="${hreflang}" href="${url}" />`
@@ -184,9 +182,7 @@ const generatePageHTML = (language, page) => {
 
   // Set canonical URL
   const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
-  const canonicalUrl = language === 'en'
-    ? `${baseUrl}/${page ? page + '/' : ''}`
-    : `${baseUrl}/${language}/${page ? page + '/' : ''}`
+  const canonicalUrl = `${baseUrl}/${language}/${page ? page + '/' : ''}`
 
   // Set language codes
   const langCode = language === 'ua' ? 'uk' : language
@@ -259,8 +255,10 @@ languages.forEach(lang => {
     let targetDir, targetFile
 
     if (lang === 'en') {
-      // English pages go to root directory
-      targetDir = page === '' ? buildDir : path.join(buildDir, page)
+      // English pages go to en subdirectory
+      targetDir = page === ''
+        ? path.join(buildDir, 'en')
+        : path.join(buildDir, 'en', page)
       targetFile = path.join(targetDir, 'index.html')
     } else {
       // Other languages go to language subdirectories
@@ -285,7 +283,11 @@ languages.forEach(lang => {
   })
 })
 
-// English pages are already created in root directory, no redirect needed
+// Create root index.html that defaults to English content
+const rootIndexPath = path.join(buildDir, 'index.html')
+const rootPageContent = generatePageHTML('en', '')
+fs.writeFileSync(rootIndexPath, rootPageContent)
+console.log('Created root index.html (English default)')
 
 // Create 404.html that loads the React app
 const notFoundTemplate = () => {
