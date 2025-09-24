@@ -1143,51 +1143,9 @@ export const galleryProjects = [
       pl: 'Projekt granitowej kostki na chodniku'
     }
   },
-  // Plaza projects - 42 images
+  // Plaza projects - 39 images
   {
     id: 'plaza-01',
-    publicId: 'plaza-36_snvlqw',
-    category: 'plaza',
-    width: 1920,
-    height: 1280,
-    tags: ['gallery', 'plaza'],
-    alt: {
-      en: 'Granite plaza paving project',
-      ua: 'Проект гранітного мощення площі',
-      de: 'Granit-Platz-Pflasterung',
-      pl: 'Projekt granitowej kostki na placu'
-    }
-  },
-  {
-    id: 'plaza-02',
-    publicId: 'plaza-31_m0tepl',
-    category: 'plaza',
-    width: 1920,
-    height: 1280,
-    tags: ['gallery', 'plaza'],
-    alt: {
-      en: 'Granite plaza paving project',
-      ua: 'Проект гранітного мощення площі',
-      de: 'Granit-Platz-Pflasterung',
-      pl: 'Projekt granitowej kostki na placu'
-    }
-  },
-  {
-    id: 'plaza-03',
-    publicId: 'plaza-25_sp6cjt',
-    category: 'plaza',
-    width: 1920,
-    height: 1280,
-    tags: ['gallery', 'plaza'],
-    alt: {
-      en: 'Granite plaza paving project',
-      ua: 'Проект гранітного мощення площі',
-      de: 'Granit-Platz-Pflasterung',
-      pl: 'Projekt granitowej kostki na placu'
-    }
-  },
-  {
-    id: 'plaza-04',
     publicId: 'plaza-24_zqalag',
     category: 'plaza',
     width: 1920,
@@ -1201,7 +1159,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-05',
+    id: 'plaza-02',
     publicId: 'plaza-42_dmjeej',
     category: 'plaza',
     width: 1920,
@@ -1215,7 +1173,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-06',
+    id: 'plaza-03',
     publicId: 'plaza-41_wvgapb',
     category: 'plaza',
     width: 1920,
@@ -1229,7 +1187,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-07',
+    id: 'plaza-04',
     publicId: 'plaza-40_i6v9vd',
     category: 'plaza',
     width: 1920,
@@ -1243,7 +1201,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-08',
+    id: 'plaza-05',
     publicId: 'plaza-39_hqtn77',
     category: 'plaza',
     width: 1920,
@@ -1257,7 +1215,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-09',
+    id: 'plaza-06',
     publicId: 'plaza-38_jdxxtz',
     category: 'plaza',
     width: 1920,
@@ -1271,7 +1229,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-10',
+    id: 'plaza-07',
     publicId: 'plaza-37_bhir7t',
     category: 'plaza',
     width: 1920,
@@ -1285,7 +1243,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-11',
+    id: 'plaza-08',
     publicId: 'plaza-35_quij3t',
     category: 'plaza',
     width: 1920,
@@ -1299,7 +1257,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-12',
+    id: 'plaza-09',
     publicId: 'plaza-34_jhesks',
     category: 'plaza',
     width: 1920,
@@ -1313,7 +1271,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-13',
+    id: 'plaza-10',
     publicId: 'plaza-33_c3odvr',
     category: 'plaza',
     width: 1920,
@@ -1327,7 +1285,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-14',
+    id: 'plaza-11',
     publicId: 'plaza-32_tvtruk',
     category: 'plaza',
     width: 1920,
@@ -1341,7 +1299,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-15',
+    id: 'plaza-12',
     publicId: 'plaza-30_kex4iv',
     category: 'plaza',
     width: 1920,
@@ -1355,7 +1313,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-16',
+    id: 'plaza-13',
     publicId: 'plaza-29_b08axp',
     category: 'plaza',
     width: 1920,
@@ -1369,7 +1327,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-17',
+    id: 'plaza-14',
     publicId: 'plaza-28_ydanqf',
     category: 'plaza',
     width: 1920,
@@ -1383,7 +1341,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-18',
+    id: 'plaza-15',
     publicId: 'plaza-27_dqup9s',
     category: 'plaza',
     width: 1920,
@@ -1397,7 +1355,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-19',
+    id: 'plaza-16',
     publicId: 'plaza-26_cpucsu',
     category: 'plaza',
     width: 1920,
@@ -1411,7 +1369,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-20',
+    id: 'plaza-17',
     publicId: 'plaza-23_toygpz',
     category: 'plaza',
     width: 1920,
@@ -1425,7 +1383,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-21',
+    id: 'plaza-18',
     publicId: 'plaza-22_e6sodx',
     category: 'plaza',
     width: 1920,
@@ -1439,7 +1397,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-22',
+    id: 'plaza-19',
     publicId: 'plaza-21_aqnm8w',
     category: 'plaza',
     width: 1920,
@@ -1453,7 +1411,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-23',
+    id: 'plaza-20',
     publicId: 'plaza-20_qx7uvl',
     category: 'plaza',
     width: 1920,
@@ -1467,7 +1425,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-24',
+    id: 'plaza-21',
     publicId: 'plaza-19_wvpm2a',
     category: 'plaza',
     width: 1920,
@@ -1481,7 +1439,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-25',
+    id: 'plaza-22',
     publicId: 'plaza-18_wppv2z',
     category: 'plaza',
     width: 1920,
@@ -1495,7 +1453,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-26',
+    id: 'plaza-23',
     publicId: 'plaza-17_n02oau',
     category: 'plaza',
     width: 1920,
@@ -1509,7 +1467,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-27',
+    id: 'plaza-24',
     publicId: 'plaza-16_l5r768',
     category: 'plaza',
     width: 1920,
@@ -1523,7 +1481,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-28',
+    id: 'plaza-25',
     publicId: 'plaza-15_nt9vtb',
     category: 'plaza',
     width: 1920,
@@ -1537,7 +1495,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-29',
+    id: 'plaza-26',
     publicId: 'plaza-14_odrpc3',
     category: 'plaza',
     width: 1920,
@@ -1551,7 +1509,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-30',
+    id: 'plaza-27',
     publicId: 'plaza-13_tvfvj1',
     category: 'plaza',
     width: 1920,
@@ -1565,7 +1523,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-31',
+    id: 'plaza-28',
     publicId: 'plaza-12_xdxmsk',
     category: 'plaza',
     width: 1920,
@@ -1579,7 +1537,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-32',
+    id: 'plaza-29',
     publicId: 'plaza-11_zabwqt',
     category: 'plaza',
     width: 1920,
@@ -1593,7 +1551,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-33',
+    id: 'plaza-30',
     publicId: 'plaza-10_lcadfa',
     category: 'plaza',
     width: 1920,
@@ -1607,7 +1565,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-34',
+    id: 'plaza-31',
     publicId: 'plaza-09_ojwr7e',
     category: 'plaza',
     width: 1920,
@@ -1621,7 +1579,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-35',
+    id: 'plaza-32',
     publicId: 'plaza-08_gxuelj',
     category: 'plaza',
     width: 1920,
@@ -1635,7 +1593,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-36',
+    id: 'plaza-33',
     publicId: 'plaza-07_dmnxhb',
     category: 'plaza',
     width: 1920,
@@ -1649,7 +1607,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-37',
+    id: 'plaza-34',
     publicId: 'plaza-06_ngxpa8',
     category: 'plaza',
     width: 1920,
@@ -1663,7 +1621,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-38',
+    id: 'plaza-35',
     publicId: 'plaza-05_yetcic',
     category: 'plaza',
     width: 1920,
@@ -1677,7 +1635,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-39',
+    id: 'plaza-36',
     publicId: 'plaza-04_kq1vhx',
     category: 'plaza',
     width: 1920,
@@ -1691,7 +1649,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-40',
+    id: 'plaza-37',
     publicId: 'plaza-03_nwyzsz',
     category: 'plaza',
     width: 1920,
@@ -1705,7 +1663,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-41',
+    id: 'plaza-38',
     publicId: 'plaza-02_ndr94m',
     category: 'plaza',
     width: 1920,
@@ -1719,7 +1677,7 @@ export const galleryProjects = [
     }
   },
   {
-    id: 'plaza-42',
+    id: 'plaza-39',
     publicId: 'plaza-01_xtjb6r',
     category: 'plaza',
     width: 1920,
