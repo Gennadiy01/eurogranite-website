@@ -84,12 +84,22 @@ const ProductSchema = ({ productType = 'general' }) => {
     },
     "offers": {
       "@type": "AggregateOffer",
-      "priceCurrency": "EUR",
       "availability": "https://schema.org/InStock",
+      "priceCurrency": "EUR",
+      "lowPrice": "25",
+      "highPrice": "150",
+      "offerCount": "50",
       "seller": {
         "@type": "Organization",
         "name": "EuroGranite"
       }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127",
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "additionalProperty": [
       {

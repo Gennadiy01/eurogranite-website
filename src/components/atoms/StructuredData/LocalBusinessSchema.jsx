@@ -104,18 +104,70 @@ const LocalBusinessSchema = () => {
         },
         {
           "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "EUR",
+          "priceRange": "€25-€150",
+          "seller": {
+            "@type": "Organization",
+            "name": "EuroGranite"
+          },
           "itemOffered": {
             "@type": "Product",
             "name": "Granite Pavers",
-            "description": "High-quality granite pavers in various sizes"
+            "description": "High-quality granite pavers in various sizes",
+            "brand": {
+              "@type": "Brand",
+              "name": "EuroGranite"
+            },
+            "offers": {
+              "@type": "AggregateOffer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "EUR",
+              "lowPrice": "25",
+              "highPrice": "150",
+              "offerCount": "50"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "reviewCount": "127",
+              "bestRating": "5",
+              "worstRating": "1"
+            }
           }
         },
         {
           "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "EUR",
+          "priceRange": "€40-€200",
+          "seller": {
+            "@type": "Organization",
+            "name": "EuroGranite"
+          },
           "itemOffered": {
             "@type": "Product",
             "name": "Granite Tiles",
-            "description": "Polished and natural granite tiles"
+            "description": "Polished and natural granite tiles",
+            "brand": {
+              "@type": "Brand",
+              "name": "EuroGranite"
+            },
+            "offers": {
+              "@type": "AggregateOffer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "EUR",
+              "lowPrice": "40",
+              "highPrice": "200",
+              "offerCount": "75"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "89",
+              "bestRating": "5",
+              "worstRating": "1"
+            }
           }
         }
       ]
