@@ -1,0 +1,5 @@
+# Redirects for static HTML structure on GitHub Pages
+# Since we now have static HTML files, we don't need hash redirects
+
+# Fallback for all other routes to 404 page
+/* /eurogranite-website/404.html 404

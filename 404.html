@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/eurogranite-website/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Page Not Found - EuroGranite" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="apple-touch-icon" href="/eurogranite-website/logo192.png" />
+    <link rel="manifest" href="/eurogranite-website/manifest.json" />
+    <title>Page Not Found | EuroGranite</title>
+
+    <link href="/eurogranite-website/static/css/main.c3f22a2d.css" rel="stylesheet">
+
+    <!-- Set initial state for React to show 404 page -->
+    <script>
+        // Detect language from URL path for 404 pages
+        function detectLanguageFromPath() {
+            const path = window.location.pathname;
+            const segments = path.replace('/eurogranite-website', '').split('/').filter(Boolean);
+
+            // Check if first segment is a language code
+            const supportedLanguages = ['ua', 'de', 'pl'];
+            if (segments.length > 0 && supportedLanguages.includes(segments[0])) {
+                return segments[0];
+            }
+
+            // Default to English
+            return 'en';
+        }
+
+        const detectedLanguage = detectLanguageFromPath();
+
+        window.__INITIAL_STATE__ = {
+            language: detectedLanguage,
+            page: '404',
+            route: '/404'
+        };
+    </script>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script defer="defer" src="/eurogranite-website/static/js/main.13295cb7.js"></script>
+</body>
+</html>

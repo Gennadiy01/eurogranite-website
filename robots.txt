@@ -1,0 +1,34 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gennadiy01.github.io/eurogranite-website/sitemap.xml
+
+# Block admin pages and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*?
+Disallow: /#
+
+# Block source files and technical files
+Disallow: /*.json$
+Disallow: /src/
+Disallow: /*.map$
+Disallow: /node_modules/
+
+# Allow all language versions
+Allow: /en/
+Allow: /ua/
+Allow: /de/
+Allow: /pl/
+
+# Allow important directories and files
+Allow: /images/
+Allow: /static/
+Allow: /manifest.json
+Allow: /favicon.ico
+Allow: /logo192.png
+Allow: /logo512.png
+
+# Crawl-delay to be respectful to the server
+Crawl-delay: 1
