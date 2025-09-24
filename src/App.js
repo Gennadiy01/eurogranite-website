@@ -9,6 +9,7 @@ import ToastContainer from './components/molecules/ToastContainer'
 import LocalizedLayout from './components/routing/LocalizedLayout'
 import LanguageRedirect from './components/routing/LanguageRedirect'
 import useLanguageStore from './stores/languageStore'
+import { StructuredData, WebsiteSchema } from './components/seo'
 
 // Lazy load all page components
 const Home = lazy(() => import('./pages/Home'))
@@ -77,6 +78,11 @@ const StaticApp = () => {
   return (
     <HelmetProvider>
       <div className="App">
+        {/* SEO Structured Data */}
+        <WebsiteSchema />
+        <StructuredData type="organization" />
+        <StructuredData type="localBusiness" />
+
         <LazyLoadErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             {getCurrentPage()}
@@ -102,6 +108,11 @@ const DynamicApp = () => {
   return (
     <HelmetProvider>
       <div className="App">
+        {/* SEO Structured Data */}
+        <WebsiteSchema />
+        <StructuredData type="organization" />
+        <StructuredData type="localBusiness" />
+
         <Router basename={basename}>
           <LazyLoadErrorBoundary>
             <Suspense fallback={<PageLoader />}>
