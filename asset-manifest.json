@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/eurogranite-website/static/css/main.c3f22a2d.css",
-    "main.js": "/eurogranite-website/static/js/main.437d00a9.js",
+    "main.js": "/eurogranite-website/static/js/main.5bb1305b.js",
     "static/js/791.718ef71e.chunk.js": "/eurogranite-website/static/js/791.718ef71e.chunk.js",
     "static/js/93.2a1d16ea.chunk.js": "/eurogranite-website/static/js/93.2a1d16ea.chunk.js",
-    "static/css/638.dcb9bd04.chunk.css": "/eurogranite-website/static/css/638.dcb9bd04.chunk.css",
-    "static/js/638.b6c7b4a4.chunk.js": "/eurogranite-website/static/js/638.b6c7b4a4.chunk.js",
-    "static/css/520.a184951d.chunk.css": "/eurogranite-website/static/css/520.a184951d.chunk.css",
+    "static/css/638.f960525e.chunk.css": "/eurogranite-website/static/css/638.f960525e.chunk.css",
+    "static/js/638.de178102.chunk.js": "/eurogranite-website/static/js/638.de178102.chunk.js",
+    "static/css/520.d0156957.chunk.css": "/eurogranite-website/static/css/520.d0156957.chunk.css",
     "static/js/520.6e48be00.chunk.js": "/eurogranite-website/static/js/520.6e48be00.chunk.js",
     "static/js/716.2a4747d1.chunk.js": "/eurogranite-website/static/js/716.2a4747d1.chunk.js",
     "static/js/875.4940f3c3.chunk.js": "/eurogranite-website/static/js/875.4940f3c3.chunk.js",
@@ -33,12 +33,12 @@
     "static/media/labro.jpg": "/eurogranite-website/static/media/labro.74c549fec2e54d093ae6.jpg",
     "index.html": "/eurogranite-website/index.html",
     "main.c3f22a2d.css.map": "/eurogranite-website/static/css/main.c3f22a2d.css.map",
-    "main.437d00a9.js.map": "/eurogranite-website/static/js/main.437d00a9.js.map",
+    "main.5bb1305b.js.map": "/eurogranite-website/static/js/main.5bb1305b.js.map",
     "791.718ef71e.chunk.js.map": "/eurogranite-website/static/js/791.718ef71e.chunk.js.map",
     "93.2a1d16ea.chunk.js.map": "/eurogranite-website/static/js/93.2a1d16ea.chunk.js.map",
-    "638.dcb9bd04.chunk.css.map": "/eurogranite-website/static/css/638.dcb9bd04.chunk.css.map",
-    "638.b6c7b4a4.chunk.js.map": "/eurogranite-website/static/js/638.b6c7b4a4.chunk.js.map",
-    "520.a184951d.chunk.css.map": "/eurogranite-website/static/css/520.a184951d.chunk.css.map",
+    "638.f960525e.chunk.css.map": "/eurogranite-website/static/css/638.f960525e.chunk.css.map",
+    "638.de178102.chunk.js.map": "/eurogranite-website/static/js/638.de178102.chunk.js.map",
+    "520.d0156957.chunk.css.map": "/eurogranite-website/static/css/520.d0156957.chunk.css.map",
     "520.6e48be00.chunk.js.map": "/eurogranite-website/static/js/520.6e48be00.chunk.js.map",
     "716.2a4747d1.chunk.js.map": "/eurogranite-website/static/js/716.2a4747d1.chunk.js.map",
     "875.4940f3c3.chunk.js.map": "/eurogranite-website/static/js/875.4940f3c3.chunk.js.map",
@@ -58,6 +58,6 @@
   },
   "entrypoints": [
     "static/css/main.c3f22a2d.css",
-    "static/js/main.437d00a9.js"
+    "static/js/main.5bb1305b.js"
   ]
 }
