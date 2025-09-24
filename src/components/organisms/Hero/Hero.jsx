@@ -22,14 +22,6 @@ const heroImages = {
 const Hero = () => {
   const { currentLanguage } = useLanguageStore()
 
-  // Debug: console log the image URLs
-  console.log('Hero Debug Info:', {
-    PUBLIC_URL: process.env.PUBLIC_URL,
-    heroImages,
-    srcSetWebp: heroImages.srcSet.webp,
-    srcSetJpg: heroImages.srcSet.jpg
-  })
-
   // Обробники кліку для CTA кнопок - аналогічно до кнопки "Замовити"
   const handleProductsClick = () => {
     window.location.href = createLocalizedPath('products', currentLanguage);
