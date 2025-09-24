@@ -3,8 +3,21 @@ import Button from '../../atoms/Button/Button'
 import AnimatedCounter from '../../atoms/AnimatedCounter/AnimatedCounter'
 import useLanguageStore from '../../../stores/languageStore'
 import { createLocalizedPath } from '../../../utils/urlUtils'
-// Оптимізоване зображення для Hero секції
-const heroImageSrc = require('../../../assets/Im_Hero.jpg')
+// Оптимізовані зображення для Hero секції з public/images/hero
+const heroImages = {
+  // Базові файли (поки що ті що є)
+  webp: `${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero.webp`,
+  jpg: `${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero.jpg`,
+
+  // Розміри для responsive images
+  sizes: '(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px',
+
+  // Responsive srcSet - розкоментувати після створення різних розмірів
+  srcSet: {
+    // webp: `${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-400.webp 400w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-800.webp 800w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-1200.webp 1200w`,
+    // jpg: `${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-400.jpg 400w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-800.jpg 800w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-1200.jpg 1200w`
+  }
+}
 
 const Hero = () => {
   const { currentLanguage } = useLanguageStore()
@@ -145,13 +158,21 @@ const Hero = () => {
           
           {/* Right side - Direct Image */}
           <div className="hero-image">
-            <img
-              src={heroImageSrc}
-              loading="eager"
-              decoding="async"
-              alt={content.imageAlt}
-              className="hero-main-image"
-            />
+            <picture>
+              <source
+                srcSet={heroImages.webp}
+                type="image/webp"
+                sizes={heroImages.sizes}
+              />
+              <img
+                src={heroImages.jpg}
+                loading="eager"
+                decoding="async"
+                alt={content.imageAlt}
+                sizes={heroImages.sizes}
+                className="hero-main-image"
+              />
+            </picture>
           </div>
           
         </div>
