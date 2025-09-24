@@ -12,15 +12,23 @@ const heroImages = {
   // Розміри для responsive images
   sizes: '(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px',
 
-  // Responsive srcSet - розкоментувати після створення різних розмірів
+  // Responsive srcSet - АКТИВОВАНО! 🚀
   srcSet: {
-    // webp: `${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-400.webp 400w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-800.webp 800w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-1200.webp 1200w`,
-    // jpg: `${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-400.jpg 400w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-800.jpg 800w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-1200.jpg 1200w`
+    webp: `${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-400.webp 400w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-800.webp 800w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-1200.webp 1200w`,
+    jpg: `${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-400.jpg 400w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-800.jpg 800w, ${process.env.PUBLIC_URL || ''}/images/hero/Im_Hero-1200.jpg 1200w`
   }
 }
 
 const Hero = () => {
   const { currentLanguage } = useLanguageStore()
+
+  // Debug: console log the image URLs
+  console.log('Hero Debug Info:', {
+    PUBLIC_URL: process.env.PUBLIC_URL,
+    heroImages,
+    srcSetWebp: heroImages.srcSet.webp,
+    srcSetJpg: heroImages.srcSet.jpg
+  })
 
   // Обробники кліку для CTA кнопок - аналогічно до кнопки "Замовити"
   const handleProductsClick = () => {
@@ -160,16 +168,22 @@ const Hero = () => {
           <div className="hero-image">
             <picture>
               <source
-                srcSet={heroImages.webp}
+                srcSet={heroImages.srcSet.webp}
                 type="image/webp"
+                sizes={heroImages.sizes}
+              />
+              <source
+                srcSet={heroImages.srcSet.jpg}
+                type="image/jpeg"
                 sizes={heroImages.sizes}
               />
               <img
                 src={heroImages.jpg}
+                srcSet={heroImages.srcSet.jpg}
+                sizes={heroImages.sizes}
                 loading="eager"
                 decoding="async"
                 alt={content.imageAlt}
-                sizes={heroImages.sizes}
                 className="hero-main-image"
               />
             </picture>
