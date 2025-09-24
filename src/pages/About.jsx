@@ -1,6 +1,7 @@
 import React from 'react'
 import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
+import { createLocalizedPath } from '../utils/urlUtils'
 import Header from '../components/organisms/Header/Header'
 import SEO from '../components/atoms/SEO'
 import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
@@ -14,6 +15,11 @@ const About = () => {
 
   const lang = currentLanguage || 'en'
   const seoData = getSEOData('about', currentLanguage)
+
+  // Обробка кліку на CTA кнопку - аналогічно до кнопки "Замовити"
+  const handleContactClick = () => {
+    window.location.href = createLocalizedPath('contact', currentLanguage) + '?focus=form#contact-form';
+  };
 
   const content = {
     en: {
@@ -444,7 +450,7 @@ const About = () => {
             </div>
             <div className="about-cta-content-column">
               <p className="about-cta-description">{text.cta.description}</p>
-              <a href="/contact#contact-form" className="about-cta-button">{text.cta.button}</a>
+              <button onClick={handleContactClick} className="about-cta-button">{text.cta.button}</button>
             </div>
           </div>
         </div>
