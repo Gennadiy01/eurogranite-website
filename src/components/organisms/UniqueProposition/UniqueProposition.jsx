@@ -3,7 +3,26 @@ import Button from '../../atoms/Button/Button'
 import useLanguageStore from '../../../stores/languageStore'
 import { uniquePropositionContent } from '../../../constants/uniquePropositionData'
 import { createLocalizedPath } from '../../../utils/urlUtils'
-import advantagesImg from '../../../assets/images/advantages_img.webp'
+
+// Responsive advantages images configuration
+const advantagesImages = {
+  // Base paths for public folder images
+  baseUrl: `${process.env.PUBLIC_URL || ''}/images/advantages/`,
+
+  // Responsive variants
+  mobile: {
+    webp: 'advantages-400.webp',
+    jpg: 'advantages-400.jpg'
+  },
+  desktop: {
+    webp: 'advantages-800.webp',
+    jpg: 'advantages-800.jpg'
+  },
+  large: {
+    webp: 'advantages-1200.webp',
+    jpg: 'advantages-1200.jpg'
+  }
+}
 
 const UniqueProposition = () => {
   const { currentLanguage } = useLanguageStore()
@@ -17,14 +36,50 @@ const UniqueProposition = () => {
   const handleProductsClick = () => {
     window.location.href = createLocalizedPath('products', currentLanguage);
   };
+
+  // Generate CSS for responsive background images
+  const getResponsiveBackgroundCSS = () => {
+    const baseUrl = advantagesImages.baseUrl;
+
+    // Create CSS string with media queries for responsive backgrounds
+    // Using WebP with JPG fallback for each breakpoint
+    return `
+      .unique-proposition-section-responsive {
+        background-image: url('${baseUrl}${advantagesImages.mobile.webp}');
+      }
+
+      .unique-proposition-section-responsive.no-webp {
+        background-image: url('${baseUrl}${advantagesImages.mobile.jpg}');
+      }
+
+      @media (min-width: 768px) {
+        .unique-proposition-section-responsive {
+          background-image: url('${baseUrl}${advantagesImages.desktop.webp}');
+        }
+        .unique-proposition-section-responsive.no-webp {
+          background-image: url('${baseUrl}${advantagesImages.desktop.jpg}');
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .unique-proposition-section-responsive {
+          background-image: url('${baseUrl}${advantagesImages.large.webp}');
+        }
+        .unique-proposition-section-responsive.no-webp {
+          background-image: url('${baseUrl}${advantagesImages.large.jpg}');
+        }
+      }
+    `;
+  };
   
   return (
-    <section 
-      className="unique-proposition-section"
-      style={{
-        backgroundImage: `url(${advantagesImg})`
-      }}
-    >
+    <>
+      {/* Dynamic CSS for responsive background images */}
+      <style dangerouslySetInnerHTML={{ __html: getResponsiveBackgroundCSS() }} />
+
+      <section
+        className="unique-proposition-section unique-proposition-section-responsive"
+      >
       <div className="container">
         {/* Header */}
         <div className="unique-proposition-header content-spacing-section">
@@ -104,6 +159,7 @@ const UniqueProposition = () => {
         </div>
       </div>
     </section>
+    </>
   )
 }
 

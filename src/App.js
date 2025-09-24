@@ -45,11 +45,6 @@ const StaticApp = () => {
 
   // Set language once on mount
   useEffect(() => {
-    console.log('Static page loaded:', {
-      language: appState.language,
-      page: appState.page,
-      route: appState.route
-    })
     setLanguage(appState.language)
   }, [appState.language, appState.page, appState.route, setLanguage])
 
