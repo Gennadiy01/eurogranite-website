@@ -7,7 +7,6 @@ import UniqueProposition from '../components/organisms/UniqueProposition/UniqueP
 import GraniteColors from '../components/organisms/GraniteColors/GraniteColors'
 import ModalManager from '../components/organisms/ModalManager/ModalManager'
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
-import InternalLinksSection from '../components/common/InternalLinks/InternalLinksSection'
 
 const Home = () => {
   const { currentLanguage } = useLanguageStore()
@@ -33,7 +32,6 @@ const Home = () => {
           <Hero />
           <UniqueProposition />
           <GraniteColors />
-          <InternalLinksSection placement="home" />
         </main>
         <ModalManager />
       </div>
