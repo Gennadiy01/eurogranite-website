@@ -4,6 +4,7 @@ import { getSEOData } from '../constants/seoData'
 import { createLocalizedPath } from '../utils/urlUtils'
 import Header from '../components/organisms/Header/Header'
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
+import StaticFAQ from '../components/seo/StaticFAQ'
 import './About.css'
 
 const About = () => {
@@ -437,6 +438,9 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <StaticFAQ currentLanguage={currentLanguage} placement="about" />
 
       {/* CTA */}
       <section className="about-cta">
