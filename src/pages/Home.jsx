@@ -7,6 +7,8 @@ import UniqueProposition from '../components/organisms/UniqueProposition/UniqueP
 import GraniteColors from '../components/organisms/GraniteColors/GraniteColors'
 import ModalManager from '../components/organisms/ModalManager/ModalManager'
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
+import LazySchemaLoader from '../components/atoms/StructuredData/LazySchemaLoader'
+import InternalLinksSection from '../components/common/InternalLinks/InternalLinksSection'
 
 const Home = () => {
   const { currentLanguage } = useLanguageStore()
@@ -27,11 +29,17 @@ const Home = () => {
           currentLanguage={currentLanguage}
           pagePath={seoData?.pagePath}
         />
+        {/* Optimized Lazy-loaded Structured Data */}
+        <LazySchemaLoader
+          schemas={['organization', 'localbusiness']}
+          currentLanguage={currentLanguage}
+        />
         <Header />
         <main>
           <Hero />
           <UniqueProposition />
           <GraniteColors />
+          <InternalLinksSection placement="home" />
         </main>
         <ModalManager />
       </div>
