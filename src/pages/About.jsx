@@ -4,7 +4,6 @@ import { getSEOData } from '../constants/seoData'
 import { createLocalizedPath } from '../utils/urlUtils'
 import Header from '../components/organisms/Header/Header'
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
-import StaticBreadcrumb from '../components/common/StaticBreadcrumb'
 import './About.css'
 
 const About = () => {
@@ -344,12 +343,6 @@ const About = () => {
       <Header />
 
       <main>
-        <div className="container">
-          <StaticBreadcrumb
-            currentPage="about"
-            currentLanguage={currentLanguage}
-          />
-        </div>
 
       {/* Hero Section */}
       <section className="page-hero page-hero--compact">

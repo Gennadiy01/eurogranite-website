@@ -4,7 +4,6 @@ import ProjectGallery from '../components/organisms/ProjectGallery/ProjectGaller
 import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
-import StaticBreadcrumb from '../components/common/StaticBreadcrumb'
 import '../styles/components/organisms/ProjectGallery.scss'
 import './About.css'
 
@@ -64,12 +63,6 @@ const Gallery = () => {
       </section>
 
       <main>
-        <div className="container">
-          <StaticBreadcrumb
-            currentPage="gallery"
-            currentLanguage={currentLanguage}
-          />
-        </div>
         <ProjectGallery />
       </main>
       </div>

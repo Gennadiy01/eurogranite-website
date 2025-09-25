@@ -4,7 +4,6 @@ import { getSEOData } from '../constants/seoData'
 import Header from '../components/organisms/Header/Header'
 import ContactForm from '../components/molecules/ContactForm'
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
-import StaticBreadcrumb from '../components/common/StaticBreadcrumb'
 import { contactInfoContent } from '../constants/contactFormData'
 
 const Contact = () => {
@@ -161,12 +160,6 @@ const Contact = () => {
       />
       <Header />
       <main>
-        <div className="container">
-          <StaticBreadcrumb
-            currentPage="contact"
-            currentLanguage={currentLanguage}
-          />
-        </div>
         <section className="page-hero page-hero--light">
           <div className="page-hero-background"></div>
           <div className="container">

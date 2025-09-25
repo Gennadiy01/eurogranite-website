@@ -7,7 +7,6 @@ import ProductCard from '../components/molecules/ProductCard';
 import Header from '../components/organisms/Header/Header';
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO';
 import UniversalTextureGallery from '../components/granite-system/gallery/UniversalTextureGallery'
-import StaticBreadcrumb from '../components/common/StaticBreadcrumb';
 
 const Products = () => {
   const { currentLanguage } = useLanguageStore();
@@ -40,12 +39,6 @@ const Products = () => {
       />
       <Header />
       <main>
-        <div className="container">
-          <StaticBreadcrumb
-            currentPage="products"
-            currentLanguage={currentLanguage}
-          />
-        </div>
       {/* Hero Section */}
       <section className="page-hero">
         <div className="page-hero-background">
