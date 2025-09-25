@@ -5,7 +5,7 @@ import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
 import SEO from '../components/atoms/SEO'
 import { OrganizationSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
-import Footer from '../components/organisms/Footer/Footer'
+import Breadcrumb from '../components/common/Breadcrumb'
 import '../styles/components/organisms/ProjectGallery.scss'
 import './About.css'
 
@@ -67,10 +67,12 @@ const Gallery = () => {
       </section>
 
       <main>
+        <div className="container">
+          <Breadcrumb currentPage="gallery" />
+        </div>
         <ProjectGallery />
       </main>
       </div>
-      <Footer />
     </>
   )
 }

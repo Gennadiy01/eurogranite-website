@@ -5,7 +5,8 @@ import { createLocalizedPath } from '../utils/urlUtils'
 import Header from '../components/organisms/Header/Header'
 import SEO from '../components/atoms/SEO'
 import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
-import Footer from '../components/organisms/Footer/Footer'
+import Breadcrumb from '../components/common/Breadcrumb'
+import FAQSection from '../components/organisms/FAQ/FAQSection'
 import './About.css'
 
 const About = () => {
@@ -346,7 +347,12 @@ const About = () => {
       <LocalBusinessSchema />
       <BreadcrumbSchema />
       <Header />
-      
+
+      <main>
+        <div className="container">
+          <Breadcrumb currentPage="about" />
+        </div>
+
       {/* Hero Section */}
       <section className="page-hero page-hero--compact">
         <div className="page-hero-background">
@@ -455,8 +461,11 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
+      </main>
       </div>
-      <Footer />
     </>
   )
 }

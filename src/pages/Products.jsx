@@ -8,7 +8,7 @@ import Header from '../components/organisms/Header/Header';
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO';
 import LazySchemaLoader from '../components/atoms/StructuredData/LazySchemaLoader';
 import UniversalTextureGallery from '../components/granite-system/gallery/UniversalTextureGallery';
-import Footer from '../components/organisms/Footer/Footer';
+import Breadcrumb from '../components/common/Breadcrumb';
 
 const Products = () => {
   const { currentLanguage } = useLanguageStore();
@@ -46,6 +46,9 @@ const Products = () => {
       />
       <Header />
       <main>
+        <div className="container">
+          <Breadcrumb currentPage="products" />
+        </div>
       {/* Hero Section */}
       <section className="page-hero">
         <div className="page-hero-background">
@@ -261,7 +264,6 @@ const Products = () => {
       {/* Universal Texture Gallery Modal */}
       <UniversalTextureGallery />
       </div>
-      <Footer />
     </>
   );
 };
