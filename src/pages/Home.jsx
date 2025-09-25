@@ -8,7 +8,7 @@ import GraniteColors from '../components/organisms/GraniteColors/GraniteColors'
 import ModalManager from '../components/organisms/ModalManager/ModalManager'
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
 import StaticSchemaLoader from '../components/atoms/StructuredData/StaticSchemaLoader'
-import StaticInternalLinks from '../components/common/StaticInternalLinks'
+// import StaticInternalLinks from '../components/common/StaticInternalLinks'
 
 const Home = () => {
   const { currentLanguage } = useLanguageStore()
@@ -39,7 +39,8 @@ const Home = () => {
           <Hero />
           <UniqueProposition />
           <GraniteColors />
-          <StaticInternalLinks placement="home" currentLanguage={currentLanguage} />
+          {/* Temporarily disabled for testing */}
+          {/* <StaticInternalLinks placement="home" currentLanguage={currentLanguage} /> */}
         </main>
         <ModalManager />
       </div>
