@@ -3,10 +3,7 @@ import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
 import { createLocalizedPath } from '../utils/urlUtils'
 import Header from '../components/organisms/Header/Header'
-import SEO from '../components/atoms/SEO'
-import { OrganizationSchema, LocalBusinessSchema, BreadcrumbSchema } from '../components/atoms/StructuredData'
-import Breadcrumb from '../components/common/Breadcrumb'
-import FAQSection from '../components/organisms/FAQ/FAQSection'
+import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
 import './About.css'
 
 const About = () => {
@@ -334,7 +331,7 @@ const About = () => {
   return (
     <>
       <div className="about-page">
-      <SEO
+      <OptimizedSEO
         title={seoData?.title}
         description={seoData?.description}
         keywords={seoData?.keywords}
@@ -343,15 +340,9 @@ const About = () => {
         currentLanguage={currentLanguage}
         hreflang={seoData?.hreflang}
       />
-      <OrganizationSchema />
-      <LocalBusinessSchema />
-      <BreadcrumbSchema />
       <Header />
 
       <main>
-        <div className="container">
-          <Breadcrumb currentPage="about" />
-        </div>
 
       {/* Hero Section */}
       <section className="page-hero page-hero--compact">
@@ -462,8 +453,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <FAQSection />
       </main>
       </div>
     </>
