@@ -3,7 +3,7 @@ import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
 import Header from '../components/organisms/Header/Header'
 import ContactForm from '../components/molecules/ContactForm'
-import SEO from '../components/atoms/SEO'
+import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
 import StaticBreadcrumb from '../components/common/StaticBreadcrumb'
 import { contactInfoContent } from '../constants/contactFormData'
 
@@ -150,7 +150,7 @@ const Contact = () => {
   return (
     <>
       <div className="contact-page">
-      <SEO
+      <OptimizedSEO
         title={seoData?.title}
         description={seoData?.description}
         keywords={seoData?.keywords}

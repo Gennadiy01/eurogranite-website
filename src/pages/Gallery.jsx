@@ -3,7 +3,7 @@ import Header from '../components/organisms/Header/Header'
 import ProjectGallery from '../components/organisms/ProjectGallery/ProjectGallery'
 import useLanguageStore from '../stores/languageStore'
 import { getSEOData } from '../constants/seoData'
-import SEO from '../components/atoms/SEO'
+import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
 import StaticBreadcrumb from '../components/common/StaticBreadcrumb'
 import '../styles/components/organisms/ProjectGallery.scss'
 import './About.css'
@@ -39,7 +39,7 @@ const Gallery = () => {
   return (
     <>
       <div className="gallery-page">
-      <SEO
+      <OptimizedSEO
         title={seoData?.title}
         description={seoData?.description}
         keywords={seoData?.keywords}
