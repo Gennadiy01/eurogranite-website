@@ -59,7 +59,7 @@ export const galleryProjects = [
     tags: ['gallery', 'courtyard'],
     alt: {
       en: 'Premium granite pavers installed in elegant residential courtyard with natural stone borders and professional landscaping',
-      ua: 'Преміум гранітна бруківка встановлена в елегантному житловому дворику з природними кам'яними бордюрами та професійним ландшафтом',
+      ua: 'Преміум гранітна бруківка встановлена в елегантному житловому дворику з природними кам\'яними бордюрами та професійним ландшафтом',
       de: 'Premium-Granitpflaster in elegantem Wohninnenhof mit Natursteinrändern und professioneller Landschaftsgestaltung installiert',
       pl: 'Premium kostka granitowa zainstalowana w eleganckim dziedzińcu mieszkalnym z naturalnymi kamiennymi obrzeżami i profesjonalną architekturą krajobrazu'
     }
