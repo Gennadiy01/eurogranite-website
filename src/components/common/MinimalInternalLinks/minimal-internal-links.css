@@ -14,15 +14,16 @@
 }
 
 .minimal-internal-links-grid {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  flex-wrap: wrap;
 }
 
 .minimal-internal-link-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
   padding: 1.5rem;
   background: #ffffff;
   border-radius: 0.5rem;
@@ -32,13 +33,30 @@
   font-weight: 600;
   color: #2d3748;
   transition: all 0.3s ease;
-  min-width: 140px;
 }
 
 .minimal-internal-link-anchor {
   text-decoration: none;
-  display: block;
   cursor: pointer;
+}
+
+.minimal-internal-link-icon {
+  margin-right: 1rem;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7fafc;
+  border-radius: 50%;
+  color: #f56500;
+  transition: all 0.3s ease;
+}
+
+.minimal-internal-link-text {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .minimal-internal-link-card:hover {
@@ -47,7 +65,22 @@
   border-color: #f56500;
 }
 
+.minimal-internal-link-card:hover .minimal-internal-link-icon {
+  background: #f56500;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
 /* Responsive adjustments */
+/* Планшети: 2 колонки */
+@media (max-width: 1024px) {
+  .minimal-internal-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Мобільні: 1 колонка */
 @media (max-width: 768px) {
   .minimal-internal-links-section {
     padding: 3rem 0;
@@ -58,6 +91,7 @@
   }
 
   .minimal-internal-links-grid {
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 0 1rem;
   }
@@ -65,18 +99,5 @@
   .minimal-internal-link-card {
     padding: 1.25rem;
     font-size: 1rem;
-    min-width: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .minimal-internal-links-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .minimal-internal-link-card {
-    width: 100%;
-    max-width: 280px;
   }
 }
