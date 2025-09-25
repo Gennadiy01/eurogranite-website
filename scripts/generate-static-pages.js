@@ -6,6 +6,82 @@ const languages = ['en', 'ua', 'de', 'pl']
 const pages = ['', 'products', 'about', 'contact', 'gallery', 'articles']
 
 // Import SEO data (we'll implement this as a simple object since it's a build script)
+// Function to generate Schema.org JSON-LD data
+const generateSchemaData = (language, page) => {
+  const organizationData = {
+    ua: {
+      name: "EuroGranite",
+      description: "Провідний постачальник високоякісного граніту з українських кар'єрів. Спеціалізуємося на гранітній бруківці, плитці та інших будівельних матеріалах з граніту.",
+      addressLocality: "Житомир",
+      addressRegion: "Житомирська область",
+      addressCountry: "UA"
+    },
+    en: {
+      name: "EuroGranite",
+      description: "Leading supplier of high-quality granite from Ukrainian quarries. We specialize in granite pavers, tiles, and other granite building materials.",
+      addressLocality: "Zhytomyr",
+      addressRegion: "Zhytomyr Oblast",
+      addressCountry: "UA"
+    },
+    de: {
+      name: "EuroGranite",
+      description: "Führender Anbieter von hochwertigem Granit aus ukrainischen Steinbrüchen. Wir spezialisieren uns auf Granitpflaster, Fliesen und andere Granit-Baumaterialien.",
+      addressLocality: "Zhytomyr",
+      addressRegion: "Oblast Zhytomyr",
+      addressCountry: "UA"
+    },
+    pl: {
+      name: "EuroGranite",
+      description: "Wiodący dostawca wysokiej jakości granitu z ukraińskich kamieniołomów. Specjalizujemy się w kostce granitowej, płytkach i innych materiałach budowlanych z granitu.",
+      addressLocality: "Żytomierz",
+      addressRegion: "Obwód żytomierski",
+      addressCountry: "UA"
+    }
+  }
+
+  const currentData = organizationData[language] || organizationData.en
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": currentData.name,
+    "description": currentData.description,
+    "url": "https://gennadiy01.github.io/eurogranite-website/",
+    "logo": "https://gennadiy01.github.io/eurogranite-website/logo192.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": currentData.addressLocality,
+      "addressRegion": currentData.addressRegion,
+      "addressCountry": currentData.addressCountry
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+380733864041",
+      "email": "sales@euro-granite.com",
+      "contactType": "sales"
+    }
+  }
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": currentData.name,
+    "description": currentData.description,
+    "url": "https://gennadiy01.github.io/eurogranite-website/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": currentData.addressLocality,
+      "addressRegion": currentData.addressRegion,
+      "addressCountry": currentData.addressCountry
+    }
+  }
+
+  return {
+    organization: organizationSchema,
+    localbusiness: localBusinessSchema
+  }
+}
+
 const staticSeoData = {
   ua: {
     home: {
@@ -180,6 +256,9 @@ const generatePageHTML = (language, page) => {
   const seoData = getSeoData(language, page)
   const hreflangTags = generateHreflangTags(page)
 
+  // Get Schema.org JSON-LD data for SEO
+  const schemaData = generateSchemaData(language, page)
+
   // Set canonical URL
   const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
   const canonicalUrl = `${baseUrl}/${language}/${page ? page + '/' : ''}`
@@ -231,6 +310,14 @@ const generatePageHTML = (language, page) => {
 
     <!-- Preload critical assets -->
     ${mainCssFile ? `<link href="/eurogranite-website/static/css/${mainCssFile}" rel="stylesheet">` : ''}
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    ${JSON.stringify(schemaData.organization)}
+    </script>
+    <script type="application/ld+json">
+    ${JSON.stringify(schemaData.localbusiness)}
+    </script>
 
     <!-- Set initial language and page for React -->
     <script>

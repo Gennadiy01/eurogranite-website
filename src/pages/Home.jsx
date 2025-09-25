@@ -7,6 +7,7 @@ import UniqueProposition from '../components/organisms/UniqueProposition/UniqueP
 import GraniteColors from '../components/organisms/GraniteColors/GraniteColors'
 import ModalManager from '../components/organisms/ModalManager/ModalManager'
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO'
+import StaticSchemaLoader from '../components/atoms/StructuredData/StaticSchemaLoader'
 
 const Home = () => {
   const { currentLanguage } = useLanguageStore()
@@ -26,6 +27,11 @@ const Home = () => {
           ogImage={seoData?.ogImage}
           currentLanguage={currentLanguage}
           pagePath={seoData?.pagePath}
+        />
+        {/* Static Schema.org Structured Data */}
+        <StaticSchemaLoader
+          schemas={['organization', 'localbusiness']}
+          currentLanguage={currentLanguage}
         />
         <Header />
         <main>

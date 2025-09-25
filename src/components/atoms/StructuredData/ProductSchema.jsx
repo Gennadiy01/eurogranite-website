@@ -1,9 +1,9 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import useLanguageStore from '../../../stores/languageStore'
 
-const ProductSchema = ({ productType = 'general' }) => {
-  const { currentLanguage } = useLanguageStore()
+const ProductSchema = ({ productType = 'general', currentLanguage, pagePath }) => {
+  // Use passed prop or fallback to 'en'
+  const language = currentLanguage || 'en'
 
   const productData = {
     general: {
@@ -60,7 +60,7 @@ const ProductSchema = ({ productType = 'general' }) => {
     }
   }
 
-  const currentData = productData[productType][currentLanguage] || productData[productType].en
+  const currentData = productData[productType][language] || productData[productType].en
 
   const schema = {
     "@context": "https://schema.org",

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import useLanguageStore from '../../../stores/languageStore'
 
-const LocalBusinessSchema = () => {
-  const { currentLanguage } = useLanguageStore()
+const LocalBusinessSchema = ({ currentLanguage }) => {
+  // Use passed prop or fallback to 'en'
+  const language = currentLanguage || 'en'
 
   const businessData = {
     ua: {
@@ -40,7 +40,7 @@ const LocalBusinessSchema = () => {
     }
   }
 
-  const currentData = businessData[currentLanguage] || businessData.en
+  const currentData = businessData[language] || businessData.en
 
   const schema = {
     "@context": "https://schema.org",
