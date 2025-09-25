@@ -1,4 +1,5 @@
 import React from 'react'
+import './minimal-internal-links.css'
 
 const MinimalInternalLinks = ({ currentLanguage = 'en' }) => {
   const content = {
@@ -11,19 +12,16 @@ const MinimalInternalLinks = ({ currentLanguage = 'en' }) => {
   const lang = content[currentLanguage] || content.en
 
   return (
-    <section style={{ padding: '2rem 0', textAlign: 'center' }}>
-      <h2>{lang.title}</h2>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-        {lang.links.map((link, index) => (
-          <div key={index} style={{
-            padding: '1rem',
-            border: '1px solid #ccc',
-            borderRadius: '8px',
-            background: '#f9f9f9'
-          }}>
-            {link}
-          </div>
-        ))}
+    <section className="minimal-internal-links-section">
+      <div className="container">
+        <h2 className="minimal-internal-links-title">{lang.title}</h2>
+        <div className="minimal-internal-links-grid">
+          {lang.links.map((link, index) => (
+            <div key={index} className="minimal-internal-link-card">
+              {link}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

@@ -1,0 +1,76 @@
+/* Minimal Internal Links - Design System Compliant but Safe */
+.minimal-internal-links-section {
+  padding: 4rem 0;
+  background-color: #f8fafc;
+  text-align: center;
+}
+
+.minimal-internal-links-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.minimal-internal-links-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.minimal-internal-link-card {
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e2e8f0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3748;
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+.minimal-internal-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.15);
+  border-color: #f56500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .minimal-internal-links-section {
+    padding: 3rem 0;
+  }
+
+  .minimal-internal-links-title {
+    font-size: 1.875rem;
+  }
+
+  .minimal-internal-links-grid {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .minimal-internal-link-card {
+    padding: 1.25rem;
+    font-size: 1rem;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .minimal-internal-links-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .minimal-internal-link-card {
+    width: 100%;
+    max-width: 280px;
+  }
+}
