@@ -58,10 +58,10 @@ export const galleryProjects = [
     height: 1280,
     tags: ['gallery', 'courtyard'],
     alt: {
-      en: 'Granite courtyard paving project',
-      ua: 'Проект гранітного мощення внутрішнього дворика',
-      de: 'Granit-Innenhof-Pflasterung',
-      pl: 'Projekt granitowej kostki na dziedzińcu'
+      en: 'Premium granite pavers installed in elegant residential courtyard with natural stone borders and professional landscaping',
+      ua: 'Преміум гранітна бруківка встановлена в елегантному житловому дворику з природними кам'яними бордюрами та професійним ландшафтом',
+      de: 'Premium-Granitpflaster in elegantem Wohninnenhof mit Natursteinrändern und professioneller Landschaftsgestaltung installiert',
+      pl: 'Premium kostka granitowa zainstalowana w eleganckim dziedzińcu mieszkalnym z naturalnymi kamiennymi obrzeżami i profesjonalną architekturą krajobrazu'
     }
   },
   {
@@ -72,10 +72,10 @@ export const galleryProjects = [
     height: 1280,
     tags: ['gallery', 'courtyard'],
     alt: {
-      en: 'Granite courtyard paving project',
-      ua: 'Проект гранітного мощення внутрішнього дворика',
-      de: 'Granit-Innenhof-Pflasterung',
-      pl: 'Projekt granitowej kostki na dziedzińcu'
+      en: 'Modern granite paving design in private courtyard featuring geometric patterns and professional installation',
+      ua: 'Сучасний дизайн гранітного мощення в приватному дворику з геометричними взорами та професійною установкою',
+      de: 'Modernes Granitpflaster-Design in privatem Innenhof mit geometrischen Mustern und professioneller Installation',
+      pl: 'Nowoczesny design kostki granitowej na prywatnym dziedzińcu z wzorami geometrycznymi i profesjonalną instalacją'
     }
   },
   {

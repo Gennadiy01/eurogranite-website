@@ -801,7 +801,7 @@ const UniversalTextureGallery = () => {
               >
                 <img
                   src={texture.thumbUrl}
-                  alt=""
+                  alt={texture.description?.[currentLanguage] || texture.name?.[currentLanguage] || texture.name?.en || `Granite texture ${texture.id}`}
                   loading="lazy"
                   onError={(e) => {
                     e.target.style.display = 'none';
