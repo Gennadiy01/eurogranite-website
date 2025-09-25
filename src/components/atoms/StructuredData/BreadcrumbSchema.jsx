@@ -2,30 +2,23 @@ import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import useLanguageStore from '../../../stores/languageStore'
 
-const BreadcrumbSchema = () => {
+const BreadcrumbSchema = ({ currentLanguage: propLanguage, pagePath }) => {
   const { currentLanguage } = useLanguageStore()
 
-  // Parse current path from window.location
+  // Use prop language or store language
+  const currentLang = propLanguage || currentLanguage || 'en'
+  const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
+
+  // Parse current path from window.location or use prop
   const getCurrentPath = () => {
+    if (pagePath) {
+      return pagePath
+    }
     if (typeof window !== 'undefined') {
       return window.location.pathname
     }
     return '/'
   }
-
-  const getCurrentLang = () => {
-    const path = getCurrentPath()
-    const segments = path.split('/').filter(segment => segment !== '')
-    // Check if first segment is a language code
-    const langFromPath = segments[0]
-    if (['ua', 'en', 'de', 'pl'].includes(langFromPath)) {
-      return langFromPath
-    }
-    return currentLanguage || 'ua'
-  }
-
-  const currentLang = getCurrentLang()
-  const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
 
   const breadcrumbLabels = {
     ua: {
@@ -76,18 +69,18 @@ const BreadcrumbSchema = () => {
       "@type": "ListItem",
       "position": 1,
       "name": labels.home,
-      "item": `${baseUrl}/${currentLang}`
+      "item": `${baseUrl}/${currentLang}/`
     })
 
     // If we're not on home page, add current page
-    if (segments.length > 1) {
-      const currentPage = segments[1]
+    if (segments.length > 1 || (segments.length === 1 && segments[0] !== currentLang)) {
+      const currentPage = segments.length > 1 ? segments[1] : segments[0]
       if (labels[currentPage]) {
         breadcrumbs.push({
           "@type": "ListItem",
           "position": 2,
           "name": labels[currentPage],
-          "item": `${baseUrl}/${currentLang}/${currentPage}`
+          "item": `${baseUrl}/${currentLang}/${currentPage}/`
         })
       }
     }
