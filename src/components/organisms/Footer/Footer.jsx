@@ -1,8 +1,14 @@
 import React from 'react'
 import useLanguageStore from '../../../stores/languageStore'
+import { createLocalizedPath } from '../../../utils/urlUtils'
 
 const Footer = () => {
   const { currentLanguage } = useLanguageStore()
+
+  // Helper function to create localized URLs (same as Header)
+  const createNavPath = (path) => {
+    return createLocalizedPath(path, currentLanguage)
+  }
 
   const footerContent = {
     en: {
@@ -15,10 +21,10 @@ const Footer = () => {
       email: 'info@euro-granite.com',
       copyright: '2025 Eurogranite. All rights reserved.',
       links: [
-        { name: 'Home', href: '/' },
-        { name: 'Products', href: '/products' },
-        { name: 'About', href: '/about' },
-        { name: 'Contact', href: '/contact' }
+        { name: 'Home', href: createNavPath('') },
+        { name: 'Products', href: createNavPath('products') },
+        { name: 'About', href: createNavPath('about') },
+        { name: 'Contact', href: createNavPath('contact') }
       ]
     },
     ua: {
@@ -31,10 +37,10 @@ const Footer = () => {
       email: 'info@euro-granite.com',
       copyright: '2025 Єврограніт. Всі права захищені.',
       links: [
-        { name: 'Головна', href: '/' },
-        { name: 'Продукція', href: '/products' },
-        { name: 'Про нас', href: '/about' },
-        { name: 'Контакти', href: '/contact' }
+        { name: 'Головна', href: createNavPath('') },
+        { name: 'Продукція', href: createNavPath('products') },
+        { name: 'Про нас', href: createNavPath('about') },
+        { name: 'Контакти', href: createNavPath('contact') }
       ]
     },
     de: {
@@ -47,10 +53,10 @@ const Footer = () => {
       email: 'info@euro-granite.com',
       copyright: '2025 Eurogranite. Alle Rechte vorbehalten.',
       links: [
-        { name: 'Startseite', href: '/' },
-        { name: 'Produkte', href: '/products' },
-        { name: 'Über uns', href: '/about' },
-        { name: 'Kontakt', href: '/contact' }
+        { name: 'Startseite', href: createNavPath('') },
+        { name: 'Produkte', href: createNavPath('products') },
+        { name: 'Über uns', href: createNavPath('about') },
+        { name: 'Kontakt', href: createNavPath('contact') }
       ]
     },
     pl: {
@@ -63,10 +69,10 @@ const Footer = () => {
       email: 'info@euro-granite.com',
       copyright: '2025 Eurogranite. Wszelkie prawa zastrzeżone.',
       links: [
-        { name: 'Strona główna', href: '/' },
-        { name: 'Produkty', href: '/products' },
-        { name: 'O nas', href: '/about' },
-        { name: 'Kontakt', href: '/contact' }
+        { name: 'Strona główna', href: createNavPath('') },
+        { name: 'Produkty', href: createNavPath('products') },
+        { name: 'O nas', href: createNavPath('about') },
+        { name: 'Kontakt', href: createNavPath('contact') }
       ]
     }
   }
@@ -81,7 +87,7 @@ const Footer = () => {
           
           {/* Company Info */}
           <div className="footer-column">
-            <a href="/" className="footer-title logo-text">
+            <a href={createNavPath('')} className="footer-title logo-text">
               EuroGranite
             </a>
             <p className="footer-description">
