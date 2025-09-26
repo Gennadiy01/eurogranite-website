@@ -118,7 +118,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="footer-column">
-            <h4 className="footer-subtitle">
+            <h2 className="footer-subtitle">
               {content.quickLinks}
             </h4>
             <ul className="footer-links">
@@ -137,7 +137,7 @@ const Footer = () => {
 
           {/* Contact Information */}
           <div className="footer-column">
-            <h4 className="footer-subtitle">
+            <h2 className="footer-subtitle">
               {content.contact}
             </h4>
             <div className="footer-contacts">

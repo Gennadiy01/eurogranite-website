@@ -235,6 +235,10 @@ const Products = () => {
               <button
                 onClick={handleContactClick}
                 className="custom-button custom-button--primary px-8 py-4"
+                aria-label={currentLanguage === 'ua' ? 'Написати повідомлення для отримання консультації щодо гранітних виробів' :
+                            currentLanguage === 'en' ? 'Send message for consultation about granite products' :
+                            currentLanguage === 'de' ? 'Nachricht für Beratung über Granitprodukte senden' :
+                            'Wyślij wiadomość w sprawie konsultacji dotyczącej produktów granitowych'}
               >
                 {currentLanguage === 'ua'
                   ? 'Написати повідомлення'

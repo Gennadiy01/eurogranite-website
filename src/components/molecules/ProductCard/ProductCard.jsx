@@ -108,7 +108,7 @@ const ProductCard = ({ product }) => {
           </button>
           
           <div className="finish-info">
-            <span className="finish-icon" aria-label={finishInfo?.name[currentLanguage]}>
+            <span className="finish-icon" title={finishInfo?.name[currentLanguage]} aria-hidden="true">
               {finishInfo?.icon}
             </span>
             <span className="finish-name">
@@ -179,18 +179,26 @@ const ProductCard = ({ product }) => {
             size="medium"
             onClick={handleOrderClick}
             className="order-button"
+            ariaLabel={currentLanguage === 'ua' ? `Замовити ${product.name[currentLanguage]}` :
+                       currentLanguage === 'en' ? `Order ${product.name[currentLanguage]} now` :
+                       currentLanguage === 'de' ? `${product.name[currentLanguage]} bestellen` :
+                       `Zamów ${product.name[currentLanguage]} teraz`}
           >
             {currentLanguage === 'ua' ? 'Замовити'
               : currentLanguage === 'en' ? 'Order Now'
               : currentLanguage === 'de' ? 'Bestellen'
               : 'Zamów teraz'}
           </Button>
-          
+
           <Button
             variant="outline"
             size="medium"
             onClick={handleTextureClick}
             className="texture-button"
+            ariaLabel={currentLanguage === 'ua' ? `Переглянути текстури для ${product.name[currentLanguage]}` :
+                       currentLanguage === 'en' ? `View textures for ${product.name[currentLanguage]}` :
+                       currentLanguage === 'de' ? `Texturen für ${product.name[currentLanguage]} ansehen` :
+                       `Zobacz tekstury dla ${product.name[currentLanguage]}`}
           >
             {currentLanguage === 'ua' ? 'Текстури'
               : currentLanguage === 'en' ? 'View Textures'
