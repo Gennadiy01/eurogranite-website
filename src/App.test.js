@@ -78,12 +78,51 @@ jest.mock('./pages/Articles', () => {
   }
 })
 
+jest.mock('./pages/PrivacyPolicy', () => {
+  const mockReact = require('react')
+  return function MockPrivacyPolicy() {
+    return mockReact.createElement('div', { 'data-testid': 'privacy-policy-page' }, 'Privacy Policy Page')
+  }
+})
+
 jest.mock('./pages/AdminUpload', () => {
   const mockReact = require('react')
   return function MockAdminUpload() {
     return mockReact.createElement('div', { 'data-testid': 'admin-page' }, 'Admin Page')
   }
 })
+
+jest.mock('./pages/admin/Login', () => {
+  const mockReact = require('react')
+  return function MockLogin() {
+    return mockReact.createElement('div', { 'data-testid': 'admin-login' }, 'Admin Login')
+  }
+})
+
+jest.mock('./pages/admin/Dashboard', () => {
+  const mockReact = require('react')
+  return function MockDashboard() {
+    return mockReact.createElement('div', { 'data-testid': 'admin-dashboard' }, 'Admin Dashboard')
+  }
+})
+
+jest.mock('./components/admin/auth', () => ({
+  ProtectedRoute: ({ children }) => {
+    const mockReact = require('react')
+    return mockReact.createElement('div', { 'data-testid': 'protected-route' }, children)
+  }
+}))
+
+jest.mock('./stores/authStore', () => ({
+  __esModule: true,
+  default: () => ({
+    isAuthenticated: false,
+    user: null,
+    login: jest.fn(),
+    logout: jest.fn(),
+    checkSession: jest.fn()
+  })
+}))
 
 jest.mock('./pages/NotFound', () => {
   const mockReact = require('react')
