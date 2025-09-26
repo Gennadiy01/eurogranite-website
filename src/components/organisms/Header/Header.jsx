@@ -94,6 +94,16 @@ const Header = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-white transition-colors"
+              aria-label={isMobileMenuOpen
+                ? (currentLanguage === 'ua' ? 'Закрити мобільне меню' :
+                   currentLanguage === 'de' ? 'Mobile Menü schließen' :
+                   currentLanguage === 'pl' ? 'Zamknij menu mobilne' :
+                   'Close mobile menu')
+                : (currentLanguage === 'ua' ? 'Відкрити мобільне меню' :
+                   currentLanguage === 'de' ? 'Mobile Menü öffnen' :
+                   currentLanguage === 'pl' ? 'Otwórz menu mobilne' :
+                   'Open mobile menu')
+              }
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMobileMenuOpen ? (
