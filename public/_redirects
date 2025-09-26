@@ -1,5 +1,8 @@
 # Redirects for static HTML structure on GitHub Pages
 # Since we now have static HTML files, we don't need hash redirects
 
+# Redirect contact page without language prefix to English version
+/contact /en/contact/ 301
+
 # Fallback for all other routes to 404 page
 /* /eurogranite-website/404.html 404

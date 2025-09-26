@@ -89,7 +89,7 @@ const NotFound = () => {
               <h1 style={{
                 fontSize: '8rem',
                 fontWeight: '800',
-                color: 'var(--accent-orange)',
+                color: 'var(--accent-orange-bright)',
                 textShadow: '0 4px 8px rgba(0,0,0,0.3)',
                 letterSpacing: '-0.05em'
               }}>
@@ -101,7 +101,7 @@ const NotFound = () => {
             <div className="max-w-2xl mx-auto content-spacing-section">
               {/* Company branding */}
               <div className="content-spacing-medium">
-                <div style={{ color: 'var(--accent-orange)', fontWeight: '700', fontSize: '1.125rem' }}>
+                <div style={{ color: 'var(--accent-orange-bright)', fontWeight: '700', fontSize: '1.125rem' }}>
                   {t.companyName}
                 </div>
               </div>
@@ -173,7 +173,7 @@ const NotFound = () => {
               <button
                 onClick={handleGoBack}
                 style={{
-                  color: 'var(--accent-orange)',
+                  color: 'var(--accent-orange-bright)',
                   textDecoration: 'underline',
                   fontWeight: '500',
                   fontSize: '1rem',
@@ -182,8 +182,8 @@ const NotFound = () => {
                   cursor: 'pointer',
                   transition: 'color 0.3s ease'
                 }}
-                onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange-hover)'}
-                onMouseLeave={(e) => e.target.style.color = 'var(--accent-orange)'}
+                onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange-light)'}
+                onMouseLeave={(e) => e.target.style.color = 'var(--accent-orange-bright)'}
               >
                 ← {t.backButton}
               </button>

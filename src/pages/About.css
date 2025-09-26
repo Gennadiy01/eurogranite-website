@@ -306,7 +306,7 @@
 .about-stat-number {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--accent-orange);
+  color: var(--accent-orange-bright);
   margin-bottom: 0.5rem;
 }
 
