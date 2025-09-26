@@ -50,7 +50,7 @@
   justify-content: center;
   background: #f7fafc;
   border-radius: 50%;
-  color: #f56500;
+  color: var(--accent-orange);
   transition: all 0.3s ease;
 }
 
@@ -62,11 +62,11 @@
 .minimal-internal-link-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.15);
-  border-color: #f56500;
+  border-color: var(--accent-orange);
 }
 
 .minimal-internal-link-card:hover .minimal-internal-link-icon {
-  background: #f56500;
+  background: var(--accent-orange);
   color: #ffffff;
   transform: scale(1.05);
 }

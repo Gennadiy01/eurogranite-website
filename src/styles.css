@@ -14,7 +14,7 @@
   --accent-orange: rgb(194, 65, 12); /* Darker orange for better contrast with white text (WCAG AA) */
   --accent-orange-hover: rgb(154, 52, 18); /* Even darker for hover */
   --accent-orange-light: rgb(234, 88, 12); /* Original lighter orange for decorative use */
-  --accent-orange-bright: rgb(255, 147, 51); /* Bright orange for use on dark backgrounds (WCAG AA) */
+  --accent-orange-bright: rgb(232, 103, 28); /* Medium-bright orange for use on dark backgrounds (WCAG AA) */
   
   /* Neutral Colors */
   --neutral-50: #fafafa;
@@ -94,7 +94,7 @@ body {
 /* Logo Adaptive Styles */
 .logo-text {
   font-weight: 900; /* Extra Bold */
-  color: var(--accent-orange);
+  color: var(--accent-orange-bright);
   transition: transform 0.3s ease;
   cursor: pointer;
   /* Mobile: 30px (збільшено в 1.5 рази) */
@@ -199,7 +199,7 @@ body {
 
 .hero-title-accent {
   display: block;
-  color: var(--accent-orange);
+  color: var(--accent-orange-bright);
 }
 
 .hero-description {
@@ -234,7 +234,7 @@ body {
 .hero-stat-number {
   font-size: 1.875rem;
   font-weight: 700;
-  color: var(--accent-orange);
+  color: var(--accent-orange-bright);
   margin-bottom: 0.5rem;
 }
 
@@ -1063,7 +1063,7 @@ body {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: var(--accent-orange);
+  color: var(--accent-orange-bright);
 }
 
 .footer-subtitle {
@@ -1089,7 +1089,7 @@ body {
 }
 
 .footer-social-link:hover {
-  color: var(--accent-orange);
+  color: var(--accent-orange-bright);
 }
 
 .footer-social-icon {
@@ -1116,7 +1116,7 @@ body {
 }
 
 .footer-link:hover {
-  color: var(--accent-orange);
+  color: var(--accent-orange-bright);
 }
 
 .footer-contacts {
@@ -1143,7 +1143,7 @@ body {
 }
 
 .footer-contact-link:hover {
-  color: var(--accent-orange);
+  color: var(--accent-orange-bright);
 }
 
 .footer-bottom {
@@ -1800,6 +1800,27 @@ body {
   color: var(--white);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(194, 65, 12, 0.2);
+}
+
+/* Primary Button for Dark Backgrounds (Hero section) */
+.custom-button--primary-dark {
+  background-color: var(--accent-orange-bright);
+  color: var(--white);
+  border-color: var(--accent-orange-bright);
+}
+
+.custom-button--primary-dark:hover:not(:disabled) {
+  background-color: var(--white);
+  color: var(--neutral-900);
+  border-color: var(--neutral-900);
+  border-width: 2px;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(232, 103, 28, 0.3);
+}
+
+.custom-button--primary-dark:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(232, 103, 28, 0.4);
 }
 
 .custom-button--outline:active:not(:disabled) {

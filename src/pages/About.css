@@ -382,7 +382,7 @@
   align-items: center;
   justify-content: center;
   padding: 1rem 2rem;
-  background-color: var(--accent-orange);
+  background-color: var(--accent-orange-bright);
   color: var(--white);
   text-decoration: none;
   border: none;

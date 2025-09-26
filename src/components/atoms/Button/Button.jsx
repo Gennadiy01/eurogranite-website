@@ -16,6 +16,7 @@ const Button = ({
   
   const variants = {
     primary: 'custom-button--primary',
+    'primary-dark': 'custom-button--primary-dark',
     outline: 'custom-button--outline',
     ghost: 'bg-transparent border-none hover:bg-neutral-100'
   }
@@ -50,7 +51,7 @@ const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(['primary', 'outline', 'ghost']),
+  variant: PropTypes.oneOf(['primary', 'primary-dark', 'outline', 'ghost']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   onClick: PropTypes.func,
   disabled: PropTypes.bool,

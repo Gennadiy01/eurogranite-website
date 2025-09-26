@@ -111,7 +111,7 @@ const Hero = () => {
             {/* CTA Buttons */}
             <div className="hero-buttons">
               <Button
-                variant="primary"
+                variant="primary-dark"
                 size="large"
                 onClick={handleProductsClick}
                 ariaLabel={currentLanguage === 'ua' ? 'Переглянути каталог гранітних виробів EuroGranite' :
