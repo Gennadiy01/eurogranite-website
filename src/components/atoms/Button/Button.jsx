@@ -1,15 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Button = ({ 
-  children, 
-  variant = 'primary', 
-  size = 'medium', 
-  onClick, 
+const Button = ({
+  children,
+  variant = 'primary',
+  size = 'medium',
+  onClick,
   disabled = false,
   className = '',
   type = 'button',
-  ...props 
+  ariaLabel,
+  ...props
 }) => {
   const baseClasses = 'custom-button font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-orange focus:ring-offset-2'
   
@@ -39,6 +40,7 @@ const Button = ({
       className={buttonClasses}
       onClick={onClick}
       disabled={disabled}
+      aria-label={ariaLabel}
       {...props}
     >
       {children}
@@ -53,7 +55,8 @@ Button.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  type: PropTypes.oneOf(['button', 'submit', 'reset'])
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  ariaLabel: PropTypes.string
 }
 
 export default Button

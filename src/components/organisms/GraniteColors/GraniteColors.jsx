@@ -274,10 +274,14 @@ const GraniteColors = () => {
                       </p>
                     </div>
                     <div className="granite-color-button-container">
-                      <Button 
+                      <Button
                         variant="primary"
                         size="small"
                         onClick={() => handleViewTextures(graniteType)}
+                        ariaLabel={currentLanguage === 'ua' ? `Детальніше про ${graniteType.name[currentLanguage]}` :
+                                   currentLanguage === 'de' ? `Mehr Details über ${graniteType.name[currentLanguage]}` :
+                                   currentLanguage === 'pl' ? `Więcej szczegółów o ${graniteType.name[currentLanguage]}` :
+                                   `More details about ${graniteType.name[currentLanguage]}`}
                       >
                         {currentContent.buttonText}
                       </Button>
@@ -312,10 +316,14 @@ const GraniteColors = () => {
                       </p>
                     </div>
                     <div className="granite-color-button-container">
-                      <Button 
+                      <Button
                         variant="primary"
                         size="small"
                         onClick={() => handleViewTextures(graniteType)}
+                        ariaLabel={currentLanguage === 'ua' ? `Детальніше про ${graniteType.name[currentLanguage]}` :
+                                   currentLanguage === 'de' ? `Mehr Details über ${graniteType.name[currentLanguage]}` :
+                                   currentLanguage === 'pl' ? `Więcej szczegółów o ${graniteType.name[currentLanguage]}` :
+                                   `More details about ${graniteType.name[currentLanguage]}`}
                       >
                         {currentContent.buttonText}
                       </Button>
@@ -331,9 +339,9 @@ const GraniteColors = () => {
         {/* Call to Action */}
         <div className="granite-colors-cta">
           <div className="granite-colors-cta-content">
-            <h3 className="granite-colors-cta-title">
+            <h4 className="granite-colors-cta-title">
               {currentContent.cta.title}
-            </h3>
+            </h4>
             <p className="granite-colors-cta-subtitle">
               {currentContent.cta.subtitle}
             </p>
@@ -342,6 +350,10 @@ const GraniteColors = () => {
                 variant="primary"
                 size="large"
                 onClick={handleContactClick}
+                ariaLabel={currentLanguage === 'ua' ? 'Безкоштовна консультація щодо вибору граніту' :
+                           currentLanguage === 'de' ? 'Kostenlose Beratung zur Granitauswahl' :
+                           currentLanguage === 'pl' ? 'Bezpłatna konsultacja dotycząca wyboru granitu' :
+                           'Free consultation on granite selection'}
               >
                 {currentContent.cta.primaryButton}
               </Button>
@@ -349,6 +361,10 @@ const GraniteColors = () => {
                 variant="outline"
                 size="large"
                 onClick={handleProductsClick}
+                ariaLabel={currentLanguage === 'ua' ? 'Переглянути повний каталог гранітних виробів' :
+                           currentLanguage === 'de' ? 'Vollständigen Katalog der Granitprodukte ansehen' :
+                           currentLanguage === 'pl' ? 'Zobacz pełny katalog produktów granitowych' :
+                           'View complete catalog of granite products'}
               >
                 {currentContent.cta.secondaryButton}
               </Button>

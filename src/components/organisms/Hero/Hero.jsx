@@ -114,6 +114,10 @@ const Hero = () => {
                 variant="primary"
                 size="large"
                 onClick={handleProductsClick}
+                ariaLabel={currentLanguage === 'ua' ? 'Переглянути каталог гранітних виробів EuroGranite' :
+                           currentLanguage === 'de' ? 'Katalog der EuroGranite Granitprodukte ansehen' :
+                           currentLanguage === 'pl' ? 'Zobacz katalog produktów granitowych EuroGranite' :
+                           'View EuroGranite granite products catalog'}
               >
                 {content.ctaPrimary}
               </Button>
@@ -122,6 +126,10 @@ const Hero = () => {
                 size="large"
                 className="hero-button-outline"
                 onClick={handleContactClick}
+                ariaLabel={currentLanguage === 'ua' ? 'Отримати безкоштовну пропозицію від EuroGranite' :
+                           currentLanguage === 'de' ? 'Kostenloses Angebot von EuroGranite erhalten' :
+                           currentLanguage === 'pl' ? 'Otrzymaj bezpłatną ofertę od EuroGranite' :
+                           'Get free quote from EuroGranite'}
               >
                 {content.ctaSecondary}
               </Button>
