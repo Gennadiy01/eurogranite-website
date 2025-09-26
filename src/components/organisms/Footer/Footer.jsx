@@ -24,7 +24,8 @@ const Footer = () => {
         { name: 'Home', href: createNavPath('') },
         { name: 'Products', href: createNavPath('products') },
         { name: 'About', href: createNavPath('about') },
-        { name: 'Contact', href: createNavPath('contact') }
+        { name: 'Contact', href: createNavPath('contact') },
+        { name: 'Privacy Policy', href: createNavPath('privacy-policy') }
       ]
     },
     ua: {
@@ -40,7 +41,8 @@ const Footer = () => {
         { name: 'Головна', href: createNavPath('') },
         { name: 'Продукція', href: createNavPath('products') },
         { name: 'Про нас', href: createNavPath('about') },
-        { name: 'Контакти', href: createNavPath('contact') }
+        { name: 'Контакти', href: createNavPath('contact') },
+        { name: 'Політика конфіденційності', href: createNavPath('privacy-policy') }
       ]
     },
     de: {
@@ -56,7 +58,8 @@ const Footer = () => {
         { name: 'Startseite', href: createNavPath('') },
         { name: 'Produkte', href: createNavPath('products') },
         { name: 'Über uns', href: createNavPath('about') },
-        { name: 'Kontakt', href: createNavPath('contact') }
+        { name: 'Kontakt', href: createNavPath('contact') },
+        { name: 'Datenschutzrichtlinie', href: createNavPath('privacy-policy') }
       ]
     },
     pl: {
@@ -72,7 +75,8 @@ const Footer = () => {
         { name: 'Strona główna', href: createNavPath('') },
         { name: 'Produkty', href: createNavPath('products') },
         { name: 'O nas', href: createNavPath('about') },
-        { name: 'Kontakt', href: createNavPath('contact') }
+        { name: 'Kontakt', href: createNavPath('contact') },
+        { name: 'Polityka Prywatności', href: createNavPath('privacy-policy') }
       ]
     }
   }

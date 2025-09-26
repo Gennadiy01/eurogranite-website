@@ -18,6 +18,7 @@ const About = lazy(() => import('./pages/About'))
 const Gallery = lazy(() => import('./pages/Gallery'))
 const Articles = lazy(() => import('./pages/Articles'))
 const Contact = lazy(() => import('./pages/Contact'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
@@ -124,6 +125,7 @@ const DynamicApp = () => {
                 <Route path="/gallery" element={<LanguageRedirect />} />
                 <Route path="/articles" element={<LanguageRedirect />} />
                 <Route path="/contact" element={<LanguageRedirect />} />
+                <Route path="/privacy-policy" element={<LanguageRedirect />} />
 
                 {/* Localized routes */}
                 <Route path="/:lang" element={
@@ -159,6 +161,12 @@ const DynamicApp = () => {
                 <Route path="/:lang/contact" element={
                   <LocalizedLayout>
                     <Contact />
+                    <Footer />
+                  </LocalizedLayout>
+                } />
+                <Route path="/:lang/privacy-policy" element={
+                  <LocalizedLayout>
+                    <PrivacyPolicy />
                     <Footer />
                   </LocalizedLayout>
                 } />

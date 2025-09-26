@@ -36,7 +36,13 @@ export const contactFormContent = {
       emailRequired: 'Please enter your email address',
       emailInvalid: 'Please enter a valid email address',
       messageRequired: 'Please enter your message',
-      phoneInvalid: 'Please enter a valid phone number'
+      phoneInvalid: 'Please enter a valid phone number',
+      privacyRequired: 'You must agree to the privacy policy to send your message'
+    },
+    privacyConsent: {
+      text: 'I agree to the',
+      linkText: 'Privacy Policy',
+      required: '*'
     }
   },
   ua: {
@@ -74,7 +80,13 @@ export const contactFormContent = {
       emailRequired: 'Будь ласка, введіть email адресу',
       emailInvalid: 'Будь ласка, введіть дійсну email адресу',
       messageRequired: 'Будь ласка, введіть ваше повідомлення',
-      phoneInvalid: 'Будь ласка, введіть дійсний номер телефону'
+      phoneInvalid: 'Будь ласка, введіть дійсний номер телефону',
+      privacyRequired: 'Ви повинні погодитись з політикою конфіденційності, щоб надіслати повідомлення'
+    },
+    privacyConsent: {
+      text: 'Я погоджуюсь з',
+      linkText: 'Політикою конфіденційності',
+      required: '*'
     }
   },
   de: {
@@ -112,7 +124,13 @@ export const contactFormContent = {
       emailRequired: 'Bitte geben Sie Ihre E-Mail-Adresse ein',
       emailInvalid: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
       messageRequired: 'Bitte geben Sie Ihre Nachricht ein',
-      phoneInvalid: 'Bitte geben Sie eine gültige Telefonnummer ein'
+      phoneInvalid: 'Bitte geben Sie eine gültige Telefonnummer ein',
+      privacyRequired: 'Sie müssen der Datenschutzrichtlinie zustimmen, um Ihre Nachricht zu senden'
+    },
+    privacyConsent: {
+      text: 'Ich stimme der',
+      linkText: 'Datenschutzrichtlinie',
+      required: '*'
     }
   },
   pl: {
@@ -150,7 +168,13 @@ export const contactFormContent = {
       emailRequired: 'Proszę podać adres e-mail',
       emailInvalid: 'Proszę podać prawidłowy adres e-mail',
       messageRequired: 'Proszę wpisać swoją wiadomość',
-      phoneInvalid: 'Proszę podać prawidłowy numer telefonu'
+      phoneInvalid: 'Proszę podać prawidłowy numer telefonu',
+      privacyRequired: 'Musisz zgodzić się z polityką prywatności, aby wysłać wiadomość'
+    },
+    privacyConsent: {
+      text: 'Zgadzam się z',
+      linkText: 'Polityką Prywatności',
+      required: '*'
     }
   }
 }

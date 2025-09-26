@@ -4,6 +4,7 @@ import useToastStore from '../../../stores/toastStore'
 import Button from '../../atoms/Button/Button'
 import { contactFormContent } from '../../../constants/contactFormData'
 import { sendContactEmail } from '../../../services/emailService'
+import { createLocalizedPath } from '../../../utils/urlUtils'
 
 const ContactForm = () => {
   const { currentLanguage } = useLanguageStore()
@@ -14,7 +15,8 @@ const ContactForm = () => {
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    privacyConsent: false
   })
 
   const [errors, setErrors] = useState({})
@@ -110,15 +112,20 @@ const ContactForm = () => {
       newErrors.message = content.validation.messageRequired
     }
 
+    // Privacy consent validation
+    if (!formData.privacyConsent) {
+      newErrors.privacyConsent = content.validation.privacyRequired
+    }
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value, type, checked } = e.target
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }))
 
     // Clear error when user starts typing
@@ -164,7 +171,8 @@ const ContactForm = () => {
           name: '',
           email: '',
           phone: '',
-          message: ''
+          message: '',
+          privacyConsent: false
         })
       } else {
         throw new Error(result.message || 'Failed to send email')
@@ -189,7 +197,8 @@ const ContactForm = () => {
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        privacyConsent: false
       })
     } finally {
       setIsSubmitting(false)
@@ -335,6 +344,43 @@ const ContactForm = () => {
           {errors.message && (
             <p id="message-error" className="mt-2 text-sm font-semibold contact-form-error" style={{color: '#dc2626'}} role="alert">
               {errors.message}
+            </p>
+          )}
+        </div>
+
+        {/* Privacy Policy Consent */}
+        <div className="pt-4">
+          <div className="flex items-start space-x-3">
+            <input
+              type="checkbox"
+              id="privacyConsent"
+              name="privacyConsent"
+              checked={formData.privacyConsent}
+              onChange={handleInputChange}
+              className={`mt-1 w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500 ${
+                errors.privacyConsent ? 'border-red-500' : ''
+              }`}
+              required
+            />
+            <label htmlFor="privacyConsent" className="text-sm text-gray-600 leading-5">
+              {content.privacyConsent.text}{' '}
+              <a
+                href={createLocalizedPath('privacy-policy', currentLanguage)}
+                className="underline"
+                style={{color: 'var(--accent-orange)', textDecorationColor: 'var(--accent-orange)'}}
+                onMouseEnter={(e) => e.target.style.color = 'var(--accent-orange-bright)'}
+                onMouseLeave={(e) => e.target.style.color = 'var(--accent-orange)'}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {content.privacyConsent.linkText}
+              </a>
+              <span className="text-red-500 ml-1">{content.privacyConsent.required}</span>
+            </label>
+          </div>
+          {errors.privacyConsent && (
+            <p className="mt-2 text-sm font-semibold" style={{color: '#dc2626'}} role="alert">
+              {errors.privacyConsent}
             </p>
           )}
         </div>
