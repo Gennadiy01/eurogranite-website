@@ -120,7 +120,7 @@ const Footer = () => {
           <div className="footer-column">
             <h2 className="footer-subtitle">
               {content.quickLinks}
-            </h4>
+            </h2>
             <ul className="footer-links">
               {content.links.map((link) => (
                 <li key={link.href}>
@@ -139,7 +139,7 @@ const Footer = () => {
           <div className="footer-column">
             <h2 className="footer-subtitle">
               {content.contact}
-            </h4>
+            </h2>
             <div className="footer-contacts">
               <div className="footer-contact-item group" style={{alignItems: 'flex-start'}}>
                 <svg className="footer-contact-icon group-hover:text-accent-orange transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{marginTop: '2px'}}>
