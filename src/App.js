@@ -10,6 +10,7 @@ import LocalizedLayout from './components/routing/LocalizedLayout'
 import LanguageRedirect from './components/routing/LanguageRedirect'
 import useLanguageStore from './stores/languageStore'
 import { StructuredData, WebsiteSchema } from './components/seo'
+import { ProtectedRoute } from './components/admin/auth'
 
 // Lazy load all page components
 const Home = lazy(() => import('./pages/Home'))
@@ -21,6 +22,10 @@ const Contact = lazy(() => import('./pages/Contact'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 const NotFound = lazy(() => import('./pages/NotFound'))
+
+// Admin components
+const Login = lazy(() => import('./pages/admin/Login'))
+const Dashboard = lazy(() => import('./pages/admin/Dashboard'))
 
 // Check if we're in static mode (for production builds)
 const isStaticMode = () => {
@@ -171,8 +176,18 @@ const DynamicApp = () => {
                   </LocalizedLayout>
                 } />
 
-                {/* Admin route (no localization needed) */}
-                <Route path="/admin/upload" element={<AdminUpload />} />
+                {/* Admin routes (no localization needed) */}
+                <Route path="/admin" element={<Login />} />
+                <Route path="/admin/dashboard" element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                } />
+                <Route path="/admin/upload" element={
+                  <ProtectedRoute>
+                    <AdminUpload />
+                  </ProtectedRoute>
+                } />
 
                 {/* 404 route */}
                 <Route path="*" element={<NotFound />} />

@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "homepage": "https://Gennadiy01.github.io/eurogranite-website",
+  "adminHomepage": "https://Gennadiy01.github.io/eurogranite-website-admin",
   "dependencies": {
     "@cloudinary/react": "^1.14.3",
     "@cloudinary/url-gen": "^1.22.0",
@@ -35,6 +36,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "deploy:admin": "gh-pages -d build -b gh-pages-admin",
     "dev": "cross-env PORT=3001 PUBLIC_URL= react-scripts start",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "analyze": "npm run build:clean && npx webpack-bundle-analyzer build/static/js/*.js",
