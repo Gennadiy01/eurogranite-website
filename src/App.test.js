@@ -106,6 +106,20 @@ jest.mock('./pages/admin/Dashboard', () => {
   }
 })
 
+jest.mock('./pages/admin/ProductsManager', () => {
+  const mockReact = require('react')
+  return function MockProductsManager() {
+    return mockReact.createElement('div', { 'data-testid': 'admin-products' }, 'Products Manager')
+  }
+})
+
+jest.mock('./pages/admin/GalleryManager', () => {
+  const mockReact = require('react')
+  return function MockGalleryManager() {
+    return mockReact.createElement('div', { 'data-testid': 'admin-gallery' }, 'Gallery Manager')
+  }
+})
+
 jest.mock('./components/admin/auth', () => ({
   ProtectedRoute: ({ children }) => {
     const mockReact = require('react')

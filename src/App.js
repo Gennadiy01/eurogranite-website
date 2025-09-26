@@ -27,6 +27,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 const Login = lazy(() => import('./pages/admin/Login'))
 const Dashboard = lazy(() => import('./pages/admin/Dashboard'))
 const ProductsManager = lazy(() => import('./pages/admin/ProductsManager'))
+const GalleryManager = lazy(() => import('./pages/admin/GalleryManager'))
 
 // Check if we're in static mode (for production builds)
 const isStaticMode = () => {
@@ -187,6 +188,11 @@ const DynamicApp = () => {
                 <Route path="/admin/products" element={
                   <ProtectedRoute>
                     <ProductsManager />
+                  </ProtectedRoute>
+                } />
+                <Route path="/admin/gallery" element={
+                  <ProtectedRoute>
+                    <GalleryManager />
                   </ProtectedRoute>
                 } />
                 <Route path="/admin/upload" element={

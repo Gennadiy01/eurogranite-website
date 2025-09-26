@@ -15,7 +15,7 @@ const useAuthStore = create(
           // В реальному проекті тут буде API запит
           const ADMIN_CREDENTIALS = {
             username: 'admin',
-            password: 'eurogranite2024'
+            password: 'euro2025Granite'
           }
 
           if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
