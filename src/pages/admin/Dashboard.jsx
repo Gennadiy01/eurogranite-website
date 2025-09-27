@@ -5,11 +5,7 @@ import AdminNavigation from '../../components/admin/navigation/AdminNavigation'
 import './Dashboard.scss'
 
 const Dashboard = () => {
-  const { user, logout } = useAuthStore()
-
-  const handleLogout = () => {
-    logout()
-  }
+  const { user } = useAuthStore()
 
 
   const adminCards = [
