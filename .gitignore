@@ -35,3 +35,9 @@ yarn-error.log*
 # backups
 /backups
 /Backup_1
+server/node_modules/
+server/npm-debug.log*
+server/data/
+server/backups/
+build/
+*.log
