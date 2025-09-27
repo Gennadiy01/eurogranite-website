@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
+import './styles/button-fix.css'
 import LazyLoadErrorBoundary from './components/atoms/ErrorBoundary'
 import PageLoader from './components/atoms/PageLoader'
 import Footer from './components/organisms/Footer/Footer'
