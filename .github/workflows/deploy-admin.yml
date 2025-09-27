@@ -43,6 +43,7 @@ jobs:
         env:
           PUBLIC_URL: /eurogranite-website
           REACT_APP_ADMIN_MODE: true
+          NODE_OPTIONS: "--max_old_space_size=4096"
 
       - name: Bundle size analysis
         run: npm run bundle:check
