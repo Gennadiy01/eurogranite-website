@@ -1,23 +1,32 @@
+// Імпорт теми EuroGranite
+@import '../admin-theme.scss';
+@import '../admin-color-overrides.scss';
+
 // Основні стилі для адмін панелі продуктів та галереї
 .products-manager {
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--admin-gradient-light);
 
   .products-manager-header {
-    background: white;
-    border-bottom: 1px solid #e2e8f0;
+    background: var(--admin-white);
+    border-bottom: 1px solid var(--admin-gray-200);
     padding: 2rem;
     text-align: center;
+    box-shadow: var(--admin-shadow-sm);
 
     h1 {
       font-size: 2rem;
       font-weight: 700;
-      color: #1e293b;
+      color: var(--admin-primary-800);
       margin: 0 0 0.5rem 0;
+      background: var(--admin-gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     p {
-      color: #64748b;
+      color: var(--admin-gray-600);
       font-size: 1.125rem;
       margin: 0;
     }
@@ -594,6 +603,22 @@
       color: #374151;
     }
   }
+
+  &.btn-success {
+    background: #10b981;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      background: #6b7280;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
 }
 
 // Завантаження
@@ -747,6 +772,13 @@
         &::placeholder {
           color: #9ca3af;
         }
+      }
+
+      .form-hint {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-top: 0.5rem;
+        font-style: italic;
       }
 
       .lang-inputs {
@@ -934,23 +966,28 @@
 // Gallery Manager
 .gallery-manager {
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--admin-gradient-light);
 
   .gallery-manager-header {
-    background: white;
-    border-bottom: 1px solid #e2e8f0;
+    background: var(--admin-white);
+    border-bottom: 1px solid var(--admin-gray-200);
     padding: 2rem;
     text-align: center;
+    box-shadow: var(--admin-shadow-sm);
 
     h1 {
       font-size: 2rem;
       font-weight: 700;
-      color: #1e293b;
+      color: var(--admin-primary-800);
       margin: 0 0 0.5rem 0;
+      background: var(--admin-gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     p {
-      color: #64748b;
+      color: var(--admin-gray-600);
       font-size: 1.125rem;
       margin: 0;
     }

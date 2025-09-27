@@ -1,10 +1,54 @@
 import { create } from 'zustand'
 import { productsData } from '../constants/productsData'
 
+// API базовий URL
+const API_BASE_URL = process.env.NODE_ENV === 'production'
+  ? '/api'
+  : 'http://localhost:3001/api'
+
+// API функції
+const apiClient = {
+  async get(endpoint) {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`)
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    return response.json()
+  },
+
+  async post(endpoint, data) {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    return response.json()
+  },
+
+  async put(endpoint, data) {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    return response.json()
+  },
+
+  async delete(endpoint) {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'DELETE'
+    })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    return response.json()
+  }
+}
+
 const useAdminProductsStore = create((set, get) => ({
   // Стан продуктів
-  products: productsData.samples || [],
+  products: [],
   originalProducts: productsData.samples || [],
+  hasUnsavedChanges: false,
+  isInitialized: false,
 
   // Стан UI
   isLoading: false,
@@ -102,43 +146,89 @@ const useAdminProductsStore = create((set, get) => ({
     return filtered
   },
 
-  // CRUD операції
-  addProduct: (productData) => {
+  // Завантаження продуктів з сервера (завжди свіжі дані)
+  loadProducts: async (forceRefresh = false) => {
+    const { isInitialized } = get()
+
+    // Завжди завантажуємо свіжі дані або при примусовому оновленні
+    if (!forceRefresh && isInitialized) {
+      console.log('🔄 Продукти вже завантажені, пропускаємо...')
+      return { success: true, data: get().products }
+    }
+
     set({ isLoading: true, error: null })
 
     try {
-      const newProduct = {
-        id: `product-${Date.now()}`,
-        ...productData,
-        inStock: true,
-        customizable: true
-      }
+      console.log('🔄 Завантаження свіжих продуктів з API:', `${API_BASE_URL}/products`)
+      const response = await apiClient.get('/products')
+      console.log('✅ Отримано продукти:', response.data.length, 'шт')
+
+      set({
+        products: response.data,
+        isLoading: false,
+        hasUnsavedChanges: false,
+        isInitialized: true
+      })
+      return { success: true, data: response.data }
+    } catch (error) {
+      console.error('❌ Помилка API:', error.message)
+      console.log('🔄 Fallback до локальних даних...')
+
+      // Fallback до локальних даних при помилці
+      const { originalProducts } = get()
+      console.log('📦 Завантажено локальних продуктів:', originalProducts.length, 'шт')
+
+      set({
+        products: originalProducts,
+        error: `Помилка з'єднання з API. Використовуються локальні дані.`,
+        isLoading: false,
+        isInitialized: true
+      })
+      return { success: false, error: error.message }
+    }
+  },
+
+  // Примусове оновлення продуктів
+  refreshProducts: async () => {
+    console.log('🔄 Примусове оновлення продуктів...')
+    return get().loadProducts(true)
+  },
+
+  // CRUD операції
+  addProduct: async (productData) => {
+    set({ isLoading: true, error: null })
+
+    try {
+      const response = await apiClient.post('/products', productData)
 
       const { products } = get()
-      const updatedProducts = [...products, newProduct]
+      const updatedProducts = [...products, response.data]
 
       set({
         products: updatedProducts,
         isLoading: false,
         isEditModalOpen: false,
-        editingProduct: null
+        editingProduct: null,
+        hasUnsavedChanges: true
       })
 
-      return { success: true, product: newProduct }
+      return { success: true, product: response.data }
     } catch (error) {
       set({ error: error.message, isLoading: false })
       return { success: false, error: error.message }
     }
   },
 
-  updateProduct: (productId, updates) => {
+  updateProduct: async (productId, updates) => {
     set({ isLoading: true, error: null })
 
     try {
+      const response = await apiClient.put(`/products/${productId}`, updates)
+
       const { products } = get()
       const updatedProducts = products.map(product =>
         product.id === productId
-          ? { ...product, ...updates }
+          ? response.data
           : product
       )
 
@@ -146,7 +236,8 @@ const useAdminProductsStore = create((set, get) => ({
         products: updatedProducts,
         isLoading: false,
         isEditModalOpen: false,
-        editingProduct: null
+        editingProduct: null,
+        hasUnsavedChanges: true
       })
 
       return { success: true }
@@ -156,16 +247,19 @@ const useAdminProductsStore = create((set, get) => ({
     }
   },
 
-  deleteProduct: (productId) => {
+  deleteProduct: async (productId) => {
     set({ isLoading: true, error: null })
 
     try {
+      await apiClient.delete(`/products/${productId}`)
+
       const { products } = get()
       const updatedProducts = products.filter(product => product.id !== productId)
 
       set({
         products: updatedProducts,
-        isLoading: false
+        isLoading: false,
+        hasUnsavedChanges: true
       })
 
       return { success: true }
@@ -241,15 +335,50 @@ const useAdminProductsStore = create((set, get) => ({
     return { success: true }
   },
 
+  // Збереження змін
+  saveProducts: async () => {
+    set({ isLoading: true, error: null })
+
+    try {
+      const response = await apiClient.post('/products/save')
+      set({
+        isLoading: false,
+        hasUnsavedChanges: false
+      })
+      return { success: true, message: response.message }
+    } catch (error) {
+      set({ error: error.message, isLoading: false })
+      return { success: false, error: error.message }
+    }
+  },
+
   // Скидання змін
-  resetProducts: () => {
-    const { originalProducts } = get()
-    set({
-      products: [...originalProducts],
-      error: null,
-      editingProduct: null,
-      isEditModalOpen: false
-    })
+  resetProducts: async () => {
+    set({ isLoading: true, error: null })
+
+    try {
+      const response = await apiClient.post('/products/reset')
+      set({
+        products: response.data || get().originalProducts,
+        isLoading: false,
+        hasUnsavedChanges: false,
+        error: null,
+        editingProduct: null,
+        isEditModalOpen: false
+      })
+      return { success: true, message: response.message }
+    } catch (error) {
+      // Fallback до локального скидання
+      const { originalProducts } = get()
+      set({
+        products: [...originalProducts],
+        error: `Помилка скидання: ${error.message}. Скинуто до локальних даних.`,
+        editingProduct: null,
+        isEditModalOpen: false,
+        isLoading: false
+      })
+      return { success: false, error: error.message }
+    }
   },
 
   // Експорт/Імпорт даних

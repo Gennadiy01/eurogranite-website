@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useLanguageStore from '../stores/languageStore';
+import useProductsStore from '../stores/productsStore';
 import { productsData, TextureIcon, SurfaceIcon, DimensionIcon } from '../constants/productsData';
 import { getSEOData } from '../constants/seoData';
 import { createLocalizedPath } from '../utils/urlUtils';
@@ -10,6 +11,7 @@ import UniversalTextureGallery from '../components/granite-system/gallery/Univer
 
 const Products = () => {
   const { currentLanguage } = useLanguageStore();
+  const { products, isLoading, error, loadProducts } = useProductsStore();
 
   // Language is managed by App.js for hash routing, no need to set it here
 
@@ -23,7 +25,10 @@ const Products = () => {
   useEffect(() => {
     // Scroll to top when page loads
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+
+    // Завантажуємо продукти з API
+    loadProducts();
+  }, [loadProducts]);
 
   return (
     <>
@@ -83,15 +88,52 @@ const Products = () => {
             </p>
           </div>
 
+          {/* Loading State */}
+          {isLoading && (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-accent-orange"></div>
+              <p className="mt-4 text-neutral-600">
+                {currentLanguage === 'ua'
+                  ? 'Завантаження продуктів...'
+                  : currentLanguage === 'en'
+                  ? 'Loading products...'
+                  : currentLanguage === 'de'
+                  ? 'Produkte werden geladen...'
+                  : 'Ładowanie produktów...'
+                }
+              </p>
+            </div>
+          )}
+
+          {/* Error State */}
+          {error && (
+            <div className="text-center py-12">
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 max-w-md mx-auto">
+                <p className="text-amber-800 mb-4">
+                  {currentLanguage === 'ua'
+                    ? 'Використовуються локальні дані. API недоступний.'
+                    : currentLanguage === 'en'
+                    ? 'Using local data. API unavailable.'
+                    : currentLanguage === 'de'
+                    ? 'Verwende lokale Daten. API nicht verfügbar.'
+                    : 'Używanie danych lokalnych. API niedostępne.'
+                  }
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Products Grid */}
-          <div className="products-grid">
-            {productsData.samples.map((product) => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
-              />
-            ))}
-          </div>
+          {!isLoading && (
+            <div className="products-grid">
+              {products.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

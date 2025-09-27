@@ -1,0 +1,398 @@
+// ===========================================
+// КОЛЬОРОВА СХЕМА АДМІНІСТРАТИВНОЇ ПАНЕЛІ EUROGRANITE
+// ===========================================
+
+:root {
+  // Помаранчева палітра (основна тема EuroGranite)
+  --admin-primary: rgb(194, 65, 12);        // --accent-orange
+  --admin-primary-hover: rgb(154, 52, 18);  // --accent-orange-hover
+  --admin-primary-light: rgb(234, 88, 12);  // --accent-orange-light
+  --admin-primary-bright: rgb(232, 103, 28); // --accent-orange-bright
+
+  // Додаткові відтінки помаранчевого для різних станів
+  --admin-primary-50: #fff7ed;
+  --admin-primary-100: #ffedd5;
+  --admin-primary-200: #fed7aa;
+  --admin-primary-300: #fdba74;
+  --admin-primary-400: #fb923c;
+  --admin-primary-500: #f97316;   // Bright orange
+  --admin-primary-600: var(--admin-primary-light); // #ea580c
+  --admin-primary-700: var(--admin-primary);       // #c2410c
+  --admin-primary-800: var(--admin-primary-hover); // #9a3412
+  --admin-primary-900: #7c2d12;
+
+  // Нейтральні кольори (світла тема)
+  --admin-white: #ffffff;
+  --admin-gray-50: #fafafa;
+  --admin-gray-100: #f5f5f5;
+  --admin-gray-200: #e5e5e5;
+  --admin-gray-300: #d4d4d4;
+  --admin-gray-400: #a3a3a3;
+  --admin-gray-500: #737373;
+  --admin-gray-600: #525252;
+  --admin-gray-700: #404040;
+  --admin-gray-800: #262626;
+  --admin-gray-900: #171717;
+
+  // Семантичні кольори з помаранчевою гармонією
+  --admin-success: #059669;      // Зелений
+  --admin-success-light: #d1fae5;
+  --admin-warning: #d97706;      // Темніший помаранчевий
+  --admin-warning-light: #fef3c7;
+  --admin-error: #dc2626;        // Червоний
+  --admin-error-light: #fef2f2;
+  --admin-info: #0369a1;         // Синій
+  --admin-info-light: #dbeafe;
+
+  // Статуси категорій з помаранчевою гармонією
+  --admin-granite: #fef3c7;      // Жовто-помаранчевий
+  --admin-granite-text: #92400e;
+  --admin-marble: #f3e8ff;       // Фіолетовий (контрастний)
+  --admin-marble-text: #7c3aed;
+  --admin-quartz: #dbeafe;       // Синій (контрастний)
+  --admin-quartz-text: #1e40af;
+  --admin-care: #d1fae5;         // Зелений
+  --admin-care-text: #065f46;
+  --admin-design: #fed7d7;       // Рожевий
+  --admin-design-text: #be185d;
+  --admin-news: #fecaca;         // Світло-червоний
+  --admin-news-text: #dc2626;
+
+  // Тіні та ефекти
+  --admin-shadow-sm: 0 1px 2px 0 rgba(194, 65, 12, 0.05);
+  --admin-shadow: 0 4px 6px -1px rgba(194, 65, 12, 0.1), 0 2px 4px -1px rgba(194, 65, 12, 0.06);
+  --admin-shadow-lg: 0 10px 15px -3px rgba(194, 65, 12, 0.1), 0 4px 6px -2px rgba(194, 65, 12, 0.05);
+  --admin-shadow-xl: 0 20px 25px -5px rgba(194, 65, 12, 0.1), 0 10px 10px -5px rgba(194, 65, 12, 0.04);
+
+  // Градієнти
+  --admin-gradient-primary: linear-gradient(135deg, var(--admin-primary-600) 0%, var(--admin-primary-700) 100%);
+  --admin-gradient-light: linear-gradient(135deg, var(--admin-gray-50) 0%, var(--admin-gray-100) 100%);
+  --admin-gradient-card: linear-gradient(135deg, var(--admin-white) 0%, var(--admin-gray-50) 100%);
+
+  // Анімації
+  --admin-transition: all 0.2s ease-in-out;
+  --admin-transition-fast: all 0.15s ease-in-out;
+  --admin-transition-slow: all 0.3s ease-in-out;
+
+  // Розміри
+  --admin-border-radius: 8px;
+  --admin-border-radius-lg: 12px;
+  --admin-border-radius-xl: 16px;
+}
+
+// Базові класи для кнопок
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--admin-border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--admin-transition);
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Помаранчеві кнопки (основні)
+  &.btn-primary {
+    background: var(--admin-gradient-primary);
+    color: var(--admin-white);
+    border-color: var(--admin-primary-700);
+    box-shadow: var(--admin-shadow-sm);
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--admin-primary-700) 0%, var(--admin-primary-800) 100%);
+      border-color: var(--admin-primary-800);
+      box-shadow: var(--admin-shadow);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: var(--admin-shadow-sm);
+    }
+  }
+
+  // Світлі помаранчеві кнопки
+  &.btn-secondary {
+    background: var(--admin-white);
+    color: var(--admin-primary-700);
+    border-color: var(--admin-primary-300);
+
+    &:hover:not(:disabled) {
+      background: var(--admin-primary-50);
+      border-color: var(--admin-primary-400);
+      color: var(--admin-primary-800);
+    }
+  }
+
+  // Успіх (зелені)
+  &.btn-success {
+    background: var(--admin-success);
+    color: var(--admin-white);
+    border-color: var(--admin-success);
+
+    &:hover:not(:disabled) {
+      background: #047857;
+      border-color: #047857;
+    }
+  }
+
+  // Помилка (червоні)
+  &.btn-danger {
+    background: var(--admin-error);
+    color: var(--admin-white);
+    border-color: var(--admin-error);
+
+    &:hover:not(:disabled) {
+      background: #b91c1c;
+      border-color: #b91c1c;
+    }
+  }
+
+  // Малі кнопки
+  &.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  // Великі кнопки
+  &.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+// Базові класи для карток
+.card {
+  background: var(--admin-white);
+  border-radius: var(--admin-border-radius-lg);
+  box-shadow: var(--admin-shadow);
+  border: 1px solid var(--admin-gray-200);
+  transition: var(--admin-transition);
+
+  &:hover {
+    box-shadow: var(--admin-shadow-lg);
+    transform: translateY(-2px);
+  }
+}
+
+// Базові класи для статистичних карток
+.stat-card {
+  @extend .card;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--admin-gradient-card);
+
+  h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--admin-primary-700);
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    color: var(--admin-gray-600);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+}
+
+// Базові класи для модальних вікон
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal {
+  background: var(--admin-white);
+  border-radius: var(--admin-border-radius-xl);
+  box-shadow: var(--admin-shadow-xl);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideInUp 0.3s ease-out;
+
+  .modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--admin-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--admin-gradient-light);
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--admin-primary-800);
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--admin-gray-500);
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: var(--admin-border-radius);
+      transition: var(--admin-transition);
+
+      &:hover {
+        background: var(--admin-gray-100);
+        color: var(--admin-gray-700);
+      }
+    }
+  }
+
+  .modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--admin-gray-200);
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    background: var(--admin-gray-50);
+  }
+}
+
+// Анімації
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// Loader
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--admin-primary-200);
+  border-top: 4px solid var(--admin-primary-600);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// Форми
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: var(--admin-gray-700);
+    margin-bottom: 0.5rem;
+
+    .required {
+      color: var(--admin-error);
+      margin-left: 0.25rem;
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--admin-gray-300);
+    border-radius: var(--admin-border-radius);
+    font-size: 0.875rem;
+    transition: var(--admin-transition);
+    background: var(--admin-white);
+
+    &:focus {
+      outline: none;
+      border-color: var(--admin-primary-500);
+      box-shadow: 0 0 0 3px var(--admin-primary-100);
+    }
+
+    &.error {
+      border-color: var(--admin-error);
+
+      &:focus {
+        border-color: var(--admin-error);
+        box-shadow: 0 0 0 3px var(--admin-error-light);
+      }
+    }
+  }
+
+  .form-hint {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--admin-gray-500);
+    margin-top: 0.5rem;
+  }
+
+  .error-message {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--admin-error);
+    margin-top: 0.5rem;
+  }
+}
+
+// Пошук
+.search-input {
+  position: relative;
+
+  &::placeholder {
+    color: var(--admin-gray-400);
+  }
+
+  &:focus {
+    background: var(--admin-white);
+  }
+}
+
+// Селекти
+.filter-select,
+.bulk-select {
+  background: var(--admin-white);
+  border: 1px solid var(--admin-gray-300);
+  border-radius: var(--admin-border-radius);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: var(--admin-gray-700);
+  transition: var(--admin-transition);
+
+  &:focus {
+    outline: none;
+    border-color: var(--admin-primary-500);
+    box-shadow: 0 0 0 3px var(--admin-primary-100);
+  }
+
+  &:hover {
+    border-color: var(--admin-gray-400);
+  }
+}

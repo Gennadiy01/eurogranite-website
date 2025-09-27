@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "homepage": "https://Gennadiy01.github.io/eurogranite-website",
-  "adminHomepage": "https://Gennadiy01.github.io/eurogranite-website-admin",
+  "adminHomepage": "https://Gennadiy01.github.io/eurogranite-website",
   "dependencies": {
     "@cloudinary/react": "^1.14.3",
     "@cloudinary/url-gen": "^1.22.0",

@@ -7,6 +7,7 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const { login, loginError, clearError, isAuthenticated } = useAuthStore()
 
+
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -20,12 +21,7 @@ const LoginForm = () => {
     }
   }, [isAuthenticated, navigate])
 
-  // Очищення помилок при зміні input
-  useEffect(() => {
-    if (loginError) {
-      clearError()
-    }
-  }, [formData, clearError, loginError])
+  // Очищення помилок тільки при новій спробі входу
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -37,6 +33,17 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // Базова перевірка на порожні поля
+    if (!formData.username.trim() || !formData.password.trim()) {
+      return
+    }
+
+    // Очищення попередньої помилки
+    if (loginError) {
+      clearError()
+    }
+
     setIsLoading(true)
 
     try {
@@ -98,7 +105,11 @@ const LoginForm = () => {
           <button
             type="submit"
             className="login-button"
-            disabled={isLoading || !formData.username || !formData.password}
+            disabled={
+              isLoading ||
+              !formData.username.trim() ||
+              !formData.password.trim()
+            }
           >
             {isLoading ? 'Вхід...' : 'Увійти'}
           </button>

@@ -41,7 +41,7 @@ jobs:
       - name: Build project with admin features
         run: npm run build
         env:
-          PUBLIC_URL: /eurogranite-website-admin
+          PUBLIC_URL: /eurogranite-website
           REACT_APP_ADMIN_MODE: true
 
       - name: Bundle size analysis

@@ -7,12 +7,16 @@ const ProductsFilter = () => {
     selectedCategory,
     sortBy,
     sortOrder,
+    hasUnsavedChanges,
+    isLoading,
     setSearchQuery,
     setSelectedCategory,
     setSortBy,
     openEditModal,
     exportProducts,
+    saveProducts,
     resetProducts,
+    refreshProducts,
     clearError
   } = useAdminProductsStore()
 
@@ -49,6 +53,47 @@ const ProductsFilter = () => {
     setSearchQuery('')
     setSelectedCategory('all')
     clearError()
+  }
+
+  const handleSaveProducts = async () => {
+    const result = await saveProducts()
+    if (result.success) {
+      alert('✅ Зміни успішно збережено!')
+    } else {
+      alert(`❌ Помилка збереження: ${result.error}`)
+    }
+  }
+
+  const handleResetProducts = async () => {
+    if (hasUnsavedChanges) {
+      const confirm = window.confirm(
+        'Ви впевнені, що хочете скинути всі незбережені зміни? Ця дія незворотна.'
+      )
+      if (!confirm) return
+    }
+
+    const result = await resetProducts()
+    if (result.success) {
+      alert('🔄 Дані скинуто до оригінального стану')
+    } else {
+      alert(`❌ Помилка скидання: ${result.error}`)
+    }
+  }
+
+  const handleRefreshProducts = async () => {
+    if (hasUnsavedChanges) {
+      const confirm = window.confirm(
+        'У вас є незбережені зміни. Оновлення призведе до їх втрати. Продовжити?'
+      )
+      if (!confirm) return
+    }
+
+    const result = await refreshProducts()
+    if (result.success) {
+      alert('✅ Продукти оновлено з сервера!')
+    } else {
+      alert(`❌ Помилка оновлення: ${result.error}`)
+    }
   }
 
   return (
@@ -126,19 +171,41 @@ const ProductsFilter = () => {
             </button>
 
             <button
+              onClick={handleRefreshProducts}
+              className="btn btn-secondary"
+              title="Оновити продукти з сервера"
+              disabled={isLoading}
+            >
+              {isLoading ? '⏳ Оновлення...' : '🔄 Оновити'}
+            </button>
+
+            <button
               onClick={exportProducts}
               className="btn btn-secondary"
               title="Експортувати всі продукти в JSON"
+              disabled={isLoading}
             >
               📤 Експорт
             </button>
 
+            {hasUnsavedChanges && (
+              <button
+                onClick={handleSaveProducts}
+                className="btn btn-success"
+                title="Зберегти всі зміни на сервер"
+                disabled={isLoading}
+              >
+                {isLoading ? '⏳ Збереження...' : '💾 Зберегти зміни'}
+              </button>
+            )}
+
             <button
-              onClick={resetProducts}
+              onClick={handleResetProducts}
               className="btn btn-outline"
               title="Скинути всі зміни до оригінального стану"
+              disabled={isLoading}
             >
-              🔄 Скинути зміни
+              {isLoading ? '⏳ Скидання...' : '🔄 Скинути зміни'}
             </button>
           </div>
 

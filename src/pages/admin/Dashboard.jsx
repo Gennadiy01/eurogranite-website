@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import useAuthStore from '../../stores/authStore'
+import AdminNavigation from '../../components/admin/navigation/AdminNavigation'
 import './Dashboard.scss'
 
 const Dashboard = () => {
@@ -9,6 +10,7 @@ const Dashboard = () => {
   const handleLogout = () => {
     logout()
   }
+
 
   const adminCards = [
     {
@@ -39,15 +41,14 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      <AdminNavigation pageType="dashboard" />
+
       <div className="dashboard-header">
         <div className="header-content">
           <div className="welcome-section">
             <h1>Адміністративна панель EuroGranite</h1>
             <p>Ласкаво просимо, {user?.username}!</p>
           </div>
-          <button onClick={handleLogout} className="logout-button">
-            Вийти
-          </button>
         </div>
       </div>
 
@@ -99,27 +100,6 @@ const Dashboard = () => {
           ))}
         </div>
 
-        <div className="quick-actions">
-          <h2>Швидкі дії</h2>
-          <div className="quick-actions-grid">
-            <button className="quick-action">
-              <span>➕</span>
-              Додати новий продукт
-            </button>
-            <button className="quick-action">
-              <span>📤</span>
-              Завантажити зображення
-            </button>
-            <button className="quick-action">
-              <span>📝</span>
-              Створити статтю
-            </button>
-            <button className="quick-action">
-              <span>💾</span>
-              Зберегти резервну копію
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   )

@@ -1,0 +1,287 @@
+// ===========================================
+// ГЛОБАЛЬНІ ПЕРЕВИЗНАЧЕННЯ КОЛЬОРІВ ДЛЯ АДМІН ПАНЕЛІ
+// ===========================================
+
+// Імпорт теми
+@import './admin-theme.scss';
+
+// Заміна всіх синіх кольорів на помаранчеві
+:root {
+  --admin-blue-50: var(--admin-primary-50);
+  --admin-blue-100: var(--admin-primary-100);
+  --admin-blue-200: var(--admin-primary-200);
+  --admin-blue-300: var(--admin-primary-300);
+  --admin-blue-400: var(--admin-primary-400);
+  --admin-blue-500: var(--admin-primary-500);
+  --admin-blue-600: var(--admin-primary-600);
+  --admin-blue-700: var(--admin-primary-700);
+  --admin-blue-800: var(--admin-primary-800);
+  --admin-blue-900: var(--admin-primary-900);
+}
+
+// Глобальні стилі для всіх кнопок в адмін панелі
+.btn,
+button {
+  &.btn-primary,
+  &:not([class*="btn-"]):not([class*="action-"]):not([class*="quick-"]):not([class*="logout"]) {
+    @extend .btn;
+    @extend .btn-primary;
+  }
+}
+
+// Оновлення основних кольорів для заголовків - використання майже чорного з палітри сайту
+.products-manager,
+.gallery-manager,
+.articles-manager {
+
+  // Заголовки сторінок - майже чорні
+  h1 {
+    color: #1a1a1a !important; // --granite-black з палітри сайту
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+  }
+
+  // Всі primary кнопки
+  .btn-primary,
+  button:not([class*="btn-"]):not([class*="secondary"]):not([class*="danger"]):not([class*="cancel"]) {
+    background: var(--admin-gradient-primary) !important;
+    color: var(--admin-white) !important;
+    border-color: var(--admin-primary-700) !important;
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--admin-primary-700) 0%, var(--admin-primary-800) 100%) !important;
+      border-color: var(--admin-primary-800) !important;
+    }
+  }
+
+  // Статистичні картки
+  .stat-card {
+    h3 {
+      color: var(--admin-primary-700) !important;
+    }
+  }
+
+  // Фокус на input полях
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--admin-primary-500) !important;
+    box-shadow: 0 0 0 3px var(--admin-primary-100) !important;
+  }
+
+  // Активні вкладки
+  .language-tab.active {
+    background: var(--admin-primary-600) !important;
+    border-color: var(--admin-primary-600) !important;
+  }
+
+  // Посилання та навігація
+  a:hover {
+    color: var(--admin-primary-600) !important;
+  }
+
+  // Іконки та індикатори
+  .loading-spinner {
+    border-top-color: var(--admin-primary-600) !important;
+  }
+
+  // Hover ефекти
+  .admin-card:hover {
+    border-color: var(--admin-primary-400) !important;
+  }
+
+  .quick-action:hover {
+    border-color: var(--admin-primary-400) !important;
+    background: var(--admin-primary-50) !important;
+    color: var(--admin-primary-700) !important;
+  }
+}
+
+// Спеціальні класи для різних типів кнопок в адмін панелі
+.admin-button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+.admin-button-secondary {
+  @extend .btn;
+  @extend .btn-secondary;
+}
+
+.admin-button-success {
+  @extend .btn;
+  @extend .btn-success;
+}
+
+.admin-button-danger {
+  @extend .btn;
+  @extend .btn-danger;
+}
+
+// Категорії з помаранчевою гармонією
+.category-tag {
+  &.category-granite {
+    background: var(--admin-granite) !important;
+    color: var(--admin-granite-text) !important;
+  }
+
+  &.category-marble {
+    background: var(--admin-marble) !important;
+    color: var(--admin-marble-text) !important;
+  }
+
+  &.category-quartz {
+    background: var(--admin-quartz) !important;
+    color: var(--admin-quartz-text) !important;
+  }
+
+  &.category-care {
+    background: var(--admin-care) !important;
+    color: var(--admin-care-text) !important;
+  }
+
+  &.category-design {
+    background: var(--admin-design) !important;
+    color: var(--admin-design-text) !important;
+  }
+
+  &.category-news {
+    background: var(--admin-news) !important;
+    color: var(--admin-news-text) !important;
+  }
+}
+
+// Статуси з помаранчевою гармонією
+.status-badge {
+  &.status-published {
+    background: var(--admin-success-light) !important;
+    color: var(--admin-success) !important;
+  }
+
+  &.status-draft {
+    background: var(--admin-warning-light) !important;
+    color: var(--admin-warning) !important;
+  }
+
+  &.status-archived {
+    background: var(--admin-gray-100) !important;
+    color: var(--admin-gray-600) !important;
+  }
+}
+
+// Глобальні перевизначення для всіх старих синіх кольорів
+* {
+  // Заміна всіх входжень синього на помаранчевий
+  &[style*="3b82f6"] {
+    background: var(--admin-primary-600) !important;
+  }
+
+  &[style*="1d4ed8"] {
+    background: var(--admin-primary-700) !important;
+  }
+
+  &[style*="2563eb"] {
+    background: var(--admin-primary-800) !important;
+  }
+
+  &[style*="dbeafe"] {
+    background: var(--admin-primary-100) !important;
+  }
+
+  &[style*="bfdbfe"] {
+    background: var(--admin-primary-200) !important;
+  }
+}
+
+// Спеціальні стилі для Dashboard з помаранчевими кольорами
+.dashboard {
+  // Заголовок Dashboard - майже чорний
+  .welcome-section h1 {
+    color: #1a1a1a !important; // --granite-black з палітри сайту
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+  }
+
+  .admin-card {
+    &--blue {
+      --accent-color: var(--admin-primary-600) !important;
+
+      .admin-card__icon {
+        background: var(--admin-gradient-primary) !important;
+      }
+    }
+  }
+
+  .quick-action {
+    &:nth-child(1) span {
+      color: var(--admin-primary-600) !important;
+    }
+    &:nth-child(3) span {
+      color: var(--admin-primary-bright) !important;
+    }
+  }
+}
+
+// Анімації з помаранчевими кольорами
+@keyframes orangePulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--admin-primary-400);
+  }
+  70% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.btn-primary:focus {
+  animation: orangePulse 0.6s ease-out;
+}
+
+// Таблиці та списки
+.table-row {
+  &:hover {
+    background: var(--admin-primary-50) !important;
+  }
+
+  &.selected {
+    background: var(--admin-primary-100) !important;
+    border-color: var(--admin-primary-300) !important;
+  }
+}
+
+// Модальні вікна
+.modal-header {
+  background: var(--admin-gradient-light) !important;
+
+  h2, h3 {
+    color: var(--admin-primary-800) !important;
+  }
+}
+
+// Фільтри та пошук
+.filter-select:focus,
+.search-input:focus,
+.bulk-select:focus {
+  border-color: var(--admin-primary-500) !important;
+  box-shadow: 0 0 0 3px var(--admin-primary-100) !important;
+}
+
+// Перемикачі мов
+.language-tab {
+  &:hover {
+    background: var(--admin-primary-50) !important;
+    border-color: var(--admin-primary-300) !important;
+  }
+
+  &.active {
+    background: var(--admin-primary-600) !important;
+    color: var(--admin-white) !important;
+    border-color: var(--admin-primary-600) !important;
+  }
+}

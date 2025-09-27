@@ -1,10 +1,13 @@
 import React from 'react'
 import { GalleryImagesList, GalleryImageEditor, GalleryUploadModal } from '../../components/admin/gallery'
+import AdminNavigation from '../../components/admin/navigation/AdminNavigation'
 import '../../components/admin/products/products-admin.scss'
 
 const GalleryManager = () => {
   return (
     <div className="gallery-manager">
+      <AdminNavigation pageType="gallery" />
+
       <div className="gallery-manager-header">
         <h1>Управління галереєю</h1>
         <p>Додавайте, редагуйте та організовуйте зображення проектів</p>

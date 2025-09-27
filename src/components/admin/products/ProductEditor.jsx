@@ -278,13 +278,16 @@ const ProductEditor = () => {
               </div>
 
               <div className="form-group">
-                <label>URL зображення</label>
+                <label>URL зображення (необов'язково)</label>
                 <input
-                  type="url"
-                  placeholder="https://example.com/image.jpg"
+                  type="text"
+                  placeholder="https://example.com/image.jpg або залиште порожнім"
                   value={formData.image}
                   onChange={(e) => handleInputChange('image', e.target.value)}
                 />
+                <small className="form-hint">
+                  Можна залишити порожнім або вказати повний URL до зображення
+                </small>
               </div>
             </div>
 

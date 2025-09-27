@@ -120,6 +120,13 @@ jest.mock('./pages/admin/GalleryManager', () => {
   }
 })
 
+jest.mock('./pages/admin/ArticlesManager', () => {
+  const mockReact = require('react')
+  return function MockArticlesManager() {
+    return mockReact.createElement('div', { 'data-testid': 'admin-articles' }, 'Articles Manager')
+  }
+})
+
 jest.mock('./components/admin/auth', () => ({
   ProtectedRoute: ({ children }) => {
     const mockReact = require('react')
@@ -135,6 +142,25 @@ jest.mock('./stores/authStore', () => ({
     login: jest.fn(),
     logout: jest.fn(),
     checkSession: jest.fn()
+  })
+}))
+
+jest.mock('./stores/adminArticlesStore', () => ({
+  __esModule: true,
+  default: () => ({
+    articles: [],
+    currentArticle: null,
+    isLoading: false,
+    isEditModalOpen: false,
+    isCreateModalOpen: false,
+    loadArticles: jest.fn(),
+    addArticle: jest.fn(),
+    updateArticle: jest.fn(),
+    deleteArticle: jest.fn(),
+    openCreateModal: jest.fn(),
+    openEditModal: jest.fn(),
+    closeCreateModal: jest.fn(),
+    closeEditModal: jest.fn()
   })
 }))
 
