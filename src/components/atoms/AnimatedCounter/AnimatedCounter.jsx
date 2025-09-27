@@ -1,21 +1,36 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { motion, useAnimation, useInView } from 'framer-motion'
 
-const AnimatedCounter = ({ 
-  targetNumber, 
-  duration = 2000, 
-  delay = 0, 
-  suffix = '', 
+const AnimatedCounter = ({
+  targetNumber,
+  duration = 2000,
+  delay = 0,
+  suffix = '',
   step = 1,
-  onComplete 
+  onComplete
 }) => {
   const [currentNumber, setCurrentNumber] = useState(0)
   const [hasStarted, setHasStarted] = useState(false)
+  const [isInView, setIsInView] = useState(false)
   const elementRef = useRef(null)
-  const controls = useAnimation()
-  
-  // Check if element is in view
-  const isInView = useInView(elementRef, { threshold: 0.3, once: true })
+
+  // Check if element is in view using Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
   
   // Parse target number (remove + suffix if present)
   const parseTargetNumber = (target) => {
@@ -33,13 +48,7 @@ const AnimatedCounter = ({
 
     const timer = setTimeout(() => {
       setHasStarted(true)
-      
-      // Animate opacity
-      controls.start({
-        opacity: 1,
-        transition: { duration: 0.3 }
-      })
-      
+
       const steps = Math.ceil(finalTarget / step)
       const stepDuration = duration / steps
       let currentStep = 0
@@ -47,7 +56,7 @@ const AnimatedCounter = ({
       const interval = setInterval(() => {
         currentStep += 1
         const newValue = Math.min(currentStep * step, finalTarget)
-        
+
         setCurrentNumber(newValue)
 
         if (newValue >= finalTarget) {
@@ -62,17 +71,19 @@ const AnimatedCounter = ({
     }, delay)
 
     return () => clearTimeout(timer)
-  }, [isInView, hasStarted, finalTarget, duration, delay, step, controls, onComplete])
+  }, [isInView, hasStarted, finalTarget, duration, delay, step, onComplete])
 
   return (
-    <motion.span 
+    <span
       ref={elementRef}
       className="hero-stat-number animated-counter"
-      initial={{ opacity: 0.3 }}
-      animate={controls}
+      style={{
+        opacity: hasStarted ? 1 : 0.3,
+        transition: 'opacity 0.3s ease-in-out'
+      }}
     >
       {currentNumber}{suffix}
-    </motion.span>
+    </span>
   )
 }
 
