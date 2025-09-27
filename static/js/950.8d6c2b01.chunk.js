@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_eurogranite=self.webpackChunkproject_eurogranite||[]).push([[950],{1950:(e,r,t)=>{t.r(r),t.d(r,{default:()=>a});t(5043);var s=t(9913),u=t(579);const a=()=>(0,u.jsx)(s.Q,{})}}]);
+//# sourceMappingURL=950.8d6c2b01.chunk.js.map
