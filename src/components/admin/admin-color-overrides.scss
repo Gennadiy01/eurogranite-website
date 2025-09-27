@@ -19,13 +19,19 @@
   --admin-blue-900: var(--admin-primary-900);
 }
 
-// Глобальні стилі для всіх кнопок в адмін панелі
-.btn,
-button {
-  &.btn-primary,
-  &:not([class*="btn-"]):not([class*="action-"]):not([class*="quick-"]):not([class*="logout"]) {
-    @extend .btn;
-    @extend .btn-primary;
+// Стилі для кнопок ТІЛЬКИ в адмін панелі
+.admin-panel,
+.dashboard,
+.products-manager,
+.gallery-manager,
+.articles-manager {
+  .btn,
+  button {
+    &.btn-primary,
+    &:not([class*="btn-"]):not([class*="action-"]):not([class*="quick-"]):not([class*="logout"]) {
+      @extend .btn;
+      @extend .btn-primary;
+    }
   }
 }
 
@@ -171,27 +177,33 @@ button {
   }
 }
 
-// Глобальні перевизначення для всіх старих синіх кольорів
-* {
-  // Заміна всіх входжень синього на помаранчевий
-  &[style*="3b82f6"] {
-    background: var(--admin-primary-600) !important;
-  }
+// Перевизначення для старих синіх кольорів ТІЛЬКИ в адмін панелі
+.admin-panel,
+.dashboard,
+.products-manager,
+.gallery-manager,
+.articles-manager {
+  * {
+    // Заміна всіх входжень синього на помаранчевий
+    &[style*="3b82f6"] {
+      background: var(--admin-primary-600) !important;
+    }
 
-  &[style*="1d4ed8"] {
-    background: var(--admin-primary-700) !important;
-  }
+    &[style*="1d4ed8"] {
+      background: var(--admin-primary-700) !important;
+    }
 
-  &[style*="2563eb"] {
-    background: var(--admin-primary-800) !important;
-  }
+    &[style*="2563eb"] {
+      background: var(--admin-primary-800) !important;
+    }
 
-  &[style*="dbeafe"] {
-    background: var(--admin-primary-100) !important;
-  }
+    &[style*="dbeafe"] {
+      background: var(--admin-primary-100) !important;
+    }
 
-  &[style*="bfdbfe"] {
-    background: var(--admin-primary-200) !important;
+    &[style*="bfdbfe"] {
+      background: var(--admin-primary-200) !important;
+    }
   }
 }
 
