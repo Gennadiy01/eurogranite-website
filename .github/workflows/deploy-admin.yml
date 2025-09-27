@@ -39,26 +39,6 @@ jobs:
           CI: true
           NODE_OPTIONS: "--max_old_space_size=2048"
 
-      - name: Temporarily reduce large data files for build
-        run: |
-          # Backup original data files
-          cp src/constants/galleryData.js src/constants/galleryData.js.backup
-          cp src/constants/productsData.js src/constants/productsData.js.backup
-
-          # Create minimal gallery data for build
-          echo "export const projectCategories = [];" > src/constants/galleryData.js
-          echo "export const galleryProjects = [];" >> src/constants/galleryData.js
-          echo "export const getProjectsByCategory = () => [];" >> src/constants/galleryData.js
-          echo "export const getAllProjects = () => [];" >> src/constants/galleryData.js
-          echo "export const getProjectById = () => null;" >> src/constants/galleryData.js
-
-          # Create minimal products data for build (keep first 3 products only)
-          head -50 src/constants/productsData.js > temp_products.js
-          echo "]" >> temp_products.js
-          echo "" >> temp_products.js
-          echo "export default PRODUCTS_DATA" >> temp_products.js
-          mv temp_products.js src/constants/productsData.js
-
       - name: Build project with admin features
         run: npm run build
         env:
@@ -66,12 +46,6 @@ jobs:
           REACT_APP_ADMIN_MODE: true
           NODE_OPTIONS: "--max_old_space_size=4096"
           GENERATE_SOURCEMAP: false
-          NODE_ENV: production
-
-      - name: Restore original data files
-        run: |
-          mv src/constants/galleryData.js.backup src/constants/galleryData.js
-          mv src/constants/productsData.js.backup src/constants/productsData.js
 
       - name: Bundle size analysis
         run: npm run bundle:check
