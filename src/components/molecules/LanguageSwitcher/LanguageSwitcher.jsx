@@ -35,6 +35,7 @@ const LanguageSwitcher = ({ className = '' }) => {
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef(null)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
+  // eslint-disable-next-line no-unused-vars
   const location = useRouterLocationSafe()
 
   // Prioritize URL lang over store lang

@@ -23,12 +23,8 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
-// Check if we're in static mode (for production builds)
-const isStaticMode = () => {
-  return typeof window !== 'undefined' && window.__INITIAL_STATE__
-}
-
-// Static App component for production
+// Static App component for production (unused - kept for future reference)
+// eslint-disable-next-line no-unused-vars
 const StaticApp = () => {
   const { setLanguage } = useLanguageStore()
 
