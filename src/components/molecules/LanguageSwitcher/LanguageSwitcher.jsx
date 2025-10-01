@@ -42,20 +42,9 @@ const LanguageSwitcher = ({ className = '' }) => {
   const currentLang = availableLanguages.find(lang => lang.code === activeLang)
   const otherLanguages = availableLanguages.filter(lang => lang.code !== activeLang)
 
-  // Get current page - hybrid approach for both static and dynamic modes
+  // Get current page - always use current URL path
   const getCurrentPage = () => {
-    // For static mode (production)
-    if (typeof window !== 'undefined' && window.__INITIAL_STATE__) {
-      return window.__INITIAL_STATE__.page || ''
-    }
-
-    // For dynamic mode (development) - try router location first
-    if (location && location.pathname) {
-      const route = parseRoute(location.pathname)
-      return route.page || ''
-    }
-
-    // Fallback: parse current URL path directly
+    // Always parse current URL path for accurate page detection
     const currentPath = getCurrentPath()
     const route = parseRoute(currentPath)
     return route.page || ''
