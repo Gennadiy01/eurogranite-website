@@ -195,12 +195,7 @@ const DynamicApp = () => {
 
 // Main App component that chooses between static and dynamic mode
 function App() {
-  // Use static mode if __INITIAL_STATE__ is available (production)
-  // Use dynamic mode for development
-  if (isStaticMode()) {
-    return <StaticApp />
-  }
-
+  // Always use dynamic mode with React Router for proper navigation
   return <DynamicApp />
 }
 

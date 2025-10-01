@@ -46,8 +46,8 @@ const generateSchemaData = (language, page) => {
     "@type": "Organization",
     "name": currentData.name,
     "description": currentData.description,
-    "url": "https://gennadiy01.github.io/eurogranite-website/",
-    "logo": "https://gennadiy01.github.io/eurogranite-website/logo192.png",
+    "url": "https://gennadiy01.github.io/",
+    "logo": "https://gennadiy01.github.io/logo192.png",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": currentData.addressLocality,
@@ -67,7 +67,7 @@ const generateSchemaData = (language, page) => {
     "@type": "LocalBusiness",
     "name": currentData.name,
     "description": currentData.description,
-    "url": "https://gennadiy01.github.io/eurogranite-website/",
+    "url": "https://gennadiy01.github.io/",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": currentData.addressLocality,
@@ -221,7 +221,7 @@ const getSeoData = (language, page) => {
 
 // Функція для генерації hreflang тегів
 const generateHreflangTags = (page) => {
-  const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
+  const baseUrl = 'https://eurogranite.com.ua'
 
   return languages.map(lang => {
     // All languages now have their own subdirectories
@@ -260,7 +260,7 @@ const generatePageHTML = (language, page) => {
   const schemaData = generateSchemaData(language, page)
 
   // Set canonical URL
-  const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
+  const baseUrl = 'https://eurogranite.com.ua'
   const canonicalUrl = `${baseUrl}/${language}/${page ? page + '/' : ''}`
 
   // Set language codes
@@ -271,7 +271,7 @@ const generatePageHTML = (language, page) => {
 <html lang="${langCode}">
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/eurogranite-website/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
 
@@ -305,11 +305,11 @@ const generatePageHTML = (language, page) => {
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
-    <link rel="apple-touch-icon" href="/eurogranite-website/logo192.png" />
-    <link rel="manifest" href="/eurogranite-website/manifest.json" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- Preload critical assets -->
-    ${mainCssFile ? `<link href="/eurogranite-website/static/css/${mainCssFile}" rel="stylesheet">` : ''}
+    ${mainCssFile ? `<link href="/static/css/${mainCssFile}" rel="stylesheet">` : ''}
 
     <!-- Schema.org JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -331,7 +331,7 @@ const generatePageHTML = (language, page) => {
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    ${mainJsFile ? `<script defer="defer" src="/eurogranite-website/static/js/${mainJsFile}"></script>` : ''}
+    ${mainJsFile ? `<script defer="defer" src="/static/js/${mainJsFile}"></script>` : ''}
 </body>
 </html>`
 }
@@ -399,7 +399,7 @@ const notFoundTemplate = () => {
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/eurogranite-website/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Page Not Found - EuroGranite" />
@@ -410,11 +410,11 @@ const notFoundTemplate = () => {
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
-    <link rel="apple-touch-icon" href="/eurogranite-website/logo192.png" />
-    <link rel="manifest" href="/eurogranite-website/manifest.json" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
     <title>Page Not Found | EuroGranite</title>
 
-    ${mainCssFile ? `<link href="/eurogranite-website/static/css/${mainCssFile}" rel="stylesheet">` : ''}
+    ${mainCssFile ? `<link href="/static/css/${mainCssFile}" rel="stylesheet">` : ''}
 
     <!-- Set initial state for React to show 404 page -->
     <script>
@@ -445,7 +445,7 @@ const notFoundTemplate = () => {
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    ${mainJsFile ? `<script defer="defer" src="/eurogranite-website/static/js/${mainJsFile}"></script>` : ''}
+    ${mainJsFile ? `<script defer="defer" src="/static/js/${mainJsFile}"></script>` : ''}
 </body>
 </html>`
 }

@@ -395,10 +395,10 @@
 }
 
 .about-cta-button:hover {
-  background-color: var(--accent-orange-hover);
+  background-color: var(--white);
+  color: var(--neutral-900);
   transform: translateY(-2px);
   text-decoration: none;
-  color: var(--white);
 }
 
 /* Responsive Design - оновлено відповідно до Design System */
