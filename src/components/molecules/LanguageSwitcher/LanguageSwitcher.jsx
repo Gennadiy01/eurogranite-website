@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import useLanguageStore from '../../../stores/languageStore'
 import { createLocalizedPath } from '../../../utils/urlUtils'
 import { parseRoute, getCurrentPath } from '../../../utils/routingUtils'
@@ -29,14 +30,17 @@ const useRouterLocationSafe = () => {
 }
 
 const LanguageSwitcher = ({ className = '' }) => {
+  const { lang: urlLang } = useParams()
   const { currentLanguage, availableLanguages } = useLanguageStore()
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef(null)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
   const location = useRouterLocationSafe()
 
-  const currentLang = availableLanguages.find(lang => lang.code === currentLanguage)
-  const otherLanguages = availableLanguages.filter(lang => lang.code !== currentLanguage)
+  // Prioritize URL lang over store lang
+  const activeLang = urlLang || currentLanguage || 'en'
+  const currentLang = availableLanguages.find(lang => lang.code === activeLang)
+  const otherLanguages = availableLanguages.filter(lang => lang.code !== activeLang)
 
   // Get current page - hybrid approach for both static and dynamic modes
   const getCurrentPage = () => {

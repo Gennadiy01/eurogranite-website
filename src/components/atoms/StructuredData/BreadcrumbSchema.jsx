@@ -7,7 +7,7 @@ const BreadcrumbSchema = ({ currentLanguage: propLanguage, pagePath }) => {
 
   // Use prop language or store language
   const currentLang = propLanguage || currentLanguage || 'en'
-  const baseUrl = 'https://gennadiy01.github.io/eurogranite-website'
+  const baseUrl = 'https://gennadiy01.github.io'
 
   // Parse current path from window.location or use prop
   const getCurrentPath = () => {
@@ -59,7 +59,7 @@ const BreadcrumbSchema = ({ currentLanguage: propLanguage, pagePath }) => {
 
   // Parse current path to build breadcrumbs
   const buildBreadcrumbs = () => {
-    const path = getCurrentPath().replace('/eurogranite-website', '')
+    const path = getCurrentPath().replace('', '')
     const segments = path.split('/').filter(segment => segment !== '')
 
     const breadcrumbs = []

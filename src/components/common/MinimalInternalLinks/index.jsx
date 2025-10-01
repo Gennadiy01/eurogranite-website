@@ -3,8 +3,8 @@ import './minimal-internal-links.css'
 
 const MinimalInternalLinks = ({ currentLanguage = 'en' }) => {
   // Detect if we're in development or production
-  const isDev = process.env.NODE_ENV === 'development'
-  const baseUrl = isDev ? '' : '/eurogranite-website'
+  // Changed to empty string for Hostinger deployment
+  const baseUrl = ''
 
   const content = {
     en: {

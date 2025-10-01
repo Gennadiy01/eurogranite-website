@@ -24,18 +24,18 @@ const StructuredData = ({ data, type = 'default' }) => {
   const generateOrganizationSchema = () => ({
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://gennadiy01.github.io/eurogranite-website/#organization",
+    "@id": "https://gennadiy01.github.io/#organization",
     "name": "EuroGranite",
     "alternateName": "EuroGranite Ukraine",
     "description": "Premium granite products manufacturer from Ukraine specializing in export to European markets. High-quality granite pavers, slabs, and custom processing with 15+ years of experience.",
-    "url": "https://gennadiy01.github.io/eurogranite-website/",
+    "url": "https://gennadiy01.github.io/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://gennadiy01.github.io/eurogranite-website/logo192.png",
+      "url": "https://gennadiy01.github.io/logo192.png",
       "width": 192,
       "height": 192
     },
-    "image": "https://gennadiy01.github.io/eurogranite-website/images/hero/Im_Hero-800.webp",
+    "image": "https://gennadiy01.github.io/images/hero/Im_Hero-800.webp",
     "foundingDate": "2008",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
@@ -92,14 +92,14 @@ const StructuredData = ({ data, type = 'default' }) => {
   const generateLocalBusinessSchema = () => ({
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "Manufacturer"],
-    "@id": "https://gennadiy01.github.io/eurogranite-website/#business",
+    "@id": "https://gennadiy01.github.io/#business",
     "name": "EuroGranite",
     "image": [
-      "https://gennadiy01.github.io/eurogranite-website/images/hero/Im_Hero-800.webp",
-      "https://gennadiy01.github.io/eurogranite-website/images/advantages/advantages-800.webp"
+      "https://gennadiy01.github.io/images/hero/Im_Hero-800.webp",
+      "https://gennadiy01.github.io/images/advantages/advantages-800.webp"
     ],
     "description": "Leading manufacturer of high-quality granite products with over 15 years of experience serving European customers. Specializing in granite pavers, slabs, and custom processing.",
-    "url": "https://gennadiy01.github.io/eurogranite-website/",
+    "url": "https://gennadiy01.github.io/",
     "telephone": "+380-XX-XXX-XXXX", // Add real phone when available
     "priceRange": "$$-$$$",
     "openingHoursSpecification": {
@@ -138,7 +138,7 @@ const StructuredData = ({ data, type = 'default' }) => {
           "priceRange": "€25-€150",
           "seller": {
             "@type": "Organization",
-            "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+            "@id": "https://gennadiy01.github.io/#organization"
           },
           "itemOffered": {
             "@type": "Product",
@@ -152,7 +152,7 @@ const StructuredData = ({ data, type = 'default' }) => {
             },
             "manufacturer": {
               "@type": "Organization",
-              "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+              "@id": "https://gennadiy01.github.io/#organization"
             },
             "offers": {
               "@type": "AggregateOffer",
@@ -163,7 +163,7 @@ const StructuredData = ({ data, type = 'default' }) => {
               "offerCount": "50",
               "seller": {
                 "@type": "Organization",
-                "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+                "@id": "https://gennadiy01.github.io/#organization"
               }
             },
             "aggregateRating": {
@@ -182,7 +182,7 @@ const StructuredData = ({ data, type = 'default' }) => {
           "priceRange": "€40-€200",
           "seller": {
             "@type": "Organization",
-            "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+            "@id": "https://gennadiy01.github.io/#organization"
           },
           "itemOffered": {
             "@type": "Product",
@@ -196,7 +196,7 @@ const StructuredData = ({ data, type = 'default' }) => {
             },
             "manufacturer": {
               "@type": "Organization",
-              "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+              "@id": "https://gennadiy01.github.io/#organization"
             },
             "offers": {
               "@type": "AggregateOffer",
@@ -207,7 +207,7 @@ const StructuredData = ({ data, type = 'default' }) => {
               "offerCount": "75",
               "seller": {
                 "@type": "Organization",
-                "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+                "@id": "https://gennadiy01.github.io/#organization"
               }
             },
             "aggregateRating": {
@@ -246,9 +246,9 @@ const StructuredData = ({ data, type = 'default' }) => {
     },
     "manufacturer": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+      "@id": "https://gennadiy01.github.io/#organization"
     },
-    "image": productData?.image || "https://gennadiy01.github.io/eurogranite-website/images/granite/default.webp",
+    "image": productData?.image || "https://gennadiy01.github.io/images/granite/default.webp",
     "offers": {
       "@type": "AggregateOffer",
       "availability": "https://schema.org/InStock",
@@ -258,7 +258,7 @@ const StructuredData = ({ data, type = 'default' }) => {
       "offerCount": productData?.offerCount || "25",
       "seller": {
         "@type": "Organization",
-        "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+        "@id": "https://gennadiy01.github.io/#organization"
       }
     },
     "aggregateRating": {
@@ -295,7 +295,7 @@ const StructuredData = ({ data, type = 'default' }) => {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `https://gennadiy01.github.io/eurogranite-website${item.url}`
+      "item": `https://gennadiy01.github.io${item.url}`
     })) || []
   })
 
@@ -305,19 +305,19 @@ const StructuredData = ({ data, type = 'default' }) => {
     "@type": "WebPage",
     "name": pageData?.title || "EuroGranite - Premium Granite Products",
     "description": pageData?.description || "High-quality granite from Ukrainian quarries",
-    "url": pageData?.url || "https://gennadiy01.github.io/eurogranite-website/",
+    "url": pageData?.url || "https://gennadiy01.github.io/",
     "inLanguage": pageData?.language || "en",
     "isPartOf": {
       "@type": "WebSite",
-      "@id": "https://gennadiy01.github.io/eurogranite-website/#website"
+      "@id": "https://gennadiy01.github.io/#website"
     },
     "about": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+      "@id": "https://gennadiy01.github.io/#organization"
     },
     "mainEntity": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/eurogranite-website/#organization"
+      "@id": "https://gennadiy01.github.io/#organization"
     }
   })
 

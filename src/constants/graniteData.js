@@ -43,8 +43,8 @@ export const graniteTypes = [
           de: 'Gabbro',
           pl: 'Gabbro'
         },
-        imageUrl: '/eurogranite-website/images/textures/black/gabro.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/black/gabro.jpg',
+        imageUrl: '/images/textures/black/gabro.jpg',
+        thumbUrl: '/images/textures/thumbs/black/gabro.jpg',
         description: {
           en: 'Black fine-grained anorthosite. A rich black color when polished. Quarry location: The village of Kamianobrodske, Zhytomyr region. Features: Extremely durable, ideal for paving stones, curbs, and facade panels.',
           ua: 'Чорний дрібнозернистий анортозит. Насичений чорний колір при поліруванні. Видобуток: Село Кам\'янобрідське, Житомирська область. Особливості: Надзвичайно міцний, ідеальний для бруківки, бордюрів та фасадних панелей.',
@@ -104,8 +104,8 @@ export const graniteTypes = [
           de: 'Real Grey',
           pl: 'Real Grey'
         },
-        imageUrl: '/eurogranite-website/images/textures/gray/pokost.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/gray/pokost.jpg',
+        imageUrl: '/images/textures/gray/pokost.jpg',
+        thumbUrl: '/images/textures/thumbs/gray/pokost.jpg',
         description: {
           en: 'Grey granite. Steel gray with black and white inclusions. Quarry location: The Pokostivske deposit, Zhytomyr region. Features: One of the most common Ukrainian granites, used for stairs, countertops, and facades.',
           ua: 'Сірий граніт. Сталево-сірий з чорними та білими вкрапленнями. Видобуток: Покостівське родовище, Житомирська область. Особливості: Найпоширеніший український граніт, використовується для сходів, стільниць та фасадів.',
@@ -165,8 +165,8 @@ export const graniteTypes = [
           de: 'Verde Oliva',
           pl: 'Verde Oliva'
         },
-        imageUrl: '/eurogranite-website/images/textures/green/maslavske.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/green/maslavske.jpg',
+        imageUrl: '/images/textures/green/maslavske.jpg',
+        thumbUrl: '/images/textures/thumbs/green/maslavske.jpg',
         description: {
           en: 'Green fine-grained granite. Green with a unique pattern. Quarry location: The Maslaivske deposit, Zhytomyr region. Features: High resistance to heat and UV radiation.',
           ua: 'Зелений дрібнозернистий граніт. Зелений з унікальним візерунком. Видобуток: Маслаївське родовище, Житомирська область. Особливості: Висока стійкість до спеки та ультрафіолету.',
@@ -189,8 +189,8 @@ export const graniteTypes = [
           de: 'Chovnovske',
           pl: 'Chovnovske'
         },
-        imageUrl: '/eurogranite-website/images/textures/green/chovnovske.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/green/chovnovske.jpg',
+        imageUrl: '/images/textures/green/chovnovske.jpg',
+        thumbUrl: '/images/textures/thumbs/green/chovnovske.jpg',
         description: {
           en: 'Green medium-grained granite. Unusual green color with gray and brown inclusions. Quarry location: Chovnova village, Khoroshiv district, Zhytomyr region. Features: High strength, frost resistance, very low water absorption, and resistance to natural climate conditions.',
           ua: 'Зелений середньозернистий граніт. Дуже незвичайний зелений колір з сірими і коричневими вкрапленнями. Видобуток: Село Човнова, Хорошівський район, Житомирська область. Особливості: Висока міцність, морозостійкість, дуже низьке водопоглинання та стійкість до природного клімату.',
@@ -250,8 +250,8 @@ export const graniteTypes = [
           de: 'Rosso Santiago',
           pl: 'Rosso Santiago'
         },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/2-vasylivske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/2-vasylivske-rodovyshhe.jpg',
+        imageUrl: '/images/textures/red-brown/2-vasylivske-rodovyshhe.jpg',
+        thumbUrl: '/images/textures/thumbs/red-brown/2-vasylivske-rodovyshhe.jpg',
         description: {
           en: 'Brown-black coarse-grained granite. Red-brown with black and gray inclusions. Quarry location: The Kapustianske deposit, Kirovohrad region. Features: Strong, resistant to damage and temperature changes, perfect for cladding.',
           ua: 'Коричнево-чорний грубозернистий граніт. Червоно-коричневий з чорними й сірими вкрапленнями. Видобуток: Капустянське родовище, Кіровоградська область. Особливості: Міцний, стійкий до пошкоджень та перепадів температур, ідеальний для облицювання.',
@@ -274,8 +274,8 @@ export const graniteTypes = [
           de: 'Rosa Ravena Extra',
           pl: 'Rosa Ravena Extra'
         },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg',
+        imageUrl: '/images/textures/red-brown/3-didkovytske-rodovyshhe.jpg',
+        thumbUrl: '/images/textures/thumbs/red-brown/3-didkovytske-rodovyshhe.jpg',
         description: {
           en: 'Red-brown with a pinkish tint. Quarry location: The village of Zhadkivka, Korets district, Rivne region. Features: Resistant to moisture and low temperatures.',
           ua: 'Червоно-коричневий із рожевим відтінком. Видобуток: Село Жадківка, Корецький район, Рівненська область. Особливості: Стійкий до вологи та низьких температур.',
@@ -298,8 +298,8 @@ export const graniteTypes = [
           de: 'Rosso Toledo',
           pl: 'Rosso Toledo'
         },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/9-omelyanivske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/9-omelyanivske-rodovyshhe.jpg',
+        imageUrl: '/images/textures/red-brown/9-omelyanivske-rodovyshhe.jpg',
+        thumbUrl: '/images/textures/thumbs/red-brown/9-omelyanivske-rodovyshhe.jpg',
         description: {
           en: 'Carrot orange medium-grained granite. A vibrant carrot-orange with black and gray inclusions. Quarry location: The Omelyanivske deposit, Zhytomyr region. Features: One of the most popular granites in Ukraine, used for cladding facades, bridges, and embankments.',
           ua: 'Морквяно-помаранчевий середньозернистий граніт. Морквяно-помаранчевий з чорними та сірими вкрапленнями. Видобуток: Омелянівське родовище, Житомирська область. Особливості: Один із найпопулярніших в Україні, використовується для облицювання фасадів, мостів та набережних.',
@@ -322,8 +322,8 @@ export const graniteTypes = [
           de: 'Leopard',
           pl: 'Leopard'
         },
-        imageUrl: '/eurogranite-website/images/textures/pink-gray/leopard-gg1a.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/pink-gray/leopard-gg1a.jpg',
+        imageUrl: '/images/textures/pink-gray/leopard-gg1a.jpg',
+        thumbUrl: '/images/textures/thumbs/pink-gray/leopard-gg1a.jpg',
         description: {
           en: 'Pinkish-grey coarse-grained granite. Dark gray with pink and beige inclusions, resembling a leopard\'s skin. Quarry location: The Kornynske deposit, Zhytomyr region. Features: High strength and resistance to temperature changes.',
           ua: 'Рожево-сірий грубозернистий граніт. Темно-сірий з рожевими та бежевими вкрапленнями, що нагадує шкіру леопарда. Видобуток: Корнинське родовище, Житомирська область. Особливості: Висока міцність та стійкість до перепадів температур.',
@@ -346,8 +346,8 @@ export const graniteTypes = [
           de: 'Maple Red',
           pl: 'Maple Red'
         },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/maple-red-gr6.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/maple-red-gr6.jpg',
+        imageUrl: '/images/textures/red-brown/maple-red-gr6.jpg',
+        thumbUrl: '/images/textures/thumbs/red-brown/maple-red-gr6.jpg',
         description: {
           en: 'Red fine-grained granite. A bright crimson-red with small black inclusions. Quarry location: The village of Liznyky, Zhytomyr region. Features: Considered an elite granite due to its popularity and high price, used for monuments and facades.',
           ua: 'Червоний дрібнозернистий граніт. Яскравий малиново-червоний з дрібними чорними вкрапленнями. Видобуток: Село Лізники, Житомирська область. Особливості: Вважається елітним через свою популярність та високу ціну, використовується для монументів та фасадів.',
@@ -370,8 +370,8 @@ export const graniteTypes = [
           de: 'Star of Ukraine',
           pl: 'Star of Ukraine'
         },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/5-kapustynske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/5-kapustynske-rodovyshhe.jpg',
+        imageUrl: '/images/textures/red-brown/5-kapustynske-rodovyshhe.jpg',
+        thumbUrl: '/images/textures/thumbs/red-brown/5-kapustynske-rodovyshhe.jpg',
         description: {
           en: 'Light red-brown fine-grained granite. Light brown with a pinkish or dark brown tint. Quarry location: The Didkovytske deposit, Zhytomyr region. Features: Resistant to temperature fluctuations, used for countertops and monuments.',
           ua: 'Світло червоно-коричневий дрібнозернистий граніт. Світло-коричневий з рожевим або темно-коричневим відтінком. Видобуток: Дідковицьке родовище, Житомирська область. Особливості: Стійкий до перепадів температур, використовується для стільниць та пам\'ятників.',
@@ -394,8 +394,8 @@ export const graniteTypes = [
           de: 'Ukrainian Autumn',
           pl: 'Ukrainian Autumn'
         },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/6-leznykivske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/6-leznykivske-rodovyshhe.jpg',
+        imageUrl: '/images/textures/red-brown/6-leznykivske-rodovyshhe.jpg',
+        thumbUrl: '/images/textures/thumbs/red-brown/6-leznykivske-rodovyshhe.jpg',
         description: {
           en: 'Brown or beige with shades of gray, green, and gold fine-grained granite. Quarry location: The Vasylivske deposit, Zhytomyr region. Features: Popular for its autumnal colors and resistance to mechanical damage and temperature changes.',
           ua: 'Коричневий або бежевий з відтінками сірого, зеленого та золотого дрібнозернистий граніт. Видобуток: Василівське родовище, Житомирська область. Особливості: Популярний завдяки осіннім відтінкам та стійкості до механічних пошкоджень та перепадів температур.',
@@ -418,8 +418,8 @@ export const graniteTypes = [
           de: 'Flower of Ukraine',
           pl: 'Flower of Ukraine'
         },
-        imageUrl: '/eurogranite-website/images/textures/red-brown/8-mezhyritske-rodovyshhe.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/red-brown/8-mezhyritske-rodovyshhe.jpg',
+        imageUrl: '/images/textures/red-brown/8-mezhyritske-rodovyshhe.jpg',
+        thumbUrl: '/images/textures/thumbs/red-brown/8-mezhyritske-rodovyshhe.jpg',
         description: {
           en: 'Pinkish-brown with dark inclusions. Quarry location: The Mezhyritske deposit, Zhytomyr region. Features: Resistant to scratches, impacts, and moisture.',
           ua: 'Рожево-коричневий з темними вкрапленнями. Видобуток: Межиріцьке родовище, Житомирська область. Особливості: Стійкий до подряпин, ударів та вологи.',
@@ -479,8 +479,8 @@ export const graniteTypes = [
           de: 'Ukrainian Labradorite Volga Blue',
           pl: 'Ukrainian Labradorite Volga Blue'
         },
-        imageUrl: '/eurogranite-website/images/textures/labradorite/labro.jpg',
-        thumbUrl: '/eurogranite-website/images/textures/thumbs/labradorite/labro.jpg',
+        imageUrl: '/images/textures/labradorite/labro.jpg',
+        thumbUrl: '/images/textures/thumbs/labradorite/labro.jpg',
         description: {
           en: 'A black-blue rock with metallic sheen and iridescence. Quarry location: The Pivnichne deposit, village of Osnyky, Zhytomyr region. Features: Used for wall cladding, flooring, and monuments.',
           ua: 'Чорно-синя порода з металевим блиском та іризацією. Видобуток: Північне родовище, село Осники, Житомирська область. Особливості: Використовується для облицювання стін, підлогового покриття та пам\'ятників.',

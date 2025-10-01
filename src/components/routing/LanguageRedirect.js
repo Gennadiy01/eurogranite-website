@@ -9,7 +9,7 @@ const LanguageRedirect = () => {
 
   useEffect(() => {
     // Get basename based on environment
-    const basename = process.env.NODE_ENV === 'development' ? '' : '/eurogranite-website'
+    const basename = ''
 
     // Get the current path without basename
     const currentPath = location.pathname.replace(basename, '')

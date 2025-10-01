@@ -332,7 +332,7 @@ export const productsData = {
         de: '21 €/m²',
         pl: '21 €/m²'
       },
-      image: '/eurogranite-website/images/products/gabro-200x100x50.jpg',
+      image: '/images/products/gabro-200x100x50.jpg',
       name: {
         ua: 'Габро пиляна з термообробкою',
         en: 'Gabbro Sawn with Thermal Treatment',
@@ -368,7 +368,7 @@ export const productsData = {
         de: '41 €/m²',
         pl: '41 €/m²'
       },
-      image: '/eurogranite-website/images/products/maslavske-200x100x50.jpg',
+      image: '/images/products/maslavske-200x100x50.jpg',
       name: {
         ua: 'Зелений Маславський граніт',
         en: 'Green Maslavsky Granite',
@@ -404,7 +404,7 @@ export const productsData = {
         de: '29 €/m²',
         pl: '29 €/m²'
       },
-      image: '/eurogranite-website/images/products/korets-extra-100x100x50.jpg',
+      image: '/images/products/korets-extra-100x100x50.jpg',
       name: {
         ua: 'Корец Екстра пиляно-колота',
         en: 'Korets Extra Sawn-Split',
@@ -440,7 +440,7 @@ export const productsData = {
         de: '32 €/m²',
         pl: '32 €/m²'
       },
-      image: '/eurogranite-website/images/products/korets-light-200x100x50.jpg',
+      image: '/images/products/korets-light-200x100x50.jpg',
       name: {
         ua: 'Корец світлий повнопил',
         en: 'Korets Light Full Sawn',
@@ -476,7 +476,7 @@ export const productsData = {
         de: '35 €/m²',
         pl: '35 €/m²'
       },
-      image: '/eurogranite-website/images/products/omelyanivske-200x100x50.jpg',
+      image: '/images/products/omelyanivske-200x100x50.jpg',
       name: {
         ua: 'Омелянівський граніт',
         en: 'Omelyanivske Granite',
@@ -512,7 +512,7 @@ export const productsData = {
         de: '15 €/m²',
         pl: '15 €/m²'
       },
-      image: '/eurogranite-website/images/products/labradorite-mixed-100x100x60.jpg',
+      image: '/images/products/labradorite-mixed-100x100x60.jpg',
       name: {
         ua: 'Лабрадорит змішаний',
         en: 'Labradorite Mixed',
@@ -548,7 +548,7 @@ export const productsData = {
         de: '27 €/m²',
         pl: '27 €/m²'
       },
-      image: '/eurogranite-website/images/products/pokostivka-200x100x50.jpg',
+      image: '/images/products/pokostivka-200x100x50.jpg',
       name: {
         ua: 'Покостівський граніт',
         en: 'Pokostivka Granite',
@@ -584,7 +584,7 @@ export const productsData = {
         de: '45 €/m²',
         pl: '45 €/m²'
       },
-      image: '/eurogranite-website/images/products/mezheritske-200x100x50.jpg',
+      image: '/images/products/mezheritske-200x100x50.jpg',
       name: {
         ua: 'Межерицький граніт',
         en: 'Mezheritske Granite',
@@ -620,7 +620,7 @@ export const productsData = {
         de: '32 €/m²',
         pl: '32 €/m²'
       },
-      image: '/eurogranite-website/images/products/korets-split-pencil-100x100x80.jpg',
+      image: '/images/products/korets-split-pencil-100x100x80.jpg',
       name: {
         ua: 'Корец колотий з олівця',
         en: 'Korets Split from Pencil',
@@ -656,7 +656,7 @@ export const productsData = {
         de: '19 €/m²',
         pl: '19 €/m²'
       },
-      image: '/eurogranite-website/images/products/labradorite-sawn-200x100x50.jpg',
+      image: '/images/products/labradorite-sawn-200x100x50.jpg',
       name: {
         ua: 'Лабрадорит повнопил',
         en: 'Labradorite Full Sawn',
@@ -692,7 +692,7 @@ export const productsData = {
         de: '40 €/m²',
         pl: '40 €/m²'
       },
-      image: '/eurogranite-website/images/products/chovnivske-200x100x50.jpg',
+      image: '/images/products/chovnivske-200x100x50.jpg',
       name: {
         ua: 'Човнівський граніт',
         en: 'Chovnivske Granite',
@@ -728,7 +728,7 @@ export const productsData = {
         de: '14 €/m²',
         pl: '14 €/m²'
       },
-      image: '/eurogranite-website/images/products/gabbro-split-100x100x50.jpg',
+      image: '/images/products/gabbro-split-100x100x50.jpg',
       name: {
         ua: 'Габро колоте з олівця',
         en: 'Gabbro Split from Pencil',

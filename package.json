@@ -2,7 +2,7 @@
   "name": "project_eurogranite",
   "version": "0.1.1",
   "private": true,
-  "homepage": "https://Gennadiy01.github.io/eurogranite-website",
+  "homepage": ".",
   "dependencies": {
     "@cloudinary/react": "^1.14.3",
     "@cloudinary/url-gen": "^1.22.0",

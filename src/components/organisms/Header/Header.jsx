@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import LanguageSwitcher from '../../molecules/LanguageSwitcher/LanguageSwitcher'
 import useLanguageStore from '../../../stores/languageStore'
 import { createLocalizedPath, BASE_URL } from '../../../utils/urlUtils'
@@ -6,8 +7,10 @@ import { parseRoute, getCurrentPath } from '../../../utils/routingUtils'
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { lang: urlLang } = useParams()
   const { currentLanguage } = useLanguageStore()
-  const lang = currentLanguage || 'en'
+  // Prioritize URL lang over store lang
+  const lang = urlLang || currentLanguage || 'en'
 
   // Get current page for navigation highlighting using centralized routing
   const currentRoute = parseRoute(getCurrentPath())

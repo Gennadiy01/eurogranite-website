@@ -18,7 +18,7 @@ const LocalizedLayout = ({ children }) => {
     } else if (!lang) {
       // Redirect to default language if no language in URL
       const defaultLang = 'en'
-      const basename = process.env.NODE_ENV === 'development' ? '' : '/eurogranite-website'
+      const basename = ''
       const currentPath = location.pathname.replace(basename, '')
       navigate(`/${defaultLang}${currentPath}`, { replace: true })
     } else {

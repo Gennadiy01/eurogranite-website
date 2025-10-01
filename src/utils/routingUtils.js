@@ -74,16 +74,16 @@ export const isValidPage = (page) => {
 export const testRouteParsing = () => {
   const testCases = [
     // Базові випадки
-    '/eurogranite-website/',
-    '/eurogranite-website/products/',
-    '/eurogranite-website/ua/products/',
-    '/eurogranite-website/de/gallery/',
-    '/eurogranite-website/pl/about/',
+    '/',
+    '/products/',
+    '/ua/products/',
+    '/de/gallery/',
+    '/pl/about/',
 
     // Проблемні випадки
-    '/eurogranite-website/de/gallery//',
-    '/eurogranite-website//products/',
-    '/eurogranite-website/ua//about//',
+    '/de/gallery//',
+    '//products/',
+    '/ua//about//',
 
     // Край випадки
     '',
@@ -93,7 +93,7 @@ export const testRouteParsing = () => {
     '/de/gallery',
 
     // Hash роутинг
-    '#/eurogranite-website/products/',
+    '#/products/',
     '#/ua/products/',
   ]
 

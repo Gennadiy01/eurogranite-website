@@ -357,7 +357,7 @@ const PrivacyPolicy = () => {
         <title>{content.title} - EuroGranite</title>
         <meta name="description" content="EuroGranite privacy policy - how we collect, use and protect your personal data when you contact us through our website." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://gennadiy01.github.io/eurogranite-website/${currentLanguage}/privacy-policy/`} />
+        <link rel="canonical" href={`https://gennadiy01.github.io/${currentLanguage}/privacy-policy/`} />
       </Helmet>
 
       <div className="about-page">

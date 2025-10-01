@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://gennadiy01.github.io/eurogranite-website/sitemap.xml
+Sitemap: https://eurogranite.com.ua/sitemap.xml
 
 # Block admin pages and private areas
 Disallow: /admin/

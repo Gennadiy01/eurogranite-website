@@ -74,7 +74,7 @@ const ProductSchema = ({ productType = 'general', currentLanguage, pagePath }) =
     "manufacturer": {
       "@type": "Organization",
       "name": "EuroGranite",
-      "url": "https://gennadiy01.github.io/eurogranite-website/"
+      "url": "https://gennadiy01.github.io/"
     },
     "material": currentData.material || "Granite",
     "category": currentData.category,

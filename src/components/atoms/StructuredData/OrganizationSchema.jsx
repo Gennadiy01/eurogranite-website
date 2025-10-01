@@ -43,9 +43,9 @@ const OrganizationSchema = ({ currentLanguage }) => {
     "@type": "Organization",
     "name": currentData.name,
     "description": currentData.description,
-    "url": "https://gennadiy01.github.io/eurogranite-website/",
-    "logo": "https://gennadiy01.github.io/eurogranite-website/logo192.png",
-    "image": "https://gennadiy01.github.io/eurogranite-website/logo512.png",
+    "url": "https://gennadiy01.github.io/",
+    "logo": "https://gennadiy01.github.io/logo192.png",
+    "image": "https://gennadiy01.github.io/logo512.png",
     "foundingDate": "2020",
     "numberOfEmployees": "10-50",
     "address": {

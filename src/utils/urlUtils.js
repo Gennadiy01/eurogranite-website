@@ -3,7 +3,7 @@
 // Базовий URL для GitHub Pages
 export const BASE_URL = process.env.NODE_ENV === 'development'
   ? ''  // localhost без префіксу
-  : '/eurogranite-website'  // github pages
+  : ''  // github pages
 
 export const DOMAIN = process.env.NODE_ENV === 'development'
   ? 'http://localhost:3001'

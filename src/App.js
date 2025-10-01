@@ -105,7 +105,8 @@ const StaticApp = () => {
 // Dynamic App component for development
 const DynamicApp = () => {
   // Dynamic basename based on environment - for development use no basename
-  const basename = process.env.NODE_ENV === 'development' ? '' : '/eurogranite-website'
+  // Changed to empty string for Hostinger deployment
+  const basename = ''
 
   return (
     <HelmetProvider>

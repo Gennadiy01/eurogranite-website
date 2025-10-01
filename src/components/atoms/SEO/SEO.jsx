@@ -51,7 +51,7 @@ const SEO = ({
         ? `${languagePrefix}/`
         : `${languagePrefix}${canonicalUrl.startsWith('/') ? canonicalUrl : '/' + canonicalUrl}`;
 
-      canonicalLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${fullCanonicalPath}`);
+      canonicalLink.setAttribute('href', `https://gennadiy01.github.io${fullCanonicalPath}`);
     }
 
     // Update Open Graph meta tags
@@ -76,7 +76,7 @@ const SEO = ({
         const fullCanonicalPath = canonicalUrl === '/' || canonicalUrl === ''
           ? `${languagePrefix}/`
           : `${languagePrefix}${canonicalUrl.startsWith('/') ? canonicalUrl : '/' + canonicalUrl}`;
-        ogUrl.setAttribute('content', `https://gennadiy01.github.io/eurogranite-website${fullCanonicalPath}`);
+        ogUrl.setAttribute('content', `https://gennadiy01.github.io${fullCanonicalPath}`);
       }
     }
 
@@ -123,7 +123,7 @@ const SEO = ({
         ? `/${lang}/`
         : `/${lang}${currentPath.startsWith('/') ? currentPath : '/' + currentPath}`;
 
-      hreflangLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${fullPath}`);
+      hreflangLink.setAttribute('href', `https://gennadiy01.github.io${fullPath}`);
       document.head.appendChild(hreflangLink);
     });
 
@@ -136,7 +136,7 @@ const SEO = ({
       ? '/en/'
       : `/en${currentPath.startsWith('/') ? currentPath : '/' + currentPath}`;
 
-    xDefaultLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${defaultPath}`);
+    xDefaultLink.setAttribute('href', `https://gennadiy01.github.io${defaultPath}`);
     document.head.appendChild(xDefaultLink);
 
     // Update html lang attribute

@@ -31,7 +31,7 @@ const OptimizedSEO = ({
 
       return {
         lang: lang === 'ua' ? 'uk' : lang,
-        href: `https://gennadiy01.github.io/eurogranite-website${fullPath}`
+        href: `https://gennadiy01.github.io${fullPath}`
       };
     });
   }, [canonicalUrl]);
@@ -69,7 +69,7 @@ const OptimizedSEO = ({
           canonicalLink.setAttribute('rel', 'canonical');
           document.head.appendChild(canonicalLink);
         }
-        canonicalLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${fullCanonicalPath}`);
+        canonicalLink.setAttribute('href', `https://gennadiy01.github.io${fullCanonicalPath}`);
       }
 
       // Update Open Graph meta tags (batch update)
@@ -84,7 +84,7 @@ const OptimizedSEO = ({
         ogDescElement.setAttribute('content', description);
       }
       if (fullCanonicalPath && ogUrlElement) {
-        ogUrlElement.setAttribute('content', `https://gennadiy01.github.io/eurogranite-website${fullCanonicalPath}`);
+        ogUrlElement.setAttribute('content', `https://gennadiy01.github.io${fullCanonicalPath}`);
       }
 
       // Update Twitter meta tags (batch update)
@@ -126,7 +126,7 @@ const OptimizedSEO = ({
       const defaultPath = (canonicalUrl || '') === '/' || (canonicalUrl || '') === ''
         ? '/en/'
         : `/en${(canonicalUrl || '').startsWith('/') ? canonicalUrl : '/' + canonicalUrl}`;
-      xDefaultLink.setAttribute('href', `https://gennadiy01.github.io/eurogranite-website${defaultPath}`);
+      xDefaultLink.setAttribute('href', `https://gennadiy01.github.io${defaultPath}`);
       fragment.appendChild(xDefaultLink);
 
       // Single DOM insertion
