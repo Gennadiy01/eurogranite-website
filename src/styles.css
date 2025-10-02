@@ -1753,9 +1753,15 @@ body {
   outline: none;
   position: relative;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .custom-button:focus {
+  outline: none;
+}
+
+/* Focus visible only for keyboard navigation */
+.custom-button:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.3);
 }
@@ -1773,13 +1779,16 @@ body {
   border-color: var(--accent-orange);
 }
 
-.custom-button--primary:hover:not(:disabled) {
-  background-color: var(--white);
-  color: var(--neutral-900);
-  border-color: var(--neutral-900);
-  border-width: 2px;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(194, 65, 12, 0.3);
+/* Hover effect only for devices with mouse */
+@media (hover: hover) {
+  .custom-button--primary:hover:not(:disabled) {
+    background-color: var(--white);
+    color: var(--neutral-900);
+    border-color: var(--neutral-900);
+    border-width: 2px;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(194, 65, 12, 0.3);
+  }
 }
 
 .custom-button--primary:active:not(:disabled) {
@@ -1794,12 +1803,14 @@ body {
   border-color: currentColor;
 }
 
-.custom-button--outline:hover:not(:disabled) {
-  background-color: var(--accent-orange);
-  border-color: var(--accent-orange);
-  color: var(--white);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(194, 65, 12, 0.2);
+@media (hover: hover) {
+  .custom-button--outline:hover:not(:disabled) {
+    background-color: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(194, 65, 12, 0.2);
+  }
 }
 
 /* Primary Button for Dark Backgrounds (Hero section) */
@@ -1809,13 +1820,15 @@ body {
   border-color: var(--accent-orange-bright);
 }
 
-.custom-button--primary-dark:hover:not(:disabled) {
-  background-color: var(--white);
-  color: var(--neutral-900);
-  border-color: var(--neutral-900);
-  border-width: 2px;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(232, 103, 28, 0.3);
+@media (hover: hover) {
+  .custom-button--primary-dark:hover:not(:disabled) {
+    background-color: var(--white);
+    color: var(--neutral-900);
+    border-color: var(--neutral-900);
+    border-width: 2px;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(232, 103, 28, 0.3);
+  }
 }
 
 .custom-button--primary-dark:active:not(:disabled) {
@@ -1835,9 +1848,11 @@ body {
   border-color: transparent;
 }
 
-.custom-button--ghost:hover:not(:disabled) {
-  background-color: var(--neutral-100);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .custom-button--ghost:hover:not(:disabled) {
+    background-color: var(--neutral-100);
+    transform: translateY(-1px);
+  }
 }
 
 /* Button Sizes */
@@ -1880,8 +1895,10 @@ body {
 }
 
 /* Hover Lift Effect */
-.hover-lift:hover:not(:disabled) {
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .hover-lift:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
 }
 
 /* Hero Button Specific */
@@ -1890,9 +1907,11 @@ body {
   color: var(--white) !important;
 }
 
-.hero-button-outline:hover:not(:disabled) {
-  background-color: var(--white) !important;
-  color: var(--neutral-900) !important;
+@media (hover: hover) {
+  .hero-button-outline:hover:not(:disabled) {
+    background-color: var(--white) !important;
+    color: var(--neutral-900) !important;
+  }
 }
 
 
@@ -2880,12 +2899,14 @@ body {
   flex-shrink: 0;
 }
 
-.filter-button:hover {
-  border-color: var(--neutral-900);
-  background: var(--neutral-900);
-  color: white;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+@media (hover: hover) {
+  .filter-button:hover {
+    border-color: var(--neutral-900);
+    background: var(--neutral-900);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .filter-button.active {
@@ -2899,10 +2920,12 @@ body {
   background: white;
 }
 
-.filter-button.active:hover {
-  border-color: var(--accent-orange);
-  background: var(--accent-orange);
-  color: white;
+@media (hover: hover) {
+  .filter-button.active:hover {
+    border-color: var(--accent-orange);
+    background: var(--accent-orange);
+    color: white;
+  }
 }
 
 /* Color-specific filter styles with dot indicators */
@@ -3029,10 +3052,12 @@ body {
   position: relative;
 }
 
-.compare-button:hover:not(.disabled) {
-  background: var(--primary-600);
-  border-color: var(--primary-600);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .compare-button:hover:not(.disabled) {
+    background: var(--primary-600);
+    border-color: var(--primary-600);
+    transform: translateY(-1px);
+  }
 }
 
 .compare-button.added {
@@ -3040,9 +3065,11 @@ body {
   border-color: var(--success-500);
 }
 
-.compare-button.added:hover {
-  background: var(--success-600);
-  border-color: var(--success-600);
+@media (hover: hover) {
+  .compare-button.added:hover {
+    background: var(--success-600);
+    border-color: var(--success-600);
+  }
 }
 
 .compare-button.disabled {
@@ -4041,11 +4068,14 @@ body {
   color: var(--neutral-700);
   transition: all 0.3s ease;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.filter-button:hover {
-  border-color: var(--accent-orange);
-  color: var(--accent-orange);
+@media (hover: hover) {
+  .filter-button:hover {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+  }
 }
 
 .filter-button.active {
@@ -4417,9 +4447,18 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: 0 2px 8px rgba(194, 65, 12, 0.3);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.mobile-exit-button:hover,
+@media (hover: hover) {
+  .mobile-exit-button:hover {
+    background: var(--white);
+    color: var(--accent-orange);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(194, 65, 12, 0.4);
+  }
+}
+
 .mobile-exit-button:active {
   background: var(--white);
   color: var(--accent-orange);

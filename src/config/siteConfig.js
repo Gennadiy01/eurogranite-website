@@ -53,7 +53,9 @@ export const SITE_CONFIG = {
   }
 }
 
-export default {
+const config = {
   BASE_URL,
   SITE_CONFIG
 }
+
+export default config

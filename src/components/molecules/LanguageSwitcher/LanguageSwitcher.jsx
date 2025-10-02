@@ -70,9 +70,22 @@ const LanguageSwitcher = ({ className = '' }) => {
     }, 300) // 300ms затримка
   }
   
-  // Detect touch device on mount
+  // Detect touch device on mount - improved detection
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+    const checkTouchDevice = () => {
+      // Check multiple indicators for touch support
+      const hasTouchScreen = 'ontouchstart' in window ||
+                             navigator.maxTouchPoints > 0 ||
+                             navigator.msMaxTouchPoints > 0
+
+      // Additional check for mobile viewport
+      const isMobileViewport = window.innerWidth < 1024
+
+      // Combination: touch support OR small viewport
+      return hasTouchScreen || isMobileViewport
+    }
+
+    setIsTouchDevice(checkTouchDevice())
   }, [])
 
   // Handle click outside to close dropdown
@@ -105,7 +118,7 @@ const LanguageSwitcher = ({ className = '' }) => {
       onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}
     >
       {/* Active Language Display */}
-      <div 
+      <div
         className="cursor-pointer"
         onClick={(e) => {
           e.preventDefault()
@@ -113,7 +126,7 @@ const LanguageSwitcher = ({ className = '' }) => {
           setIsOpen(!isOpen)
         }}
       >
-        <span className="text-white hover:text-accent-orange text-sm font-medium transition-colors">
+        <span className={`text-white text-sm font-medium transition-colors ${!isTouchDevice ? 'hover:text-accent-orange' : ''}`}>
           {currentLang?.code.toUpperCase()}
         </span>
       </div>
@@ -136,7 +149,7 @@ const LanguageSwitcher = ({ className = '' }) => {
             <a
               key={language.code}
               href={createLanguageUrl(language.code)}
-              className="w-full px-4 py-2 text-sm font-medium text-white hover:text-accent-orange hover:bg-neutral-700 transition-colors text-left block no-underline"
+              className={`w-full px-4 py-2 text-sm font-medium text-white transition-colors text-left block no-underline ${!isTouchDevice ? 'hover:text-accent-orange hover:bg-neutral-700' : ''}`}
               style={{ padding: '8px 16px', display: 'block' }}
               onClick={() => setIsOpen(false)}
             >
