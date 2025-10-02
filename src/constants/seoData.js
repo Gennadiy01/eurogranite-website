@@ -1,4 +1,6 @@
 // SEO данні для всіх сторінок
+import { BASE_URL } from '../config/siteConfig'
+
 export const seoData = {
   home: {
     title: {
@@ -20,7 +22,7 @@ export const seoData = {
       pl: 'granit, kostka granitowa, ukraiński granit, produkcja granitu, kostka na zamówienie, produkty granitowe, eksport granitu'
     },
     canonical: '/',
-    ogImage: 'https://gennadiy01.github.io/images/og-image-home.jpg'
+    ogImage: `${BASE_URL}/images/og-image-home.jpg`
   },
 
   products: {
@@ -43,7 +45,7 @@ export const seoData = {
       pl: 'kostka granitowa, katalog granitu, łupana kostka, piłowana kostka, termiczna kostka, gabro, różowy granit, labradoryt'
     },
     canonical: '/products',
-    ogImage: 'https://gennadiy01.github.io/images/og-image-products.jpg'
+    ogImage: `${BASE_URL}/images/og-image-products.jpg`
   },
 
   about: {
@@ -66,7 +68,7 @@ export const seoData = {
       pl: 'o EuroGranite, historia firmy, ukraińskie kamieniołomy granitu, granit żytomierski, granit kirowohradzki, granit rówieński, producent granitu'
     },
     canonical: '/about',
-    ogImage: 'https://gennadiy01.github.io/images/og-image-about.jpg'
+    ogImage: `${BASE_URL}/images/og-image-about.jpg`
   },
 
   contact: {
@@ -89,7 +91,7 @@ export const seoData = {
       pl: 'kontakt EuroGranite, zamówić granit, konsultacja granitowa, żytomierz granit, telefon granit, email granit'
     },
     canonical: '/contact',
-    ogImage: 'https://gennadiy01.github.io/images/og-image-contact.jpg'
+    ogImage: `${BASE_URL}/images/og-image-contact.jpg`
   },
 
   gallery: {
@@ -112,7 +114,7 @@ export const seoData = {
       pl: 'galeria granitu, tekstury granitu, zdjęcia granitu, próbki granitu, czarny granit zdjęcia, szary granit zdjęcia, czerwony granit zdjęcia'
     },
     canonical: '/gallery',
-    ogImage: 'https://gennadiy01.github.io/images/og-image-gallery.jpg'
+    ogImage: `${BASE_URL}/images/og-image-gallery.jpg`
   }
 };
 

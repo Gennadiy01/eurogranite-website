@@ -1,4 +1,5 @@
 // Утіліти для роботи з URL в статичному режимі
+import { BASE_URL as CONFIG_BASE_URL } from '../config/siteConfig'
 
 // Базовий URL для GitHub Pages
 export const BASE_URL = process.env.NODE_ENV === 'development'
@@ -7,7 +8,7 @@ export const BASE_URL = process.env.NODE_ENV === 'development'
 
 export const DOMAIN = process.env.NODE_ENV === 'development'
   ? 'http://localhost:3001'
-  : 'https://gennadiy01.github.io'
+  : CONFIG_BASE_URL
 
 // Створення локалізованого URL без hash
 export const createLocalizedPath = (path, targetLang = 'en') => {

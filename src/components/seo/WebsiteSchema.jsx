@@ -1,4 +1,5 @@
 import React from 'react'
+import { BASE_URL } from '../../config/siteConfig'
 
 const WebsiteSchema = () => {
 
@@ -6,11 +7,11 @@ const WebsiteSchema = () => {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://gennadiy01.github.io/#website",
+    "@id": `${BASE_URL}/#website`,
     "name": "EuroGranite",
     "alternateName": "EuroGranite Ukraine",
     "description": "Premium granite products from Ukraine for European markets. High-quality granite pavers, slabs, and custom processing services.",
-    "url": "https://gennadiy01.github.io/",
+    "url": `${BASE_URL}/`,
     "inLanguage": [
       {
         "@type": "Language",
@@ -35,11 +36,11 @@ const WebsiteSchema = () => {
     ],
     "publisher": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/#organization"
+      "@id": `${BASE_URL}/#organization`
     },
     "copyrightHolder": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/#organization"
+      "@id": `${BASE_URL}/#organization`
     },
     "copyrightYear": 2025,
     "potentialAction": [
@@ -47,14 +48,14 @@ const WebsiteSchema = () => {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://gennadiy01.github.io/products?search={search_term_string}"
+          "urlTemplate": `${BASE_URL}/products?search={search_term_string}`
         },
         "query-input": "required name=search_term_string"
       }
     ],
     "mainEntity": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/#organization"
+      "@id": `${BASE_URL}/#organization`
     }
   }
 

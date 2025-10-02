@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useCallback } from 'react';
+import { BASE_URL } from '../../../config/siteConfig';
 
 const OptimizedSEO = ({
   title,
@@ -31,7 +32,7 @@ const OptimizedSEO = ({
 
       return {
         lang: lang === 'ua' ? 'uk' : lang,
-        href: `https://gennadiy01.github.io${fullPath}`
+        href: `${BASE_URL}${fullPath}`
       };
     });
   }, [canonicalUrl]);
@@ -69,13 +70,14 @@ const OptimizedSEO = ({
           canonicalLink.setAttribute('rel', 'canonical');
           document.head.appendChild(canonicalLink);
         }
-        canonicalLink.setAttribute('href', `https://gennadiy01.github.io${fullCanonicalPath}`);
+        canonicalLink.setAttribute('href', `${BASE_URL}${fullCanonicalPath}`);
       }
 
       // Update Open Graph meta tags (batch update)
       const ogTitleElement = document.querySelector('meta[property="og:title"]');
       const ogDescElement = document.querySelector('meta[property="og:description"]');
       const ogUrlElement = document.querySelector('meta[property="og:url"]');
+      const ogImageElement = document.querySelector('meta[property="og:image"]');
 
       if (title && ogTitleElement) {
         ogTitleElement.setAttribute('content', `${title} - EuroGranite`);
@@ -84,12 +86,24 @@ const OptimizedSEO = ({
         ogDescElement.setAttribute('content', description);
       }
       if (fullCanonicalPath && ogUrlElement) {
-        ogUrlElement.setAttribute('content', `https://gennadiy01.github.io${fullCanonicalPath}`);
+        ogUrlElement.setAttribute('content', `${BASE_URL}${fullCanonicalPath}`);
+      }
+
+      // Update og:image
+      const imageUrl = ogImage || `${BASE_URL}/og-image.jpg`;
+      if (ogImageElement) {
+        ogImageElement.setAttribute('content', imageUrl);
+      } else {
+        const newOgImage = document.createElement('meta');
+        newOgImage.setAttribute('property', 'og:image');
+        newOgImage.setAttribute('content', imageUrl);
+        document.head.appendChild(newOgImage);
       }
 
       // Update Twitter meta tags (batch update)
       const twitterTitleElement = document.querySelector('meta[name="twitter:title"]');
       const twitterDescElement = document.querySelector('meta[name="twitter:description"]');
+      const twitterImageElement = document.querySelector('meta[name="twitter:image"]');
 
       if (title && twitterTitleElement) {
         twitterTitleElement.setAttribute('content', `${title} - EuroGranite`);
@@ -97,8 +111,18 @@ const OptimizedSEO = ({
       if (description && twitterDescElement) {
         twitterDescElement.setAttribute('content', description);
       }
+
+      // Update twitter:image
+      if (twitterImageElement) {
+        twitterImageElement.setAttribute('content', imageUrl);
+      } else {
+        const newTwitterImage = document.createElement('meta');
+        newTwitterImage.setAttribute('name', 'twitter:image');
+        newTwitterImage.setAttribute('content', imageUrl);
+        document.head.appendChild(newTwitterImage);
+      }
     });
-  }, [title, description, keywords, fullCanonicalPath]);
+  }, [title, description, keywords, fullCanonicalPath, ogImage]);
 
   // Optimized hreflang updates
   const updateHreflangLinks = useCallback(() => {
@@ -126,7 +150,7 @@ const OptimizedSEO = ({
       const defaultPath = (canonicalUrl || '') === '/' || (canonicalUrl || '') === ''
         ? '/en/'
         : `/en${(canonicalUrl || '').startsWith('/') ? canonicalUrl : '/' + canonicalUrl}`;
-      xDefaultLink.setAttribute('href', `https://gennadiy01.github.io${defaultPath}`);
+      xDefaultLink.setAttribute('href', `${BASE_URL}${defaultPath}`);
       fragment.appendChild(xDefaultLink);
 
       // Single DOM insertion

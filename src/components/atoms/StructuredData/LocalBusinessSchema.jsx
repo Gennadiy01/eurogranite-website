@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
+import { BASE_URL } from '../../../config/siteConfig'
 
 const LocalBusinessSchema = ({ currentLanguage }) => {
   // Use passed prop or fallback to 'en'
@@ -45,11 +46,11 @@ const LocalBusinessSchema = ({ currentLanguage }) => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://gennadiy01.github.io/#organization",
+    "@id": `${BASE_URL}/#organization`,
     "name": currentData.name,
     "description": currentData.description,
-    "image": "https://gennadiy01.github.io/logo512.png",
-    "url": "https://gennadiy01.github.io/",
+    "image": `${BASE_URL}/logo512.png`,
+    "url": `${BASE_URL}/`,
     "telephone": "+380733864041",
     "email": "sales@euro-granite.com",
     "priceRange": "€€",

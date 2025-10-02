@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { BASE_URL } from '../../../config/siteConfig';
 
 const SEO = ({
   title,
@@ -51,7 +52,7 @@ const SEO = ({
         ? `${languagePrefix}/`
         : `${languagePrefix}${canonicalUrl.startsWith('/') ? canonicalUrl : '/' + canonicalUrl}`;
 
-      canonicalLink.setAttribute('href', `https://gennadiy01.github.io${fullCanonicalPath}`);
+      canonicalLink.setAttribute('href', `${BASE_URL}${fullCanonicalPath}`);
     }
 
     // Update Open Graph meta tags
@@ -76,7 +77,7 @@ const SEO = ({
         const fullCanonicalPath = canonicalUrl === '/' || canonicalUrl === ''
           ? `${languagePrefix}/`
           : `${languagePrefix}${canonicalUrl.startsWith('/') ? canonicalUrl : '/' + canonicalUrl}`;
-        ogUrl.setAttribute('content', `https://gennadiy01.github.io${fullCanonicalPath}`);
+        ogUrl.setAttribute('content', `${BASE_URL}${fullCanonicalPath}`);
       }
     }
 
@@ -123,7 +124,7 @@ const SEO = ({
         ? `/${lang}/`
         : `/${lang}${currentPath.startsWith('/') ? currentPath : '/' + currentPath}`;
 
-      hreflangLink.setAttribute('href', `https://gennadiy01.github.io${fullPath}`);
+      hreflangLink.setAttribute('href', `${BASE_URL}${fullPath}`);
       document.head.appendChild(hreflangLink);
     });
 
@@ -136,7 +137,7 @@ const SEO = ({
       ? '/en/'
       : `/en${currentPath.startsWith('/') ? currentPath : '/' + currentPath}`;
 
-    xDefaultLink.setAttribute('href', `https://gennadiy01.github.io${defaultPath}`);
+    xDefaultLink.setAttribute('href', `${BASE_URL}${defaultPath}`);
     document.head.appendChild(xDefaultLink);
 
     // Update html lang attribute

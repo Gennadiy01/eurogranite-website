@@ -1,6 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 
+// Import site URL from environment or use default
+const SITE_URL = process.env.SITE_URL || 'https://eg.yalivets.top'
+
 const buildDir = path.join(__dirname, '..', 'build')
 const languages = ['en', 'ua', 'de', 'pl']
 const pages = ['', 'products', 'about', 'contact', 'gallery', 'articles']
@@ -46,8 +49,8 @@ const generateSchemaData = (language, page) => {
     "@type": "Organization",
     "name": currentData.name,
     "description": currentData.description,
-    "url": "https://gennadiy01.github.io/",
-    "logo": "https://gennadiy01.github.io/logo192.png",
+    "url": `${SITE_URL}/`,
+    "logo": `${SITE_URL}/logo192.png`,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": currentData.addressLocality,
@@ -67,7 +70,7 @@ const generateSchemaData = (language, page) => {
     "@type": "LocalBusiness",
     "name": currentData.name,
     "description": currentData.description,
-    "url": "https://gennadiy01.github.io/",
+    "url": `${SITE_URL}/`,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": currentData.addressLocality,
@@ -221,11 +224,9 @@ const getSeoData = (language, page) => {
 
 // Функція для генерації hreflang тегів
 const generateHreflangTags = (page) => {
-  const baseUrl = 'https://eurogranite.com.ua'
-
   return languages.map(lang => {
     // All languages now have their own subdirectories
-    const url = `${baseUrl}/${lang}/${page ? page + '/' : ''}`
+    const url = `${SITE_URL}/${lang}/${page ? page + '/' : ''}`
 
     const hreflang = lang === 'ua' ? 'uk' : lang
     return `<link rel="alternate" hreflang="${hreflang}" href="${url}" />`
@@ -260,8 +261,7 @@ const generatePageHTML = (language, page) => {
   const schemaData = generateSchemaData(language, page)
 
   // Set canonical URL
-  const baseUrl = 'https://eurogranite.com.ua'
-  const canonicalUrl = `${baseUrl}/${language}/${page ? page + '/' : ''}`
+  const canonicalUrl = `${SITE_URL}/${language}/${page ? page + '/' : ''}`
 
   // Set language codes
   const langCode = language === 'ua' ? 'uk' : language
@@ -288,6 +288,7 @@ const generatePageHTML = (language, page) => {
     <meta property="og:description" content="${seoData.description}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${canonicalUrl}" />
+    <meta property="og:image" content="${SITE_URL}/og-image.jpg" />
     <meta property="og:site_name" content="EuroGranite" />
     <meta property="og:locale" content="${ogLocale}" />
 
@@ -295,6 +296,7 @@ const generatePageHTML = (language, page) => {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${seoData.title}" />
     <meta name="twitter:description" content="${seoData.description}" />
+    <meta name="twitter:image" content="${SITE_URL}/og-image.jpg" />
 
     <!-- Hreflang tags for multilingual SEO -->
     ${hreflangTags}

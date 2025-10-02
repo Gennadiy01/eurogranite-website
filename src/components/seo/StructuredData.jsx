@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { BASE_URL } from '../../config/siteConfig'
 
 const StructuredData = ({ data, type = 'default' }) => {
   // Generate JSON-LD structured data for different schema types
@@ -24,18 +25,18 @@ const StructuredData = ({ data, type = 'default' }) => {
   const generateOrganizationSchema = () => ({
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://gennadiy01.github.io/#organization",
+    "@id": `${BASE_URL}/#organization`,
     "name": "EuroGranite",
     "alternateName": "EuroGranite Ukraine",
     "description": "Premium granite products manufacturer from Ukraine specializing in export to European markets. High-quality granite pavers, slabs, and custom processing with 15+ years of experience.",
-    "url": "https://gennadiy01.github.io/",
+    "url": `${BASE_URL}/`,
     "logo": {
       "@type": "ImageObject",
-      "url": "https://gennadiy01.github.io/logo192.png",
+      "url": `${BASE_URL}/logo192.png`,
       "width": 192,
       "height": 192
     },
-    "image": "https://gennadiy01.github.io/images/hero/Im_Hero-800.webp",
+    "image": `${BASE_URL}/images/hero/Im_Hero-800.webp`,
     "foundingDate": "2008",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
@@ -92,14 +93,14 @@ const StructuredData = ({ data, type = 'default' }) => {
   const generateLocalBusinessSchema = () => ({
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "Manufacturer"],
-    "@id": "https://gennadiy01.github.io/#business",
+    "@id": `${BASE_URL}/#business`,
     "name": "EuroGranite",
     "image": [
-      "https://gennadiy01.github.io/images/hero/Im_Hero-800.webp",
-      "https://gennadiy01.github.io/images/advantages/advantages-800.webp"
+      `${BASE_URL}/images/hero/Im_Hero-800.webp`,
+      `${BASE_URL}/images/advantages/advantages-800.webp`
     ],
     "description": "Leading manufacturer of high-quality granite products with over 15 years of experience serving European customers. Specializing in granite pavers, slabs, and custom processing.",
-    "url": "https://gennadiy01.github.io/",
+    "url": `${BASE_URL}/`,
     "telephone": "+380-XX-XXX-XXXX", // Add real phone when available
     "priceRange": "$$-$$$",
     "openingHoursSpecification": {
@@ -138,7 +139,7 @@ const StructuredData = ({ data, type = 'default' }) => {
           "priceRange": "€25-€150",
           "seller": {
             "@type": "Organization",
-            "@id": "https://gennadiy01.github.io/#organization"
+            "@id": `${BASE_URL}/#organization`
           },
           "itemOffered": {
             "@type": "Product",
@@ -152,7 +153,7 @@ const StructuredData = ({ data, type = 'default' }) => {
             },
             "manufacturer": {
               "@type": "Organization",
-              "@id": "https://gennadiy01.github.io/#organization"
+              "@id": `${BASE_URL}/#organization`
             },
             "offers": {
               "@type": "AggregateOffer",
@@ -163,7 +164,7 @@ const StructuredData = ({ data, type = 'default' }) => {
               "offerCount": "50",
               "seller": {
                 "@type": "Organization",
-                "@id": "https://gennadiy01.github.io/#organization"
+                "@id": `${BASE_URL}/#organization`
               }
             },
             "aggregateRating": {
@@ -182,7 +183,7 @@ const StructuredData = ({ data, type = 'default' }) => {
           "priceRange": "€40-€200",
           "seller": {
             "@type": "Organization",
-            "@id": "https://gennadiy01.github.io/#organization"
+            "@id": `${BASE_URL}/#organization`
           },
           "itemOffered": {
             "@type": "Product",
@@ -196,7 +197,7 @@ const StructuredData = ({ data, type = 'default' }) => {
             },
             "manufacturer": {
               "@type": "Organization",
-              "@id": "https://gennadiy01.github.io/#organization"
+              "@id": `${BASE_URL}/#organization`
             },
             "offers": {
               "@type": "AggregateOffer",
@@ -207,7 +208,7 @@ const StructuredData = ({ data, type = 'default' }) => {
               "offerCount": "75",
               "seller": {
                 "@type": "Organization",
-                "@id": "https://gennadiy01.github.io/#organization"
+                "@id": `${BASE_URL}/#organization`
               }
             },
             "aggregateRating": {
@@ -246,9 +247,9 @@ const StructuredData = ({ data, type = 'default' }) => {
     },
     "manufacturer": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/#organization"
+      "@id": `${BASE_URL}/#organization`
     },
-    "image": productData?.image || "https://gennadiy01.github.io/images/granite/default.webp",
+    "image": productData?.image || `${BASE_URL}/images/granite/default.webp`,
     "offers": {
       "@type": "AggregateOffer",
       "availability": "https://schema.org/InStock",
@@ -258,7 +259,7 @@ const StructuredData = ({ data, type = 'default' }) => {
       "offerCount": productData?.offerCount || "25",
       "seller": {
         "@type": "Organization",
-        "@id": "https://gennadiy01.github.io/#organization"
+        "@id": `${BASE_URL}/#organization`
       }
     },
     "aggregateRating": {
@@ -295,7 +296,7 @@ const StructuredData = ({ data, type = 'default' }) => {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `https://gennadiy01.github.io${item.url}`
+      "item": `${BASE_URL}${item.url}`
     })) || []
   })
 
@@ -305,19 +306,19 @@ const StructuredData = ({ data, type = 'default' }) => {
     "@type": "WebPage",
     "name": pageData?.title || "EuroGranite - Premium Granite Products",
     "description": pageData?.description || "High-quality granite from Ukrainian quarries",
-    "url": pageData?.url || "https://gennadiy01.github.io/",
+    "url": pageData?.url || `${BASE_URL}/`,
     "inLanguage": pageData?.language || "en",
     "isPartOf": {
       "@type": "WebSite",
-      "@id": "https://gennadiy01.github.io/#website"
+      "@id": `${BASE_URL}/#website`
     },
     "about": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/#organization"
+      "@id": `${BASE_URL}/#organization`
     },
     "mainEntity": {
       "@type": "Organization",
-      "@id": "https://gennadiy01.github.io/#organization"
+      "@id": `${BASE_URL}/#organization`
     }
   })
 

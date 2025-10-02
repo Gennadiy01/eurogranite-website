@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
+import { BASE_URL } from '../../../config/siteConfig'
 
 const OrganizationSchema = ({ currentLanguage }) => {
   // Use passed prop or fallback to 'en'
@@ -43,9 +44,9 @@ const OrganizationSchema = ({ currentLanguage }) => {
     "@type": "Organization",
     "name": currentData.name,
     "description": currentData.description,
-    "url": "https://gennadiy01.github.io/",
-    "logo": "https://gennadiy01.github.io/logo192.png",
-    "image": "https://gennadiy01.github.io/logo512.png",
+    "url": `${BASE_URL}/`,
+    "logo": `${BASE_URL}/logo192.png`,
+    "image": `${BASE_URL}/logo512.png`,
     "foundingDate": "2020",
     "numberOfEmployees": "10-50",
     "address": {

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import useLanguageStore from '../../../stores/languageStore'
+import { BASE_URL } from '../../../config/siteConfig'
 
 const BreadcrumbSchema = ({ currentLanguage: propLanguage, pagePath }) => {
   const { currentLanguage } = useLanguageStore()
 
   // Use prop language or store language
   const currentLang = propLanguage || currentLanguage || 'en'
-  const baseUrl = 'https://gennadiy01.github.io'
 
   // Parse current path from window.location or use prop
   const getCurrentPath = () => {
@@ -69,7 +69,7 @@ const BreadcrumbSchema = ({ currentLanguage: propLanguage, pagePath }) => {
       "@type": "ListItem",
       "position": 1,
       "name": labels.home,
-      "item": `${baseUrl}/${currentLang}/`
+      "item": `${BASE_URL}/${currentLang}/`
     })
 
     // If we're not on home page, add current page
@@ -80,7 +80,7 @@ const BreadcrumbSchema = ({ currentLanguage: propLanguage, pagePath }) => {
           "@type": "ListItem",
           "position": 2,
           "name": labels[currentPage],
-          "item": `${baseUrl}/${currentLang}/${currentPage}/`
+          "item": `${BASE_URL}/${currentLang}/${currentPage}/`
         })
       }
     }

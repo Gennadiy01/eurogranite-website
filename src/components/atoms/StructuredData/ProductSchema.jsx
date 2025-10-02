@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
+import { BASE_URL } from '../../../config/siteConfig'
 
 const ProductSchema = ({ productType = 'general', currentLanguage, pagePath }) => {
   // Use passed prop or fallback to 'en'
@@ -74,7 +75,7 @@ const ProductSchema = ({ productType = 'general', currentLanguage, pagePath }) =
     "manufacturer": {
       "@type": "Organization",
       "name": "EuroGranite",
-      "url": "https://gennadiy01.github.io/"
+      "url": `${BASE_URL}/`
     },
     "material": currentData.material || "Granite",
     "category": currentData.category,

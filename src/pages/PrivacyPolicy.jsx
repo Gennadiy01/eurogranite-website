@@ -1,6 +1,7 @@
 import React from 'react'
 import useLanguageStore from '../stores/languageStore'
 import { Helmet } from 'react-helmet-async'
+import { BASE_URL } from '../config/siteConfig'
 import './About.css'
 
 const PrivacyPolicy = () => {
@@ -357,7 +358,7 @@ const PrivacyPolicy = () => {
         <title>{content.title} - EuroGranite</title>
         <meta name="description" content="EuroGranite privacy policy - how we collect, use and protect your personal data when you contact us through our website." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://gennadiy01.github.io/${currentLanguage}/privacy-policy/`} />
+        <link rel="canonical" href={`${BASE_URL}/${currentLanguage}/privacy-policy/`} />
       </Helmet>
 
       <div className="about-page">

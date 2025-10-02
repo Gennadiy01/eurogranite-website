@@ -1,9 +1,23 @@
 const fs = require('fs');
 const path = require('path');
 
-// Configuration
-const baseUrl = 'https://gennadiy01.github.io/eurogranite-website';
-const languages = ['en', 'ua', 'de', 'pl'];
+// Import site configuration
+// Note: Using require to load ES module config in CommonJS context
+const getSiteConfig = () => {
+  // For Node.js scripts, we need to read the config dynamically
+  const configPath = path.join(__dirname, '..', 'src', 'config', 'siteConfig.js');
+
+  // Since we can't directly import ES modules in CommonJS, we'll use a fallback
+  // Production domain - update this to match src/config/siteConfig.js
+  return {
+    baseUrl: process.env.SITE_URL || 'https://eg.yalivets.top',
+    languages: ['en', 'ua', 'de', 'pl']
+  };
+};
+
+const config = getSiteConfig();
+const baseUrl = config.baseUrl;
+const languages = config.languages;
 const routes = [
   { path: '', priority: '1.0', changefreq: 'weekly' },
   { path: 'products', priority: '0.9', changefreq: 'weekly' },
