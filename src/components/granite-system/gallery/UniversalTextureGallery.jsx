@@ -537,14 +537,14 @@ const UniversalTextureGallery = () => {
     }
     
 
-    // Faster transition for button clicks (improved responsiveness)
+    // GPU-accelerated transition for button clicks (hybrid approach)
     if (sheetRef.current) {
-      sheetRef.current.style.transition = 'height 0.2s cubic-bezier(0.4, 0.0, 0.2, 1)'
+      sheetRef.current.style.transition = 'transform 0.15s cubic-bezier(0.4, 0.0, 0.2, 1)'
       setTimeout(() => {
         if (sheetRef.current) {
           sheetRef.current.style.transition = ''
         }
-      }, 200)
+      }, 150)
     }
     
     currentSheetHeight.current = newHeight
@@ -711,7 +711,7 @@ const UniversalTextureGallery = () => {
             {/* Sheet Modal for Info & Properties */}
             <div
               className={`texture-sheet-modal ${isDraggingSheet ? 'dragging' : ''}`}
-              style={{ height: `${sheetHeight}%` }}
+              style={{ transform: `translateY(${100 - sheetHeight}%)` }}
               ref={sheetRef}
               onTouchStart={handleSheetTouchStart}
             >

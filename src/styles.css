@@ -3333,17 +3333,17 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  height: 100%; /* Fixed height - positioning via transform */
   background: var(--white);
   border-radius: 1rem 1rem 0 0;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
   z-index: 10;
   overflow: hidden;
 
-  /* iOS Performance optimizations - Force hardware acceleration */
-  will-change: height;
+  /* iOS Performance optimizations - GPU-accelerated transform */
+  will-change: transform;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 
@@ -3354,8 +3354,8 @@ body {
   /* Touch optimizations - Allow vertical pan */
   touch-action: pan-y;
 
-  /* Faster, smoother transition for iOS (reduced from 0.3s to 0.2s) */
-  transition: height 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  /* GPU-accelerated transform transition (25% faster than v1.3.2) */
+  transition: transform 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .texture-sheet-modal.dragging {
