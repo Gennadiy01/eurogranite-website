@@ -28,6 +28,7 @@ const UniversalTextureGallery = () => {
   const lastTouchY = useRef(0)
   const lastTouchTime = useRef(0)
   const velocity = useRef(0)
+  const rafId = useRef(null) // For requestAnimationFrame optimization
 
   // Localization
   const modalLabels = {
@@ -335,6 +336,15 @@ const UniversalTextureGallery = () => {
 
 
   // Cleanup effect for touch handlers and animations
+  useEffect(() => {
+    return () => {
+      // Cancel any pending RAF on unmount
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+        rafId.current = null
+      }
+    }
+  }, [])
 
   // Check if texture is in comparison
   const isInComparison = (textureId) => {
@@ -447,50 +457,65 @@ const UniversalTextureGallery = () => {
     
     // Keep transitions for smooth dragging experience
     
-    // High-performance touch move handler with immediate response
+    // iOS-optimized touch move handler with RAF
     const handleTouchMove = (moveEvent) => {
       if (!moveEvent.touches || moveEvent.touches.length === 0) return
-      
+
       const currentY = moveEvent.touches[0].clientY
       const currentTime = Date.now()
       const deltaY = startTouchY.current - currentY
-      const viewportHeight = window.innerHeight
-      const deltaPercent = (deltaY / viewportHeight) * 100
-      
-      // Calculate velocity for momentum (more responsive calculation)
+
+      // SIMPLIFIED velocity calculation (removed exponential smoothing for iOS performance)
       const timeDelta = currentTime - lastTouchTime.current
       if (timeDelta > 0) {
         const yDelta = currentY - lastTouchY.current
-        // Smoother velocity calculation with exponential smoothing
-        const newVelocity = -(yDelta / viewportHeight * 100) / (timeDelta / 1000)
-        velocity.current = velocity.current * 0.7 + newVelocity * 0.3 // smooth velocity
+        const viewportHeight = window.innerHeight
+        velocity.current = -(yDelta / viewportHeight * 100) / (timeDelta / 1000)
       }
-      
+
       lastTouchY.current = currentY
       lastTouchTime.current = currentTime
-      
-      moveEvent.preventDefault()
-      
-      // Immediate position update with proper bounds during drag
-      const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
-      currentSheetHeight.current = newHeight
-      setSheetHeight(newHeight)
-      
+
+      // CONDITIONAL preventDefault - only for vertical drag (better iOS compatibility)
+      const isVerticalDrag = Math.abs(deltaY) > 5
+      if (isVerticalDrag) {
+        moveEvent.preventDefault()
+      }
+
+      // RAF optimization for smooth 60fps updates
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+      }
+
+      rafId.current = requestAnimationFrame(() => {
+        const viewportHeight = window.innerHeight
+        const deltaPercent = (deltaY / viewportHeight) * 100
+        const newHeight = Math.max(15, Math.min(95, startSheetHeight.current + deltaPercent))
+        currentSheetHeight.current = newHeight
+        setSheetHeight(newHeight)
+      })
+
     }
     
     const handleTouchEnd = () => {
       setIsDraggingSheet(false)
-      
+
+      // Cancel any pending RAF updates
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+        rafId.current = null
+      }
+
       // Apply final position with momentum and bounds
       finishSheetPosition(currentSheetHeight.current, velocity.current)
-      
+
       // Force re-render to ensure state consistency
       setTimeout(() => {
         if (currentSheetHeight.current !== sheetHeight) {
           setSheetHeight(currentSheetHeight.current)
         }
       }, 10)
-      
+
       document.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('touchend', handleTouchEnd)
     }

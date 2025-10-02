@@ -3327,7 +3327,7 @@ body {
   touch-action: manipulation;
 }
 
-/* Sheet Modal Container - Optimized for Performance */
+/* Sheet Modal Container - Optimized for Performance (iOS Enhanced) */
 .texture-sheet-modal {
   position: absolute;
   bottom: 0;
@@ -3338,20 +3338,24 @@ body {
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
   z-index: 10;
   overflow: hidden;
-  
-  /* Performance optimizations for smooth mobile interactions */
+
+  /* iOS Performance optimizations - Force hardware acceleration */
   will-change: height;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  
-  /* Touch optimizations */
-  touch-action: manipulation;
-  
-  /* Default smooth transition */
-  transition: height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Force GPU compositing on iOS */
+  -webkit-perspective: 1000;
+  perspective: 1000;
+
+  /* Touch optimizations - Allow vertical pan */
+  touch-action: pan-y;
+
+  /* Smoother transition curve for iOS */
+  transition: height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .texture-sheet-modal.dragging {
@@ -3360,7 +3364,7 @@ body {
   contain: layout style paint;
 }
 
-/* Sheet Handle - Performance Optimized with better touch area */
+/* Sheet Handle - Performance Optimized with better touch area (iOS Enhanced) */
 .sheet-handle {
   position: sticky;
   top: 0;
@@ -3369,24 +3373,26 @@ body {
   background: var(--white);
   cursor: grab;
   user-select: none;
-  touch-action: none; /* Handle controls all touch - no scroll allowed */
+  touch-action: pan-y; /* Allow vertical pan for smoother iOS experience */
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   /* Better touch target size */
   min-height: 2.5rem; /* 40px minimum touch target */
-  
+
   /* Prevent text selection and callouts */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  
-  /* Performance optimizations */
+
+  /* iOS Performance optimizations - Hardware acceleration */
   will-change: transform;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .sheet-handle:active {
