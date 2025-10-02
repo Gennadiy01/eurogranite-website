@@ -3354,8 +3354,8 @@ body {
   /* Touch optimizations - Allow vertical pan */
   touch-action: pan-y;
 
-  /* Smoother transition curve for iOS */
-  transition: height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  /* Faster, smoother transition for iOS (reduced from 0.3s to 0.2s) */
+  transition: height 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .texture-sheet-modal.dragging {
@@ -4022,7 +4022,7 @@ body {
 }
 
 .texture-sheet-modal {
-  animation: slideUpSheet 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: slideUpSheet 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 /* ===== PROJECT GALLERY STYLES ===== */

@@ -536,15 +536,15 @@ const UniversalTextureGallery = () => {
       newHeight = 25  // Minimal height showing just title
     }
     
-    
-    // Smooth transition for button clicks
+
+    // Faster transition for button clicks (improved responsiveness)
     if (sheetRef.current) {
-      sheetRef.current.style.transition = 'height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)'
+      sheetRef.current.style.transition = 'height 0.2s cubic-bezier(0.4, 0.0, 0.2, 1)'
       setTimeout(() => {
         if (sheetRef.current) {
           sheetRef.current.style.transition = ''
         }
-      }, 300)
+      }, 200)
     }
     
     currentSheetHeight.current = newHeight
@@ -709,15 +709,15 @@ const UniversalTextureGallery = () => {
             </div>
 
             {/* Sheet Modal for Info & Properties */}
-            <div 
+            <div
               className={`texture-sheet-modal ${isDraggingSheet ? 'dragging' : ''}`}
               style={{ height: `${sheetHeight}%` }}
               ref={sheetRef}
+              onTouchStart={handleSheetTouchStart}
             >
               {/* Sheet Handle */}
-              <div 
+              <div
                 className="sheet-handle"
-                onTouchStart={handleSheetTouchStart}
                 onClick={toggleSheet}
               >
                 <div className="sheet-handle-bar"></div>
