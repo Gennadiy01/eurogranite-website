@@ -23,6 +23,9 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
+// Admin Panel (lazy loaded) - separate chunk for admin routes
+const AdminLayout = lazy(() => import('./components/admin/layout/AdminLayout'))
+
 // Static App component for production (unused - kept for future reference)
 // eslint-disable-next-line no-unused-vars
 const StaticApp = () => {
@@ -169,8 +172,9 @@ const DynamicApp = () => {
                   </LocalizedLayout>
                 } />
 
-                {/* Admin route (no localization needed) */}
+                {/* Admin routes (no localization needed) */}
                 <Route path="/admin/upload" element={<AdminUpload />} />
+                <Route path="/admin/*" element={<AdminLayout />} />
 
                 {/* 404 route */}
                 <Route path="*" element={<NotFound />} />
