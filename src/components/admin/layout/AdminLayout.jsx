@@ -6,20 +6,39 @@
 
 import React from 'react';
 import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
+import ProductsManager from '../../../pages/admin/ProductsManager';
 import styles from './AdminLayout.module.scss';
 
-// Placeholder components (will be created later)
+// Dashboard placeholder (will be enhanced later)
 const Dashboard = () => (
-  <div>
-    <h1>Admin Dashboard</h1>
-    <p>Welcome to EuroGranite Admin Panel</p>
-  </div>
-);
-
-const ProductsManager = () => (
-  <div>
-    <h1>Products Manager</h1>
-    <p>Manage your granite products here</p>
+  <div style={{ padding: '2rem' }}>
+    <h1 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '1rem' }}>
+      Admin Dashboard
+    </h1>
+    <p style={{ color: '#64748b' }}>Welcome to EuroGranite Admin Panel</p>
+    <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+      <div style={{
+        padding: '1.5rem',
+        backgroundColor: 'white',
+        borderRadius: '0.75rem',
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+        flex: 1,
+      }}>
+        <h3 style={{ margin: '0 0 0.5rem', color: '#1e40af' }}>📦 Products</h3>
+        <p style={{ margin: 0, color: '#64748b' }}>Manage granite products</p>
+      </div>
+      <div style={{
+        padding: '1.5rem',
+        backgroundColor: 'white',
+        borderRadius: '0.75rem',
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+        flex: 1,
+        opacity: 0.5,
+      }}>
+        <h3 style={{ margin: '0 0 0.5rem', color: '#64748b' }}>📝 Articles</h3>
+        <p style={{ margin: 0, color: '#64748b' }}>Coming in Phase 1.5</p>
+      </div>
+    </div>
   </div>
 );
 
