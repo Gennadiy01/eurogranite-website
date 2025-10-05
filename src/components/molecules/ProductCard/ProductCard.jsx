@@ -10,8 +10,21 @@ const ProductCard = ({ product }) => {
   const { currentLanguage } = useLanguageStore();
   const { openGalleryAtTexture } = useGraniteSystemStore();
 
+  // Convert production image path to dev path
+  const getImagePath = (imagePath) => {
+    if (!imagePath) return '';
+
+    // If image is from uploads directory (backend), use full backend URL
+    if (imagePath.startsWith('/uploads/')) {
+      return `http://localhost:5000${imagePath}`;
+    }
+
+    // Remove /eurogranite-website prefix for dev server
+    return imagePath.replace('/eurogranite-website', '');
+  };
+
   // Отримуємо дані про текстуру граніту
-  const textureData = graniteTypes.find(granite => 
+  const textureData = graniteTypes.find(granite =>
     granite.textures.some(texture => texture.id === product.textureId)
   );
   const texture = textureData?.textures.find(t => t.id === product.textureId);
@@ -45,34 +58,30 @@ const ProductCard = ({ product }) => {
     window.location.href = createLocalizedPath('contact', currentLanguage) + '?focus=form#contact-form';
   };
 
+  // Check if image exists and is valid
+  const hasImage = product.image && product.image.trim() !== '';
+  const imageSrc = getImagePath(product.image);
+
   return (
     <div className="product-card">
       {/* Зображення продукту */}
       <div className="product-image-container">
         <div className="product-image-wrapper">
-          <img
-            src={product.image}
-            alt={product.name[currentLanguage]}
-            className="product-image"
-            onLoad={(e) => {
-              console.log('Image loaded:', e.target.src);
-            }}
-            onError={(e) => {
-              console.log('Image failed to load:', e.target.src);
-              // Спробуємо альтернативний формат
-              const currentSrc = e.target.src;
-              if (currentSrc.includes('.webp')) {
-                e.target.src = currentSrc.replace('.webp', '.jpg');
-              } else if (currentSrc.includes('.jpg')) {
-                e.target.src = currentSrc.replace('.jpg', '.webp');
-              } else {
-                // Якщо все не вдалося, показуємо placeholder
+          {hasImage ? (
+            <img
+              src={imageSrc}
+              alt={product.name[currentLanguage]}
+              className="product-image"
+              onError={(e) => {
+                console.error('Image error:', imageSrc);
+                // Only show placeholder if image truly fails
                 e.target.style.display = 'none';
-                e.target.closest('.product-image-wrapper').querySelector('.product-image-placeholder').style.display = 'flex';
-              }
-            }}
-          />
-          <div className="product-image-placeholder" style={{ display: 'none' }}>
+                const placeholder = e.target.closest('.product-image-wrapper')?.querySelector('.product-image-placeholder');
+                if (placeholder) placeholder.style.display = 'flex';
+              }}
+            />
+          ) : null}
+          <div className="product-image-placeholder" style={{ display: hasImage ? 'none' : 'flex' }}>
             <div className="placeholder-icon">📦</div>
             <div className="placeholder-text">
               {product.name[currentLanguage]}
@@ -212,9 +221,13 @@ const ProductCard = ({ product }) => {
           <div className="product-customization-note">
             <span className="customization-icon">⚙️</span>
             <span className="customization-text">
-              {currentLanguage === 'ua' 
-                ? 'Можна виготовити з будь-якої текстури' 
-                : 'Can be made from any texture'
+              {currentLanguage === 'ua'
+                ? 'Можна виготовити з будь-якої текстури'
+                : currentLanguage === 'en'
+                ? 'Can be made from any texture'
+                : currentLanguage === 'de'
+                ? 'Kann aus jeder Textur hergestellt werden'
+                : 'Można wykonać z dowolnej tekstury'
               }
             </span>
           </div>

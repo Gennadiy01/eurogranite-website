@@ -14,6 +14,11 @@ const LanguageRedirect = () => {
     // Get the current path without basename
     const currentPath = location.pathname.replace(basename, '')
 
+    // Don't redirect admin routes - they don't need localization
+    if (currentPath.startsWith('/admin')) {
+      return
+    }
+
     // If we're at root or any path without language prefix, redirect to localized version
     if (currentPath === '/' || !currentPath.match(/^\/(ua|en|de|pl)/)) {
       const defaultLang = currentLanguage || 'en'  // Default to 'en' for consistency

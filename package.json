@@ -49,7 +49,10 @@
     "bundle:save": "node scripts/bundle-compare.js save",
     "build:local": "npm run prebuild && set PUBLIC_URL=.&& set GENERATE_SOURCEMAP=false&& react-scripts build && node scripts/generate-local-pages.js",
     "test:regression": "node scripts/regression-test.js",
-    "test:refactoring": "npm run test:regression"
+    "test:refactoring": "npm run test:regression",
+    "test:nav": "powershell -ExecutionPolicy Bypass -File scripts/test-navigation-simple.ps1",
+    "test:nav:full": "powershell -ExecutionPolicy Bypass -File scripts/test-navigation.ps1",
+    "test:nav:bash": "bash scripts/test-navigation.sh"
   },
   "eslintConfig": {
     "extends": [

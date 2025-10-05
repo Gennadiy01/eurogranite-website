@@ -25,6 +25,9 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 // Admin Panel (lazy loaded) - separate chunk for admin routes
 const AdminLayout = lazy(() => import('./components/admin/layout/AdminLayout'))
+const Dashboard = lazy(() => import('./pages/admin/Dashboard'))
+const ProductsManager = lazy(() => import('./pages/admin/ProductsManager'))
+const ProductForm = lazy(() => import('./pages/admin/ProductForm'))
 
 // Static App component for production (unused - kept for future reference)
 // eslint-disable-next-line no-unused-vars
@@ -119,6 +122,15 @@ const DynamicApp = () => {
           <LazyLoadErrorBoundary>
             <Suspense fallback={<PageLoader />}>
               <Routes>
+                {/* Admin routes (MUST be first - no localization needed) */}
+                <Route path="/admin/upload" element={<AdminUpload />} />
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<Dashboard />} />
+                  <Route path="products" element={<ProductsManager />} />
+                  <Route path="products/new" element={<ProductForm />} />
+                  <Route path="products/:id/edit" element={<ProductForm />} />
+                </Route>
+
                 {/* Language redirect for non-localized URLs */}
                 <Route path="/" element={<LanguageRedirect />} />
                 <Route path="/products" element={<LanguageRedirect />} />
@@ -171,10 +183,6 @@ const DynamicApp = () => {
                     <Footer />
                   </LocalizedLayout>
                 } />
-
-                {/* Admin routes (no localization needed) */}
-                <Route path="/admin/upload" element={<AdminUpload />} />
-                <Route path="/admin/*" element={<AdminLayout />} />
 
                 {/* 404 route */}
                 <Route path="*" element={<NotFound />} />

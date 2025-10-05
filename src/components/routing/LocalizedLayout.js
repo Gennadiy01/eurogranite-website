@@ -10,7 +10,15 @@ const LocalizedLayout = ({ children }) => {
 
   const supportedLanguages = useMemo(() => ['ua', 'en', 'de', 'pl'], [])
 
+  // Check if admin route
+  const isAdminRoute = location.pathname.startsWith('/admin')
+
   useEffect(() => {
+    // Don't interfere with admin routes - they're handled separately
+    if (isAdminRoute) {
+      return
+    }
+
     if (lang && supportedLanguages.includes(lang)) {
       if (currentLanguage !== lang) {
         setLanguage(lang)
@@ -25,7 +33,12 @@ const LocalizedLayout = ({ children }) => {
       // Invalid language, redirect to default
       navigate('/en', { replace: true })
     }
-  }, [lang, currentLanguage, setLanguage, navigate, location.pathname, supportedLanguages])
+  }, [lang, currentLanguage, setLanguage, navigate, location.pathname, supportedLanguages, isAdminRoute])
+
+  // Don't render anything for admin routes - they have their own layout
+  if (isAdminRoute) {
+    return null
+  }
 
   // Don't render if language is not set correctly
   if (!lang || !supportedLanguages.includes(lang)) {

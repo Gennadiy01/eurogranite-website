@@ -18,12 +18,14 @@ const ImageUploadField = ({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(value || '');
+  const [imageLoadError, setImageLoadError] = useState(false);
   const fileInputRef = useRef(null);
 
   // Update preview when value prop changes (e.g., when editing a product)
   useEffect(() => {
     if (value !== previewUrl) {
       setPreviewUrl(value || '');
+      setImageLoadError(false); // Reset error when URL changes
     }
   }, [value, previewUrl]);
 
@@ -53,6 +55,7 @@ const ImageUploadField = ({
     const reader = new FileReader();
     reader.onload = (e) => {
       setPreviewUrl(e.target.result);
+      setImageLoadError(false); // Reset error on new upload
     };
     reader.readAsDataURL(file);
 
@@ -82,6 +85,7 @@ const ImageUploadField = ({
       if (response.data.success) {
         const imageUrl = response.data.data.url;
         setPreviewUrl(imageUrl); // Update preview with server URL
+        setImageLoadError(false); // Reset error on successful upload
         onChange(imageUrl); // Notify parent component
         setError(null);
       } else {
@@ -100,6 +104,7 @@ const ImageUploadField = ({
   // Handle remove image
   const handleRemove = () => {
     setPreviewUrl('');
+    setImageLoadError(false);
     onChange('');
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
@@ -125,13 +130,20 @@ const ImageUploadField = ({
         className={`${styles.uploadArea} ${uploading ? styles.uploading : ''}`}
         onClick={handleUploadAreaClick}
       >
-        {previewUrl ? (
+        {previewUrl && !imageLoadError ? (
           // Preview Mode
           <div className={styles.preview}>
             <img
-              src={previewUrl.startsWith('http') ? previewUrl : `http://localhost:5000${previewUrl}`}
+              src={
+                previewUrl.startsWith('http')
+                  ? previewUrl // Already full URL (e.g., data:image or http://...)
+                  : previewUrl.startsWith('/uploads')
+                  ? `http://localhost:5000${previewUrl}` // Uploaded images
+                  : previewUrl.replace('/eurogranite-website', '') // Static images from public/
+              }
               alt="Preview"
               className={styles.previewImage}
+              onError={() => setImageLoadError(true)}
             />
             {!uploading && (
               <div className={styles.previewOverlay}>

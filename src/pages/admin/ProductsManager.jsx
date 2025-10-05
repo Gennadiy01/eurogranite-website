@@ -4,17 +4,95 @@
  * Main page for managing granite products
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useProductsStore } from '../../stores/useProductsStore';
 import styles from '../../components/admin/products/ProductsManager.module.scss';
 
 const ProductsManager = () => {
+  const navigate = useNavigate();
   const { products, loading, error, fetchProducts, deleteProduct } = useProductsStore();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+
+  console.log('[ProductsManager ADMIN] Rendering admin products manager');
 
   // Fetch products on mount
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
+
+  // Filter products based on search term
+  const filteredProducts = products.filter((product) => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      product.id?.toLowerCase().includes(searchLower) ||
+      product.name?.ua?.toLowerCase().includes(searchLower) ||
+      product.name?.en?.toLowerCase().includes(searchLower) ||
+      product.textureId?.toLowerCase().includes(searchLower) ||
+      product.size?.toLowerCase().includes(searchLower)
+    );
+  });
+
+  // Sort products
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (!sortConfig.key) return 0;
+
+    let aValue, bValue;
+
+    switch (sortConfig.key) {
+      case 'id':
+        aValue = a.id || '';
+        bValue = b.id || '';
+        break;
+      case 'name':
+        aValue = a.name?.ua || a.name?.en || '';
+        bValue = b.name?.ua || b.name?.en || '';
+        break;
+      case 'texture':
+        aValue = a.textureId || '';
+        bValue = b.textureId || '';
+        break;
+      case 'size':
+        aValue = a.size || '';
+        bValue = b.size || '';
+        break;
+      case 'price':
+        // Extract number from price string (e.g., "1140 грн/м²" -> 1140)
+        aValue = parseFloat((a.price?.ua || '0').match(/[\d.]+/)?.[0] || 0);
+        bValue = parseFloat((b.price?.ua || '0').match(/[\d.]+/)?.[0] || 0);
+        break;
+      case 'stock':
+        aValue = a.inStock ? 1 : 0;
+        bValue = b.inStock ? 1 : 0;
+        break;
+      default:
+        return 0;
+    }
+
+    if (aValue < bValue) {
+      return sortConfig.direction === 'asc' ? -1 : 1;
+    }
+    if (aValue > bValue) {
+      return sortConfig.direction === 'asc' ? 1 : -1;
+    }
+    return 0;
+  });
+
+  // Handle column sort
+  const handleSort = (key) => {
+    let direction = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // Get sort indicator
+  const getSortIndicator = (key) => {
+    if (sortConfig.key !== key) return '↕️';
+    return sortConfig.direction === 'asc' ? '↑' : '↓';
+  };
 
   const handleDelete = async (productId, productName) => {
     // Simple confirmation (will be replaced with modal in future)
@@ -29,15 +107,11 @@ const ProductsManager = () => {
   };
 
   const handleEdit = (productId) => {
-    // TODO: Navigate to edit page (Phase 1 - Week 2)
-    console.log('Edit product:', productId);
-    alert('Редагування буде реалізовано в наступному етапі');
+    navigate(`/admin/products/${productId}/edit`);
   };
 
   const handleAdd = () => {
-    // TODO: Navigate to create page (Phase 1 - Week 2)
-    console.log('Add new product');
-    alert('Додавання продукту буде реалізовано в наступному етапі');
+    navigate('/admin/products/new');
   };
 
   // Loading state
@@ -100,22 +174,91 @@ const ProductsManager = () => {
         </button>
       </div>
 
+      {/* Search Bar */}
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="🔍 Пошук по ID, назві, текстурі або розміру..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.searchInput}
+        />
+        {searchTerm && (
+          <button
+            onClick={() => setSearchTerm('')}
+            className={styles.clearButton}
+            title="Очистити пошук"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+
       {/* Products Table */}
       <div className={styles.tableContainer}>
         <table className={styles.table}>
           <thead className={styles.tableHeader}>
             <tr>
-              <th>ID</th>
-              <th>Назва</th>
-              <th>Текстура</th>
-              <th>Розмір</th>
-              <th>Ціна (UA)</th>
-              <th>Наявність</th>
+              <th>
+                <button
+                  onClick={() => handleSort('id')}
+                  className={styles.sortButton}
+                  title="Сортувати по ID"
+                >
+                  ID {getSortIndicator('id')}
+                </button>
+              </th>
+              <th>
+                <button
+                  onClick={() => handleSort('name')}
+                  className={styles.sortButton}
+                  title="Сортувати по назві"
+                >
+                  Назва {getSortIndicator('name')}
+                </button>
+              </th>
+              <th>
+                <button
+                  onClick={() => handleSort('texture')}
+                  className={styles.sortButton}
+                  title="Сортувати по текстурі"
+                >
+                  Текстура {getSortIndicator('texture')}
+                </button>
+              </th>
+              <th>
+                <button
+                  onClick={() => handleSort('size')}
+                  className={styles.sortButton}
+                  title="Сортувати по розміру"
+                >
+                  Розмір {getSortIndicator('size')}
+                </button>
+              </th>
+              <th>
+                <button
+                  onClick={() => handleSort('price')}
+                  className={styles.sortButton}
+                  title="Сортувати по ціні"
+                >
+                  Ціна {getSortIndicator('price')}
+                </button>
+              </th>
+              <th>Зображення</th>
+              <th>
+                <button
+                  onClick={() => handleSort('stock')}
+                  className={styles.sortButton}
+                  title="Сортувати по наявності"
+                >
+                  Наявність {getSortIndicator('stock')}
+                </button>
+              </th>
               <th>Дії</th>
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
-            {products.map((product) => (
+            {sortedProducts.map((product) => (
               <tr key={product.id}>
                 <td>
                   <span className={styles.productId} title={product.id}>
@@ -132,6 +275,29 @@ const ProductsManager = () => {
                 <td>
                   <span className={styles.productPrice}>
                     {product.price?.ua || 'N/A'}
+                  </span>
+                </td>
+                <td>
+                  {product.image ? (
+                    <img
+                      src={
+                        product.image.startsWith('/uploads')
+                          ? `http://localhost:5000${product.image}` // Uploaded images
+                          : product.image.replace('/eurogranite-website', '') // Static images
+                      }
+                      alt={product.name?.ua || 'Product'}
+                      className={styles.productImage}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                  ) : null}
+                  <span
+                    className={styles.noImage}
+                    style={{ display: product.image ? 'none' : 'flex' }}
+                  >
+                    📦
                   </span>
                 </td>
                 <td>
@@ -169,7 +335,18 @@ const ProductsManager = () => {
 
       {/* Footer Info */}
       <div style={{ marginTop: '1rem', color: '#64748b', fontSize: '0.875rem' }}>
-        Всього продуктів: {products.length}
+        {searchTerm ? (
+          <>
+            Знайдено: {sortedProducts.length} з {products.length} продуктів
+          </>
+        ) : (
+          <>Всього продуктів: {products.length}</>
+        )}
+        {sortConfig.key && (
+          <span style={{ marginLeft: '1rem' }}>
+            • Сортування: {sortConfig.key} ({sortConfig.direction === 'asc' ? 'за зростанням' : 'за спаданням'})
+          </span>
+        )}
       </div>
     </div>
   );

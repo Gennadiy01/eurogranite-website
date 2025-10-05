@@ -4,46 +4,14 @@
  * Main layout wrapper for admin panel with navigation
  */
 
-import React from 'react';
-import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
-import ProductsManager from '../../../pages/admin/ProductsManager';
+import React, { useEffect, useState } from 'react';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styles from './AdminLayout.module.scss';
-
-// Dashboard placeholder (will be enhanced later)
-const Dashboard = () => (
-  <div style={{ padding: '2rem' }}>
-    <h1 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '1rem' }}>
-      Admin Dashboard
-    </h1>
-    <p style={{ color: '#64748b' }}>Welcome to EuroGranite Admin Panel</p>
-    <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
-      <div style={{
-        padding: '1.5rem',
-        backgroundColor: 'white',
-        borderRadius: '0.75rem',
-        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-        flex: 1,
-      }}>
-        <h3 style={{ margin: '0 0 0.5rem', color: '#1e40af' }}>📦 Products</h3>
-        <p style={{ margin: 0, color: '#64748b' }}>Manage granite products</p>
-      </div>
-      <div style={{
-        padding: '1.5rem',
-        backgroundColor: 'white',
-        borderRadius: '0.75rem',
-        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-        flex: 1,
-        opacity: 0.5,
-      }}>
-        <h3 style={{ margin: '0 0 0.5rem', color: '#64748b' }}>📝 Articles</h3>
-        <p style={{ margin: 0, color: '#64748b' }}>Coming in Phase 1.5</p>
-      </div>
-    </div>
-  </div>
-);
 
 const AdminLayout = () => {
   const navigate = useNavigate();
+  const [apiHealthy, setApiHealthy] = useState(null);
 
   const handleLogout = () => {
     // TODO: Implement logout logic in Phase 2
@@ -51,11 +19,42 @@ const AdminLayout = () => {
     navigate('/');
   };
 
+  // Перевірка health API
+  useEffect(() => {
+    const checkAPI = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/health', { timeout: 3000 });
+        setApiHealthy(response.data.status === 'ok');
+      } catch (error) {
+        setApiHealthy(false);
+      }
+    };
+
+    checkAPI();
+    const interval = setInterval(checkAPI, 30000); // Кожні 30 сек
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className={styles.adminLayout}>
       {/* Header with Navigation */}
       <header className={styles.adminHeader}>
-        <h1 className={styles.adminTitle}>🏠 EuroGranite Admin</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <h1 className={styles.adminTitle}>🏠 EuroGranite Admin</h1>
+
+          {/* API Status Indicator */}
+          <div
+            className={styles.apiStatus}
+            title={apiHealthy === null ? 'Перевірка...' : apiHealthy ? 'API працює' : 'API недоступний'}
+            style={{
+              width: '10px',
+              height: '10px',
+              borderRadius: '50%',
+              backgroundColor: apiHealthy === null ? '#fbbf24' : apiHealthy ? '#22c55e' : '#ef4444',
+              animation: apiHealthy === null ? 'pulse 2s infinite' : 'none'
+            }}
+          />
+        </div>
 
         <nav className={styles.adminNav}>
           <NavLink
@@ -85,10 +84,7 @@ const AdminLayout = () => {
 
       {/* Main Content Area */}
       <main className={styles.adminContent}>
-        <Routes>
-          <Route index element={<Dashboard />} />
-          <Route path="products" element={<ProductsManager />} />
-        </Routes>
+        <Outlet />
       </main>
     </div>
   );

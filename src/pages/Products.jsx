@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useLanguageStore from '../stores/languageStore';
 import { productsData, TextureIcon, SurfaceIcon, DimensionIcon } from '../constants/productsData';
 import { getSEOData } from '../constants/seoData';
@@ -7,9 +7,29 @@ import ProductCard from '../components/molecules/ProductCard';
 import Header from '../components/organisms/Header/Header';
 import OptimizedSEO from '../components/atoms/SEO/OptimizedSEO';
 import UniversalTextureGallery from '../components/granite-system/gallery/UniversalTextureGallery'
+import { useProductsStore } from '../stores/useProductsStore';
 
 const Products = () => {
   const { currentLanguage } = useLanguageStore();
+  const { products: apiProducts, fetchProducts } = useProductsStore();
+  const [usingAPI, setUsingAPI] = useState(false);
+
+  console.log('[Products PUBLIC] Rendering public products page');
+
+  // Try to fetch from API, fallback to static data
+  useEffect(() => {
+    fetchProducts()
+      .then(() => setUsingAPI(true))
+      .catch(() => {
+        console.log('[Products] API unavailable, using static data');
+        setUsingAPI(false);
+      });
+  }, [fetchProducts]);
+
+  // Use API products if available, otherwise static data
+  const displayProducts = usingAPI && apiProducts.length > 0
+    ? apiProducts
+    : productsData.samples;
 
   // Language is managed by App.js for hash routing, no need to set it here
 
@@ -85,10 +105,10 @@ const Products = () => {
 
           {/* Products Grid */}
           <div className="products-grid">
-            {productsData.samples.map((product) => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
+            {displayProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
               />
             ))}
           </div>
