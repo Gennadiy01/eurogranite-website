@@ -234,8 +234,8 @@ export const combinedFinishTypes = {
       </div>
     )
   },
-  'split-sawn-thermal': {
-    id: 'split-sawn-thermal',
+  'split-sawn': {
+    id: 'split-sawn',
     name: {
       ua: '4 сторони колоті, 2 пиляні',
       en: '4 sides split, 2 sawn',
@@ -249,9 +249,9 @@ export const combinedFinishTypes = {
       pl: 'Łączona obróbka dla specjalnej tekstury'
     },
     surfaces: {
-      top: 'thermal',
+      top: 'split',
       front: 'split',
-      back: 'split', 
+      back: 'split',
       left: 'sawn',
       right: 'sawn',
       bottom: 'sawn'
@@ -260,6 +260,36 @@ export const combinedFinishTypes = {
       <div style={{ display: 'flex', gap: '2px' }}>
         <SplitIcon />
         <SawnIcon />
+      </div>
+    )
+  },
+  'split-sawn-thermal': {
+    id: 'split-sawn-thermal',
+    name: {
+      ua: '4 сторони колоті, 2 пиляні з термообробкою верху',
+      en: '4 sides split, 2 sawn with thermal top',
+      de: '4 Seiten gespalten, 2 gesägt mit thermischer Oberseite',
+      pl: '4 boki łupane, 2 piłowane z termiczną górą'
+    },
+    description: {
+      ua: 'Комбінована обробка для особливої текстури з термообробкою верху',
+      en: 'Combined processing for special texture with thermal top',
+      de: 'Kombinierte Bearbeitung für besondere Textur mit thermischer Oberseite',
+      pl: 'Łączona obróbka dla specjalnej tekstury z termiczną górą'
+    },
+    surfaces: {
+      top: 'thermal',
+      front: 'split',
+      back: 'split',
+      left: 'sawn',
+      right: 'sawn',
+      bottom: 'sawn'
+    },
+    icon: (
+      <div style={{ display: 'flex', gap: '2px' }}>
+        <SplitIcon />
+        <SawnIcon />
+        <ThermalIcon />
       </div>
     )
   },
@@ -289,6 +319,49 @@ export const combinedFinishTypes = {
       <div style={{ display: 'flex', gap: '2px' }}>
         <SplitIcon />
         <SawnIcon />
+      </div>
+    )
+  },
+  'mixed': {
+    id: 'mixed',
+    name: {
+      ua: 'Змішана обробка',
+      en: 'Mixed processing',
+      de: 'Gemischte Bearbeitung',
+      pl: 'Mieszana obróbka'
+    },
+    description: {
+      ua: 'Комбінована обробка з різною кількістю колотих та пиляних сторін',
+      en: 'Combined processing with different number of split and sawn sides',
+      de: 'Kombinierte Bearbeitung mit unterschiedlicher Anzahl gespaltener und gesägter Seiten',
+      pl: 'Łączona obróbka z różną liczbą łupanych i piłowanych boków'
+    },
+    icon: (
+      <div style={{ display: 'flex', gap: '2px' }}>
+        <SplitIcon />
+        <SawnIcon />
+      </div>
+    )
+  },
+  'mixed-thermal': {
+    id: 'mixed-thermal',
+    name: {
+      ua: 'Змішана обробка з термообробкою',
+      en: 'Mixed processing with thermal top',
+      de: 'Gemischte Bearbeitung mit thermischer Oberseite',
+      pl: 'Mieszana obróbka z termiczną górą'
+    },
+    description: {
+      ua: 'Комбінована обробка з різною кількістю колотих та пиляних сторін і термообробкою верху',
+      en: 'Combined processing with different number of split and sawn sides and thermal top',
+      de: 'Kombinierte Bearbeitung mit unterschiedlicher Anzahl gespaltener und gesägter Seiten und thermischer Oberseite',
+      pl: 'Łączona obróbka z różną liczbą łupanych i piłowanych boków i termiczną górą'
+    },
+    icon: (
+      <div style={{ display: 'flex', gap: '2px' }}>
+        <SplitIcon />
+        <SawnIcon />
+        <ThermalIcon />
       </div>
     )
   }

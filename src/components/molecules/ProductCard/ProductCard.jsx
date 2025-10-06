@@ -3,6 +3,7 @@ import useLanguageStore from '../../../stores/languageStore';
 import useGraniteSystemStore from '../../../stores/graniteSystemStore';
 import { graniteTypes } from '../../../constants/graniteData';
 import { surfaceFinishTypes, combinedFinishTypes } from '../../../constants/productsData';
+import { generateFinishDescription, parseFinishType } from '../../../utils/finishTypeUtils';
 import { createLocalizedPath } from '../../../utils/urlUtils';
 import Button from '../../atoms/Button/Button';
 
@@ -35,6 +36,21 @@ const ProductCard = ({ product }) => {
   };
 
   const finishInfo = getFinishInfo(product.finishType);
+
+  // Генеруємо динамічний опис обробки
+  const getFinishDescription = () => {
+    // Спочатку перевіряємо чи є збережене surfaceProcessing
+    if (product.surfaceProcessing) {
+      return generateFinishDescription(product.surfaceProcessing);
+    }
+    // Інакше парсимо з finishType (для старих продуктів)
+    if (product.finishType) {
+      const processing = parseFinishType(product.finishType);
+      return generateFinishDescription(processing);
+    }
+    // Fallback на статичну назву з константи
+    return finishInfo?.name[currentLanguage] || '';
+  };
 
   // Форматування розмірів
   const formatDimensions = (dimensions) => {
@@ -117,11 +133,11 @@ const ProductCard = ({ product }) => {
           </button>
           
           <div className="finish-info">
-            <span className="finish-icon" title={finishInfo?.name[currentLanguage]} aria-hidden="true">
+            <span className="finish-icon" title={getFinishDescription()} aria-hidden="true">
               {finishInfo?.icon}
             </span>
             <span className="finish-name">
-              {finishInfo?.name[currentLanguage]}
+              {getFinishDescription()}
             </span>
           </div>
         </div>

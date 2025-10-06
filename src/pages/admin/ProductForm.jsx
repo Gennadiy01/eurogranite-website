@@ -9,6 +9,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useProductsStore } from '../../stores/useProductsStore';
 import { graniteTypes } from '../../constants/graniteData';
 import { surfaceFinishTypes, combinedFinishTypes } from '../../constants/productsData';
+import { generateFinishDescription, parseFinishType } from '../../utils/finishTypeUtils';
 import ImageUploadField from '../../components/admin/common/ImageUploadField/ImageUploadField';
 import styles from '../../components/admin/products/ProductForm.module.scss';
 
@@ -111,39 +112,19 @@ const ProductForm = () => {
 
     // 2 пиляні + 4 колоті
     if (sawnSides === 2 && splitSides === 4) {
-      return thermalTop ? 'split-sawn-thermal' : 'split-sawn-thermal';
+      return thermalTop ? 'split-sawn-thermal' : 'split-sawn';
     }
 
-    // 4 пиляні + 2 колоті
+    // 4 пиляні + 2 колоті (завжди без термообробки - тип "з олівця")
     if (sawnSides === 4 && splitSides === 2) {
-      return thermalTop ? 'split-sawn-pencil' : 'split-sawn-pencil';
+      return 'split-sawn-pencil';
     }
 
-    // Для інших комбінацій
+    // Для інших комбінацій (нестандартні: 1+5, 3+3, 5+1 тощо)
     if (thermalTop) {
-      return 'sawn-thermal-top';
+      return 'mixed-thermal';
     }
-    return 'sawn';
-  };
-
-  // Функція парсингу finishType назад в surfaceProcessing
-  const parseFinishType = (finishType) => {
-    switch (finishType) {
-      case 'sawn':
-        return { sawnSides: 6, splitSides: 0, thermalTop: false };
-      case 'split':
-        return { sawnSides: 0, splitSides: 6, thermalTop: false };
-      case 'thermal':
-        return { sawnSides: 0, splitSides: 6, thermalTop: true };
-      case 'sawn-thermal-top':
-        return { sawnSides: 6, splitSides: 0, thermalTop: true };
-      case 'split-sawn-thermal':
-        return { sawnSides: 2, splitSides: 4, thermalTop: true };
-      case 'split-sawn-pencil':
-        return { sawnSides: 4, splitSides: 2, thermalTop: false };
-      default:
-        return { sawnSides: 6, splitSides: 0, thermalTop: false };
-    }
+    return 'mixed';
   };
 
   // Функція парсингу ціни (видалення валюти)
@@ -174,8 +155,15 @@ const ProductForm = () => {
       const product = products.find(p => p.id === id);
       if (product) {
         setFormData(product);
-        // Парсимо finishType назад в surfaceProcessing
-        if (product.finishType) {
+        // Завантажуємо surfaceProcessing: спочатку перевіряємо чи є збережене поле,
+        // інакше парсимо з finishType (для старих продуктів)
+        if (product.surfaceProcessing) {
+          setSurfaceProcessing({
+            sawnSides: product.surfaceProcessing.sawnSides || 0,
+            splitSides: product.surfaceProcessing.splitSides || 0,
+            thermalTop: product.surfaceProcessing.thermalTop || false
+          });
+        } else if (product.finishType) {
           setSurfaceProcessing(parseFinishType(product.finishType));
         }
         // Парсимо ціни назад (видаляємо валюту)
@@ -230,6 +218,11 @@ const ProductForm = () => {
       const finalFormData = {
         ...formData,
         finishType: determineFinishType(surfaceProcessing),
+        surfaceProcessing: {
+          sawnSides: surfaceProcessing.sawnSides,
+          splitSides: surfaceProcessing.splitSides,
+          thermalTop: surfaceProcessing.thermalTop
+        },
         price: {
           ua: formatPrice(priceValues.ua, 'ua'),
           en: formatPrice(priceValues.en, 'en'),
@@ -353,6 +346,57 @@ const ProductForm = () => {
       </div>
 
       <form onSubmit={handleSubmit} className={styles.form}>
+        {/* Name Section - Найважливіше поле, на початку форми */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Назва (4 мови)</h2>
+
+          <div className={styles.formGrid}>
+            <div className={styles.formGroup}>
+              <label htmlFor="name-ua">Назва (UA) *</label>
+              <input
+                type="text"
+                id="name-ua"
+                value={formData.name.ua}
+                onChange={(e) => handleNestedChange('name', 'ua', e.target.value)}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="name-en">Name (EN) *</label>
+              <input
+                type="text"
+                id="name-en"
+                value={formData.name.en}
+                onChange={(e) => handleNestedChange('name', 'en', e.target.value)}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="name-de">Name (DE) *</label>
+              <input
+                type="text"
+                id="name-de"
+                value={formData.name.de}
+                onChange={(e) => handleNestedChange('name', 'de', e.target.value)}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="name-pl">Nazwa (PL) *</label>
+              <input
+                type="text"
+                id="name-pl"
+                value={formData.name.pl}
+                onChange={(e) => handleNestedChange('name', 'pl', e.target.value)}
+                required
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Basic Info Section */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Основна Інформація</h2>
@@ -441,11 +485,7 @@ const ProductForm = () => {
                   <div className={styles.finishTypeResult}>
                     📋 Тип обробки: <strong>{determineFinishType(surfaceProcessing)}</strong>
                     {' — '}
-                    {(() => {
-                      const finishType = determineFinishType(surfaceProcessing);
-                      const finish = surfaceFinishTypes[finishType] || combinedFinishTypes[finishType];
-                      return finish ? finish.name.ua : 'Не визначено';
-                    })()}
+                    {generateFinishDescription(surfaceProcessing)}
                   </div>
                 </div>
               </div>
@@ -572,57 +612,6 @@ const ProductForm = () => {
                 value={priceValues.pl}
                 onChange={(e) => handlePriceChange('pl', e.target.value)}
                 placeholder="21"
-                required
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Name Section */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Назва (4 мови)</h2>
-
-          <div className={styles.formGrid}>
-            <div className={styles.formGroup}>
-              <label htmlFor="name-ua">Назва (UA) *</label>
-              <input
-                type="text"
-                id="name-ua"
-                value={formData.name.ua}
-                onChange={(e) => handleNestedChange('name', 'ua', e.target.value)}
-                required
-              />
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="name-en">Name (EN) *</label>
-              <input
-                type="text"
-                id="name-en"
-                value={formData.name.en}
-                onChange={(e) => handleNestedChange('name', 'en', e.target.value)}
-                required
-              />
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="name-de">Name (DE) *</label>
-              <input
-                type="text"
-                id="name-de"
-                value={formData.name.de}
-                onChange={(e) => handleNestedChange('name', 'de', e.target.value)}
-                required
-              />
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="name-pl">Nazwa (PL) *</label>
-              <input
-                type="text"
-                id="name-pl"
-                value={formData.name.pl}
-                onChange={(e) => handleNestedChange('name', 'pl', e.target.value)}
                 required
               />
             </div>
