@@ -40,6 +40,23 @@
     border-color: #3b82f6;
     background-color: #eff6ff;
   }
+
+  &.dragging {
+    border-color: #1e40af;
+    background-color: #dbeafe;
+    border-style: solid;
+    box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+
+    .uploadIcon {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    .uploadTitle {
+      color: #1e40af;
+      font-weight: 600;
+    }
+  }
 }
 
 // Upload Prompt (when no image)
@@ -57,6 +74,7 @@
   font-size: 3rem;
   margin-bottom: 1rem;
   opacity: 0.6;
+  transition: all 0.2s;
 }
 
 .uploadText {
@@ -69,6 +87,7 @@
   font-size: 0.9375rem;
   font-weight: 500;
   color: #1e293b;
+  transition: all 0.2s;
 }
 
 .uploadHint {

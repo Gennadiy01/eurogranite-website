@@ -19,6 +19,7 @@ const ImageUploadField = ({
   const [error, setError] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(value || '');
   const [imageLoadError, setImageLoadError] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
 
   // Update preview when value prop changes (e.g., when editing a product)
@@ -118,6 +119,72 @@ const ImageUploadField = ({
     }
   };
 
+  // Handle drag events
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!uploading) {
+      setIsDragging(true);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Only set dragging to false if leaving the upload area itself
+    // (not when moving over child elements)
+    if (e.currentTarget === e.target) {
+      setIsDragging(false);
+    }
+  };
+
+  const handleDrop = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    if (uploading) return;
+
+    const files = e.dataTransfer.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+
+      // Validate file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        setError('Тільки зображення дозволені (JPEG, PNG, GIF, WebP)');
+        return;
+      }
+
+      // Validate file size (5MB max)
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        setError('Максимальний розмір файлу: 5MB');
+        return;
+      }
+
+      // Clear previous error
+      setError(null);
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPreviewUrl(e.target.result);
+        setImageLoadError(false);
+      };
+      reader.readAsDataURL(file);
+
+      // Upload to server
+      await uploadFile(file);
+    }
+  };
+
   return (
     <div className={styles.imageUploadField}>
       <label className={styles.label}>
@@ -127,8 +194,12 @@ const ImageUploadField = ({
 
       {/* Upload Area */}
       <div
-        className={`${styles.uploadArea} ${uploading ? styles.uploading : ''}`}
+        className={`${styles.uploadArea} ${uploading ? styles.uploading : ''} ${isDragging ? styles.dragging : ''}`}
         onClick={handleUploadAreaClick}
+        onDragEnter={handleDragEnter}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
       >
         {previewUrl && !imageLoadError ? (
           // Preview Mode
@@ -175,7 +246,9 @@ const ImageUploadField = ({
           <div className={styles.uploadPrompt}>
             <div className={styles.uploadIcon}>📤</div>
             <div className={styles.uploadText}>
-              <div className={styles.uploadTitle}>Натисніть для завантаження зображення</div>
+              <div className={styles.uploadTitle}>
+                {isDragging ? 'Відпустіть файл для завантаження' : 'Натисніть або перетягніть зображення'}
+              </div>
               <div className={styles.uploadHint}>JPEG, PNG, GIF, WebP (макс. 5MB)</div>
             </div>
           </div>
