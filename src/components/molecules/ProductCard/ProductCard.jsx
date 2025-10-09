@@ -41,12 +41,12 @@ const ProductCard = ({ product }) => {
   const getFinishDescription = () => {
     // Спочатку перевіряємо чи є збережене surfaceProcessing
     if (product.surfaceProcessing) {
-      return generateFinishDescription(product.surfaceProcessing);
+      return generateFinishDescription(product.surfaceProcessing, currentLanguage);
     }
     // Інакше парсимо з finishType (для старих продуктів)
     if (product.finishType) {
       const processing = parseFinishType(product.finishType);
-      return generateFinishDescription(processing);
+      return generateFinishDescription(processing, currentLanguage);
     }
     // Fallback на статичну назву з константи
     return finishInfo?.name[currentLanguage] || '';
@@ -56,11 +56,17 @@ const ProductCard = ({ product }) => {
   const formatDimensions = (dimensions) => {
     // Перевірка чи dimensions існує
     if (!dimensions) {
-      return currentLanguage === 'ua' ? 'Розміри не вказані' : 'Dimensions not specified';
+      return currentLanguage === 'ua' ? 'Розміри не вказані'
+        : currentLanguage === 'en' ? 'Dimensions not specified'
+        : currentLanguage === 'de' ? 'Abmessungen nicht angegeben'
+        : 'Wymiary nie określone';
     }
 
     if (dimensions.length === 'custom') {
-      return currentLanguage === 'ua' ? 'Під замовлення' : 'Custom size';
+      return currentLanguage === 'ua' ? 'Під замовлення'
+        : currentLanguage === 'en' ? 'Custom size'
+        : currentLanguage === 'de' ? 'Auf Bestellung'
+        : 'Na zamówienie';
     }
 
     // Розміри вже в мм
@@ -151,7 +157,10 @@ const ProductCard = ({ product }) => {
         {/* Розміри */}
         <div className="product-dimensions">
           <span className="dimensions-label">
-            {currentLanguage === 'ua' ? 'Розміри:' : 'Dimensions:'}
+            {currentLanguage === 'ua' ? 'Розміри:'
+              : currentLanguage === 'en' ? 'Dimensions:'
+              : currentLanguage === 'de' ? 'Abmessungen:'
+              : 'Wymiary:'}
           </span>
           <span className="dimensions-value">
             {formatDimensions(product.dimensions)}
