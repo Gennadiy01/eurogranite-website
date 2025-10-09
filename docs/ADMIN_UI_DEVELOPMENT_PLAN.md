@@ -1110,6 +1110,347 @@ Bundle Sizes:
 
 ---
 
+## 🚀 Deployment Strategy & Architecture
+
+### ⚠️ КРИТИЧНО ВАЖЛИВО: Deployment Requirements
+
+**❌ НЕ МОЖНА деплоїти на production БЕЗ Phase 2 (Authentication)!**
+
+```
+🔴 НЕБЕЗПЕКА без авторизації:
+- Будь-хто може зайти на /admin
+- Будь-хто може видаляти/редагувати продукти
+- Будь-хто може завантажувати файли
+- База даних буде зламана за хвилини!
+
+✅ Деплоїти ТІЛЬКИ ПІСЛЯ Phase 2 завершено!
+```
+
+---
+
+### 📐 Поточна Архітектура (Phase 1 - Локальна розробка)
+
+```
+┌──────────────────────────────────────────────┐
+│  ЗАРАЗ (Local Development)                   │
+├──────────────────────────────────────────────┤
+│                                              │
+│  Frontend (React)                            │
+│  └─> http://localhost:3001                   │
+│      └─> Production pages ✅                 │
+│      └─> Admin panel /admin ✅               │
+│      └─> API calls → localhost:5000          │
+│                                              │
+│  Backend (Express.js)                        │
+│  └─> http://localhost:5000                   │
+│      └─> API endpoints (7 штук) ✅           │
+│      └─> База даних: data/products.json      │
+│      └─> Uploads: uploads/                   │
+│      └─> Backups: backups/                   │
+│      └─> БЕЗ авторизації ⚠️                  │
+│                                              │
+└──────────────────────────────────────────────┘
+```
+
+---
+
+### 🎯 Production Architecture (Після Phase 2)
+
+```
+┌───────────────────────────────────────────────────────┐
+│  PRODUCTION (Recommended)                             │
+├───────────────────────────────────────────────────────┤
+│                                                       │
+│  Hostinger (eg.yalivets.top)                         │
+│  └─> Frontend (Static Files)                         │
+│      ├─> Production pages (public)                   │
+│      ├─> Admin panel /admin (protected) 🔐           │
+│      └─> API calls → backend-url                     │
+│                                                       │
+│  Railway.app / Render.com / VPS                      │
+│  └─> Backend API (Node.js + Express)                 │
+│      ├─> JWT Authentication 🔐                       │
+│      ├─> Protected routes                            │
+│      ├─> Database (PostgreSQL/MongoDB)               │
+│      ├─> File storage (AWS S3 / Cloudinary)          │
+│      └─> Automatic backups                           │
+│                                                       │
+└───────────────────────────────────────────────────────┘
+```
+
+---
+
+### 📋 Deployment Options (Детальне порівняння)
+
+#### Опція 1: 🏆 Railway.app / Render.com (РЕКОМЕНДОВАНО для початку)
+
+**Переваги:**
+- ✅ **Безкоштовний tier** - достатньо для старту
+- ✅ **Автоматичний deploy з GitHub** - push → автодеплой
+- ✅ **Легко налаштувати** - 15 хвилин setup
+- ✅ **PostgreSQL включено** (Railway) або MongoDB (Render)
+- ✅ **SSL сертифікати** безкоштовно
+- ✅ **Логи та моніторинг** вбудовані
+- ✅ **Scalable** - можна розширити в майбутньому
+
+**Недоліки:**
+- ❌ Треба **мігрувати з JSON на PostgreSQL/MongoDB**
+- ❌ Може "засинати" після 15 хв неактивності (безкоштовний tier)
+- ❌ Обмеження: 500 годин/місяць (Railway) або 750 годин (Render)
+
+**Коли використовувати:**
+- 👍 Для старту та MVP
+- 👍 Якщо хочете швидкий результат
+- 👍 Якщо не хочете платити зараз
+- 👍 Для тестування на production
+
+**Приклад URL:**
+```
+Frontend: https://eg.yalivets.top
+Backend: https://eurogranite-api.up.railway.app
+```
+
+---
+
+#### Опція 2: 🏠 Hostinger VPS (якщо є підтримка Node.js)
+
+**Переваги:**
+- ✅ **Все в одному місці** - frontend + backend на одному хостингу
+- ✅ **Вже платите** - немає додаткових витрат
+- ✅ **Повний контроль** над сервером
+- ✅ **Можна залишити JSON** (не треба міграція на БД)
+- ✅ **Швидко** - frontend і backend поруч
+
+**Недоліки:**
+- ❌ **Складніше налаштувати** - треба SSH, PM2, nginx
+- ❌ Треба **вручну налаштовувати** Node.js environment
+- ❌ **Немає авто-deploy** - треба вручну завантажувати
+- ❌ Треба **самому керувати процесами** (PM2/systemd)
+- ❌ **Немає автоматичних backup** database
+
+**Коли використовувати:**
+- 👍 Якщо у вас VPS з SSH доступом
+- 👍 Якщо є досвід з Linux/nginx
+- 👍 Якщо хочете все контролювати
+- 👍 Для довгострокового використання
+
+**Що треба налаштувати:**
+```bash
+# 1. Встановити Node.js на VPS
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# 2. Встановити PM2 (process manager)
+sudo npm install -g pm2
+
+# 3. Клонувати backend repo
+git clone https://github.com/Gennadiy01/eurogranite-admin-panel.git
+cd eurogranite-admin-panel
+npm install
+
+# 4. Налаштувати .env
+echo "PORT=5000" > .env
+echo "NODE_ENV=production" >> .env
+
+# 5. Запустити через PM2
+pm2 start server.js --name eurogranite-api
+pm2 save
+pm2 startup
+
+# 6. Налаштувати nginx як reverse proxy
+# /etc/nginx/sites-available/eurogranite-api
+server {
+    listen 80;
+    server_name api.eg.yalivets.top;
+
+    location / {
+        proxy_pass http://localhost:5000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+---
+
+#### Опція 3: ☁️ Vercel Serverless Functions
+
+**Переваги:**
+- ✅ **Дуже швидкий deploy** - одна команда
+- ✅ **Автоматично масштабується** - millions of requests
+- ✅ **Безкоштовний generous tier**
+- ✅ **CDN included** - швидко по всьому світу
+- ✅ **Git integration** - auto-deploy on push
+
+**Недоліки:**
+- ❌ **Треба повністю переписати backend** на serverless
+- ❌ **НЕ підходить для JSON файлів** - треба external DB
+- ❌ **Обмеження execution time** (10 сек на безкоштовному tier)
+- ❌ **Stateless** - немає local file system
+- ❌ **Складніше дебажити**
+
+**Коли використовувати:**
+- 👍 Якщо плануєте велике навантаження
+- 👍 Якщо готові переписати backend
+- 👍 Якщо хочете serverless архітектуру
+- ⚠️ **НЕ рекомендую для цього проекту** (треба багато змін)
+
+---
+
+### 🛠️ Migration Steps (JSON → Database)
+
+**Для Railway.app PostgreSQL:**
+
+```javascript
+// 1. Встановити PostgreSQL client
+npm install pg
+
+// 2. Створити schema
+CREATE TABLE products (
+  id VARCHAR(255) PRIMARY KEY,
+  texture_id VARCHAR(100),
+  finish_type VARCHAR(100),
+  size VARCHAR(100),
+  name JSONB NOT NULL,
+  description JSONB,
+  price JSONB NOT NULL,
+  features JSONB,
+  dimensions JSONB,
+  in_stock BOOLEAN DEFAULT true,
+  customizable BOOLEAN DEFAULT false,
+  image VARCHAR(500),
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+// 3. Міграція даних
+const { Pool } = require('pg');
+const fs = require('fs');
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
+const products = JSON.parse(fs.readFileSync('./data/products.json'));
+
+for (const product of products) {
+  await pool.query(
+    `INSERT INTO products VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
+    [product.id, product.textureId, /* ... */]
+  );
+}
+```
+
+**Альтернатива: Prisma ORM (рекомендую):**
+```bash
+npm install prisma @prisma/client
+npx prisma init
+npx prisma db push
+npx prisma studio  # UI для перегляду БД
+```
+
+---
+
+### 📋 Deployment Checklist
+
+#### Перед Deployment (Phase 2 ОБОВ'ЯЗКОВО):
+
+- [ ] ✅ Phase 1 завершено і протестовано
+- [ ] ⏳ **Phase 2 - Authentication реалізовано**
+  - [ ] JWT токени працюють
+  - [ ] Protected routes налаштовані
+  - [ ] Login/Logout функціонує
+  - [ ] Session management
+- [ ] ⏳ Вибрано backend hosting (Railway/Hostinger/Render)
+- [ ] ⏳ Database setup (якщо не JSON)
+  - [ ] PostgreSQL/MongoDB налаштовано
+  - [ ] Migration script готовий
+  - [ ] Дані перенесені
+- [ ] ⏳ Environment variables налаштовані
+  - [ ] DATABASE_URL
+  - [ ] JWT_SECRET
+  - [ ] CORS_ORIGIN
+  - [ ] PORT
+- [ ] ⏳ File uploads налаштовані
+  - [ ] AWS S3 / Cloudinary для production
+  - [ ] Або local uploads folder на VPS
+- [ ] ⏳ SSL сертифікати
+  - [ ] HTTPS для backend
+  - [ ] HTTPS для frontend
+- [ ] ⏳ Backup strategy
+  - [ ] Automated database backups
+  - [ ] Restore procedure documented
+
+#### Post-Deployment:
+
+- [ ] ⏳ Smoke testing на production
+  - [ ] Login працює
+  - [ ] CRUD операції працюють
+  - [ ] Images завантажуються
+  - [ ] Authorization захищає routes
+- [ ] ⏳ Monitoring налаштовано
+  - [ ] Error tracking (Sentry)
+  - [ ] Uptime monitoring (UptimeRobot)
+  - [ ] Performance monitoring
+- [ ] ⏳ Documentation оновлено
+  - [ ] Production URLs
+  - [ ] Deployment procedures
+  - [ ] Rollback procedures
+
+---
+
+### 💰 Cost Comparison
+
+| Service | Free Tier | Paid Tier | Best For |
+|---------|-----------|-----------|----------|
+| **Railway.app** | 500 годин/міс | $5/міс | Швидкий старт |
+| **Render.com** | 750 годин/міс | $7/міс | Більше ресурсів |
+| **Hostinger VPS** | - | $3-10/міс | Повний контроль |
+| **Vercel** | Generous | $20/міс | Serverless |
+
+**Рекомендація:** Почати з Railway.app (безкоштовно), потім перейти на Hostinger VPS коли зросте трафік.
+
+---
+
+### 🎯 Recommended Deployment Path
+
+```
+КРОК 1: Завершити Phase 2 (Authentication) ← ЗАРАЗ
+├─ JWT backend
+├─ Login frontend
+├─ Protected routes
+└─ Testing
+
+КРОК 2: Вибрати Backend Hosting
+└─ Railway.app (рекомендовано)
+
+КРОК 3: Міграція на Database
+├─ PostgreSQL setup
+├─ Migration script
+└─ Data transfer
+
+КРОК 4: Deploy Backend
+├─ Push to GitHub
+├─ Connect Railway
+└─ Auto-deploy
+
+КРОК 5: Update Frontend
+├─ Change API_BASE_URL
+├─ Build production
+└─ Deploy to Hostinger
+
+КРОК 6: Testing & Monitoring
+├─ Smoke tests
+├─ Setup monitoring
+└─ Document everything
+```
+
+---
+
 ## 📞 Підтримка та Ресурси
 
 ### Документація:
@@ -1163,9 +1504,9 @@ Bundle Sizes:
 ---
 
 **Створено:** 3 жовтня 2025
-**Останнє оновлення:** 5 жовтня 2025 (Phase 1 Testing Completed)
-**Версія:** 1.3.0
-**Статус:** ✅ Phase 1 Week 2 COMPLETED - Automated Testing PASSED
+**Останнє оновлення:** 9 жовтня 2025 (Session #6 - Deployment Strategy Added)
+**Версія:** 1.4.0
+**Статус:** ✅ Phase 1 FULLY COMPLETED | ⏳ Phase 2 Authentication - Ready to Start
 
 ### Що додано в v1.3.0 (5.10.2025):
 - ✅ **Phase 1 Week 2 COMPLETED** - всі тести пройдено
