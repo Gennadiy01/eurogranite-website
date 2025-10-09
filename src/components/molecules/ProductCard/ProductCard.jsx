@@ -54,9 +54,15 @@ const ProductCard = ({ product }) => {
 
   // Форматування розмірів
   const formatDimensions = (dimensions) => {
+    // Перевірка чи dimensions існує
+    if (!dimensions) {
+      return currentLanguage === 'ua' ? 'Розміри не вказані' : 'Dimensions not specified';
+    }
+
     if (dimensions.length === 'custom') {
       return currentLanguage === 'ua' ? 'Під замовлення' : 'Custom size';
     }
+
     // Розміри вже в мм
     return `${dimensions.length}×${dimensions.width}×${dimensions.height}мм`;
   };
@@ -117,7 +123,7 @@ const ProductCard = ({ product }) => {
       <div className="product-info">
         {/* Назва продукту */}
         <h3 className="product-name">
-          {product.name[currentLanguage]}
+          {product.name?.[currentLanguage] || product.id || 'Product'}
         </h3>
 
         {/* Текстура та обробка */}
@@ -153,20 +159,22 @@ const ProductCard = ({ product }) => {
         </div>
 
         {/* Ціна */}
-        <div className="product-pricing">
-          <div className="price-main">
-            {product.price[currentLanguage]}
-          </div>
-          {product.priceNote && (
-            <div className="price-note">
-              {product.priceNote[currentLanguage]}
+        {product.price && (
+          <div className="product-pricing">
+            <div className="price-main">
+              {product.price?.[currentLanguage] || 'Contact for price'}
             </div>
-          )}
-        </div>
+            {product.priceNote && (
+              <div className="price-note">
+                {product.priceNote?.[currentLanguage]}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Опис */}
         <p className="product-description">
-          {product.description[currentLanguage]}
+          {product.description?.[currentLanguage] || ''}
         </p>
 
         {/* Особливості */}
@@ -176,7 +184,7 @@ const ProductCard = ({ product }) => {
               {currentLanguage === 'ua' ? 'Особливості:' : 'Features:'}
             </h4>
             <ul className="features-list">
-              {product.features[currentLanguage].map((feature, index) => (
+              {product.features[currentLanguage]?.map((feature, index) => (
                 <li key={index} className="feature-item">
                   {feature}
                 </li>
@@ -192,7 +200,7 @@ const ProductCard = ({ product }) => {
               {currentLanguage === 'ua' ? 'Час виготовлення:' : 'Lead time:'}
             </span>
             <span className="lead-time-value">
-              {product.leadTime[currentLanguage]}
+              {product.leadTime?.[currentLanguage]}
             </span>
           </div>
         )}
