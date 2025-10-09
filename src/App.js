@@ -24,10 +24,12 @@ const AdminUpload = lazy(() => import('./pages/AdminUpload'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 // Admin Panel (lazy loaded) - separate chunk for admin routes
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'))
 const AdminLayout = lazy(() => import('./components/admin/layout/AdminLayout'))
 const Dashboard = lazy(() => import('./pages/admin/Dashboard'))
 const ProductsManager = lazy(() => import('./pages/admin/ProductsManager'))
 const ProductForm = lazy(() => import('./pages/admin/ProductForm'))
+const ProtectedRoute = lazy(() => import('./components/admin/routing/ProtectedRoute'))
 
 // Static App component for production (unused - kept for future reference)
 // eslint-disable-next-line no-unused-vars
@@ -123,8 +125,20 @@ const DynamicApp = () => {
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 {/* Admin routes (MUST be first - no localization needed) */}
-                <Route path="/admin/upload" element={<AdminUpload />} />
-                <Route path="/admin" element={<AdminLayout />}>
+                {/* Login route (public) */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+
+                {/* Protected admin routes */}
+                <Route path="/admin/upload" element={
+                  <ProtectedRoute>
+                    <AdminUpload />
+                  </ProtectedRoute>
+                } />
+                <Route path="/admin" element={
+                  <ProtectedRoute>
+                    <AdminLayout />
+                  </ProtectedRoute>
+                }>
                   <Route index element={<Dashboard />} />
                   <Route path="products" element={<ProductsManager />} />
                   <Route path="products/new" element={<ProductForm />} />

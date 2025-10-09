@@ -5,6 +5,7 @@
  */
 
 import axios from 'axios';
+import { getAuthHeader } from './authApi';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -28,37 +29,43 @@ export const getProductById = async (id) => {
   }
 };
 
-// Create new product
+// Create new product (protected - requires auth)
 export const createProduct = async (productData) => {
   try {
-    const response = await axios.post(`${API_BASE}/products`, productData);
+    const response = await axios.post(`${API_BASE}/products`, productData, {
+      headers: getAuthHeader()
+    });
     return response.data; // { success: true, message: "...", data: {...} }
   } catch (error) {
     throw new Error(error.response?.data?.message || error.message || 'Помилка створення продукту');
   }
 };
 
-// Update product
+// Update product (protected - requires auth)
 export const updateProduct = async (id, productData) => {
   try {
-    const response = await axios.put(`${API_BASE}/products/${id}`, productData);
+    const response = await axios.put(`${API_BASE}/products/${id}`, productData, {
+      headers: getAuthHeader()
+    });
     return response.data; // { success: true, message: "...", data: {...} }
   } catch (error) {
     throw new Error(error.response?.data?.message || error.message || 'Помилка оновлення продукту');
   }
 };
 
-// Delete product
+// Delete product (protected - requires auth)
 export const deleteProduct = async (id) => {
   try {
-    const response = await axios.delete(`${API_BASE}/products/${id}`);
+    const response = await axios.delete(`${API_BASE}/products/${id}`, {
+      headers: getAuthHeader()
+    });
     return response.data; // { success: true, message: "...", data: {...} }
   } catch (error) {
     throw new Error(error.response?.data?.message || error.message || 'Помилка видалення продукту');
   }
 };
 
-// Upload image
+// Upload image (protected - requires auth)
 export const uploadImage = async (file) => {
   const formData = new FormData();
   formData.append('image', file);
@@ -66,6 +73,7 @@ export const uploadImage = async (file) => {
   const response = await axios.post(`${API_BASE}/upload`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
+      ...getAuthHeader()
     },
   });
 

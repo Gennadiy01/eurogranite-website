@@ -7,16 +7,17 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useAuthStore from '../../../stores/useAuthStore';
 import styles from './AdminLayout.module.scss';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
+  const { user, logout } = useAuthStore();
   const [apiHealthy, setApiHealthy] = useState(null);
 
-  const handleLogout = () => {
-    // TODO: Implement logout logic in Phase 2
-    console.log('Logout clicked');
-    navigate('/');
+  const handleLogout = async () => {
+    await logout();
+    navigate('/admin/login');
   };
 
   // Перевірка health API
@@ -76,8 +77,15 @@ const AdminLayout = () => {
             Products
           </NavLink>
 
+          {/* User Info */}
+          {user && (
+            <span className={styles.userInfo}>
+              👤 {user.username}
+            </span>
+          )}
+
           <button onClick={handleLogout} className={styles.logoutButton}>
-            Logout
+            🚪 Вийти
           </button>
         </nav>
       </header>
