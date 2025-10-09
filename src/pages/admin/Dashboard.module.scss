@@ -1,0 +1,200 @@
+/**
+ * Dashboard Styles (CSS Modules)
+ */
+
+.dashboard {
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.subtitle {
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+// API Status Card
+.apiCard {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid;
+
+  &.healthy {
+    background-color: #f0fdf4;
+    border-color: #86efac;
+  }
+
+  &.unhealthy {
+    background-color: #fef2f2;
+    border-color: #fca5a5;
+  }
+}
+
+.apiCardContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.apiIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.apiStatus {
+  flex: 1;
+}
+
+.apiTitle {
+  font-weight: 600;
+  margin: 0;
+
+  &.healthy {
+    color: #16a34a;
+  }
+
+  &.unhealthy {
+    color: #dc2626;
+  }
+}
+
+.apiDetails {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.apiError {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+// Cards Grid
+.cardsGrid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.cardTitle {
+  margin: 0 0 0.5rem;
+  color: #1e40af;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.cardDescription {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9375rem;
+}
+
+.cardCount {
+  margin: 0.5rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.cardTitleDisabled {
+  color: #64748b;
+}
+
+// Mobile Responsive
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .apiCardContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .apiIcon {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .apiCard {
+    padding: 0.75rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .cardDescription {
+    font-size: 0.875rem;
+  }
+
+  .cardCount {
+    font-size: 1.25rem;
+  }
+}

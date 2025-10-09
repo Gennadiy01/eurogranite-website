@@ -98,3 +98,26 @@
     opacity: 0.5;
   }
 }
+
+// Mobile Responsive
+@media (max-width: 768px) {
+  .adminHeader {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .adminTitle {
+    font-size: 1.25rem;
+  }
+
+  .adminNav {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .adminContent {
+    padding: 1rem;
+  }
+}
