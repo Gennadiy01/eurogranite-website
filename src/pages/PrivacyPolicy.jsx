@@ -2,6 +2,7 @@ import React from 'react'
 import useLanguageStore from '../stores/languageStore'
 import { Helmet } from 'react-helmet-async'
 import { BASE_URL } from '../config/siteConfig'
+import Header from '../components/organisms/Header/Header'
 import './About.css'
 
 const PrivacyPolicy = () => {
@@ -360,6 +361,8 @@ const PrivacyPolicy = () => {
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${BASE_URL}/${currentLanguage}/privacy-policy/`} />
       </Helmet>
+
+      <Header />
 
       <div className="about-page">
         {/* Hero Section */}

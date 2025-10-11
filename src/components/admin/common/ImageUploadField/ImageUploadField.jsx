@@ -6,6 +6,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { getAuthHeader } from '../../../../services/api/authApi';
 import styles from './ImageUploadField.module.scss';
 
 const ImageUploadField = ({
@@ -78,7 +79,8 @@ const ImageUploadField = ({
     try {
       const response = await axios.post(`${API_URL}/upload`, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          ...getAuthHeader() // Add JWT token for authentication
         },
         onUploadProgress: (progressEvent) => {
           const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);

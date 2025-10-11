@@ -835,16 +835,16 @@ export const productsData = {
         pl: 'Tekstury granitu'
       },
       description: {
-        ua: 'Оберіть з 12 унікальних текстур граніту з українських родовищ. Від класичного чорного габро до ексклюзивного зеленого Маславського граніту.',
-        en: 'Choose from 12 unique granite textures from Ukrainian deposits. From classic black gabbro to exclusive green Maslavske granite.',
-        de: 'Wählen Sie aus 12 einzigartigen Granittexturen aus ukrainischen Lagerstätten. Von klassischem schwarzem Gabbro bis zu exklusivem grünem Maslavske-Granit.',
-        pl: 'Wybierz spośród 12 unikalnych tekstur granitu z ukraińskich złóż. Od klasycznego czarnego gabro po ekskluzywny zielony granit Masławski.'
+        ua: 'Оберіть з 13 унікальних текстур граніту з українських родовищ. Від класичного чорного габро до ексклюзивного зеленого Маславського граніту.',
+        en: 'Choose from 13 unique granite textures from Ukrainian deposits. From classic black gabbro to exclusive green Maslavske granite.',
+        de: 'Wählen Sie aus 13 einzigartigen Granittexturen aus ukrainischen Lagerstätten. Von klassischem schwarzem Gabbro bis zu exklusivem grünem Maslavske-Granit.',
+        pl: 'Wybierz spośród 13 unikalnych tekstur granitu z ukraińskich złóż. Od klasycznego czarnego gabro po ekskluzywny zielony granit Masławski.'
       },
       features: {
-        ua: ['12 унікальних текстур', 'Українські родовища', 'Природні відтінки', 'Високоякісний граніт'],
-        en: ['12 unique textures', 'Ukrainian deposits', 'Natural shades', 'High-quality granite'],
-        de: ['12 einzigartige Texturen', 'Ukrainische Lagerstätten', 'Natürliche Farbtöne', 'Hochwertiger Granit'],
-        pl: ['12 unikalnych tekstur', 'Ukraińskie złoża', 'Naturalne odcienie', 'Wysokiej jakości granit']
+        ua: ['13 унікальних текстур', 'Українські родовища', 'Природні відтінки', 'Високоякісний граніт'],
+        en: ['13 unique textures', 'Ukrainian deposits', 'Natural shades', 'High-quality granite'],
+        de: ['13 einzigartige Texturen', 'Ukrainische Lagerstätten', 'Natürliche Farbtöne', 'Hochwertiger Granit'],
+        pl: ['13 unikalnych tekstur', 'Ukraińskie złoża', 'Naturalne odcienie', 'Wysokiej jakości granit']
       },
       icon: <TextureIcon />
     },

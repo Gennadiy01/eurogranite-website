@@ -282,7 +282,11 @@ const ProductsManager = () => {
                     <img
                       src={
                         product.image.startsWith('/uploads')
-                          ? `http://localhost:5000${product.image}` // Uploaded images
+                          ? (() => {
+                              const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+                              const backendBase = API_URL.replace('/api', '');
+                              return `${backendBase}${product.image}`;
+                            })() // Uploaded images from backend
                           : product.image.replace('/eurogranite-website', '') // Static images
                       }
                       alt={product.name?.ua || 'Product'}
