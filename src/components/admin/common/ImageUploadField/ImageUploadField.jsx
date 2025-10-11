@@ -72,8 +72,11 @@ const ImageUploadField = ({
     setUploading(true);
     setUploadProgress(0);
 
+    // Get API URL from environment
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+
     try {
-      const response = await axios.post('http://localhost:5000/api/upload', formData, {
+      const response = await axios.post(`${API_URL}/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -209,7 +212,11 @@ const ImageUploadField = ({
                 previewUrl.startsWith('http')
                   ? previewUrl // Already full URL (e.g., data:image or http://...)
                   : previewUrl.startsWith('/uploads')
-                  ? `http://localhost:5000${previewUrl}` // Uploaded images
+                  ? (() => {
+                      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+                      const backendBase = apiUrl.replace('/api', '');
+                      return `${backendBase}${previewUrl}`;
+                    })() // Uploaded images
                   : previewUrl.replace('/eurogranite-website', '') // Static images from public/
               }
               alt="Preview"

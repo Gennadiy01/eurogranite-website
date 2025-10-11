@@ -81,13 +81,19 @@ This project is part of the EuroGranite ecosystem:
 ### 🔧 Admin Panel Backend
 **Repository:** [eurogranite-admin-panel](https://github.com/Gennadiy01/eurogranite-admin-panel)
 **Purpose:** Backend API for managing product data
-**Tech:** Express.js + Node.js
+**Tech:** Express.js + Node.js + PostgreSQL
 **Location:** `../project_eurogranite_admin/`
+
+**🌐 Production API:**
+- **Backend:** https://eurogranite-admin-panel-production.up.railway.app
+- **Products API:** https://eurogranite-admin-panel-production.up.railway.app/api/products
+- **Health Check:** https://eurogranite-admin-panel-production.up.railway.app/health
 
 The admin panel provides:
 - REST API for CRUD operations on products
-- Automatic data backup system
-- JSON-based data storage
+- PostgreSQL database on Railway
+- JWT authentication
+- Image upload functionality
 - CORS-enabled for frontend integration
 
 ---
@@ -186,6 +192,9 @@ Create `.env` file in the root directory:
 ```env
 # Site URL (for SEO and canonical URLs)
 SITE_URL=https://eg.yalivets.top
+
+# Backend API URL (Railway)
+REACT_APP_API_URL=https://eurogranite-admin-panel-production.up.railway.app/api
 
 # Image optimization (optional)
 GENERATE_SOURCEMAP=false

@@ -11,16 +11,11 @@ const ProductCard = ({ product }) => {
   const { currentLanguage } = useLanguageStore();
   const { openGalleryAtTexture } = useGraniteSystemStore();
 
-  // Convert production image path to dev path
+  // Simple image path handler for static images in public folder
   const getImagePath = (imagePath) => {
     if (!imagePath) return '';
 
-    // If image is from uploads directory (backend), use full backend URL
-    if (imagePath.startsWith('/uploads/')) {
-      return `http://localhost:5000${imagePath}`;
-    }
-
-    // Remove /eurogranite-website prefix for dev server
+    // Remove /eurogranite-website prefix if present (for production build)
     return imagePath.replace('/eurogranite-website', '');
   };
 
