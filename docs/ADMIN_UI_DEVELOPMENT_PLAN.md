@@ -1,9 +1,9 @@
 # 🎨 План Розробки Admin Panel UI
 
 **Дата створення:** 3 жовтня 2025
-**Версія:** 1.5.0
-**Останнє оновлення:** 9 жовтня 2025 (Production Bug Fixes & Multilingual Support)
-**Статус:** ✅ Phase 1 FULLY COMPLETED | ✅ Phase 2 Frontend Auth COMPLETED | 🏭 Production Ready
+**Версія:** 1.6.0
+**Останнє оновлення:** 11 жовтня 2025 (Image Upload CRUD Testing & Railway Deployment)
+**Статус:** ✅ Phase 1 FULLY COMPLETED | ✅ Phase 2 Auth COMPLETED | ✅ CRUD Testing COMPLETED | 🚀 Railway Backend Deployed
 **Автор:** Claude Code
 
 ---
@@ -1508,9 +1508,49 @@ npx prisma studio  # UI для перегляду БД
 ---
 
 **Створено:** 3 жовтня 2025
-**Останнє оновлення:** 9 жовтня 2025 (Session #7 - Production Bug Fixes & Multilingual)
-**Версія:** 1.5.0
-**Статус:** ✅ Phase 1 FULLY COMPLETED | ✅ Phase 2 Frontend Auth COMPLETED | 🏭 Production Ready
+**Останнє оновлення:** 11 жовтня 2025 (Session #8 - CRUD Testing & Railway Deployment)
+**Версія:** 1.6.0
+**Статус:** ✅ Phase 1 FULLY COMPLETED | ✅ Phase 2 Auth COMPLETED | ✅ CRUD Testing COMPLETED | 🚀 Railway Deployed
+
+### Що додано в v1.6.0 (11.10.2025):
+- ✅ **Image Upload System - Full CRUD Testing**
+  - ✅ JWT Authentication для image upload (getAuthHeader)
+  - ✅ ImageUploadField - додано Authorization header
+  - ✅ ProductCard - підтримка `/uploads/` зображень з backend
+  - ✅ ProductsManager - відображення backend image thumbnails
+  - ✅ Environment variable support для API_URL
+  - ✅ Comprehensive CRUD testing documentation created
+- ✅ **Localhost CRUD Tests (Session #8)**
+  - ✅ Test 1: Створення продукту з зображенням - PASSED
+  - ✅ Test 2: Редагування продукту та зміна зображення - PASSED
+  - ✅ Test 3: Видалення продукту - PASSED
+  - ✅ Всі зображення відображаються коректно:
+    - ✅ В Admin Panel (list + edit form)
+    - ✅ На Frontend сторінці Products
+    - ✅ В мініатюрах таблиці ProductsManager
+- ✅ **Railway Backend Deployment**
+  - ✅ Backend deployed: https://eurogranite-admin-panel-production.up.railway.app
+  - ✅ PostgreSQL database працює (21 продукт)
+  - ✅ Health check: ✅ OK
+  - ✅ Products API: ✅ Working
+  - ✅ Frontend changes pushed to GitHub (commit 2efdc64)
+- ✅ **Documentation Updates**
+  - ✅ TESTING_PRODUCT_CRUD.md створено (480+ рядків)
+  - ✅ PRODUCT_IMAGES_WORKFLOW.md оновлено
+  - ✅ Static images workflow documented
+  - ✅ Railway deployment tested
+- ✅ **Minor Fixes**
+  - ✅ "12 унікальних текстур" → "13" (productsData.js)
+  - ✅ Header додано на Privacy Policy page
+  - ✅ Cleaned up ephemeral `/uploads/` paths from DB
+- 📊 **Production Status**
+  - 🚀 Railway backend: ✅ Deployed and working
+  - 🏭 Frontend: ✅ Ready for Hostinger deployment
+  - 🔐 Authentication: ✅ JWT working
+  - 📸 Image uploads: ✅ Tested (localhost + backend)
+  - ✅ Static images in Git: ✅ Working
+  - ⚠️ Note: Railway ephemeral storage - images lost on redeploy
+  - ✅ Solution: Static images in `public/images/products/`
 
 ### Що додано в v1.5.0 (9.10.2025):
 - ✅ **Phase 2 Frontend Authentication COMPLETED**
